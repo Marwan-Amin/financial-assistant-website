@@ -16,6 +16,7 @@ class CreateBudgetGoalsTable extends Migration
         Schema::create('budget_goals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('target_name');
             $table->decimal('target');
             $table->decimal('savings',8,2)->default(0);

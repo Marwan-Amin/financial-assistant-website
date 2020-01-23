@@ -13,7 +13,7 @@ class CreateIncomeTable extends Migration
      */
     public function up()
     {
-        Schema::create('income', function (Blueprint $table) {
+        Schema::create('incomes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type');
             $table->decimal('amount', 8, 2);
