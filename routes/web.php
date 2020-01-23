@@ -15,16 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home.index');
-});
-
-
-
-
-
+Route::get('/userHome', function () {
+    return view('userHome');
+})->middleware(['auth','verified']);
 
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth','verified']);
+
+// Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
+//     ->name('login.provider')
+//     ->where('driver', implode('|', config('auth.socialite.drivers')));
+
+//  Route::get('{driver}/callback', 'Auth\LoginController@handleProviderCallback')    
+//         ->name('login.callback')
+//         ->where('driver', implode('|', config('auth.socialite.drivers')));

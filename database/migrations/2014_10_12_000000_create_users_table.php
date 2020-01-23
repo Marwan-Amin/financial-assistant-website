@@ -22,8 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->enum('gender',['male','female']);
             $table->tinyInteger('age');
-            $table->string('City');
-            $table->string('Country');
+            $table->string('city');
+            $table->string('country');
             $table->rememberToken();
             $table->timestamps();
         });

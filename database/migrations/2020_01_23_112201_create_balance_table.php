@@ -13,12 +13,13 @@ class CreateBalanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('balance', function (Blueprint $table) {
+        Schema::create('balances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('total_expenses', 8, 2)->default(0);
             $table->decimal('total_income', 8, 2)->default(0);
             $table->decimal('balance', 8, 2)->default(0);
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

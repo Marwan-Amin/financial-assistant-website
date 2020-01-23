@@ -13,9 +13,10 @@ class CreateUsersIncomeTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_income', function (Blueprint $table) {
+        Schema::create('user_income', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('income_id');
             $table->decimal('amount',8,2);
             $table->timestamps();
