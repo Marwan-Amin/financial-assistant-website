@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncomeTable extends Migration
+class CreateBalancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateIncomeTable extends Migration
      */
     public function up()
     {
-        Schema::create('incomes', function (Blueprint $table) {
+        Schema::create('balances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type');
-            $table->decimal('amount', 8, 2);
+            $table->decimal('total_expenses', 8, 2)->default(0);
+            $table->decimal('total_income', 8, 2)->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateIncomeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses_income');
+        Schema::dropIfExists('balance');
     }
 }

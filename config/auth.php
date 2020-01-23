@@ -47,7 +47,12 @@ return [
             'hash' => false,
         ],
     ],
-
+    'socialite' => [
+        'drivers' => [
+            'google',
+            'github'
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | User Providers

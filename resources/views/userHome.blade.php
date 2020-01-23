@@ -40,13 +40,13 @@
     </div>
     <div class="row">
         <div class="col md-4 text-center">
-            <button type="button" class="btn btn-gradient-danger btn-lg mr-3 ">
+            <button type="button" class="btn btn-gradient-danger btn-lg mr-3 " href="{{route('income')}}>
                 <i class="mdi mdi-square-inc-cash float-right"></i> Add Incomes</button>  
         </div>
         <div class="col md-4 text-center">
         </div>
         <div class="col md-4 text-center">
-            <button type="button" class="btn btn-gradient-success btn-lg mg-auto">
+            <button type="button" class="btn btn-gradient-success btn-lg mg-auto" href="#}}>
                 <i class="mdi  mdi-cash-usd float-right"></i> Add Expenses</button>  
         </div>
     </div>

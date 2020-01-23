@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpensesCategoryTable extends Migration
+class CreateExpenseSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateExpensesCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('expenses_category', function (Blueprint $table) {
+        Schema::create('expense_sub_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('expense_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateExpensesCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses_category');
+        Schema::dropIfExists('expenses_sub_category');
     }
 }
