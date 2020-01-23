@@ -18,3 +18,13 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home.index');
 });
+
+
+
+
+
+
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
