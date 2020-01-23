@@ -22,4 +22,7 @@ Route::get('/userHome', function () {
 Route::get('/home', function () {
     return view('home.index');
 });
+Route::get('/income', function () {
+    return view('income');
+})->name('income');
 
