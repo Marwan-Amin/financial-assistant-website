@@ -19,6 +19,12 @@ Route::get('/userHome', function () {
     return view('userHome');
 })->middleware(['auth','verified']);
 
+Route::get('/home', function () {
+    return view('home.index');
+});
+Route::get('/income', function () {
+    return view('income');
+})->name('income');
 
 Auth::routes(['verify'=>true]);
 
