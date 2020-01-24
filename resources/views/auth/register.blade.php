@@ -91,7 +91,7 @@
                                  @endif
                              </select>
 
-                             <select class="form-control" name="state" id="state">
+                             <select class="form-control" name="city" id="state">
                              </select>
                         <div class="form-group row">
                             <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
