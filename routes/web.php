@@ -15,16 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/userHome', function () {
-    return view('userHome');
-})->middleware(['auth','verified']);
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/userHome', function () {
+        return view('userHome');
+    });
+    Route::get('/income', function () {
+        return view('income');
+    })->name('income');
+});
+
 
 Route::get('/home', function () {
     return view('home.index');
 });
-Route::get('/income', function () {
-    return view('income');
-})->name('income');
+
 
 Auth::routes(['verify'=>true]);
 
