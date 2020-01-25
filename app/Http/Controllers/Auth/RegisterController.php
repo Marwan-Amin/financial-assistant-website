@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Country;
 use App\Http\Controllers\Controller;
-use App\Mail\VerifyEmail;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -82,5 +80,20 @@ class RegisterController extends Controller
         ]);
 
         return $user;
+    }
+
+    public function getStates($countryId){
+        $country = Country::find($countryId);
+        $states=[];
+        if($country){
+        foreach($country->states as $state){
+            $states[]=$state->name;
+        }
+        
+            return response()->json($states);
+
+        }else{
+            return response()->json('fail');
+        }
     }
 }

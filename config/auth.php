@@ -47,12 +47,7 @@ return [
             'hash' => false,
         ],
     ],
-    'socialite' => [
-        'drivers' => [
-            'google',
-            'github'
-        ],
-    ],
+    
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -81,6 +76,7 @@ return [
         //     'table' => 'users',
         // ],
     ],
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +99,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+    ],
+     'socialite' => [
+        'drivers' => [
+            'google',
         ],
     ],
 
