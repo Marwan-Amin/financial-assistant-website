@@ -1,190 +1,142 @@
-@extends('layouts.app')
-
+@extends('layouts.reg_login')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-
-                            <div class="col-md-6">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">Male</label>
-
-                                <input  type="radio" class="form-control @error('gender') is-invalid @enderror" name="gender" value="male" required autocomplete="gender" autofocus>
-                                <label for="gender" class="col-md-4 col-form-label text-md-right">Female</label>
-                                <input  type="radio" class="form-control @error('gender') is-invalid @enderror" name="gender" value="female" required autocomplete="gender" autofocus>
-
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
-
-                            <select class="form-control" name="country" id="country">
-                                 <option value="">Select Country</option>
-                                 @if($countries)
-                                 @foreach ($countries as $country) 
-                                      <option value="{{$country->name}}">
-                                     {{$country->name}}
-                                        </option>
-                                 @endforeach
-                                 @endif
-                                 
-                             </select>
-                             @error('country')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
-
-                             <select class="form-control" name="city" id="state" value="Select City">
-                             <option value="" selected id="defaultCity">No Country Selected</option>
-                             
-                             </select>
-                             @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        <div class="form-group row">
-
-                            
-                        <div class="form-group row">
-                            <label for="age" class="col-md-4 col-form-label text-md-right"> Age</label>
-
-                            <div class="col-md-6">
-                                <input  type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
-
-                                @error('age')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row flex-grow">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left p-5">
+                <div class="brand-logo">
+                
+                  <!-- <img src="{{asset('UI/PurpleAdmin/assets/images/logo.svg')}}"> -->
+                  <h2 class="text-primary"> <b>Financial Assistant</b> </h2>
+                  
                 </div>
+                <h4>New here?</h4>
+                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <form class="pt-3" method="POST" action="{{ route('register') }}">
+                  @csrf
+                  <div class="form-group">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror form-control-lg" id="name" placeholder="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror form-control-lg"  placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+        
+                  <div class="form-group">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror form-control-lg"  placeholder="Password" name="password" required autocomplete="new-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+
+                  <div class="form-group">
+                    <input id="password-confirm" type="password" class="form-control form-control-lg"  placeholder="New Password" name="password_confirmation" required autocomplete="new-password">
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <select class="form-control form-control-lg" name="country" id="country">
+                      <option value="">Select Country</option>
+                      @if($countries)
+                      @foreach ($countries as $country) 
+                          <option value="{{$country->name}}">
+                          {{$country->name}}
+                            </option>
+                      @endforeach
+                      @endif
+                    </select>
+                    @error('country')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+
+
+                  <div class="form-group">
+                    <select class="form-control form-control-lg" name="city" id="state" value="Select City">
+                      <option value="" selected id="defaultCity">No Country Selected</option>
+                    </select>
+                    @error('city')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+
+                  <!--radio buttons-->
+                  <div class="form-group">
+                  <h6 class="font-weight-light">Gender</h6>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="male" required autocomplete="gender" autofocus> Male <i class="input-helper"></i></label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="female" required autocomplete="gender" autofocus> Female <i class="input-helper"></i></label>
+                      </div>
+                      @error('gender')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                    </div>
+                  <!--radio buttons-->
+
+                  <div class="form-group">
+                  
+                    <input  type="number" class="form-control @error('age') is-invalid @enderror"  name="age" value="{{ old('age') }}" placeholder="Age" required autocomplete="age" autofocus>
+
+                    @error('age')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    
+                  </div>
+
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+
+
+                  <!-- <div class="mb-4">
+                    <div class="form-check">
+                      <label class="form-check-label text-muted">
+                        <input type="checkbox" class="form-check-input"> I agree to all Terms & Conditions </label>
+                    </div>
+                  </div> -->
+                  <div class="mt-3">
+                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
+                  </div>
+                  <!-- <div class="text-center mt-4 font-weight-light"> Already have an account? <a href="#" class="text-primary">Login</a> -->
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
     </div>
-</div>
-<script>
-    let previousValue = document.getElementById('country').value;
-    document.getElementById('country').addEventListener('change',function(){
-//     
-        let countryId = $(this).val();
-        if(previousValue != this.value ){
-          $.ajax({
-           type:'GET',
-           url:"http://127.0.0.1:8000//states/ajax/"+countryId,
-          dataType:'json',
-           success:function(data){
-              renderStates(data);
-           }
-        });  
-        }else if(this.value == ""){
-            renderStates(this.value);
-        }
-
-    });
-function renderStates(states){
- let selectDropDown = document.getElementById('state');
-
- if(states){
-    selectDropDown.innerHTML='';
-    for(let i = 0 ;i<states.length;i++){
-    let optionItem = document.createElement('option');
-    optionItem.value = states[i];
-    optionItem.innerHTML = states[i];
-    selectDropDown.appendChild(optionItem);
- }
- }else if(states == ""){
-    selectDropDown.innerHTML='';
-    let optionItem = document.createElement('option');
-    optionItem.value = "";
-    optionItem.innerHTML = 'No Country Selected';
-    optionItem.setAttribute('id','defaultCity');
-    selectDropDown.appendChild(optionItem);
- }
- 
-}
-</script>
 @endsection
