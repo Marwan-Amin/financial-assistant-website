@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Socialite;
 
 
@@ -29,13 +31,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -55,7 +58,6 @@ public function handleProviderCallback($driver)
     }
 
     $existingUser = User::where('email', $user->getEmail())->first();
-
     if ($existingUser) {
         auth()->login($existingUser, true);
     } else {
@@ -73,4 +75,13 @@ public function handleProviderCallback($driver)
 
     return redirect($this->redirectPath());
 }
+protected function authenticated(Request $request, $user)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            
+            return redirect()->route('userHome');
+        }
+    }
 }
