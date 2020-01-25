@@ -20,9 +20,7 @@ Route::get('/', function () {
 Route::middleware(['auth','verified'])->group(function(){
     
     
-    Route::get('/userHome', function () {
-        return view('userHome');
-    });
+    Route::get('/userHome',"DashboardController@index")->name('userHome');
 
     Route::get('/incomes','IncomeController@index')->name('incomes');
 
@@ -30,7 +28,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     Route::delete('/incomes/{income}', 'IncomeController@destroy')->name('incomes.destroy');
 
-
+    Route::get('/expenses','ExpenseController@index')->name('expenses.index');
 });
 
 

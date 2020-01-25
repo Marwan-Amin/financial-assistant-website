@@ -13,6 +13,6 @@ class Income extends Model
 
     public function users()
     {
-       return $this->belongsToMany(User::class,'user_income');
+       return $this->belongsToMany(User::class,'user_incomes','amount');
     }
 }

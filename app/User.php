@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 use App\Income;
 use App\ExpenseSubCategory;
 use App\Balance;
@@ -41,10 +42,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function user_incomes(){
+        return $this->hasMany(UserIncome::class,'user_id');
 
-    public function income()
+    }
+    public function incomes()
     {
-       return $this->belongsToMany(Income::class,'user_income','user_id','income_id');
+       return $this->belongsToMany(Income::class,'user_incomes','user_id','income_id');
     }
 
     public function subExpenses()
