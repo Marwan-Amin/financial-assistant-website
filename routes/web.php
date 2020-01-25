@@ -16,12 +16,19 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth','verified'])->group(function(){
+    
+    
     Route::get('/userHome', function () {
         return view('userHome');
     });
-    Route::get('/income', function () {
-        return view('income');
-    })->name('income');
+
+    Route::get('/incomes','IncomeController@index')->name('incomes');
+
+    Route::post('/incomes','IncomeController@store');
+
+    Route::delete('/incomes/{income}', 'IncomeController@destroy')->name('incomes.destroy');
+
+
 });
 
 
