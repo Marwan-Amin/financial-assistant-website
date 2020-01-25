@@ -37,6 +37,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
     
     public function showRegistrationForm(){
         $countries = Country::all();
@@ -47,7 +48,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    
     /**
      * Get a validator for an incoming registration request.
      *
