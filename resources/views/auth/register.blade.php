@@ -61,61 +61,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-
-                            <div class="col-md-6">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">Male</label>
-
-                                <input  type="radio" class="form-control @error('gender') is-invalid @enderror" name="gender" value="male" required autocomplete="gender" autofocus>
-                                <label for="gender" class="col-md-4 col-form-label text-md-right">Female</label>
-                                <input  type="radio" class="form-control @error('gender') is-invalid @enderror" name="gender" value="female" required autocomplete="gender" autofocus>
-
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
-
-                            <div class="col-md-6">
-                                <input  type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{old('city')}}"  required autocomplete="city" autofocus>
-
-                                @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
-
-                            <div class="col-md-6">
-                                <input  type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country" autofocus>
-
-                                @error('country')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="age" class="col-md-4 col-form-label text-md-right"> Age</label>
-
-                            <div class="col-md-6">
-                                <input  type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
-
-                                @error('age')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
