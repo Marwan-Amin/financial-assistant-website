@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
 use Socialite;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class LoginController extends Controller
@@ -36,6 +38,14 @@ class LoginController extends Controller
      *
      * @return void
      */
+    protected function authenticated(Request $request, $user)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('home');
+        }
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
