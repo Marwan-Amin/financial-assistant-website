@@ -20,10 +20,8 @@ Route::get('/', function () {
 Route::middleware(['auth','verified'])->group(function(){
     
     
-    Route::get('/userHome', function () {
-        return view('userHome');
-    });
-
+    Route::get('/userHome',"DashboardController@index")->name('userHome');
+    //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
     Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
     Route::post('/incomes','IncomeController@store');
@@ -31,6 +29,9 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::patch('/incomes/{income_id}', 'IncomeController@update')->name('incomes.update');
     Route::get('/incomes/{income_id}/edit', 'IncomeController@edit')->name('incomes.edit');
     
+    //expenses routes
+    Route::get('/expenses','ExpenseController@index')->name('expenses.index');
+
 });
 
 
