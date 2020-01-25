@@ -11,6 +11,8 @@ use App\ExpenseSubCategory;
 use App\Balance;
 use App\Target;
 use App\Saving;
+use App\UserSubCategory;
+use App\UserIncome;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -52,7 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
     
+    public function user_sub_categories(){
+        return $this->hasMany(UserSubCategory::class,'user_id');
 
+    }
     public function subExpenses()
     {
        return $this->belongsToMany(ExpenseSubCategory::class,'user_sub_category','user_id','sub_category_id');

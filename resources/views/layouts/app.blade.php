@@ -201,7 +201,7 @@
                   <h6 class="font-weight-normal mb-3">Balance</h6>
                 </div>
                 <a href="/incomes" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
-                <a href="#" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
+                <a href="/expenses" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
                 
               </span>
             </li>
@@ -271,6 +271,9 @@
   <script>
   $(document).ready( function () {
     $('#incomeTable').DataTable();
+    } );
+    $(document).ready( function () {
+    $('#expensesTable').DataTable();
     } );
   </script>
 

@@ -1,46 +1,41 @@
 @extends('layouts.app')
-@section('content') 
-
-<section class = "content" > 
-  <div class="container-fluid">
-
-    <div class="row">
-
-        <div class="col-7">
-            <table class="table table-hover table-light" id="incomeTable">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Income type</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Date Added</th>
-                    </tr>
-                </thead>
-                <tbody>
-@foreach ($UserIncomes as $index => $UserIncome)
-                    <tr>
-                        <th scope="row">{{$UserIncome->id}}</th>
-                        <td>{{$UserIncome->income_id}}</td>
-                        <td>{{$UserIncome->amount}}</td>
-                        <td>{{$UserIncome->Date}}</td>
-                        <td class="project-actions text-center">
-                          <form action="/incomes/{{$UserIncome->id}}" method="POST">
-                              @csrf 
-                              @method('DELETE') 
-                              <button class="btn btn-danger btn-sm" type=submit onclick="return confirm('Dou you want to delete this income?')" >
-                                Delete
-                              </button> 
-                          </form>
-                      </td> 
-                    </tr>
-@endforeach
-                </tbody>
-            </table>
-
+@section('content')
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Your Incomes</h4>
+        <table class="table table-striped " id="incomeTable">
+          <thead>
+            <tr>
+              <th> Type </th>
+              <th> Amount </th>
+              <th> Date </th>
+              <th> Edit </th>
+              <th> Delete </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($user->user_incomes as $user_income) 
+            <tr>
+                <td>{{$user_income->income->type}}</td>
+                <td>{{$user_income->amount}}</td>
+                <td>{{$user_income->Date}}</td>
+                <td><a class="btn btn-danger btn-sm" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit</a>
+                </td>
+                <td class="project-actions text-center">
+                  <form action="/incomes/{{$user_income->id}}" method="POST">
+                      @csrf 
+                      @method('DELETE') 
+                      <button class="btn btn-danger btn-sm" type=submit onclick="return confirm('Dou you want to delete this income?')" >
+                        Delete
+                      </button> 
+                  </form>
+              </td> 
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
-
-</div>
-</div>
-</section>
-
+  </div>
 @endsection
