@@ -51,3 +51,6 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
         ->name('login.callback')
         ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
+
+//user profile routes
+Route::get('/user_profile', 'ProfileController@index')->name('home')->middleware(['auth','verified']);
