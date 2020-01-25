@@ -9,8 +9,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 
 class LoginController extends Controller
@@ -40,14 +38,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    protected function authenticated(Request $request, $user)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
-        }
-    }
+    
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -67,7 +58,6 @@ public function handleProviderCallback($driver)
     }
 
     $existingUser = User::where('email', $user->getEmail())->first();
-
     if ($existingUser) {
         auth()->login($existingUser, true);
     } else {
