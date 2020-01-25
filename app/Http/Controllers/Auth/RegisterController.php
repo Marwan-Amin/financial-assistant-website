@@ -56,8 +56,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'gender'=>['required'],
             'age'=>['required','numeric'],
-            'city'=>['required'],
-            'country'=>['required']
+            'city'=>['required','string','min:3'],
+            'country'=>['required','string','min:3']
         ]);
     }
 
@@ -82,8 +82,8 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function getStates($countryId){
-        $country = Country::find($countryId);
+    public function getStates($countryName){
+        $country = Country::where('name', $countryName)->first();
         $states=[];
         if($country){
         foreach($country->states as $state){

@@ -78,23 +78,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+                            <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
 
                             <select class="form-control" name="country" id="country">
                                  <option value="">Select Country</option>
                                  @if($countries)
                                  @foreach ($countries as $country) 
-                                      <option value="{{$country->id}}">
+                                      <option value="{{$country->name}}">
                                      {{$country->name}}
                                         </option>
                                  @endforeach
                                  @endif
+                                 @error('country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                              </select>
+                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
-                             <select class="form-control" name="city" id="state">
+                             <select class="form-control" name="city" id="state" value="Select City">
+                             <option value="" selected id="defaultCity">No Country Selected</option>
+                             @error('city')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                              </select>
                         <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
 
                             
                         <div class="form-group row">
@@ -127,9 +138,8 @@
     let previousValue = document.getElementById('country').value;
     document.getElementById('country').addEventListener('change',function(){
 //     
-      
         let countryId = $(this).val();
-        if(previousValue != this.value){
+        if(previousValue != this.value ){
           $.ajax({
            type:'GET',
            url:"http://127.0.0.1:8000//states/ajax/"+countryId,
@@ -138,18 +148,31 @@
               renderStates(data);
            }
         });  
+        }else if(this.value == ""){
+            renderStates(this.value);
         }
 
     });
 function renderStates(states){
  let selectDropDown = document.getElementById('state');
- selectDropDown.innerHTML='';
- for(let i = 0 ;i<states.length;i++){
+
+ if(states){
+    selectDropDown.innerHTML='';
+    for(let i = 0 ;i<states.length;i++){
     let optionItem = document.createElement('option');
     optionItem.value = states[i];
     optionItem.innerHTML = states[i];
     selectDropDown.appendChild(optionItem);
  }
+ }else if(states == ""){
+    selectDropDown.innerHTML='';
+    let optionItem = document.createElement('option');
+    optionItem.value = "";
+    optionItem.innerHTML = 'No Country Selected';
+    optionItem.setAttribute('id','defaultCity');
+    selectDropDown.appendChild(optionItem);
+ }
+ 
 }
 </script>
 @endsection
