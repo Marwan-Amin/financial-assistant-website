@@ -20,7 +20,7 @@
                 <td>{{$user_income->income->type}}</td>
                 <td>{{$user_income->amount}}</td>
                 <td>{{$user_income->Date}}</td>
-                <td><button class="btn btn-danger btn-sm" href="#" >Edit
+                <td><a class="btn btn-danger btn-sm" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit</a>
                 </td>
                 <td class="project-actions text-center">
                   <form action="/incomes/{{$user_income->id}}" method="POST">

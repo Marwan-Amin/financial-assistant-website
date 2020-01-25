@@ -28,6 +28,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
     Route::post('/incomes','IncomeController@store');
     Route::delete('/incomes/{income_id}', 'IncomeController@destroy')->name('incomes.destroy');
+    Route::patch('/incomes/{income_id}', 'IncomeController@update')->name('incomes.update');
+    Route::get('/incomes/{income_id}/edit', 'IncomeController@edit')->name('incomes.edit');
     
 });
 

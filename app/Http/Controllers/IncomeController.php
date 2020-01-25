@@ -34,5 +34,22 @@ class IncomeController extends Controller
         return redirect()->route('incomes.index');
     }
 
+    function update($income_id,Request $request)
+    {
+        $income = UserIncome::findOrFail($income_id);
+        $income->amount = $request->amount;
+        $income->Date = $request->date;
+        $income->save();
+        return redirect()->route('incomes.index');
+    }
+    function edit($income_id)
+    {
+        $income = UserIncome::find($income_id);
+        //dd($income);
+        return view('incomes.edit',[
+            'income' => $income
+        ]); 
+        
+    }
 
 }
