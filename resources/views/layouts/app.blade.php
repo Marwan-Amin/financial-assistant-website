@@ -331,6 +331,7 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
         src="{{asset('UI/PurpleAdmin/assets/vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->
@@ -354,6 +355,7 @@
         <script
         src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
     <!-- End custom js for this page -->
+
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

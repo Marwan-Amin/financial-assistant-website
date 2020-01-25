@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSocialiteFieldsToUsersTable extends Migration
+class ChangePasswordStatusInUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,12 @@ class AddSocialiteFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-                $table->string('provider_name')->nullable();
-                $table->string('provider_id')->nullable();
-            
+            $table->dropColumn('password');
+
+        });
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('password')->nullable()->after('name');
+
         });
     }
 

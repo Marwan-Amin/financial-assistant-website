@@ -80,29 +80,23 @@
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
-                            <div class="col-md-6">
-                                <input  type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{old('city')}}"  required autocomplete="city" autofocus>
+                            <select class="form-control" name="country" id="country">
+                                 <option value="">Select Country</option>
+                                 @if($countries)
+                                 @foreach ($countries as $country) 
+                                      <option value="{{$country->id}}">
+                                     {{$country->name}}
+                                        </option>
+                                 @endforeach
+                                 @endif
+                             </select>
 
-                                @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                             <select class="form-control" name="city" id="state">
+                             </select>
                         <div class="form-group row">
                             <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
 
-                            <div class="col-md-6">
-                                <input  type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country" autofocus>
-
-                                @error('country')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                            
                         <div class="form-group row">
                             <label for="age" class="col-md-4 col-form-label text-md-right"> Age</label>
 
@@ -129,4 +123,33 @@
         </div>
     </div>
 </div>
+<script>
+    let previousValue = document.getElementById('country').value;
+    document.getElementById('country').addEventListener('change',function(){
+//     
+      
+        let countryId = $(this).val();
+        if(previousValue != this.value){
+          $.ajax({
+           type:'GET',
+           url:"http://127.0.0.1:8000//states/ajax/"+countryId,
+          dataType:'json',
+           success:function(data){
+              renderStates(data);
+           }
+        });  
+        }
+
+    });
+function renderStates(states){
+ let selectDropDown = document.getElementById('state');
+ selectDropDown.innerHTML='';
+ for(let i = 0 ;i<states.length;i++){
+    let optionItem = document.createElement('option');
+    optionItem.value = states[i];
+    optionItem.innerHTML = states[i];
+    selectDropDown.appendChild(optionItem);
+ }
+}
+</script>
 @endsection
