@@ -41,6 +41,7 @@
     <div class="row">
         <div class="col md-4 text-center">
         <a href="/incomes" class="btn btn-gradient-danger btn-lg mr-3">+ Add income</a>
+
         </div>
         <div class="col md-4 text-center">
         </div>

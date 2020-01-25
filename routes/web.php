@@ -22,13 +22,13 @@ Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/userHome',"DashboardController@index")->name('userHome');
 
-    Route::get('/incomes','IncomeController@index')->name('incomes');
-
+    Route::get('/incomes','IncomeController@index')->name('incomes.index');
+    Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
     Route::post('/incomes','IncomeController@store');
-
     Route::delete('/incomes/{income}', 'IncomeController@destroy')->name('incomes.destroy');
 
     Route::get('/expenses','ExpenseController@index')->name('expenses.index');
+
 });
 
 
