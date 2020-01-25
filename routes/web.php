@@ -24,13 +24,11 @@ Route::middleware(['auth','verified'])->group(function(){
         return view('userHome');
     });
 
-    Route::get('/incomes','IncomeController@index')->name('incomes');
-
+    Route::get('/incomes','IncomeController@index')->name('incomes.index');
+    Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
     Route::post('/incomes','IncomeController@store');
-
-    Route::delete('/incomes/{income}', 'IncomeController@destroy')->name('incomes.destroy');
-
-
+    Route::delete('/incomes/{income_id}', 'IncomeController@destroy')->name('incomes.destroy');
+    
 });
 
 

@@ -41,8 +41,8 @@
     <div class="row">
         <div class="col md-4 text-center">
 
-            <button type="button" class="btn btn-gradient-danger btn-lg mr-3 " href="{{route('incomes')}}>
-                <i class="mdi mdi-square-inc-cash float-right"></i> Add Incomes</button>  
+            <a type="button" class="btn btn-gradient-danger btn-lg mr-3 "  href="{{route('incomes.create')}}">
+                 Add Incomes</a>  
         </div>
         <div class="col md-4 text-center">
         </div>
