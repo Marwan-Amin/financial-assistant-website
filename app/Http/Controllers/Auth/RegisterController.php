@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -53,6 +54,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender'=>['required'],
+            'age'=>['required','numeric'],
+            'city'=>['required','string','min:3'],
+            'country'=>['required','string','min:3']
         ]);
     }
 
@@ -64,10 +69,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender'=>$data['gender'],
+            'city'=>$data['city'],
+            'country'=>$data['country'],
+            'age'=>$data['age']
         ]);
+
+        return $user;
+    }
+
+    public function getStates($countryName){
+        $country = Country::where('name', $countryName)->first();
+        $states=[];
+        if($country){
+        foreach($country->states as $state){
+            $states[]=$state->name;
+        }
+        
+            return response()->json($states);
+
+        }else{
+            return response()->json('fail');
+        }
     }
 }

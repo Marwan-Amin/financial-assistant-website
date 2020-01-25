@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBudgetGoalsTable extends Migration
+class CreateUserSubCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateBudgetGoalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('budget_goals', function (Blueprint $table) {
+        Schema::create('user_sub_category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('target_name');
-            $table->decimal('target');
-            $table->decimal('savings',8,2)->default(0);
-            $table->integer('progress');
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('expense_sub_categories');
+            $table->decimal('amount',8,2);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateBudgetGoalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('budget_goals');
+        Schema::dropIfExists('users_sub_expenses');
     }
 }
