@@ -90,22 +90,24 @@
                                         </option>
                                  @endforeach
                                  @endif
-                                 @error('country')
+                                 
+                             </select>
+                             @error('country')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                             </select>
                              <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
                              <select class="form-control" name="city" id="state" value="Select City">
                              <option value="" selected id="defaultCity">No Country Selected</option>
+                             
+                             </select>
                              @error('city')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                             </select>
                         <div class="form-group row">
 
                             
@@ -122,6 +124,15 @@
                                 @enderror
                             </div>
                         </div>
+                        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
