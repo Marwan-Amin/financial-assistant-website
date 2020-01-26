@@ -40,13 +40,14 @@
     </div>
     <div class="row">
         <div class="col md-4 text-center">
-        <a href="/incomes" class="btn btn-gradient-danger btn-lg mr-3">+ Add income</a>
+        <a href="/incomes/create" class="btn btn-gradient-danger btn-lg mr-3">+ Add incomes</a>
 
         </div>
         <div class="col md-4 text-center">
+          <a href="/savings/create" class="btn btn-gradient-info btn-lg mr-3">+ Add Savings</a>
         </div>
         <div class="col md-4 text-center">
-          <a href="#" class="btn btn-gradient-success btn-lg mg-auto">+ Add income</a>
+          <a href="#" class="btn btn-gradient-success btn-lg mg-auto">+ Add Expenses</a>
         </div>
     </div>
     <div class="row mt-4">

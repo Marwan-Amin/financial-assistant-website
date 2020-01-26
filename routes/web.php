@@ -42,6 +42,11 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
 
+
+    //savings routes
+    Route::get('savings/create', 'SavingController@create')->name('savings.create');
+    Route::post('/savings/create','SavingController@store');
+
 });
 
 
