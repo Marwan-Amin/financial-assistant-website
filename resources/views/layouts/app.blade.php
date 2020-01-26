@@ -127,7 +127,7 @@
                     Guest
                   @else
                   {{ Auth::user()->name }}
-                  @endguest}</span>
+                  @endguest</span>
                   <span class="text-secondary text-small"> @guest
                     Guest
                   @else
