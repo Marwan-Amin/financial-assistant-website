@@ -19,6 +19,7 @@ class IncomeController extends Controller
     }
     function store(Request $request)
     {
+        dd($request->type);
        $user = \App\User::find(Auth::user()->id);
        $income_id = $request->type;
        $income = \App\Income::find($income_id);
