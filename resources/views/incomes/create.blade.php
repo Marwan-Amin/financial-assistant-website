@@ -82,7 +82,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
-                  <input type="number" name="amount" class="form-control" />
+                  <input type="number" step="0.01" name="amount" class="form-control" />
                 </div>
               </div>
             </div>
