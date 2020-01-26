@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 class ExpenseSubCategoriesTableSeeder extends Seeder
 {
     /**
