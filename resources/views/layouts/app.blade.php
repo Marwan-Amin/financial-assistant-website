@@ -6,6 +6,8 @@
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Purple Admin</title>
         <!-- plugins:css -->
         <link
@@ -127,7 +129,7 @@
                     Guest
                   @else
                   {{ Auth::user()->name }}
-                  @endguest}</span>
+                  @endguest</span>
                   <span class="text-secondary text-small"> @guest
                     Guest
                   @else
@@ -153,7 +155,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/expenses/index ">
                   <span class="menu-title">Expenses</span>
                   <i class="mdi mdi-cash-usd menu-icon"></i>
                 </a>
@@ -201,7 +203,7 @@
                   <h6 class="font-weight-normal mb-3">Balance</h6>
                 </div>
                 <a href="/incomes" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
-                <a href="/expenses" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
+                <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
                 
               </span>
             </li>

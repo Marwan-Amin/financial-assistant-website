@@ -7,8 +7,8 @@ use App\ExpenseSubCategory;
 
 class ExpenseCategory extends Model
 {
-    public function subCategory()
+    public function subCategories()
     {
-       return $this->belongsToMany(ExpenseSubCategory::class);
+       return $this->hasMany(ExpenseSubCategory::class,'category_id');
     }
 }
