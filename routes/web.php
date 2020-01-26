@@ -18,17 +18,30 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth','verified'])->group(function(){
-    
-    
-    Route::get('/userHome',"DashboardController@index")->name('userHome');
+    Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
 
+    Route::get('/userHome',"DashboardController@index")->name('userHome');
+    //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
     Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
     Route::post('/incomes','IncomeController@store');
-    Route::delete('/incomes/{income}', 'IncomeController@destroy')->name('incomes.destroy');
+    Route::delete('/incomes/{income_id}', 'IncomeController@destroy')->name('incomes.destroy');
+    Route::patch('/incomes/{income_id}', 'IncomeController@update')->name('incomes.update');
+    Route::get('/incomes/{income_id}/edit', 'IncomeController@edit')->name('incomes.edit');
+
+
+    //expenses routes
+    Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
+    Route::get('/expenses/index','ExpenseController@index')->name('expenses.index');
+    Route::post('/expenses','ExpenseController@store')->name('expenses.store');
+    Route::get('/category/ajax/{categoryId}','ExpenseController@getSubCategories')->name('subCategory.ajax');
+    Route::get('/expenses/{id}','ExpenseController@create')->name('expenses.edit');
+    Route::put('/expenses/{id}','ExpenseController@edit')->name('expenses.edit');
+
+    Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
+
 
     Route::get('/expenses','ExpenseController@index')->name('expenses.index');
-    Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
 
 });
 
@@ -50,7 +63,10 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
         ->name('login.callback')
         ->where('driver', implode('|', config('auth.socialite.drivers')));
 
+
 //user profile routes
 Route::get('/user_profile', 'ProfileController@index')->name('home')->middleware(['auth','verified']);
 Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home')->middleware(['auth','verified']);
 Route::put('/user_profile/{id}' , 'ProfileController@update' );
+
+Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');

@@ -293,49 +293,6 @@
     
     <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
     <!-- End custom js for this page -->
-        <script>
-    let previousValue = document.getElementById('countryEdit').value;
-    document.getElementById('countryEdit').addEventListener('change',function(){
-    
-        let countryName = $(this).val();
-        let url = "{{route('ajax',['countryName'=>':countryName'])}}";
-        url = url.replace(':countryName',countryName);
-        alert(url);
-        if(previousValue != this.value ){
-          $.ajax({
-           type:'GET',
-           url:url,
-          dataType:'json',
-           success:function(data){
-              console.log(data);
-           }
-        });  
-        }else if(this.value == ""){
-            renderStates(this.value);
-        }
-
-    });
-function renderStates(states){
- let selectDropDown = document.getElementById('state');
-
- if(states){
-    selectDropDown.innerHTML='';
-    for(let i = 0 ;i<states.length;i++){
-    let optionItem = document.createElement('option');
-    optionItem.value = states[i];
-    optionItem.innerHTML = states[i];
-    selectDropDown.appendChild(optionItem);
- }
- }else if(states == ""){
-    selectDropDown.innerHTML='';
-    let optionItem = document.createElement('option');
-    optionItem.value = "";
-    optionItem.innerHTML = 'No Country Selected';
-    optionItem.setAttribute('id','defaultCity');
-    selectDropDown.appendChild(optionItem);
- }
- 
-}
-</script>
+   
   </body>
 </html>

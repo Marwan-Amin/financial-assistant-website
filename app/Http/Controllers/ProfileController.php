@@ -31,4 +31,18 @@ class ProfileController extends Controller
         $user->save();
         return redirect('user_profile')->with('message', 'updated successfuly');
     }
+    public function getStates($countryName){
+        $country = Country::where('name', $countryName)->first();
+        $states=[];
+        if($country){
+        foreach($country->states as $state){
+            $states[]=$state->name;
+        }
+        
+            return response()->json($states);
+
+        }else{
+            return response()->json('fail');
+        }
+    }
 }

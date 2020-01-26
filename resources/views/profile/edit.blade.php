@@ -119,7 +119,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Country</label>
                             <div class="col-sm-9"> 
-                     <select class="form-control form-control-lg" name="country" id="countryEdit" value="{{Auth::user()->country}}" >
+                     <select class="form-control form-control-lg" name="country" id="country" value="{{Auth::user()->country}}" >
                       @if($countries)
                       @foreach ($countries as $country) 
                           <option value="{{$country->name}}">
@@ -146,7 +146,7 @@
                             <div class="col-sm-9">
 
 
-                            <select class="form-control form-control-lg" name="city" id="state" value="Select City">
+                            <select class="form-control form-control-lg" name="city" id="state" value="{{Auth::user()->city}}">
                             <option value="" selected id="defaultCity">No Country Selected</option>
                             </select>
                             @error('city')
@@ -182,5 +182,49 @@
           </footer>
           <!-- partial -->
         </div>
+        <script>
+    let previousValue = document.getElementById('country').value;
+    document.getElementById('country').addEventListener('change',function(){
+//     
+        let countryName = $(this).val();
+        let url = "{{route('user.ajax',['countryName'=>':countryName'])}}";
+            url = url.replace(':countryName',countryName);
+        if(previousValue != this.value ){
+
+          $.ajax({
+           type:'GET',
+           url:url,
+          dataType:'json',
+           success:function(data){
+            renderStates(data);
+           }
+        });  
+        }else if(this.value == ""){
+            renderStates(this.value);
+        }
+
+    });
+function renderStates(states){
+ let selectDropDown = document.getElementById('state');
+
+ if(states){
+    selectDropDown.innerHTML='';
+    for(let i = 0 ;i<states.length;i++){
+    let optionItem = document.createElement('option');
+    optionItem.value = states[i];
+    optionItem.innerHTML = states[i];
+    selectDropDown.appendChild(optionItem);
+ }
+ }else if(states == ""){
+    selectDropDown.innerHTML='';
+    let optionItem = document.createElement('option');
+    optionItem.value = "";
+    optionItem.innerHTML = 'No Country Selected';
+    optionItem.setAttribute('id','defaultCity');
+    selectDropDown.appendChild(optionItem);
+ }
+ 
+}
+</script>
         <!-- main-panel ends -->
 @endsection
