@@ -22,7 +22,7 @@
           <div class="card-body">
             <h4 class="font-weight-normal mb-3">Balance<i class="mdi mdi-diamond mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">0 EGP</h2>
+            <h2 class="mb-5">{{$sumIncome - $sumExpense}}EGP</h2>
             <h6 class="card-text">Decreased by 0%</h6>
           </div>
         </div>
@@ -32,7 +32,7 @@
           <div class="card-body">
             <h4 class="font-weight-normal mb-3">Expenses <i class="mdi mdi-square-inc-cash mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">0 EGP</h2>
+            <h2 class="mb-5">{{$sumExpense}} EGP</h2>
             <h6 class="card-text">Increased by 0%</h6>
           </div>
         </div>

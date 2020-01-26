@@ -30,8 +30,8 @@ class IncomeController extends Controller
 
     function destroy($income_id)
     {
-        $delIncome = UserIncome::find($income_id);
-        $delIncome->delete();
+        $income = UserIncome::findOrFail($income_id);
+        $income->delete();
         return redirect()->route('incomes.index');
     }
 
@@ -40,6 +40,7 @@ class IncomeController extends Controller
         $income = UserIncome::findOrFail($income_id);
         $income->amount = $request->amount;
         $income->Date = $request->date;
+        $income->income_id= $request->type;
         $income->save();
         return redirect()->route('incomes.index');
     }

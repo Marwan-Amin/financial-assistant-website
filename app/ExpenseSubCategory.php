@@ -13,11 +13,11 @@ class ExpenseSubCategory extends Model
 
     public function users()
     {
-       return $this->belongsToMany(User::class,'user_sub_category');
+       return $this->belongsToMany(User::class,'user_sub_categories');
     }
 
     public function category()
     {
-        return $this->hasMany(ExpenseCategory::class);
+        return $this->belongsTo(ExpenseCategory::class);
     }
 }

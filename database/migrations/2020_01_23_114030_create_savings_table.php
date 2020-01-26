@@ -16,6 +16,7 @@ class CreateSavingsTable extends Migration
         Schema::create('savings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('amount',8,2);
             $table->timestamps();
         });
