@@ -202,7 +202,7 @@
                 <div class="border-bottom">
                   <h6 class="font-weight-normal mb-3">Balance</h6>
                 </div>
-                <a href="/incomes" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
+                <a href="/incomes/create" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
                 <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
                 
               </span>

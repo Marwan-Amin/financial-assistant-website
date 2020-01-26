@@ -19,11 +19,10 @@ class IncomeController extends Controller
     }
     function store(Request $request)
     {
-        dd($request->type);
        $user = \App\User::find(Auth::user()->id);
        $income_id = $request->type;
        $income = \App\Income::find($income_id);
-       $user->income()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
+       $user->incomes()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
         
         return redirect()->route('incomes.index');
     }
@@ -40,6 +39,7 @@ class IncomeController extends Controller
         $income = UserIncome::findOrFail($income_id);
         $income->amount = $request->amount;
         $income->Date = $request->date;
+        $income->income_id= $request->type;
         $income->save();
         return redirect()->route('incomes.index');
     }
