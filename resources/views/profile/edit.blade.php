@@ -1,16 +1,11 @@
 @extends('layouts.app2')
 @section('content')
+
         <!-- partial -->
-        
         <div class="main-panel">
-        @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @endif
           <div class="content-wrapper" style="padding: 11.75rem 2.25rem;">
             <div class="page-header">
-              <h3 class="page-title"> Personal info </h3>
+              <!-- <h3 class="page-title"> Personal info </h3> -->
               <nav aria-label="breadcrumb">
                 <!-- <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Forms</a></li>
@@ -23,7 +18,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body" style="position: relative">
-                    <!-- <h4 class="card-title">Horizontal Two column</h4> -->
+                    
                     <div class="img-box" 
                     style="width: 170px;height: 200px;position: absolute;top: -85px;left: 50%;transform: translateX(-50%);">
                     
@@ -37,21 +32,20 @@
                     
                 
                     </div>
-                    <br>
-                    <div class="text-center">
-                        <a class="btn btn-lg btn-gradient-primary mt-5" href="/user_profile/{{ Auth::user()->id }}/edit">Edit Profile</a>
-                    </div> 
                      
                      
-                     
-                    <form class="form-sample" style="padding-top:7em">
+                    <form class="form-sample" style="padding-top:7em" method="post" action="/user_profile/{{ Auth::user()->id }}">
+                    @csrf
+                    {{method_field('PUT')}}
+                    <h3 class="card-title"> Personal Info </h3>
+                    <br><br>  
                       <!-- <p class="card-description"> Personal info </p> -->
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
-                              <input disabled type="text" class="form-control" value="@guest Guest @else {{ Auth::user()->name }}@endguest" />
+                              <input  type="text" class="form-control" name="name" value="@guest Guest @else {{ Auth::user()->name }}@endguest" />
                             </div>
                           </div>
                         </div>
@@ -59,7 +53,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                              <input disabled type="email" class="form-control" value="@guest Guest @else {{ Auth::user()->email }}@endguest" />
+                              <input  type="email" class="form-control" name="email" value="@guest Guest @else {{ Auth::user()->email }}@endguest" />
                             </div>
                           </div>
                         </div>
@@ -69,8 +63,8 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Gender</label>
                             <div class="col-sm-9">
-                            <input disabled type="email" class="form-control" value="@guest Guest @else {{ Auth::user()->gender }}@endguest" />  
-                              <!-- <select disabled  class="form-control" >
+                            <input  type="text" class="form-control" name="gender" value="@guest Guest @else {{ Auth::user()->gender }}@endguest" />  
+                              <!-- <select   class="form-control" >
                                 <option >Male</option>
                                 <option selected>Female</option>
                               </select> -->
@@ -81,7 +75,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Age</label>
                             <div class="col-sm-9">
-                            <input disabled type="text" class="form-control" value="@guest Guest @else {{ Auth::user()->age }}@endguest" />
+                            <input  type="text" class="form-control" name="age" value="@guest Guest @else {{ Auth::user()->age }}@endguest" />
                             </div>
                           </div>
                         </div>
@@ -91,7 +85,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                              <select disabled  class="form-control">
+                              <select   class="form-control">
                                 <option>Category1</option>
                                 <option>Category2</option>
                                 <option>Category3</option>
@@ -106,13 +100,13 @@
                             <div class="col-sm-4">
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input disabled type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
+                                  <input  type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
                               </div>
                             </div>
                             <div class="col-sm-5">
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input disabled type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
+                                  <input  type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
                               </div>
                             </div>
                           </div>
@@ -124,25 +118,52 @@
                       <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                                <input disabled type="text" class="form-control" value="@guest Guest @else {{ Auth::user()->country }}@endguest" />  
-                              <!-- <select disabled  class="form-control">
-                              <option selected>Egypt</option>  
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select> -->
+                            <div class="col-sm-9"> 
+                     <select class="form-control form-control-lg" name="country" id="countryEdit" value="{{Auth::user()->country}}" >
+                      @if($countries)
+                      @foreach ($countries as $country) 
+                          <option value="{{$country->name}}">
+                          {{$country->name}}
+                            </option>
+                      @endforeach
+                      @endif
+                    </select>
+                    @error('country')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+
+
+
                             </div>
                           </div>
-                        </div>                          
-                        <div class="col-md-6">
+                        </div>
+                          <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-9">
-                            <input disabled type="text" class="form-control" value="@guest Guest @else {{ Auth::user()->city }}@endguest" />
+
+
+                            <select class="form-control form-control-lg" name="city" id="state" value="Select City">
+                            <option value="" selected id="defaultCity">No Country Selected</option>
+                            </select>
+                            @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                            
                             </div>
                           </div>
+                        </div>
+
+                        <div class="col-md-12">
+                        <div class="col-md-6 m-auto">
+                            <button type="submit" class="w-100 btn btn-lg btn-gradient-primary mt-4">submit</button>
+                        </div>
                         </div>
                       </div>
                     </form>

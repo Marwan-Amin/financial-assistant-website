@@ -116,7 +116,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
-              <a href="#" class="nav-link">
+              <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
                   <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="profile">
                   <span class="login-status online"></span>

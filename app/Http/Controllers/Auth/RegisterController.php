@@ -90,6 +90,8 @@ class RegisterController extends Controller
     }
 
     public function getStates($countryName){
+        return response()->json('true');
+
         $country = Country::where('name', $countryName)->first();
         $states=[];
         if($country){
@@ -97,7 +99,7 @@ class RegisterController extends Controller
             $states[]=$state->name;
         }
         
-            return response()->json($states);
+            return response()->json($countryName);
 
         }else{
             return response()->json('fail');
