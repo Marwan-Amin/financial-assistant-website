@@ -32,6 +32,11 @@ Route::middleware(['auth','verified'])->group(function(){
     //expenses routes
     Route::get('/expenses','ExpenseController@index')->name('expenses.index');
 
+
+    //savings routes
+    Route::get('savings/create', 'SavingController@create')->name('savings.create');
+    Route::post('/savings/create','SavingController@store');
+
 });
 
 

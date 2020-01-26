@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\UserIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreIncomeRequest;
 class IncomeController extends Controller
 {
     function index() 
@@ -17,13 +18,12 @@ class IncomeController extends Controller
     function create (){
         return view('incomes.create'); 
     }
-    function store(Request $request)
+    function store(StoreIncomeRequest $request)
     {
-        dd($request->type);
        $user = \App\User::find(Auth::user()->id);
        $income_id = $request->type;
        $income = \App\Income::find($income_id);
-       $user->income()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
+       $user->incomes()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
         
         return redirect()->route('incomes.index');
     }
@@ -35,7 +35,7 @@ class IncomeController extends Controller
         return redirect()->route('incomes.index');
     }
 
-    function update($income_id,Request $request)
+    function update($income_id,StoreIncomeRequest $request)
     {
         $income = UserIncome::findOrFail($income_id);
         $income->amount = $request->amount;

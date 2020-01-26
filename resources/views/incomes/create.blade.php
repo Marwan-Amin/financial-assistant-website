@@ -1,6 +1,14 @@
 @extends('layouts.app')
  @section('content')
-
+ @if ($errors->any())
+ <div class="alert alert-danger">
+     <ul>
+         @foreach ($errors->all() as $error)
+             <li>{{ $error }}</li>
+         @endforeach
+     </ul>
+ </div>
+@endif
  <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -12,7 +20,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
-                  <input type="number" name="amount" class="form-control" />
+                  <input type="number" step="0.25" name="amount" class="form-control" />
                 </div>
               </div>
             </div>
