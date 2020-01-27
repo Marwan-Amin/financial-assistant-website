@@ -21,6 +21,9 @@ class ProfileController extends Controller
 
     public function update(Request $request ,$id) 
     {
+        $path = request()->file('avatar')->store('upload');
+        
+        request()->avatar->move(public_path('upload'), $path);
         $user = User::find($id);
         $user->name = request()->name;
         $user->email = request()->email;
@@ -28,8 +31,10 @@ class ProfileController extends Controller
         $user->age = request()->age;
         $user->country = request()->country;
         $user->city = request()->city;
+        $user->avatar = $path;
         $user->save();
         return redirect('user_profile')->with('message', 'updated successfuly');
+        
     }
     public function getStates($countryName){
         $country = Country::where('name', $countryName)->first();

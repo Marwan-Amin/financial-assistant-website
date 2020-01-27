@@ -13379,3 +13379,7 @@ dl {
 .form-control:disabled, .form-control[readonly]{
   color: #000;
 }
+
+.profile-image{
+  width: 160px;height: 160px;position: absolute;top: -85px;left: 50%;transform: translateX(-50%);
+}

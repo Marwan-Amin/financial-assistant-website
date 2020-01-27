@@ -19,22 +19,21 @@
                 <div class="card">
                   <div class="card-body" style="position: relative">
                     
-                    <div class="img-box" 
-                    style="width: 170px;height: 200px;position: absolute;top: -85px;left: 50%;transform: translateX(-50%);">
+                    <div class="img-box profile-image">
                     
-                    @if ( Auth::user()->gender == 'male' )
-                        <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
-                    
-                    @elseif ( Auth::user()->gender == 'female' ) 
-                        <img src="https://www.shareicon.net/data/512x512/2016/09/01/822726_user_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
-                    
+                    @if ( Auth::user()->avatar)
+                        
+                   <img src="{{asset(Auth::user()->avatar)}}" class="w-100 h-100" style="border: 7px solid #fff;border-radius: 50%">
+                   @else
+                   <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
+    
                     @endif
                     
                 
                     </div>
                      
                      
-                    <form class="form-sample" style="padding-top:7em" method="post" action="/user_profile/{{ Auth::user()->id }}">
+                    <form class="form-sample" style="padding-top:7em" method="post" action="/user_profile/{{ Auth::user()->id }}" enctype="multipart/form-data">
                     @csrf
                     {{method_field('PUT')}}
                     <h3 class="card-title"> Personal Info </h3>
@@ -119,13 +118,17 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Country</label>
                             <div class="col-sm-9"> 
-                     <select class="form-control form-control-lg" name="country" id="country" value="{{Auth::user()->country}}" >
+                     <select class="form-control form-control-lg" name="country" id="country" value="" >
+                     <option value="{{Auth::user()->country}}" selected>{{Auth::user()->country}}</option>
+
                       @if($countries)
-                      @foreach ($countries as $country) 
+                      @foreach ($countries as $country)
+                      @if($country->name != Auth::user()->country)
                           <option value="{{$country->name}}">
                           {{$country->name}}
                             </option>
-                      @endforeach
+                      @endif
+                            @endforeach
                       @endif
                     </select>
                     @error('country')
@@ -146,8 +149,8 @@
                             <div class="col-sm-9">
 
 
-                            <select class="form-control form-control-lg" name="city" id="state" value="{{Auth::user()->city}}">
-                            <option value="" selected id="defaultCity">No Country Selected</option>
+                            <select class="form-control form-control-lg" name="city" id="state" value="">
+                              <option value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                             </select>
                             @error('city')
                                 <span class="invalid-feedback" role="alert">
@@ -159,12 +162,32 @@
                             </div>
                           </div>
                         </div>
-
+                       <!---start upload image-->
+                       <div class="form-group col-md-12">
+                        <label>File upload</label>
+                        @if ( Auth::user()->avatar)
+                        <input type="file" name="avatar" class="file-upload-default" value="{{Auth::user()->avatar}}">
+                        
+                        @else
+                        <input type="file" name="avatar" class="file-upload-default" value="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png">
+                        <!-- <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%"> -->
+          
+                          @endif
+                        
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                        <!-- end uplaod image -->
                         <div class="col-md-12">
                         <div class="col-md-6 m-auto">
                             <button type="submit" class="w-100 btn btn-lg btn-gradient-primary mt-4">submit</button>
                         </div>
                         </div>
+ 
                       </div>
                     </form>
                   </div>
@@ -196,17 +219,17 @@
            url:url,
           dataType:'json',
            success:function(data){
+            previousValue=countryName;
             renderStates(data);
            }
         });  
-        }else if(this.value == ""){
+        }else if(this.value == "" || previousValue == this.value){
             renderStates(this.value);
         }
 
     });
 function renderStates(states){
  let selectDropDown = document.getElementById('state');
-
  if(states){
     selectDropDown.innerHTML='';
     for(let i = 0 ;i<states.length;i++){

@@ -24,15 +24,14 @@
                 <div class="card">
                   <div class="card-body" style="position: relative">
                     <!-- <h4 class="card-title">Horizontal Two column</h4> -->
-                    <div class="img-box" 
-                    style="width: 170px;height: 200px;position: absolute;top: -85px;left: 50%;transform: translateX(-50%);">
+                    <div class="img-box profile-image">
                     
-                    @if ( Auth::user()->gender == 'male' )
-                        <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
-                    
-                    @elseif ( Auth::user()->gender == 'female' ) 
-                        <img src="https://www.shareicon.net/data/512x512/2016/09/01/822726_user_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
-                    
+                    @if ( Auth::user()->avatar)
+                        
+                   <img src="{{asset(Auth::user()->avatar)}}" class="w-100 h-100" style="border: 7px solid #fff;border-radius: 50%">
+                   @else
+                   <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" class="w-100" style="border: 7px solid #fff;border-radius: 50%">
+    
                     @endif
                     
                 
