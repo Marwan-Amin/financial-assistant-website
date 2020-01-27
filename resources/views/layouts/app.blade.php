@@ -33,7 +33,7 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
         <link
             rel="stylesheet"
@@ -68,13 +68,16 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <div class="search-field d-none d-md-block">
-          </div>
+          
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="image">
+                @if ( Auth::user()->avatar)
+                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
+                  @else
+                  <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="image">
+                  @endif
                 </div>
                 <div class="nav-profile-text">
                   <p class="mb-1 text-black">
@@ -110,9 +113,13 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
-              <a href="#" class="nav-link">
+              <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="profile">
+                @if ( Auth::user()->avatar)
+                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
+                  @else
+                  <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="image">
+                  @endif
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -265,17 +272,19 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  
+    <script>
+    $(document).ready( function () {
+      $('#incomeTable').DataTable();
+      } );
+      $(document).ready( function () {
+      $('#expensesTable').DataTable();
+      } );
+    </script>
   </body>
 
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   
-  <script>
-  $(document).ready( function () {
-    $('#incomeTable').DataTable();
-    } );
-    $(document).ready( function () {
-    $('#expensesTable').DataTable();
-    } );
-  </script>
 
 </html>

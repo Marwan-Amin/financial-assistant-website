@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/css/vendor.bundle.base.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -34,15 +36,20 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/hoverable-collapse.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
     <!-- endinject -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
     let previousValue = document.getElementById('country').value;
     document.getElementById('country').addEventListener('change',function(){
 //     
-        let countryId = $(this).val();
+        let countryName = $(this).val();
+        let url = "{{route('ajax',['countryName'=>':countryName'])}}";
+            url = url.replace(':countryName',countryName);
         if(previousValue != this.value ){
+
           $.ajax({
            type:'GET',
-           url:"http://127.0.0.1:8000//states/ajax/"+countryId,
+           url:url,
           dataType:'json',
            success:function(data){
               renderStates(data);

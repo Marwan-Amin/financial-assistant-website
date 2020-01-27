@@ -14,12 +14,12 @@ use App\Country;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::middleware(['auth','verified'])->group(function(){
-    
-    Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
+    Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
+
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
@@ -40,6 +40,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
 
 
+    Route::get('/expenses','ExpenseController@index')->name('expenses.index');
 
 
     //savings routes
@@ -81,3 +82,11 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
  Route::get('{driver}/callback', 'Auth\LoginController@handleProviderCallback')    
         ->name('login.callback')
         ->where('driver', implode('|', config('auth.socialite.drivers')));
+
+
+//user profile routes
+Route::get('/user_profile', 'ProfileController@index')->name('home')->middleware(['auth','verified']);
+Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home')->middleware(['auth','verified']);
+Route::put('/user_profile/{id}' , 'ProfileController@update' );
+
+Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
