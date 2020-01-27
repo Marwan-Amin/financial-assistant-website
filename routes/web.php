@@ -53,8 +53,11 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
     //target routes
-    Route::get('/targets/create', 'TargetController@create')->name('targets.create');
-    Route::get('/targets','TargetController@index')->name('targets.index');
+    Route::get('/targets/create', 'TargetController@index')->name('targets.create');
+    Route::post('/targets','TargetController@store')->name('targets.store');
+    Route::delete('/targets/{target_id}', 'TargetController@destroy')->name('targets.destroy');
+    Route::get('/targets/{target_id}/edit', 'TargetController@edit')->name('targets.edit');
+    Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
 
 
 
