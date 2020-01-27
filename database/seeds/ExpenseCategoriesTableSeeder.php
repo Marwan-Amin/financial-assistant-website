@@ -33,7 +33,6 @@ class ExpenseCategoriesTableSeeder extends Seeder
             'Education',
             'Books',
             'Office',
-            'Others'
         ];
 
         foreach ($categories as $category) {

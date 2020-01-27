@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
@@ -9,6 +9,7 @@ use App\User;
 use App\UserSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Balance;
 
 class ExpenseController extends Controller
 {
@@ -45,18 +46,24 @@ class ExpenseController extends Controller
             'date'=>$request->date,
             'user_id'=>Auth::user()->id
         ]);
+        
+        $balanceObj=new Balance;
+        $balanceObj->calculateBalance();
+        
         return redirect()->route('expenses.index');
     }
     public function destroy($id){
         $subExpense = UserSubCategory::findOrFail($id);
-       $subExpense->delete();
-       if($subExpense){
-        return response()->json(true);
+        $subExpense->delete();
 
-       }else{
-        return response()->json(false);
+        $balanceObj=new Balance;
+        $balanceObj->calculateBalance();
 
-       }
+        if($subExpense){
+            return response()->json(true);
+        }else{
+            return response()->json(false);
+        }
     }
     public function edit(expensesRequest $request,$id){
         $userSubCategory = UserSubCategory::find($id);
@@ -64,6 +71,10 @@ class ExpenseController extends Controller
         $userSubCategory->amount = $request->amount;
         $userSubCategory->date = $request->date;
         $userSubCategory->save();
+
+        $balanceObj=new Balance;
+        $balanceObj->calculateBalance();
+        
         return redirect()->route('expenses.index');
     }
 }
