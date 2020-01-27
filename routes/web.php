@@ -43,12 +43,20 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
     //savings routes
-    Route::get('/savings','SavingController@index')->name('savings.index');
-    Route::get('/savings/create', 'SavingController@create')->name('savings.create');
-    Route::post('/savings','SavingController@store');
+   
+    Route::get('/savings/create', 'SavingController@index')->name('savings.create');
+    Route::post('/savings','SavingController@store')->name('savings.store');
     Route::delete('/savings/{saving_id}', 'SavingController@destroy')->name('savings.destroy');
     Route::get('/savings/{saving_id}/edit', 'SavingController@edit')->name('savings.edit');
     Route::patch('/savings/{saving_id}', 'SavingController@update')->name('savings.update');
+
+
+
+    //target routes
+    Route::get('/targets/create', 'TargetController@create')->name('targets.create');
+    Route::get('/targets','TargetController@index')->name('targets.index');
+
+
 
 
 });

@@ -153,7 +153,7 @@
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/savings">
+              <a class="nav-link" href="/savings/create">
                 <span class="menu-title">Savings</span>
                 <i class="mdi mdi-key menu-icon"></i>
               </a>
@@ -171,7 +171,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/targets/create">
                   <span class="menu-title">Budget Goals</span>
                   <i class="mdi mdi-run-fast menu-icon"></i>
                 </a>
