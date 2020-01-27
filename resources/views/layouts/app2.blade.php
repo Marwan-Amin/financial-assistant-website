@@ -48,7 +48,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
+                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="image">
                 </div>
                 <div class="nav-profile-text">
                   <p class="mb-1 text-black">
@@ -86,7 +86,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{asset(Auth::user()->avatar)}}" alt="profile">
+                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
