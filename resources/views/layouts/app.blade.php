@@ -155,7 +155,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/expenses/index ">
+                <a class="nav-link" href="/expenses/index">
                   <span class="menu-title">Expenses</span>
                   <i class="mdi mdi-cash-usd menu-icon"></i>
                 </a>
@@ -185,7 +185,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/events/create">
                   <span class="menu-title">Events Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
@@ -276,6 +276,9 @@
     } );
     $(document).ready( function () {
     $('#expensesTable').DataTable();
+    } );
+    $(document).ready( function () {
+    $('#eventsTable').DataTable();
     } );
   </script>
 

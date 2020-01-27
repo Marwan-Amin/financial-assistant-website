@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth','verified'])->group(function(){
     
-    Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
@@ -40,7 +39,10 @@ Route::middleware(['auth','verified'])->group(function(){
 
     Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
 
-
+    //events route
+    Route::get('/events/create', 'EventController@create')->name('events.create');
+    Route::post('/events','EventController@store')->name('events.store');
+    Route::post('/events/subExpenseEvent','EventController@storeSubCategory')->name('events.subStore');
 
 });
 
@@ -51,7 +53,7 @@ Route::get('/home', function () {
 
 
 Auth::routes(['verify'=>true]);
-
+Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth','verified']);
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
