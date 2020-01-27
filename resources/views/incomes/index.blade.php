@@ -35,6 +35,8 @@
             @endforeach
           </tbody>
         </table>
+        <a class="btn btn-lg btn-gradient-danger mt-4" href="/incomes/create">+ Add new income</a>
+
       </div>
     </div>
   </div>

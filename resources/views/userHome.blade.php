@@ -22,7 +22,7 @@
           <div class="card-body">
             <h4 class="font-weight-normal mb-3">Balance<i class="mdi mdi-diamond mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">{{$sumIncome - $sumExpense}}EGP</h2>
+            <h2 class="mb-5">{{$sumIncome - $sumExpense}} EGP</h2>
             <h6 class="card-text">Decreased by 0%</h6>
           </div>
         </div>
@@ -47,7 +47,7 @@
           <a href="/savings/create" class="btn btn-gradient-info btn-lg mr-3">+ Add Savings</a>
         </div>
         <div class="col md-4 text-center">
-          <a href="#" class="btn btn-gradient-success btn-lg mg-auto">+ Add Expenses</a>
+          <a href="/expenses/create" class="btn btn-gradient-success btn-lg mg-auto">+ Add Expenses</a>
         </div>
     </div>
     <div class="row mt-4">

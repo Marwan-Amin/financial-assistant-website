@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\UserIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreIncomeRequest;
+use App\Http\Controllers\Balance;
+
 class IncomeController extends Controller
 {
     function index() 
@@ -24,7 +26,10 @@ class IncomeController extends Controller
        $income_id = $request->type;
        $income = \App\Income::find($income_id);
        $user->incomes()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
-        
+
+       $balanceObj=new Balance;
+       $balanceObj->calculateBalance();
+
         return redirect()->route('incomes.index');
     }
 
@@ -32,6 +37,10 @@ class IncomeController extends Controller
     {
         $income = UserIncome::findOrFail($income_id);
         $income->delete();
+
+        $balanceObj=new Balance;
+        $balanceObj->calculateBalance();
+
         return redirect()->route('incomes.index');
     }
 
@@ -42,12 +51,15 @@ class IncomeController extends Controller
         $income->Date = $request->date;
         $income->income_id= $request->type;
         $income->save();
+
+        $balanceObj=new Balance;
+        $balanceObj->calculateBalance();
+
         return redirect()->route('incomes.index');
     }
     function edit($income_id)
     {
         $income = UserIncome::find($income_id);
-        //dd($income);
         return view('incomes.edit',[
             'income' => $income
         ]); 
