@@ -14,7 +14,7 @@ use App\Country;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::middleware(['auth','verified'])->group(function(){
@@ -51,12 +51,23 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
     //savings routes
-    Route::get('/savings','SavingController@index')->name('savings.index');
-    Route::get('/savings/create', 'SavingController@create')->name('savings.create');
-    Route::post('/savings','SavingController@store');
+   
+    Route::get('/savings/create', 'SavingController@index')->name('savings.create');
+    Route::post('/savings','SavingController@store')->name('savings.store');
     Route::delete('/savings/{saving_id}', 'SavingController@destroy')->name('savings.destroy');
     Route::get('/savings/{saving_id}/edit', 'SavingController@edit')->name('savings.edit');
     Route::patch('/savings/{saving_id}', 'SavingController@update')->name('savings.update');
+
+
+
+    //target routes
+    Route::get('/targets/create', 'TargetController@index')->name('targets.create');
+    Route::post('/targets','TargetController@store')->name('targets.store');
+    Route::delete('/targets/{target_id}', 'TargetController@destroy')->name('targets.destroy');
+    Route::get('/targets/{target_id}/edit', 'TargetController@edit')->name('targets.edit');
+    Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
+
+
 
 
 });

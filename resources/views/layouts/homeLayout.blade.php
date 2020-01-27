@@ -81,6 +81,12 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
+                        <li>
+                            <a href="{{route('register')}}" class="btn btn-primary btn-outline-white px-4 py-3">Register</a>
+                        </li>
+                        <li>
+                            <a href="{{route('login')}}" class="btn btn-primary btn-outline-white mx-3 px-4 py-3">Log in</a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('content')
         <!-- partial -->
         
@@ -8,7 +8,7 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-          <div class="content-wrapper" style="padding: 11.75rem 2.25rem;">
+          <div class="content-wrapper" style="padding: 5rem 2.25rem;">
             <div class="page-header">
               <h3 class="page-title"> Personal info </h3>
               <nav aria-label="breadcrumb">
