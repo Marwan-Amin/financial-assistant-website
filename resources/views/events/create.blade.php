@@ -96,13 +96,15 @@ $.ajax({
 function renderResponse(data){
     if(data.isStored){
     let eventActionContainer= document.getElementById('eventActionButtons');
+   
+    //set the href for the edit anchor tag 
+    let href = "{{route('events.edit',['id'=>':data.categoryId'])}}";
+        href = href.replace(':data.categoryId',data.categoryId);
+
     let editEvent = document.createElement('a');
         editEvent.innerHTML = 'Edit Event';
         editEvent.setAttribute('href',href);
-        //set the href for the edit anchor tag 
-    let href = "{{route('events.edit',['id'=>':data.categoryId'])}}";
-        href = href.replace(':data.categoryId',data.categoryId);
-        //create anchor tag for create new event
+               //create anchor tag for create new event
     let addEvent = document.createElement('a');
         addEvent.setAttribute('href',"{{route('events.create')}}"); 
         addEvent.innerHTML = "Add Event";

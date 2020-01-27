@@ -27,6 +27,7 @@ class EventController extends Controller
             return response()->json(['isStored'=>true,'categoryId'=>$category->id]);
     }
     public function storeSubCategory(Request $request){
+
         $customSubCategory = CustomSubCategory::create([
             'name'=>$request->subName,
             'category_id'=>$request->categoryId,

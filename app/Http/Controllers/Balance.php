@@ -10,7 +10,7 @@ class Balance
     public function calculateBalance($date)
     {
         Balance::firstOrCreate(
-            ['date' => ],
+            ['date' =>$date ],
             []
         );
         $incomesss = DB::table('user_incomes')->sum('amount');

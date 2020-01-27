@@ -17,7 +17,7 @@ class CreateCustomSubCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('expense_categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('custom_categories')->onDelete('cascade');
             $table->date('date');
             $table->timestamps();
         });
