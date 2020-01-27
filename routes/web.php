@@ -68,7 +68,11 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
 
 
-
+    //user profile routes
+    Route::get('/user_profile', 'ProfileController@index')->name('home');
+    Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home');
+    Route::put('/user_profile/{id}' , 'ProfileController@update' );
+    
 
 });
 
@@ -91,9 +95,5 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
         ->where('driver', implode('|', config('auth.socialite.drivers')));
 
 
-//user profile routes
-Route::get('/user_profile', 'ProfileController@index')->name('home')->middleware(['auth','verified']);
-Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home')->middleware(['auth','verified']);
-Route::put('/user_profile/{id}' , 'ProfileController@update' );
 
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
