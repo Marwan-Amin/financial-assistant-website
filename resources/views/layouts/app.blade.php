@@ -69,14 +69,6 @@
             <span class="mdi mdi-menu"></span>
           </button>
           <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
-              <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
-              </div>
-            </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
@@ -161,6 +153,12 @@
                 </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/savings">
+                <span class="menu-title">Savings</span>
+                <i class="mdi mdi-key menu-icon"></i>
+              </a>
+          </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span class="menu-title">Reports</span>
                   <i class="mdi mdi-file-outline menu-icon"></i>
@@ -203,6 +201,7 @@
                   <h6 class="font-weight-normal mb-3">Balance</h6>
                 </div>
                 <a href="/incomes/create" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
+                <a href="/savings/create" class="btn btn-block btn-lg btn-gradient-info mt-4">+ Add Savings</a>
                 <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
                 
               </span>

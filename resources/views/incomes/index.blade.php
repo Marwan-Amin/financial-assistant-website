@@ -26,7 +26,7 @@
                   <form action="/incomes/{{$user_income->id}}" method="POST">
                       @csrf 
                       @method('DELETE') 
-                      <button class="btn btn-danger btn-sm" type=submit onclick="return confirm('Dou you want to delete this income?')" >
+                      <button class="btn btn-danger btn-sm" type=submit onclick="return confirm('Do you want to delete this income?')" >
                         Delete
                       </button> 
                   </form>
@@ -35,7 +35,10 @@
             @endforeach
           </tbody>
         </table>
+        <a class="btn btn-lg btn-gradient-danger mt-4" href="/incomes/create">+ Add new income</a>
+
       </div>
     </div>
   </div>
+  
 @endsection
