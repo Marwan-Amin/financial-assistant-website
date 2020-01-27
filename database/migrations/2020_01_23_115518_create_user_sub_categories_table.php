@@ -31,6 +31,6 @@ class CreateUserSubCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_sub_expenses');
+        Schema::dropIfExists('users_sub_categories');
     }
 }

@@ -33,7 +33,7 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
         <link
             rel="stylesheet"
@@ -69,20 +69,12 @@
             <span class="mdi mdi-menu"></span>
           </button>
           <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
-              <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
-              </div>
-            </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="image">
+                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
                 </div>
                 <div class="nav-profile-text">
                   <p class="mb-1 text-black">
@@ -118,9 +110,9 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
-              <a href="#" class="nav-link">
+              <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{asset('UI/PurpleAdmin/assets/images/faces/face1.jpg')}}" alt="profile">
+                  <img src="{{asset(Auth::user()->avatar)}}" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -161,6 +153,12 @@
                 </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/savings">
+                <span class="menu-title">Savings</span>
+                <i class="mdi mdi-key menu-icon"></i>
+              </a>
+          </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span class="menu-title">Reports</span>
                   <i class="mdi mdi-file-outline menu-icon"></i>
@@ -186,7 +184,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/events/create">
-                  <span class="menu-title">Events Manager</span>
+                  <span class="menu-title">Create Event</span>
+                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/events/manager">
+                  <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
             </li>
@@ -202,7 +206,8 @@
                 <div class="border-bottom">
                   <h6 class="font-weight-normal mb-3">Balance</h6>
                 </div>
-                <a href="/incomes" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
+                <a href="/incomes/create" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
+                <a href="/savings/create" class="btn btn-block btn-lg btn-gradient-info mt-4">+ Add Savings</a>
                 <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
                 
               </span>
@@ -266,20 +271,24 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-  </body>
 
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   
-  <script>
-  $(document).ready( function () {
-    $('#incomeTable').DataTable();
-    } );
+    <script>
     $(document).ready( function () {
     $('#expensesTable').DataTable();
     } );
     $(document).ready( function () {
+    $('#incomeTable').DataTable();
+      } );
+    $(document).ready( function () {
     $('#eventsTable').DataTable();
     } );
   </script>
+      
+
+  </body>
+
+  
 
 </html>

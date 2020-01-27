@@ -20,7 +20,6 @@ class IncomeTableSeeder extends Seeder
             'Refunds',
             'Investments',
             'Sale',
-            'Others'
         ];
         
         foreach ($types as $type) {

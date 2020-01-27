@@ -90,6 +90,7 @@ class RegisterController extends Controller
     }
 
     public function getStates($countryName){
+
         $country = Country::where('name', $countryName)->first();
         $states=[];
         if($country){

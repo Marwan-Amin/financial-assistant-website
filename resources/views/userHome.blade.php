@@ -22,7 +22,7 @@
           <div class="card-body">
             <h4 class="font-weight-normal mb-3">Balance<i class="mdi mdi-diamond mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">0 EGP</h2>
+            <h2 class="mb-5">{{$sumIncome - $sumExpense}} EGP</h2>
             <h6 class="card-text">Decreased by 0%</h6>
           </div>
         </div>
@@ -32,7 +32,7 @@
           <div class="card-body">
             <h4 class="font-weight-normal mb-3">Expenses <i class="mdi mdi-square-inc-cash mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">0 EGP</h2>
+            <h2 class="mb-5">{{$sumExpense}} EGP</h2>
             <h6 class="card-text">Increased by 0%</h6>
           </div>
         </div>
@@ -40,13 +40,14 @@
     </div>
     <div class="row">
         <div class="col md-4 text-center">
-        <a href="/incomes" class="btn btn-gradient-danger btn-lg mr-3">+ Add income</a>
+        <a href="/incomes/create" class="btn btn-gradient-danger btn-lg mr-3">+ Add incomes</a>
 
         </div>
         <div class="col md-4 text-center">
+          <a href="/savings/create" class="btn btn-gradient-info btn-lg mr-3">+ Add Savings</a>
         </div>
         <div class="col md-4 text-center">
-          <a href="#" class="btn btn-gradient-success btn-lg mg-auto">+ Add income</a>
+          <a href="/expenses/create" class="btn btn-gradient-success btn-lg mg-auto">+ Add Expenses</a>
         </div>
     </div>
     <div class="row mt-4">

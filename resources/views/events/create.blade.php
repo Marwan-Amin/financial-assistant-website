@@ -13,8 +13,9 @@
                 </div>
               </div>
             </div>
+            <div id="eventActionButtons">
             <button  class="btn btn-gradient-danger btn-fw" id="addEvent">Add Event</button>
-
+            </div>
             <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label" id="subCategoryNameLabel"></label>
@@ -55,22 +56,18 @@
         <table class="table table-striped " id="eventsTable">
           <thead>
             <tr>
-            <th> Category </th>
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Edit </th>
-              <th> Delete </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="event_table_body">
             <tr>
             
                
             </tr>
           </tbody>
         </table>
-
         <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
       </div>
     </div>
@@ -90,12 +87,23 @@ $.ajax({
    url:urlEvent,
    data:{'eventName':eventName},
        success:function(data){
-       checkResponse(data);
+       renderResponse(data);
        }
     });  
 }
-function checkResponse(data){
+function renderResponse(data){
     if(data.isStored){
+    let eventActionContainer= document.getElementById('eventActionButtons');
+    let editEvent = document.createElement('a');
+    let href = "{{route('events.edit',['id'=>':data.categoryId'])}}";
+        href = href.replace(':data.categoryId',data.categoryId);
+        editEvent.innerHTML = 'Edit Event';
+        editEvent.setAttribute('href',href);
+    let addEvent = document.createElement('a');
+        addEvent.setAttribute('href',"{{route('events.create')}}"); 
+        addEvent.innerHTML = "Add Event";
+        eventActionContainer.appendChild(editEvent);
+        eventActionContainer.appendChild(addEvent);
     let eventName = document.createElement('input');
         eventName.setAttribute('type','text');
         document.getElementById('subCategoryNameLabel').innerHTML = 'Event Expense';
@@ -106,13 +114,13 @@ function checkResponse(data){
     let eventSubCategoryDate = document.createElement('input');
         eventSubCategoryDate.setAttribute('type','date');
         document.getElementById('subCategoryDateLabel').innerHTML ='Date'; 
-        let addSubCategoryButton = document.createElement('button');
+    let addSubCategoryButton = document.createElement('button');
         addSubCategoryButton.innerHTML ="Add Sub-Expense";
-        let subCategoryNameParent = document.getElementById('subCategoryName');
+    let subCategoryNameParent = document.getElementById('subCategoryName');
         subCategoryNameParent.appendChild(eventName);
-        let subCategoryAmountParent = document.getElementById('subCategoryAmount');
+    let subCategoryAmountParent = document.getElementById('subCategoryAmount');
         subCategoryAmountParent.appendChild(eventSubCategoryAmount);
-        let subCategoryDateParent = document.getElementById('subCategoryDate');
+    let subCategoryDateParent = document.getElementById('subCategoryDate');
         subCategoryDateParent.appendChild(eventSubCategoryDate);
         document.getElementById('addEvent').disabled =true;
         document.getElementById('category').disabled = true;
@@ -134,13 +142,31 @@ addButton.addEventListener('click',function(){
   type: 'POST',
    data:subCategoryInfo,
        success:function(data){
-      console.log(data);
+      createEventRecord(data);
        }
     }); 
     }else{
-        console.log(false);
+        alert(' All The Data is Required');
     }
 });
 }
-});</script>
+});
+function createEventRecord(eventData){
+      let table_body = document.getElementById('event_table_body');
+      let table_row = document.createElement("tr");
+      let table_data_amount = document.createElement("td");
+          table_data_amount.innerHTML=eventData.amount+" EGP";
+      let table_data_event_type = document.createElement("td");
+          table_data_event_type.innerHTML = eventData.name;
+      let table_data_date = document.createElement("td");
+          table_data_date.innerHTML=eventData.date;
+          table_row.appendChild(table_data_event_type);
+          table_row.appendChild(table_data_amount);
+          table_row.appendChild(table_data_date);
+          table_body.appendChild(table_row);
+          document.getElementById('subCategoryName').querySelector('input').value="";
+          document.getElementById('subCategoryAmount').querySelector('input').value="";
+          document.getElementById('subCategoryDate').querySelector('input').value="";
+}
+</script>
  @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSavingsTable extends Migration
+class CreateCustomSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSavingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('savings', function (Blueprint $table) {
+        Schema::create('custom_sub_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->decimal('amount',8,2);
+            $table->string('name');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('expense_categories')->onDelete('cascade');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSavingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('savings');
+        Schema::dropIfExists('custom_sub_categories');
     }
 }

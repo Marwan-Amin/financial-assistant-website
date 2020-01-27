@@ -44,7 +44,7 @@
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                   </div>
-                  <a class="btn btn-danger text-white" href="{{route('login.provider', 'google')}} ">Login With Google+</a>
+                  <a class="btn btn-block btn-danger text-white mt-2 btn-lg" href="{{route('login.provider', 'google')}} ">Login With Google+</a>
 
                   <br>
 
