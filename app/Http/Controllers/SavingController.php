@@ -28,9 +28,23 @@ class SavingController extends Controller
     }
     function destroy($saving_id)
     {
-        dd($saving->id);
         $saving = Saving::findOrFail($saving_id);
         $saving->delete();
         return redirect()->route('savings.index');
+    }
+    function update($saving_id,Request $request)
+    {
+        $saving = Saving::findOrFail($saving_id);
+        $saving->amount = $request->amount;
+        $saving->save();
+        return redirect()->route('savings.index');
+    }
+    function edit($saving_id)
+    {
+        $saving = Saving::find($saving_id);
+        return view('savings.edit',[
+            'saving' => $saving 
+        ]); 
+        
     }
 }

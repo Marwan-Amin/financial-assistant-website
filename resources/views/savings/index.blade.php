@@ -16,7 +16,7 @@
             @foreach ($savings as $saving)
             <tr>
               <td>{{$saving->amount}}</td>
-              <td><a class="btn btn-danger btn-sm" href="#" >Edit</a>
+              <td><a class="btn btn-danger btn-sm" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit</a>
               </td>
               <td class="project-actions text-center">
                   <form action="/savings/{{$saving->id}}" method="POST">

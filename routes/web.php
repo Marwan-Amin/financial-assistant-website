@@ -37,7 +37,6 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/category/ajax/{categoryId}','ExpenseController@getSubCategories')->name('subCategory.ajax');
     Route::get('/expenses/{id}','ExpenseController@create')->name('expenses.edit');
     Route::put('/expenses/{id}','ExpenseController@edit')->name('expenses.edit');
-
     Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
 
 
@@ -48,6 +47,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/savings/create', 'SavingController@create')->name('savings.create');
     Route::post('/savings','SavingController@store');
     Route::delete('/savings/{saving_id}', 'SavingController@destroy')->name('savings.destroy');
+    Route::get('/savings/{saving_id}/edit', 'SavingController@edit')->name('savings.edit');
+    Route::patch('/savings/{saving_id}', 'SavingController@update')->name('savings.update');
 
 
 });
