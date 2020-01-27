@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('UI/radio/flaticon.css')}}">
   </head>
   <body>
     <div class="container-scroller">
