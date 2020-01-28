@@ -19,16 +19,18 @@
                     @csrf
                     {{method_field('PUT')}}
                     <div class="img-box profile-image">
-
+                    
                     
                       <div class="avatar-upload">
                           <div class="avatar-edit">
-                              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  name="avatar"/>
+                              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  name="avatar" value="{{ substr(asset(Auth::user()->avatar),29) }}" />
                               <label for="imageUpload" style="text-align: center;line-height: 34px;color: #a65fff;">
                               <i class="mdi mdi-camera"></i>
                               </label>
                           </div>
+                          
                           <div class="avatar-preview">
+                           
                              @if ( Auth::user()->avatar)
                         
                               
