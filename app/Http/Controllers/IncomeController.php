@@ -40,8 +40,14 @@ class IncomeController extends Controller
         function destroy($income_id)
         {
             $income = UserIncome::findOrFail($income_id);
-            dd($income);
+            // dd($income);
             $income->delete();
+
+            $incomesss = DB::table('user_incomes')->where('user_id', Auth::user()->id)->where('date','<=',$income->date)->sum('amount');
+            $expensess = DB::table('user_sub_categories')->where('user_id', Auth::user()->id)->sum('amount');
+            DB::table('balances')->update(
+            ['total_income' => $incomesss, 'total_expenses' => $expensess  ]
+        );
 
             return redirect()->route('incomes.index');
         }
