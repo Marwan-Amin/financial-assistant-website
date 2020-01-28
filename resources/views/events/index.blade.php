@@ -24,6 +24,8 @@
 
                 <td><a class="btn btn-danger btn-sm" href="{{route('events.edit',['id'=>$event->id])}}" >Edit</a>
                 </td>
+                <td><a class="btn btn-danger btn-sm" href="{{route('events.show',['id'=>$event->id])}}" >View</a>
+                </td>
                 <td class="project-actions text-center">
                  
                       <button class="btn btn-danger btn-sm"  onclick="ajaxDelete('{{$event->id}}',this);" >

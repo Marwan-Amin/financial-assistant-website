@@ -39,14 +39,15 @@
         <h4 class="card-title">Your Sub-Event Expenses</h4>
         <table class="table table-striped " id="subEventsTable">
           <thead>
-          @isset($customCategory->customSubCategories)
-          @foreach($customCategory->customSubCategories as $customSubCategory) 
+           
           <tr>
               <th> Type </th>
               <th> Amount </th>
             </tr>
           </thead>
           <tbody id="event_table_body">
+          @isset($customCategory->customSubCategories)
+          @foreach($customCategory->customSubCategories as $customSubCategory)
             <tr>
            <td> <input type="text" name="customSubCategoryName" class="form-control" value="{{ $customSubCategory->name }}"/></td>
 

@@ -40,6 +40,10 @@ public function edit($id){
     $customCategory = CustomCategory::find($id);
     return view('events.edit',compact('customCategory'));
 }
+public function show($id){
+    $customCategory = CustomCategory::find($id);
+    return view('events.edit',compact('customCategory'));
+}
 public function destroy($id){
     $customCategory = CustomCategory::find($id);
     $customCategory->delete();

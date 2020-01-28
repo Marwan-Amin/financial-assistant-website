@@ -84,8 +84,8 @@
       dataType : "json",
       url :"{{route('targets.store')}}",
       success : function (response){
-        //console.log(response);
-        createRecord(response);
+        console.log(response);
+        // createRecord(response);
       }
   
     });
