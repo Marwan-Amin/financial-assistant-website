@@ -68,13 +68,16 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <div class="search-field d-none d-md-block">
-          </div>
+          
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
+                @if ( Auth::user()->avatar)
                   <img src="{{asset(Auth::user()->avatar)}}" alt="image">
+                  @else
+                  <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="image">
+                  @endif
                 </div>
                 <div class="nav-profile-text">
                   <p class="mb-1 text-black">
@@ -112,7 +115,11 @@
             <li class="nav-item nav-profile">
               <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{asset(Auth::user()->avatar)}}" alt="profile">
+                @if ( Auth::user()->avatar)
+                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
+                  @else
+                  <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="image">
+                  @endif
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -147,13 +154,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/expenses/index ">
+                <a class="nav-link" href="/expenses/index">
                   <span class="menu-title">Expenses</span>
                   <i class="mdi mdi-cash-usd menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/savings">
+              <a class="nav-link" href="/savings/create">
                 <span class="menu-title">Savings</span>
                 <i class="mdi mdi-key menu-icon"></i>
               </a>
@@ -171,7 +178,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/targets/create">
                   <span class="menu-title">Budget Goals</span>
                   <i class="mdi mdi-run-fast menu-icon"></i>
                 </a>
@@ -183,8 +190,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title">Events Manager</span>
+                <a class="nav-link" href="/events/create">
+                  <span class="menu-title">Create Event</span>
+                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/events/manager">
+                  <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
             </li>
@@ -270,12 +283,17 @@
   
     <script>
     $(document).ready( function () {
-      $('#incomeTable').DataTable();
+    $('#expensesTable').DataTable();
+    } );
+    $(document).ready( function () {
+    $('#incomeTable').DataTable();
       } );
-      $(document).ready( function () {
-      $('#expensesTable').DataTable();
-      } );
-    </script>
+    $(document).ready( function () {
+    $('#eventsTable').DataTable();
+    } );
+  </script>
+      
+
   </body>
 
   

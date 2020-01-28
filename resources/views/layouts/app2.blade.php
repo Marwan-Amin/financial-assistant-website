@@ -223,12 +223,15 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   
     <script>
+     $(document).ready( function () {
+    $('#expensesTable').DataTable();
+    } );
     $(document).ready( function () {
-      $('#incomeTable').DataTable();
+    $('#incomeTable').DataTable();
       } );
-      $(document).ready( function () {
-      $('#expensesTable').DataTable();
-      } );
+    $(document).ready( function () {
+    $('#eventsTable').DataTable();
+    } );
     </script>
    
   </body>

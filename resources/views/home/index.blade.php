@@ -19,8 +19,6 @@
                 <!-- <span class="ion-ios-play mr-2"></span> -->
                  Watch Video</a>
 
-                <a href="#" class="btn btn-primary btn-outline-white px-4 py-3">Sign Up</a>
-
               </p>
             </div>
           </div>

@@ -11,33 +11,34 @@ class SavingController extends Controller
     function index() 
     {
        $user_id = Auth::user()->id;       
-       return view('savings.index',[
+       return view('savings.create',[
         'savings' => user::find(Auth::user()->id)->savings()->get()
         ]);
     }
-    function create (){
-        return view('savings.create'); 
-    }
+    
     function store(Request $request)
     {
-      Saving::create([
-        'amount' => $request->amount,
-        'user_id' => $request->user()->id
+        //return response()->json($request); //ajax dd :D
+        $saving = Saving::create([
+        'amount' => $request->saving_amount,
+        'user_id' => Auth::user()->id
     ]);
-    return redirect()->route('savings.index');
+    return response()->json($saving);
     }
+
     function destroy($saving_id)
     {
         $saving = Saving::findOrFail($saving_id);
         $saving->delete();
-        return redirect()->route('savings.index');
+        return response()->json($saving);
     }
+
     function update($saving_id,Request $request)
     {
         $saving = Saving::findOrFail($saving_id);
         $saving->amount = $request->amount;
         $saving->save();
-        return redirect()->route('savings.index');
+        return redirect()->route('savings.create');
     }
     function edit($saving_id)
     {
