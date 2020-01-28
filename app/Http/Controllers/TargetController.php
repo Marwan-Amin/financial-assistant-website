@@ -21,10 +21,12 @@ class TargetController extends Controller
     
     function store(Request $request)
     {
-        //return response()->json($request); //ajax dd :D
+       // return response()->json($request); //ajax dd :D
         $target = Target::create([
         'target_amount' => $request->target_amount,
         'target_name' => $request->target_name ,
+        'savings' => 0,
+        'progress' => 0,
         'user_id' => Auth::user()->id
         ]);
         return response()->json($target);

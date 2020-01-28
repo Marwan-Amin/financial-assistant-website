@@ -55,6 +55,7 @@
           <tr>
             <td>{{$target->target_name}}</td>
             <td>{{$target->target_amount}}</td>
+            <td></td>
             <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
             <td class="project-actions text-center">
@@ -83,23 +84,26 @@
       dataType : "json",
       url :"{{route('targets.store')}}",
       success : function (response){
-        console.log(response);
-        //createRecord(response);
+        //console.log(response);
+        createRecord(response);
       }
   
     });
   });
   
   
-  /*//create DOM elements
+ /* //create DOM elements
   function createRecord (response){
   
-  let href= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
+  let href= "{{route('targets.edit',['target_id'=>':response.id'])}}";
   href=href.replace(':response.id',response.id);
-  let table_body = document.getElementById("saving_table");
+  console.log(href);
+  let table_body = document.getElementById("target_table");
   let table_row = document.createElement("tr");
+  let table_data_target = document.createElement("td");
+  table_data_amount.innerHTML=response.target_name;
   let table_data_amount = document.createElement("td");
-  table_data_amount.innerHTML=response.amount;
+  table_data_amount.innerHTML=response.target_amount;
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
   btn_edit.innerHTML="Edit";
@@ -109,6 +113,7 @@
   btn_delete.innerHTML="Delete";
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
+  table_row.appendChild(table_data_target);
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_edit);
   table_row.appendChild(table_data_delete);
@@ -119,12 +124,12 @@
   }
   
   //delete fn
-  function ajaxDelete(btn_delete,saving_id){
+  function ajaxDelete(btn_delete,target_id){
     btn_delete.addEventListener("click",function(){
       let isConfirm=confirm("Do you want to delete this saving?");
       if(isConfirm){
-        let url= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
-      url=url.replace(':saving.id',saving_id);
+        let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
+      url=url.replace(':target.id',target_id);
       $.ajax({
       headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
