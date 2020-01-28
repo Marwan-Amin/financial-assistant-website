@@ -2,15 +2,15 @@
 @section('content')
         <!-- partial -->
         
-        <div class="main-panel">
+       
         @if(session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
         @endif
-          <div class="content-wrapper" style="padding: 5rem 2.25rem;">
-            <div class="page-header">
-              <h3 class="page-title"> Personal info </h3>
+          
+            <div class="page-header" style="padding: 2.75rem 2.25rem;">
+              
               <nav aria-label="breadcrumb">
                 <!-- <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Forms</a></li>
@@ -36,6 +36,7 @@
                     
                 
                     </div>
+                    
                     <br>
                     <div class="text-center">
                         <a class="btn btn-lg btn-gradient-primary mt-5" href="/user_profile/{{ Auth::user()->id }}/edit">Edit Profile</a>
@@ -44,7 +45,8 @@
                      
                      
                     <form class="form-sample" style="padding-top:7em">
-                      <!-- <p class="card-description"> Personal info </p> -->
+                    
+                    <!-- <p class="card-description"> Personal info </p> -->
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
@@ -149,16 +151,5 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-            </div>
-          </footer>
-          <!-- partial -->
-        </div>
-        <!-- main-panel ends -->
+          
 @endsection

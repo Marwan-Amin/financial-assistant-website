@@ -97,3 +97,6 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
 
 
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
+
+
+Route::get('/charts', 'ChartsController@charts')->name('home');

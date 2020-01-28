@@ -7,12 +7,9 @@ use DB;
 
 class Balance
 {
-    public function calculateBalance($date)
+    public function calculateBalance()
     {
-        Balance::firstOrCreate(
-            ['date' =>$date ],
-            []
-        );
+       
         $incomesss = DB::table('user_incomes')->sum('amount');
         $expensess = DB::table('user_sub_categories')->sum('amount');
         DB::table('balances')->insert(

@@ -29,7 +29,7 @@ class IncomeController extends Controller
 
        
        $balanceObj=new Balance;
-       $balanceObj->calculateBalance($request->date);
+       $balanceObj->calculateBalance();
 
         return redirect()->route('incomes.index');
     }
@@ -41,7 +41,7 @@ class IncomeController extends Controller
 
 
         $balanceObj=new Balance;
-        $balanceObj->calculateBalance($income->date);
+        $balanceObj->calculateBalance();
 
         return redirect()->route('incomes.index');
     }
@@ -55,7 +55,7 @@ class IncomeController extends Controller
         $income->save();
 
         $balanceObj=new Balance;
-        $balanceObj->calculateBalance($request->date);
+        $balanceObj->calculateBalance();
 
         return redirect()->route('incomes.index');
     }
