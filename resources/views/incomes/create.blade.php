@@ -23,49 +23,49 @@
                   <div class="template-demo">
                     <div class="flat_icons row">  
               
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_27" value="1"  />
                         <label for="icon_27"><div class="glyph-icon flaticon-salary"></div>
                         <span>Salary</span></label>
                       </div>
                     
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_28" value="2"  />
                         <label for="icon_28"><div class="glyph-icon flaticon-quality"></div>
                           <span>Awards</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_29" value="3"  />
                         <label for="icon_29"><div class="glyph-icon flaticon-scholarship"></div>
                           <span>Grants</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_30" value="4"  />
                         <label for="icon_30"><div class="glyph-icon flaticon-rental"></div>
                           <span>Rental</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_31" value="5"  />
                         <label for="icon_31"><div class="glyph-icon flaticon-refund"></div>
                           <span>Refunds</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_32" value="6"  />
                         <label for="icon_32"><div class="glyph-icon flaticon-investment"></div>
                         <span>Investments</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_33" value="7"  />
                         <label for="icon_33"><div class="glyph-icon flaticon-coupon"></div>
                           <span>Sale</span></label>
                       </div>
 
-                      <div class="cat-box col-md-1">
+                      <div class="cat-box">
                         <input type="radio" name="type" id="icon_34" value="8"  />
                         <label for="icon_34"><div class="glyph-icon flaticon-add"></div>
                           <span>Others</span></label>
