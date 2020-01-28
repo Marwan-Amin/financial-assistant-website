@@ -291,6 +291,10 @@
     $(document).ready( function () {
     $('#eventsTable').DataTable();
     } );
+    $(document).ready( function () {
+    $('#subEventsTable').DataTable();
+    } );
+    
   </script>
 
 <script>

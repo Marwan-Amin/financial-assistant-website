@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Target extends Model
 {
     protected $fillable = [
-        'target_name', 'target_amount', 'savings','progress'
+        'target_name', 'target_amount', 'savings','user_id'
     ];
     
     public function user(){

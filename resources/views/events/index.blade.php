@@ -9,6 +9,8 @@
             <tr>
             <th> Category </th>
               <th>Total Amount </th>
+              <th>Date </th>
+
               <th> Edit </th>
               <th> Delete </th>
             </tr>
@@ -18,7 +20,11 @@
             <tr>
             <td>{{$event->name}}</td>
                 <td>{{$event->customSubCategories->sum('amount')}}</td>
+                <td>{{$event->date}}</td>
+
                 <td><a class="btn btn-danger btn-sm" href="{{route('events.edit',['id'=>$event->id])}}" >Edit</a>
+                </td>
+                <td><a class="btn btn-danger btn-sm" href="{{route('events.show',['id'=>$event->id])}}" >View</a>
                 </td>
                 <td class="project-actions text-center">
                  
@@ -36,31 +42,6 @@
       </div>
     </div>
   </div>
-  <script>
-  function ajaxDelete(id,element){
-   let isConfirmed = confirm('Do You Want To Delete This Event ?');
-   if(isConfirmed){
-    let url = `{{route('events.destroy',['id'=>':id'])}}`;
-        url = url.replace(':id',id);
-    $.ajax({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-      type: 'DELETE',
-       url:url,
-           success:function(data){
-           removeRecord(data,element);
-           }
-        });  
-   }
-    
-  }
-  function removeRecord(isRemoved,element){
-    if(isRemoved){
-      element.parentElement.parentElement.remove();
-    }else{
+  <script src="{{asset('UI/PurpleAdmin/assets/js/events/index.js')}}"></script>
 
-    }
-  }
-  </script>
 @endsection
