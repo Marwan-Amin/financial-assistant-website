@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
+<div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-run-fast menu-icon"></i>
+        </span> Your Budget Goals</h3>
+    </div>
 <div class="col-12">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Add your Budget Goals</h4>
-        
+      <div class="card-body">        
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
@@ -38,7 +42,6 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Your Budget Goals</h4>
       <table class="table table-striped " id="incomeTable">
         <thead>
           <tr>

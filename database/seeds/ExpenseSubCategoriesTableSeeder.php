@@ -38,7 +38,6 @@ class ExpenseSubCategoriesTableSeeder extends Seeder
             array('name' => "Bus",'category_id' =>4),
             array('name' => "Taxi",'category_id' =>4),
             array('name' => "Train",'category_id' =>4),
-            array('name' => "Taxi",'category_id' =>4),
             array('name' => "Uber",'category_id' =>4),
             array('name' => "Careem",'category_id' =>4),
 

@@ -1,9 +1,14 @@
 @extends('layouts.app')
 @section('content')
+<div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-cake-variant menu-icon"></i>
+        </span> Your events</h3>
+    </div>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Your Expenses</h4>
         <table class="table table-striped " id="eventsTable">
           <thead>
             <tr>

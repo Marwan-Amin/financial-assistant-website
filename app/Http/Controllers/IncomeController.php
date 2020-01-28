@@ -6,66 +6,68 @@ use App\UserIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreIncomeRequest;
-use App\Http\Controllers\Balance;
+use App\Http\Controllers\BalanceCalculation;
+use Carbon\Carbon;
+use App\Balance;
+use App\Income;
+use App\User;
 
 class IncomeController extends Controller
 {
-    function index() 
+    public function index()
     {
-        return view('incomes.index',[
+        return view('incomes.index', [
             'user' => \App\User::find(Auth::user()->id)
-
         ]);
     }
-    function create (){
-        return view('incomes.create'); 
-    }
-    function store(StoreIncomeRequest $request)
+    public function create()
     {
-       $user = \App\User::find(Auth::user()->id);
-       $income_id = $request->type;
-       $income = \App\Income::find($income_id);
-       $user->incomes()->attach($income,['amount' => $request->amount,'Date'=>$request->date]);
-
-       
-       $balanceObj=new Balance;
-       $balanceObj->calculateBalance($request->date);
-
-        return redirect()->route('incomes.index');
+        return view('incomes.create');
     }
-
-    function destroy($income_id)
+    public function store(StoreIncomeRequest $request)
     {
-        $income = UserIncome::findOrFail($income_id);
-        $income->delete();
+        $user = User::find(Auth::user()->id);
+        $income_id = $request->type;
+        $income = Income::find($income_id);
+        $user->incomes()->attach($income, ['amount' => $request->amount,'Date'=>$request->date]);
 
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalance($request->date , $request->amount); 
 
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance($income->date);
+            return redirect()->route('incomes.index');
+        }
 
-        return redirect()->route('incomes.index');
-    }
+        function destroy($income_id)
+        {
+            $income = UserIncome::findOrFail($income_id);
+            dd($income);
+            $income->delete();
 
-    function update($income_id,StoreIncomeRequest $request)
-    {
-        $income = UserIncome::findOrFail($income_id);
-        $income->amount = $request->amount;
-        $income->Date = $request->date;
-        $income->income_id= $request->type;
-        $income->save();
+            return redirect()->route('incomes.index');
+        }
 
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance($request->date);
+        function update($income_id, StoreIncomeRequest $request)
+        {
+            $income = UserIncome::findOrFail($income_id);
+            $oldIncome = $income->amount;
+            $income->amount = $request->amount;
+            $income->Date = $request->date;
+            $income->income_id= $request->type;
+            $income->save();
 
-        return redirect()->route('incomes.index');
-    }
-    function edit($income_id)
-    {
-        $income = UserIncome::find($income_id);
-        return view('incomes.edit',[
+            $addedIncome= $request->amount - $oldIncome;
+
+            $balanceObj=new BalanceCalculation;
+            $balanceObj->calculateBalance($request->date , $addedIncome);
+
+            return redirect()->route('incomes.index');
+        }
+        function edit($income_id)
+        {
+            $income = UserIncome::find($income_id);
+            return view('incomes.edit', [
             'income' => $income
-        ]); 
-        
+        ]);
+        }
     }
 
-}

@@ -19,6 +19,7 @@ class CreateBalancesTable extends Migration
             $table->decimal('total_income', 8, 2)->default(0);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('date');
             $table->timestamps();
         });
     }
