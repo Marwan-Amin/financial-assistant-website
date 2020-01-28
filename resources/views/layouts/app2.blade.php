@@ -223,13 +223,35 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   
     <script>
+     $(document).ready( function () {
+    $('#expensesTable').DataTable();
+    } );
     $(document).ready( function () {
-      $('#incomeTable').DataTable();
+    $('#incomeTable').DataTable();
       } );
-      $(document).ready( function () {
-      $('#expensesTable').DataTable();
-      } );
+    $(document).ready( function () {
+    $('#eventsTable').DataTable();
+    } );
     </script>
    
+   <script>
+$( function(){
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+} )
+</script>
   </body>
 </html>

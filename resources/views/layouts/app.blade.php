@@ -154,7 +154,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/expenses/index ">
+                <a class="nav-link" href="/expenses/index">
                   <span class="menu-title">Expenses</span>
                   <i class="mdi mdi-cash-usd menu-icon"></i>
                 </a>
@@ -190,8 +190,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title">Events Manager</span>
+                <a class="nav-link" href="/events/create">
+                  <span class="menu-title">Create Event</span>
+                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/events/manager">
+                  <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
             </li>
@@ -277,12 +283,37 @@
   
     <script>
     $(document).ready( function () {
-      $('#incomeTable').DataTable();
+    $('#expensesTable').DataTable();
+    } );
+    $(document).ready( function () {
+    $('#incomeTable').DataTable();
       } );
-      $(document).ready( function () {
-      $('#expensesTable').DataTable();
-      } );
-    </script>
+    $(document).ready( function () {
+    $('#eventsTable').DataTable();
+    } );
+  </script>
+
+<script>
+$( function(){
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+} )
+</script>
+      
+
   </body>
 
   

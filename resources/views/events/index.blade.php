@@ -4,29 +4,25 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Your Expenses</h4>
-        <table class="table table-striped " id="incomeTable">
+        <table class="table table-striped " id="eventsTable">
           <thead>
             <tr>
             <th> Category </th>
-              <th> Type </th>
-              <th> Amount </th>
-              <th> Date </th>
+              <th>Total Amount </th>
               <th> Edit </th>
               <th> Delete </th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($expenses as $expense) 
+            @foreach ($events as $event) 
             <tr>
-            <td>{{$expense->category->name}}</td>
-                <td>{{$expense->name}}</td>
-                <td>{{$expense->pivot->amount}} EGP</td>
-                <td>{{$expense->pivot->date}}</td>
-                <td><a class="btn btn-danger btn-sm" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit</a>
+            <td>{{$event->name}}</td>
+                <td>{{$event->customSubCategories->sum('amount')}}</td>
+                <td><a class="btn btn-danger btn-sm" href="{{route('events.edit',['id'=>$event->id])}}" >Edit</a>
                 </td>
                 <td class="project-actions text-center">
                  
-                      <button class="btn btn-danger btn-sm"  onclick="ajaxDelete('{{$expense->pivot->id}}',this);" >
+                      <button class="btn btn-danger btn-sm"  onclick="ajaxDelete('{{$event->id}}',this);" >
                         Delete
                       </button> 
                  
@@ -36,17 +32,15 @@
           </tbody>
         </table>
 
-        <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
+        <a class="btn btn-lg btn-gradient-success mt-4" href="/events/create">+ Add new Event</a>
       </div>
     </div>
   </div>
   <script>
   function ajaxDelete(id,element){
-   let isConfirmed = confirm('Do You Want To Delete This Record ?');
+   let isConfirmed = confirm('Do You Want To Delete This Event ?');
    if(isConfirmed){
-    //  as we can't use the javascript variable into laravel blade display syntax so i used dummy string at the place of the id value and use
-    //  the replace javascript function to inject into the string that produced from route() function the javascript variable
-    let url = `{{route('expenses.destroy',['id'=>':id'])}}`;
+    let url = `{{route('events.destroy',['id'=>':id'])}}`;
         url = url.replace(':id',id);
     $.ajax({
       headers: {
@@ -69,8 +63,4 @@
     }
   }
   </script>
-
-
-
-
 @endsection

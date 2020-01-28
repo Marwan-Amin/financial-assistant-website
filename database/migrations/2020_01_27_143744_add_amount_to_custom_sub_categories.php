@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDatetoBalancesTable extends Migration
+class AddAmountToCustomSubCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDatetoBalancesTable extends Migration
      */
     public function up()
     {
-        Schema::table('balances', function (Blueprint $table) {
-            $table->date('date')->default(now());
+        Schema::table('custom_sub_categories', function (Blueprint $table) {
+            $table->decimal('amount',8,2);
         });
     }
 
@@ -25,6 +25,8 @@ class AddDatetoBalancesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('custom_sub_categories', function (Blueprint $table) {
+            //
+        });
     }
 }
