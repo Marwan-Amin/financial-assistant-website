@@ -22,19 +22,18 @@ class EventController extends Controller
     public function store(Request $request){
            $category = CustomCategory::create([
                 'name'=>$request->eventName,
-                'user_id'=>Auth::user()->id
+                'user_id'=>Auth::user()->id,
+                'date' =>$request->eventDate
             ]);
             return response()->json(['isStored'=>true,'categoryId'=>$category->id]);
     }
-    public function storeSubCategory(Request $request){
+    public function updateSubEvent($id,Request $request){
 
-        $customSubCategory = CustomSubCategory::create([
-            'name'=>$request->subName,
-            'category_id'=>$request->categoryId,
-            'date'=>$request->date,
-            'amount'=>$request->amount
-        ]);
-        return response()->json($customSubCategory);
+        $customSubCategory = CustomSubCategory::find($id);
+        $customSubCategory->name =$request->customSubCategoryName;
+        $customSubCategory->amount =$request->customSubCategoryAmount;
+        $customSubCategory->save();
+        return response()->json(true);
 
 }
 public function edit($id){
@@ -44,6 +43,13 @@ public function edit($id){
 public function destroy($id){
     $customCategory = CustomCategory::find($id);
     $customCategory->delete();
+    return response()->json(true);
+}
+public function update($id,Request $request){
+    $customCategory = CustomCategory::find($id);
+    $customCategory->name = $request->customCategoryName;
+    $customCategory->date = $request->customCategoryDate;
+   $customCategory->save();
     return response()->json(true);
 }
 }

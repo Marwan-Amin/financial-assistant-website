@@ -46,6 +46,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::delete('/events/{id}/delete', 'EventController@destroy')->name('events.destroy');
     Route::get('/events/{id}','EventController@edit')->name('events.edit');
     Route::put('/events/{id}/update','EventController@update')->name('events.update');
+    Route::put('/SubEvents/{id}/update','EventController@updateSubEvent')->name('subEvent.update');
     Route::post('/events','EventController@store')->name('events.store');
     Route::post('/events/subExpenseEvent','EventController@storeSubCategory')->name('events.subStore');
 

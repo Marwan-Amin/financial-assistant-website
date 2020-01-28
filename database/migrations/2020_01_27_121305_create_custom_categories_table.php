@@ -18,6 +18,7 @@ class CreateCustomCategoriesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('date');
             $table->timestamps();
         });
     }
