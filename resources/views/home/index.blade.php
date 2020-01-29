@@ -57,7 +57,7 @@
       <div class="container-fluid">
         <div class="row no-gutters justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">About</span>
+            <a name="about"></a><span class="subheading">About</span>
             <h2>About App</h2>
           </div>
         </div>
@@ -88,7 +88,7 @@
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Our Features</span>
+          <a name="features"></a><span class="subheading">Our Features</span>
             <h2>Intuitive features, powerful results</h2>
           </div>
         </div>
@@ -141,8 +141,8 @@
             <div class="col-md-10 text-center heading-section heading-section-white ftco-animate">
               <h2 class="h1 font-weight-bold">From budgets and bills to free credit score and more, you’ll discover the effortless way to stay on top of it all.</h2>
               <p>
-              <a href="#" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Sign Up</a>
-              <a href="#" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Login</a>
+              <a href="{{route('register')}}" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Register</a>
+              <a href="{{route('login')}}" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Login</a>
               </p>
             </div>
           </div>
