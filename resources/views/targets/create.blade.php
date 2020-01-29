@@ -97,7 +97,6 @@
   
   let href= "{{route('targets.edit',['target_id'=>':response.id'])}}";
   href=href.replace(':response.id',response.id);
-  console.log(href);
   let table_body = document.getElementById("target_table");
   let table_row = document.createElement("tr");
   //target amount

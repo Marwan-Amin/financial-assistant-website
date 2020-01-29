@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Target;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Target_saving;
 
 class TargetController extends Controller
 {
@@ -21,11 +22,14 @@ class TargetController extends Controller
     
     function store(Request $request)
     {
-    //    return response()->json($request); //ajax dd :D
+      //return response()->json($request); //ajax dd :D
+        $saving=new Target_saving;
+        $savings=$saving->sum_savings();
+        //return response()->json($savings);
         $target = Target::create([
         'target_amount' => $request->target_amount,
         'target_name' => $request->target_name ,
-        'savings' => 0,
+        'savings' => $savings,
         'user_id' => Auth::user()->id
         ]);
         return response()->json($target);
