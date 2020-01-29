@@ -1,12 +1,20 @@
 @extends('layouts.app')
  @section('content')
+ <div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-cake-variant menu-icon"></i>
+        </span> Create your own event</h3>
+    </div>
  <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Add your Event</h4>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
+              <div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
+    </div>
                 <label class="col-sm-3 col-form-label">Event Name</label>
                 <div class="col-sm-9">
                   <input type="text"  id="category" name="category" class="form-control" />

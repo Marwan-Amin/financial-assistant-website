@@ -6,7 +6,9 @@
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+            <link
+            rel="shortcut icon"
+            href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}"/>
         <link
             href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800"
             rel="stylesheet">
@@ -43,7 +45,7 @@
             class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
             id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="#">Personal Financial Assisstant</a>
+                <a class="navbar-brand" href="/">Financial Assisstant</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -59,39 +61,47 @@
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="/" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">About</a>
+                            <a href="#about" class="nav-link">About</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Features</a>
+                            <a href="#features" class="nav-link">Features</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Testemonials</a>
-                        </li>
-                        <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle"
-                        href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">Portfolio</a> <div class="dropdown-menu"
-                        aria-labelledby="dropdown04"> <a class="dropdown-item" href="#">Portfolio</a> <a
-                        class="dropdown-item" href="#">Portfolio Single</a> </div> </li> -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Blog</a>
+                            <a href="/testemonials" class="nav-link">Testemonials</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Contact</a>
+                            <a href="/blog" class="nav-link">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/contact" class="nav-link">Contact</a>
+                        </li>
+                        @guest
                         <li>
                             <a href="{{route('register')}}" class="btn btn-primary btn-outline-white px-4 py-3">Register</a>
                         </li>
                         <li>
                             <a href="{{route('login')}}" class="btn btn-primary btn-outline-white mx-3 px-4 py-3">Log in</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                        <a href="/userHome" class="nav-link">My dashboard</a>
+                        </li>
+                        <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }} 
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- END nav -->
 
         @yield('content')
 
