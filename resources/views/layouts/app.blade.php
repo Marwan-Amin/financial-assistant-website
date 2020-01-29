@@ -8,7 +8,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Purple Admin</title>
+        <title>Dashboard</title>
         <!-- plugins:css -->
         <link
             rel="stylesheet"
@@ -29,7 +29,8 @@
         <link
             rel="stylesheet"
             href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
-        <!-- End layout styles -->
+
+            <!-- End layout styles -->
         <link
             rel="shortcut icon"
             href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}"/>
@@ -149,7 +150,7 @@
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/reports/index">
                   <span class="menu-title">Reports</span>
                   <i class="mdi mdi-file-outline menu-icon"></i>
                 </a>

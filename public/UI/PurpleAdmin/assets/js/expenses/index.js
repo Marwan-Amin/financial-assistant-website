@@ -1,3 +1,4 @@
+let previousId;
 function ajaxDelete(id,element){
     let isConfirmed = confirm('Do You Want To Delete This Record ?');
     if(isConfirmed){

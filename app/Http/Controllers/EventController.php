@@ -26,11 +26,9 @@ class EventController extends Controller
         ]);
         
         if ($validator->passes()) {
-            $category = CustomCategory::create([
-                'name'=>$request->eventName,
-                'user_id'=>Auth::user()->id,
-                'date' =>$request->eventDate
-            ]);
+            $category = CustomCategory::updateOrCreate(
+                ['name'=>$request->eventName,'user_id'=>Auth::user()->id,'date' =>$request->eventDate]
+            );
 
 			return response()->json(['success'=>'Added new records.','isStored'=>true,'categoryId'=>$category->id]);
         }
@@ -63,23 +61,30 @@ class EventController extends Controller
 public function storeSubEvent(Request $request){
 
 
-    // $validator = Validator::make($request->all(), [
-    //     'category' => 'required|string',
-    //     'date' => 'required|date',
-    // ]);
+    $validator = Validator::make($request->all(), [
+        'subName' => 'required|string',
+        'amount' => 'required|numeric',
+    ]);
     
-    // if ($validator->passes()) {
-        $customSubCategory = CustomSubCategory::create([
-           'name' =>$request->subName,
-           'amount' =>$request->amount,
-           'category_id'=>$request->categoryId
+    if ($validator->passes()) {
+        $row = CustomSubCategory::where('name',$request->subName)->where('category_id',$request->categoryId);
+        $amount = $row->exists()?$row->first():['amount'=>0];
+        $customSubCategory = CustomSubCategory::updateOrCreate(
+            ['name' =>$request->subName,'category_id'=>$request->categoryId],
+            [
+           'amount' =>$amount['amount']+$request->amount,
         ]);
-       
+       if($amount['amount']==0){
+           $customSubCategory['isUpdated']=false;
+        return response()->json(['success'=>'Added new records.','data'=>$customSubCategory]);
+
+       }
+       $customSubCategory['isUpdated']=true;
         return response()->json(['success'=>'Added new records.','data'=>$customSubCategory]);
 
 
-    // }      
-    //   return response()->json(['error'=>$validator->errors()->all()]);
+    }      
+      return response()->json(['error'=>$validator->errors()->all()]);
 
    
 

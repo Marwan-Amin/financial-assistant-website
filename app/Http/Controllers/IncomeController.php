@@ -15,7 +15,7 @@ class IncomeController extends Controller
     public function index()
     {
         return view('incomes.index', [
-            'user' => \App\User::find(Auth::user()->id)
+            'user' => User::find(Auth::user()->id)
         ]);
     }
     public function create()
