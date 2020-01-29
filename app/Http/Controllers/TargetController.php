@@ -33,24 +33,25 @@ class TargetController extends Controller
 
     function destroy($target_id)
     {
-        /*$saving = Saving::findOrFail($saving_id);
-        $saving->delete();
-        return response()->json($saving);*/
+        $target = Target::findOrFail($target_id);
+        $target->delete();
+        return response()->json($target);
     }
 
     function update($target_id,Request $request)
     {
-        /*$saving = Saving::findOrFail($saving_id);
-        $saving->amount = $request->amount;
-        $saving->save();
-        return redirect()->route('savings.create');*/
+        $target = target::findOrFail($target_id);
+        $target->target_amount = $request->target_amount;
+        $target->target_name = $request->target_name;
+        $target->save();
+        return redirect()->route('targets.create');
     }
     function edit($target_id)
     {
-        /*$saving = Saving::find($saving_id);
-        return view('savings.edit',[
-            'saving' => $saving 
-        ]); */
+        $target = target::find($target_id);
+        return view('targets.edit',[
+            'target' => $target 
+        ]);
         
     }
 }
