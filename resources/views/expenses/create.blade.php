@@ -340,6 +340,302 @@
                           <label for="subway"><div class="glyph-icon flaticon-subway"></div><span>Train</span></label>
                         </div>
 
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="uber" value="Uber">
+                          <label for="uber"><div class="glyph-icon flaticon-uber"></div><span>Uber</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="route" value="Careem">
+                          <label for="route"><div class="glyph-icon flaticon-route"></div><span>Careem</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="roller" value="houshold Repairs">
+                          <label for="roller"><div class="glyph-icon flaticon-roller"></div><span>houshold Repairs</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="lamp" value="Lamps">
+                          <label for="lamp"><div class="glyph-icon flaticon-lamp"></div><span>Lamps</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="bed" value="Furniture">
+                          <label for="bed"><div class="glyph-icon flaticon-bed"></div><span>Furniture</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="adornment" value="Rugs">
+                          <label for="adornment"><div class="glyph-icon flaticon-adornment"></div><span>Rugs</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="necklace" value="Accessories">
+                          <label for="necklace"><div class="glyph-icon flaticon-necklace"></div><span>Accessories</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="key" value="Renting">
+                          <label for="key"><div class="glyph-icon flaticon-key"></div><span>Renting</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="fuel" value="Fuel/Gas">
+                          <label for="fuel"><div class="glyph-icon flaticon-fuel"></div><span>Fuel/Gas</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="car-service" value="Car wash">
+                          <label for="car-service"><div class="glyph-icon flaticon-car-service"></div><span>Car wash</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="fee" value="Parking fees">
+                          <label for="fee"><div class="glyph-icon flaticon-fee"></div><span>Parking fees</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="mechanic" value="Mechanic">
+                          <label for="mechanic"><div class="glyph-icon flaticon-mechanic"></div><span>Mechanic</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="car-service-1" value="Oil changes">
+                          <label for="car-service-1"><div class="glyph-icon flaticon-car-service-1"></div><span>Oil changes</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="options" value="Games">
+                          <label for="options"><div class="glyph-icon flaticon-options"></div><span>Games</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="play-button" value="Movies">
+                          <label for="play-button"><div class="glyph-icon flaticon-play-button"></div><span>Movies</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="microphone" value="Concerts">
+                          <label for="microphone"><div class="glyph-icon flaticon-microphone"></div><span>Concerts</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="pricing" value="Website Subscriptions">
+                          <label for="pricing"><div class="glyph-icon flaticon-pricing"></div><span>Website Subscriptions</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="tshirt" value="T-Shirts">
+                          <label for="tshirt"><div class="glyph-icon flaticon-tshirt"></div><span>T-Shirts</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="jeans" value="Jeans">
+                          <label for="jeans"><div class="glyph-icon flaticon-jeans"></div><span>Jeans</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="dress" value="Shirts and dresses">
+                          <label for="dress"><div class="glyph-icon flaticon-dress"></div><span>Shirts and dresses</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="jacket" value="Jackets and Coats">
+                          <label for="jacket"><div class="glyph-icon flaticon-jacket"></div><span>Jackets and Coats</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="suit" value="Suits">
+                          <label for="suit"><div class="glyph-icon flaticon-suit"></div><span>Suits</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="socks" value="Footware">
+                          <label for="socks"><div class="glyph-icon flaticon-socks"></div><span>Footware</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="knickers" value="Underware">
+                          <label for="knickers"><div class="glyph-icon flaticon-knickers"></div><span>Underware</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="mortgage" value="Home insurance">
+                          <label for="mortgage"><div class="glyph-icon flaticon-mortgage"></div><span>Home insurance</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="car-insurance" value="Car insurance">
+                          <label for="car-insurance"><div class="glyph-icon flaticon-car-insurance"></div><span>Car insurance</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="life-insurance" value="life insurance">
+                          <label for="life-insurance"><div class="glyph-icon flaticon-life-insurance"></div><span>life insurance</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="health-insurance" value="Medical insurance">
+                          <label for="health-insurance"><div class="glyph-icon flaticon-health-insurance"></div><span>Medical insurance</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="travel-insurance" value="Travel insurance">
+                          <label for="travel-insurance"><div class="glyph-icon flaticon-travel-insurance"></div><span>Travel insurance</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="medicine" value="Medicines">
+                          <label for="medicine"><div class="glyph-icon flaticon-medicine"></div><span>Medicines</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="first-aid-kit" value="Hospitals">
+                          <label for="first-aid-kit"><div class="glyph-icon flaticon-first-aid-kit"></div><span>Hospitals</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="doctor" value="Doctors">
+                          <label for="doctor"><div class="glyph-icon flaticon-doctor"></div><span>Doctors</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="muscle" value="Gym">
+                          <label for="muscle"><div class="glyph-icon flaticon-muscle"></div><span>Gym</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="badge" value="Club Training">
+                          <label for="badge"><div class="glyph-icon flaticon-badge"></div><span>Club Training</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="diaper" value="Diapers">
+                          <label for="diaper"><div class="glyph-icon flaticon-diaper"></div><span>Diapers</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="baby-food" value="Baby food">
+                          <label for="baby-food"><div class="glyph-icon flaticon-baby-food"></div><span>Baby food</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="scooter" value="Toys">
+                          <label for="scooter"><div class="glyph-icon flaticon-scooter"></div><span>Toys</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="onesie" value="Baby Clothes">
+                          <label for="onesie"><div class="glyph-icon flaticon-onesie"></div><span>Baby Clothes</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="mittens" value="Baby accessories">
+                          <label for="mittens"><div class="glyph-icon flaticon-mittens"></div><span>Baby accessories</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="pet-food" value="Pet food">
+                          <label for="pet-food"><div class="glyph-icon flaticon-pet-food"></div><span>Pet food</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="bed-1" value="Bed">
+                          <label for="bed-1"><div class="glyph-icon flaticon-bed-1"></div><span>Bed</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="pet-friendly" value="Vet">
+                          <label for="pet-friendly"><div class="glyph-icon flaticon-pet-friendly"></div><span>Vet</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="veterinary" value="Pet medicine">
+                          <label for="veterinary"><div class="glyph-icon flaticon-veterinary"></div><span>Pet medicine</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="lipstick" value="Makeup">
+                          <label for="lipstick"><div class="glyph-icon flaticon-lipstick"></div><span>Makeup</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="shampoo" value="Shampo">
+                          <label for="shampoo"><div class="glyph-icon flaticon-shampoo"></div><span>Shampo</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="cream" value="Lotions">
+                          <label for="cream"><div class="glyph-icon flaticon-cream"></div><span>Lotions</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="bottle" value="Perfumes">
+                          <label for="bottle"><div class="glyph-icon flaticon-bottle"></div><span>Perfumes</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="cosmetic" value="Skincare">
+                          <label for="cosmetic"><div class="glyph-icon flaticon-cosmetic"></div><span>Skincare</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="comb" value="Haircare">
+                          <label for="comb"><div class="glyph-icon flaticon-comb"></div><span>Haircare</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="computer-1" value="TV">
+                          <label for="computer-1"><div class="glyph-icon flaticon-computer-1"></div><span>TV</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="mobile-phone-back-with-a-hanging-tool" value="Mobile Accessories">
+                          <label for="mobile-phone-back-with-a-hanging-tool"><div class="glyph-icon flaticon-mobile-phone-back-with-a-hanging-tool"></div><span>Mobile Accessories</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="keyboard" value="Computer Accessories">
+                          <label for="keyboard"><div class="glyph-icon flaticon-keyboard"></div><span>Computer Accessories</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="mainboard" value="Computer components">
+                          <label for="mainboard"><div class="glyph-icon flaticon-mainboard"></div><span>Computer components</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="gift-1" value="Gift">
+                          <label for="gift-1"><div class="glyph-icon flaticon-gift-1"></div><span>Gift</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="airplane-1" value="travel">
+                          <label for="airplane-1"><div class="glyph-icon flaticon-airplane-1"></div><span>travel</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="elearning" value="Courses">
+                          <label for="elearning"><div class="glyph-icon flaticon-elearning"></div><span>Courses</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="university" value="university feess">
+                          <label for="university"><div class="glyph-icon flaticon-university"></div><span>university fees</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="book-2" value="Book">
+                          <label for="book-2"><div class="glyph-icon flaticon-book-2"></div><span>Book</span></label>
+                        </div>
+
+                        <div class="cat-box">
+                          <input type="radio" name="subCategory" id="process" value="Office fees">
+                          <label for="process"><div class="glyph-icon flaticon-process"></div><span>Office fee</span></label>
+                        </div>
+
+                        
                         </div>
                         
                       </div>
