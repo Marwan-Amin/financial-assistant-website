@@ -32,6 +32,7 @@ class TargetController extends Controller
         'savings' => $savings,
         'user_id' => Auth::user()->id
         ]);
+        $target = Target::find($target->id);
         return response()->json($target);
     }
 

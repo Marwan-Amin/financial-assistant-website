@@ -58,7 +58,21 @@
           <tr>
             <td>{{$target->target_name}}</td>
             <td>{{$target->target_amount}}</td>
-            <td>{{$target->progress}}</td>
+            <td>
+            @if($target->progress > 100||$target->progress ==100)
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                100%
+              </div>
+              
+            @else 
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              {{$target->progress}}%
+            </div>
+            @endif
+            </td>
+            
             <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
             <td class="project-actions text-center">
@@ -97,7 +111,7 @@
   
  //create DOM elements
   function createRecord (response){
-  
+    console.log(response.progress);
   let href= "{{route('targets.edit',['target_id'=>':response.id'])}}";
   href=href.replace(':response.id',response.id);
   let table_body = document.getElementById("target_table");
@@ -108,7 +122,16 @@
   //target name
   let table_data_amount = document.createElement("td");
   table_data_amount.innerHTML=response.target_amount;
-  //egit btn
+  
+  //progress hna ya 3mr 
+  let table_data_progress = document.createElement("td");
+ let progressBig_div =$('<div class="progress"></div>'); 
+  let progress_div =$('<div class="progress-bar bg-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>')
+  .css("width",`${response.progress}`+"%"); 
+  
+  table_data_progress.append(progressBig_div);
+  progressBig_div.append(progress_div);
+  //edit btn
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
   btn_edit.innerHTML="Edit";
@@ -122,6 +145,7 @@
 
   table_row.appendChild(table_data_target);
   table_row.appendChild(table_data_amount);
+  table_row.appendChild(table_data_progress);
   table_row.appendChild(table_data_edit);
   table_row.appendChild(table_data_delete);
   table_body.appendChild(table_row);
