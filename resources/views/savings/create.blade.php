@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
+<div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-key menu-icon"></i>
+        </span> Your Savings</h3>
+    </div>
 <div class="col-12">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Add your Savings</h4>
-        
+      <div class="card-body">        
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
@@ -29,7 +33,6 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Your Savings</h4>
       <table class="table table-striped " id="incomeTable">
         <thead>
           <tr>
@@ -58,5 +61,10 @@
     </div>
   </div>
 </div>
+<script> let savingUrl = "{{route('savings.store')}}";
+        let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
+        let href= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
+
+ </script>
 <script src="{{asset('UI/PurpleAdmin/assets/js/savings/create.js')}}"></script>
 @endsection

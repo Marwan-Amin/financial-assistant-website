@@ -6,6 +6,7 @@ use App\Saving;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Target_saving;
 class SavingController extends Controller
 {
     function index() 
@@ -23,13 +24,20 @@ class SavingController extends Controller
         'amount' => $request->saving_amount,
         'user_id' => Auth::user()->id
     ]);
-    return response()->json($saving);
+        $save = new Target_saving;
+        $savings_sum = $save->sum_savings();
+        $sss = $save->Edit_target_savings($savings_sum);
+        return response()->json($saving);
     }
 
     function destroy($saving_id)
     {
+        //return response()->json($saving_id);
         $saving = Saving::findOrFail($saving_id);
         $saving->delete();
+        $save=new Target_saving;
+        $savings_sum=$save->sum_savings();
+        $save->Edit_target_savings($savings_sum);
         return response()->json($saving);
     }
 
@@ -38,6 +46,9 @@ class SavingController extends Controller
         $saving = Saving::findOrFail($saving_id);
         $saving->amount = $request->amount;
         $saving->save();
+        $save=new Target_saving;
+        $savings_sum=$save->sum_savings();
+        $save->Edit_target_savings($savings_sum);
         return redirect()->route('savings.create');
     }
     function edit($saving_id)

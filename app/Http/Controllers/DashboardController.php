@@ -10,7 +10,6 @@ class DashboardController extends Controller
 {
     public function index() {
       $user = User::find(Auth::user() -> id);
-      // dd($user->subExpenses[0]->pivot->amount);
       $sumIncome = 0;
       foreach($user -> user_incomes as $income) {
           $sumIncome = $sumIncome + floatval($income -> amount);

@@ -8,7 +8,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Purple Admin</title>
+        <title>Dashboard</title>
         <!-- plugins:css -->
         <link
             rel="stylesheet"
@@ -22,23 +22,15 @@
         <link
             rel="stylesheet"
             href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}">
-        <!-- endinject -->
-        <!-- Plugin css for this page -->
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <!-- endinject -->
-        <!-- Layout styles -->
-        <!-- <script src="{{ asset('js/app.js') }}" defer="defer"></script> -->
 
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-
         <link
             rel="stylesheet"
             href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
-        <!-- End layout styles -->
+
+            <!-- End layout styles -->
         <link
             rel="shortcut icon"
             href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}"/>
@@ -61,33 +53,25 @@
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="../../index.html"><img src=" {{asset('UI/PurpleAdmin/assets/images/logo.svg')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="/"><img src=" {{asset('UI/PurpleAdmin/assets/images/logo.svg')}}" alt="logo" /></a>
           <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('UI/PurpleAdmin/assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <div class="nav-profile-img">
-                @if ( Auth::user()->avatar)
-                  <img src="{{asset(Auth::user()->avatar)}}" alt="image">
-                  @else
-                  <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="image">
-                  @endif
-                </div>
-                <div class="nav-profile-text">
-                  <p class="mb-1 text-black">
-                  @guest
-                    Guest
-                  @else
-                  {{ Auth::user()->name }}
-                  @endguest
-                  </p>
-                </div>
+            
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+
+            <li class="nav-item nav-profile dropdown ">
+              <a class="nav-link dropdown-toggle bg-blue-gradient" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="true">
+              <i class="bg-blue-gradient mdi mdi-account"></i>
+              <span> Activity </span>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="#">
@@ -164,9 +148,9 @@
                 <span class="menu-title">Savings</span>
                 <i class="mdi mdi-key menu-icon"></i>
               </a>
-          </li>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/reports/index">
                   <span class="menu-title">Reports</span>
                   <i class="mdi mdi-file-outline menu-icon"></i>
                 </a>
@@ -232,7 +216,6 @@
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
             </div>
           </footer>
           <!-- partial -->
