@@ -12,17 +12,18 @@ $.ajax({
   type: 'POST',
    url:urlEvent,
    data:{'eventName':eventName,'eventDate':eventDate},
-       success:function(data){
-        if($.isEmptyObject(data.error)){
-            renderResponse(data);
-            alert(data.success);
+       success:function(response){
+        if($.isEmptyObject(response.error)){
+            console.log(response);
+            renderResponse(response);
+            alert(response.success);
         }else{
-            printErrorMsg(data.error);
+            printErrorMsgEvent(response.error);
         }
        }
     });  
 }
-function printErrorMsg (msg) {
+function printErrorMsgEvent (msg) {
     $(".print-error-msg").find("ul").html('');
     $(".print-error-msg").css('display','block');
 
@@ -63,7 +64,14 @@ function renderResponse(data){
         eventSubCategoryAmount.setAttribute('step','0.01');
 
         document.getElementById('subCategoryAmountLabel').innerHTML ='Amount'; 
-       
+    //     <div class="alert alert-danger print-error-msg" style="display:none">
+    //     <ul></ul>
+    // </div>
+    let errorDiv = document.createElement('div');
+        errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+        errorDiv.style.display = 'none';
+        let errorUl=document.createElement('ul');
+        errorDiv.appendChild(errorUl);
           //create add custom sub expents button
     let addSubCategoryButton = document.createElement('button');
         addSubCategoryButton.innerHTML ="Add Sub-Expense";
@@ -72,7 +80,7 @@ function renderResponse(data){
         subCategoryNameParent.appendChild(eventName);
     let subCategoryAmountParent = document.getElementById('subCategoryAmount');
         subCategoryAmountParent.appendChild(eventSubCategoryAmount);
-    
+        subCategoryAmountParent.appendChild(errorDiv);
         //disabled the input and add button of event after the user enter one to stop him of enter more than one event at a time
         document.getElementById('addEvent').disabled =true;
         document.getElementById('category').disabled = true;
@@ -87,7 +95,6 @@ function renderResponse(data){
 function subCategoryAjax(addButton,subName,amount,categoryId){
 addButton.addEventListener('click',function(){
   //check if the three fields is full and not empty and if it is it will alert an error
-    if(subName && amount ){
 
         let subCategoryInfo={'subName':subName.value,'amount':amount.value,'categoryId':categoryId};
         $.ajax({
@@ -97,28 +104,50 @@ addButton.addEventListener('click',function(){
   url:urlSubCategory,
   type: 'POST',
    data:subCategoryInfo,
-       success:function(data){
+       success:function(response){
          //create information record about the event 
-         console.log(data);
-      createEventInfoRecord(data);
+         if($.isEmptyObject(response.error)){
+            alert(response.success);
+            createEventInfoRecord(response.data);
+        }else{
+            printErrorMsgSub(response.error);
+        }
        }
     }); 
-    }else{
-        alert(' All The Data is Required');
-    }
+    
 });
 }
 });
+function printErrorMsgSub (msg) {
+    $(".print-error-msg-sub").find("ul").html('');
+    $(".print-error-msg-sub").css('display','block');
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg-sub").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg-sub").css('display','none');
+        }, 2000);
+}
 function createEventInfoRecord(eventData){
-      let table_body = document.getElementById('event_table_body');
-      let table_row = document.createElement("tr");
-      let table_data_amount = document.createElement("td");
-          table_data_amount.innerHTML=eventData.amount+" EGP";
-      let table_data_event_type = document.createElement("td");
-          table_data_event_type.innerHTML = eventData.name;
-          table_row.appendChild(table_data_event_type);
-          table_row.appendChild(table_data_amount);
-          table_body.appendChild(table_row);
+    let table_body = document.getElementById('event_table_body');
+
+    if(eventData.isUpdated){
+        table_body.querySelectorAll('td').forEach(function(element){
+            if(element.innerHTML == eventData.name){
+                element.nextSibling.innerHTML = eventData.amount+" EGP";
+            }
+        });
+    }else{
+        let table_row = document.createElement("tr");
+        let table_data_amount = document.createElement("td");
+            table_data_amount.innerHTML=eventData.amount+" EGP";
+        let table_data_event_type = document.createElement("td");
+            table_data_event_type.innerHTML = eventData.name;
+            table_row.appendChild(table_data_event_type);
+            table_row.appendChild(table_data_amount);
+            table_body.appendChild(table_row);
+    }
+      
           document.getElementById('subCategoryName').querySelector('input').value="";
           document.getElementById('subCategoryAmount').querySelector('input').value="";
 }

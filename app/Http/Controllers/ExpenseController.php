@@ -50,13 +50,11 @@ class ExpenseController extends Controller
                        ->where('date',$request->date);
         $userSubCategory=$userSubCategory->exists()?$userSubCategory->first():['amount'=>0];
          UserSubCategory::updateOrCreate(
-        ['user_id'=>Auth::user()->id,'date'=>$request->date],   
+        ['user_id'=>Auth::user()->id,'date'=>$request->date,'sub_category_id'=>$request->subCategory],   
         [
-            'sub_category_id'=>$request->subCategory,
             'amount'=>$userSubCategory['amount']+$request->amount,
         ]);
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
+      
         
         return redirect()->route('expenses.index');
     }
@@ -65,8 +63,7 @@ class ExpenseController extends Controller
         $subExpense = UserSubCategory::findOrFail($id);
         $subExpense->delete();
         
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
+        
         if($subExpense){
             return response()->json(true);
         }else{
@@ -81,8 +78,7 @@ class ExpenseController extends Controller
         $userSubCategory->date = $request->date;
         $userSubCategory->save();
 
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
+       
         
         return redirect()->route('expenses.index');
     }
