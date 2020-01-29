@@ -61,5 +61,10 @@
     </div>
   </div>
 </div>
+<script> let savingUrl = "{{route('savings.store')}}";
+        let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
+        let href= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
+
+ </script>
 <script src="{{asset('UI/PurpleAdmin/assets/js/savings/create.js')}}"></script>
 @endsection
