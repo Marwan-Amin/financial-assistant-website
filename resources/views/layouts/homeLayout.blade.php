@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Personal_Financial_Assisstant</title>
+        <title>Financial Assistant</title>
         <meta charset="utf-8">
         <meta
             name="viewport"

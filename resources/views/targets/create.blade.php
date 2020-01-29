@@ -58,7 +58,7 @@
           <tr>
             <td>{{$target->target_name}}</td>
             <td>{{$target->target_amount}}</td>
-            <td></td>
+            <td>{{$target->progress}}</td>
             <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
             <td class="project-actions text-center">
@@ -88,34 +88,38 @@
       url :"{{route('targets.store')}}",
       success : function (response){
         console.log(response);
-        // createRecord(response);
+        createRecord(response);
       }
   
     });
   });
   
   
- /* //create DOM elements
+ //create DOM elements
   function createRecord (response){
   
   let href= "{{route('targets.edit',['target_id'=>':response.id'])}}";
   href=href.replace(':response.id',response.id);
-  console.log(href);
   let table_body = document.getElementById("target_table");
   let table_row = document.createElement("tr");
+  //target amount
   let table_data_target = document.createElement("td");
-  table_data_amount.innerHTML=response.target_name;
+  table_data_target.innerHTML=response.target_name;
+  //target name
   let table_data_amount = document.createElement("td");
   table_data_amount.innerHTML=response.target_amount;
+  //egit btn
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
   btn_edit.innerHTML="Edit";
   let table_data_edit = document.createElement("td");
   table_data_edit.appendChild(btn_edit);
+  //del btn
   let btn_delete = document.createElement("button");
   btn_delete.innerHTML="Delete";
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
+
   table_row.appendChild(table_data_target);
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_edit);
@@ -155,6 +159,6 @@
     if(isDeleted){
       chiledElement.parentElement.parentElement.remove();
     }
-  }*/
+  }
   </script>
  @endsection

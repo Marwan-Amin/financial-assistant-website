@@ -22,6 +22,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
 
     Route::get('/userHome',"DashboardController@index")->name('userHome');
+    
     //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
     Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
@@ -29,7 +30,6 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::delete('/incomes/{income_id}', 'IncomeController@destroy')->name('incomes.destroy');
     Route::patch('/incomes/{income_id}', 'IncomeController@update')->name('incomes.update');
     Route::get('/incomes/{income_id}/edit', 'IncomeController@edit')->name('incomes.edit');
-
 
     //expenses routes
     Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
@@ -51,16 +51,12 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::post('/events','EventController@store')->name('events.store');
     Route::post('/events/subExpenseEvent','EventController@storeSubEvent')->name('events.subStore');
 
-
     //savings routes
-   
     Route::get('/savings/create', 'SavingController@index')->name('savings.create');
     Route::post('/savings','SavingController@store')->name('savings.store');
     Route::delete('/savings/{saving_id}', 'SavingController@destroy')->name('savings.destroy');
     Route::get('/savings/{saving_id}/edit', 'SavingController@edit')->name('savings.edit');
     Route::patch('/savings/{saving_id}', 'SavingController@update')->name('savings.update');
-
-
 
     //target routes
     Route::get('/targets/create', 'TargetController@index')->name('targets.create');
@@ -69,13 +65,14 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/targets/{target_id}/edit', 'TargetController@edit')->name('targets.edit');
     Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
 
-
     //user profile routes
     Route::get('/user_profile', 'ProfileController@index')->name('home');
     Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home');
     Route::put('/user_profile/{id}' , 'ProfileController@update' );
-    
 
+    //Reporting routes
+    Route::get('/reports/index', 'ReportController@index')->name('reports.index');
+    
 });
 
 
