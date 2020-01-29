@@ -56,6 +56,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Type</label>
                   <div class="col-sm-9">
+  
                     <select name="category" class="form-control" id="category" value="">
                     @isset($subExpenseUser)
                  <option  value="{{ $subExpenseUser->subCategory->category->id}}" selected>{{ $subExpenseUser->subCategory->category->name}}</option>
@@ -71,9 +72,9 @@
                   </div>
                   <div class="col-sm-9">
                   <label for="subCategories" class="col-md-4 col-form-label text-md-right">Sub-Category</label>
-                <select class="form-control" name="subCategory" id="subCategories" value="Select Sub-Category">
+                  <select class="form-control" name="subCategory" id="subCategories" value="Select Sub-Category">
                 @isset($subExpenseUser)
-                <option value="{{$subExpenseUser->id}}" selected >{{$subExpenseUser->subCategory->name}}</option>
+                <option value="{{$subExpenseUser->subCategory->id}}" selected >{{$subExpenseUser->subCategory->name}}</option>
                 @foreach($subExpenseUser->subCategory->category->subCategories as $subCategory)
                 <option value="$subCategory->id"  >{{$subCategory->name}}</option>
                 @endforeach
@@ -665,7 +666,6 @@
   </div>
   <script>
        let url = `{{route('subCategory.ajax',['categoryId'=>':categoryId'])}}`;
-
   </script>
   <script src="{{asset('UI/PurpleAdmin/assets/js/expenses/create.js')}}"></script>
  @endsection

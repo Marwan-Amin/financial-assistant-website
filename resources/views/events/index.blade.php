@@ -47,6 +47,10 @@
       </div>
     </div>
   </div>
+  <script>
+      let url = `{{route('events.destroy',['id'=>':id'])}}`;
+
+  </script>
   <script src="{{asset('UI/PurpleAdmin/assets/js/events/index.js')}}"></script>
 
 @endsection

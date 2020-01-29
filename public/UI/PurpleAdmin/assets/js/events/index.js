@@ -1,8 +1,15 @@
+  let previousId;
   function ajaxDelete(id,element){
    let isConfirmed = confirm('Do You Want To Delete This Event ?');
    if(isConfirmed){
-    let url = `{{route('events.destroy',['id'=>':id'])}}`;
-        url = url.replace(':id',id);
+     if(url.includes(':id')){
+      url = url.replace(':id',id);
+      previousId = id;
+     }else{
+      url = url.replace('/events/'+previousId,'/events/'+id);
+      previousId = id;
+     }
+       
     $.ajax({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

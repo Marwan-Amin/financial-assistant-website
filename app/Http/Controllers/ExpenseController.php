@@ -84,7 +84,6 @@ class ExpenseController extends Controller
 
         $userSubCategory->date = $request->date;
         $userSubCategory->save();
-        dd($userSubCategory);
 
         $addedExpense= $request->amount - $oldExpense;
 

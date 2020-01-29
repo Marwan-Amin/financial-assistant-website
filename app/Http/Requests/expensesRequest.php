@@ -25,9 +25,8 @@ class expensesRequest extends FormRequest
     {
         return [
             'amount'=>'numeric|min:0.25|required',
-            'date'=>'date|required',
-            'category'=>'string|required',
-            'subCategory'=>'numeric|required'
+            'date'=>'date|required|date_format:Y-m-d',
+            'subCategory'=>'numeric|required|exists:expense_sub_categories,id'
         ];
     }
 }
