@@ -9,7 +9,7 @@ use App\ExpenseSubCategory;
 use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
 class EventController extends Controller
 {
     public function index(){
@@ -20,20 +20,68 @@ class EventController extends Controller
         return view('events.create');
     }
     public function store(Request $request){
-           $category = CustomCategory::create([
+        $validator = Validator::make($request->all(), [
+            'eventName' => 'required',
+            'eventDate' => 'required|date',
+        ]);
+        
+        if ($validator->passes()) {
+            $category = CustomCategory::create([
                 'name'=>$request->eventName,
                 'user_id'=>Auth::user()->id,
                 'date' =>$request->eventDate
             ]);
-            return response()->json(['isStored'=>true,'categoryId'=>$category->id]);
+
+			return response()->json(['success'=>'Added new records.','isStored'=>true,'categoryId'=>$category->id]);
+        }
+        return response()->json(['error'=>$validator->errors()->all()]);
+
+          
     }
     public function updateSubEvent($id,Request $request){
 
-        $customSubCategory = CustomSubCategory::find($id);
-        $customSubCategory->name =$request->customSubCategoryName;
-        $customSubCategory->amount =$request->customSubCategoryAmount;
-        $customSubCategory->save();
-        return response()->json(true);
+
+        $validator = Validator::make($request->all(), [
+            'category' => 'required|string',
+            'date' => 'required|date',
+        ]);
+        
+        if ($validator->passes()) {
+            $customSubCategory = CustomSubCategory::find($id);
+            $customSubCategory->name =$request->customSubCategoryName;
+            $customSubCategory->amount =$request->customSubCategoryAmount;
+            $customSubCategory->save();
+            return response()->json(['success'=>'Added new records.']);
+
+
+        }      
+          return response()->json(['error'=>$validator->errors()->all()]);
+
+       
+
+}
+public function storeSubEvent(Request $request){
+
+
+    // $validator = Validator::make($request->all(), [
+    //     'category' => 'required|string',
+    //     'date' => 'required|date',
+    // ]);
+    
+    // if ($validator->passes()) {
+        $customSubCategory = CustomSubCategory::create([
+           'name' =>$request->subName,
+           'amount' =>$request->amount,
+           'category_id'=>$request->categoryId
+        ]);
+       
+        return response()->json(['success'=>'Added new records.','data'=>$customSubCategory]);
+
+
+    // }      
+    //   return response()->json(['error'=>$validator->errors()->all()]);
+
+   
 
 }
 public function edit($id){

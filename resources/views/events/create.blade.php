@@ -12,6 +12,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
+              <div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
+    </div>
                 <label class="col-sm-3 col-form-label">Event Name</label>
                 <div class="col-sm-9">
                   <input type="text"  id="category" name="category" class="form-control" />

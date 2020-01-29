@@ -4,7 +4,7 @@
       
 let eventName = document.getElementById('category').value;
 let eventDate = document.getElementById('date').value;
-if((eventName && eventName != "") &&(eventDate && eventDate!="") ){
+if(/*(eventName && eventName != "") &&(eventDate && eventDate!="")*/true ){
 $.ajax({
     headers: {
        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -13,11 +13,26 @@ $.ajax({
    url:urlEvent,
    data:{'eventName':eventName,'eventDate':eventDate},
        success:function(data){
-       renderResponse(data);
+        if($.isEmptyObject(data.error)){
+            renderResponse(data);
+            alert(data.success);
+        }else{
+            printErrorMsg(data.error);
+        }
        }
     });  
 }
+function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
 
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg").css('display','none');
+        }, 2000);
+}
 //render the inputs needed for the event that user has entered
 function renderResponse(data){
     if(data.isStored){
@@ -84,6 +99,7 @@ addButton.addEventListener('click',function(){
    data:subCategoryInfo,
        success:function(data){
          //create information record about the event 
+         console.log(data);
       createEventInfoRecord(data);
        }
     }); 
