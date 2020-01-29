@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
        return $this->belongsToMany(ExpenseSubCategory::class,'user_sub_categories','user_id','sub_category_id')->withPivot('amount','date','id');
     }
-
+    
     public function balance()
     {
         return $this->hasMany(Balance::class);

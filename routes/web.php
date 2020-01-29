@@ -45,7 +45,9 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/events/manager', 'EventController@index')->name('events.index');
     Route::delete('/events/{id}/delete', 'EventController@destroy')->name('events.destroy');
     Route::get('/events/{id}','EventController@edit')->name('events.edit');
+    Route::get('/events/{id}/show','EventController@show')->name('events.show');
     Route::put('/events/{id}/update','EventController@update')->name('events.update');
+    Route::put('/SubEvents/{id}/update','EventController@updateSubEvent')->name('subEvent.update');
     Route::post('/events','EventController@store')->name('events.store');
     Route::post('/events/subExpenseEvent','EventController@storeSubCategory')->name('events.subStore');
 
@@ -97,3 +99,6 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
 
 
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
+
+
+Route::get('/charts', 'ChartsController@charts')->name('home');

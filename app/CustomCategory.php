@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomCategory extends Model
 {
-    protected $fillable=['name','user_id'];
+    protected $fillable=['name','user_id','date'];
     public function user(){
         return $this->belongsTo(User::class);
     }

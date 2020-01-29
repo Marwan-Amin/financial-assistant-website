@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use App\Saving
 use App\User;
+use App\Target;
 use Illuminate\Support\Facades\Auth;
 
 class TargetController extends Controller
@@ -20,12 +21,14 @@ class TargetController extends Controller
     
     function store(Request $request)
     {
-        /*//return response()->json($request); //ajax dd :D
-        $saving = Saving::create([
-        'amount' => $request->saving_amount,
+    //    return response()->json($request); //ajax dd :D
+        $target = Target::create([
+        'target_amount' => $request->target_amount,
+        'target_name' => $request->target_name ,
+        'savings' => 0,
         'user_id' => Auth::user()->id
-    ]);
-    return response()->json($saving);*/
+        ]);
+        return response()->json($target);
     }
 
     function destroy($target_id)
