@@ -39,7 +39,6 @@ class IncomeController extends Controller
         function destroy($income_id)
         {
             $income = UserIncome::findOrFail($income_id);
-            // dd($income);
             $income->delete();
             return redirect()->route('incomes.index');
         }

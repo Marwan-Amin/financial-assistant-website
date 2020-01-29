@@ -66,8 +66,6 @@ class ExpenseController extends Controller
         $subExpense = UserSubCategory::findOrFail($id);
         $subExpense->delete();
         
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
         if($subExpense){
             return response()->json(true);
         }else{
