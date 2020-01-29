@@ -24,16 +24,20 @@ class SavingController extends Controller
         'amount' => $request->saving_amount,
         'user_id' => Auth::user()->id
     ]);
-       /* $save=new Target_saving;
-        $savings_sum=$save->sum_savings();
-        $save->Edit_target_savings($savings_sum);*/
+        $save = new Target_saving;
+        $savings_sum = $save->sum_savings();
+        $sss = $save->Edit_target_savings($savings_sum);
         return response()->json($saving);
     }
 
     function destroy($saving_id)
     {
+        //return response()->json($saving_id);
         $saving = Saving::findOrFail($saving_id);
         $saving->delete();
+        $save=new Target_saving;
+        $savings_sum=$save->sum_savings();
+        $save->Edit_target_savings($savings_sum);
         return response()->json($saving);
     }
 
@@ -42,6 +46,9 @@ class SavingController extends Controller
         $saving = Saving::findOrFail($saving_id);
         $saving->amount = $request->amount;
         $saving->save();
+        $save=new Target_saving;
+        $savings_sum=$save->sum_savings();
+        $save->Edit_target_savings($savings_sum);
         return redirect()->route('savings.create');
     }
     function edit($saving_id)

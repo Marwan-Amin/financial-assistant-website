@@ -18,12 +18,15 @@ class Target_saving
         }
     return ($sumSaving);
     }
+    
     public function Edit_target_savings($sumSaving){
-        /*$user = User::find(Auth::user()->id);
-        foreach($user->target as $target) {
-        
-        }
-        return ($sumSaving);*/
+        $targetsData = Target::where('user_id', Auth::user()->id)->get();
+            foreach ($targetsData as $target) {
+                    $target->savings = $sumSaving;
+                    $target->save();
+            }
+        return ($sumSaving);
     }
+
         
 }

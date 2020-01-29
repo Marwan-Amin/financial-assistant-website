@@ -58,7 +58,7 @@
           <tr>
             <td>{{$target->target_name}}</td>
             <td>{{$target->target_amount}}</td>
-            <td></td>
+            <td>{{$target->progress}}</td>
             <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
             <td class="project-actions text-center">
