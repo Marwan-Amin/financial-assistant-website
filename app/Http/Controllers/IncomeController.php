@@ -15,7 +15,7 @@ class IncomeController extends Controller
     public function index()
     {
         return view('incomes.index', [
-            'user' => \App\User::find(Auth::user()->id)
+            'user' => User::find(Auth::user()->id)
         ]);
     }
     public function create()
@@ -39,6 +39,7 @@ class IncomeController extends Controller
         function destroy($income_id)
         {
             $income = UserIncome::findOrFail($income_id);
+            // dd($income);
             $income->delete();
             return redirect()->route('incomes.index');
         }
