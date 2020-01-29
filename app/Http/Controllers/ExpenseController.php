@@ -47,8 +47,8 @@ class ExpenseController extends Controller
             'user_id'=>Auth::user()->id
         ]);
         
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalance($request->date , $request->amount); 
         
         return redirect()->route('expenses.index');
     }
@@ -67,13 +67,18 @@ class ExpenseController extends Controller
     }
     public function edit(expensesRequest $request,$id){
         $userSubCategory = UserSubCategory::find($id);
+        $oldExpense = $userSubCategory->amount;
         $userSubCategory->sub_category_id = $request->subCategory;
         $userSubCategory->amount = $request->amount;
+        $oldExpense = $userSubCategory->amount;
+
         $userSubCategory->date = $request->date;
         $userSubCategory->save();
 
-        $balanceObj=new Balance;
-        $balanceObj->calculateBalance();
+        $addedExpense= $request->amount - $oldExpense;
+
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalance($request->date , $addedExpense);
         
         return redirect()->route('expenses.index');
     }
