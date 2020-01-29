@@ -40,6 +40,10 @@
       </div>
     </div>
   </div>
+  <script>
+       let url = `{{route('expenses.destroy',['id'=>':id'])}}`;
+
+  </script>
   <script src="{{asset('UI/PurpleAdmin/assets/js/expenses/index.js')}}"></script>
 
 

@@ -3,7 +3,6 @@ function ajaxDelete(id,element){
     if(isConfirmed){
      //  as we can't use the javascript variable into laravel blade display syntax so i used dummy string at the place of the id value and use
      //  the replace javascript function to inject into the string that produced from route() function the javascript variable
-     let url = `{{route('expenses.destroy',['id'=>':id'])}}`;
          url = url.replace(':id',id);
      $.ajax({
        headers: {
