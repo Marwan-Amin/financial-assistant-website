@@ -1,17 +1,10 @@
+
      @extends('layouts.app3')
      @section('content')   
+
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title"> Chart-js </h3>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Charts</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Chart-js</li>
-                </ol>
-              </nav>
-            </div>
             <div class="row">
               <!-- <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
@@ -24,7 +17,7 @@
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Expenses Pie Chart</h4>
+                    <h4 class="card-title">Expense Categories</h4>
                     <canvas id="pieChart" style="height:250px"></canvas>
                   </div>
                 </div>
@@ -32,7 +25,7 @@
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Expenses Bar chart</h4>
+                    <h4 class="card-title">Expense Categories</h4>
                     <canvas id="barChart" style="height:230px"></canvas>
                   </div>
                 </div>
@@ -74,7 +67,7 @@
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Incomes Chart</h4>
+                    <h4 class="card-title">Income categories</h4>
                     <canvas id="pieChart2" style="height:250px"></canvas>
                   </div>
                 </div>
@@ -83,7 +76,7 @@
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Income Bar chart</h4>
+                    <h4 class="card-title">Income categories</h4>
                     <canvas id="barChart2" style="height:230px"></canvas>
                   </div>
                 </div>
@@ -121,13 +114,7 @@
             
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-            </div>
-          </footer>
+         
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -141,7 +128,7 @@
   var data = {
     labels: [ @foreach ($totalRevenue as $key => $val) ' {{  $totalRevenue[$key]->Category_Name }} ' ,  @endforeach ],
     datasets: [{
-      label: '# of Votes',
+      label: 'Total amount',
       data: [ @foreach ($totalRevenue as $key => $val) {{  $totalRevenue[$key]->total }} ,  @endforeach],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -169,7 +156,7 @@
   var dataForIcomes = {
     labels: [ @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach ],
     datasets: [{
-      label: '# of Votes',
+      label: 'Total amount',
       data: [  @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -196,7 +183,7 @@
   var dataDark = {
     labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
     datasets: [{
-      label: '# of Votes',
+      label: 'Total amount',
       data: [10, 19, 3, 5, 2, 3],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -414,7 +401,7 @@
   var areaData = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{
-      label: '# of Votes',
+      label: 'Total amount',
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -440,7 +427,7 @@
   var areaDataDark = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{
-      label: '# of Votes',
+      label: 'Total amount',
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -856,4 +843,5 @@
   }
 });
     </script>
+
       @endsection

@@ -72,6 +72,9 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //Reporting routes
     Route::get('/reports/index', 'ReportController@index')->name('reports.index');
+
+    //Charts routes
+    Route::get('/charts', 'ChartsController@charts')->name('charts');
     
 });
 
@@ -97,5 +100,3 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
 
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
 
-
-Route::get('/charts', 'ChartsController@charts')->name('home');

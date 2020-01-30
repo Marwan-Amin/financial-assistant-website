@@ -156,7 +156,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/charts">
                   <span class="menu-title">Charts</span>
                   <i class="mdi mdi-chart-pie menu-icon"></i>
                 </a>
