@@ -61,14 +61,13 @@
             <td>
             @if($target->progress > 100||$target->progress ==100)
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" ></div>
-                100%
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" >100%</div>
               </div>
               
             @else 
             <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
-              {{$target->progress}}%
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
+              
             </div>
             @endif
             </td>

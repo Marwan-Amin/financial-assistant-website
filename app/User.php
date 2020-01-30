@@ -13,6 +13,7 @@ use App\Target;
 use App\Saving;
 use App\UserSubCategory;
 use App\UserIncome;
+use App\CustomCategory;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -72,5 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function savings()
     {
         return $this->hasMany(Saving::class);
+    }
+
+    public function customCategories()
+    {
+        return $this->hasMany(CustomCategory::class);
     }
 }

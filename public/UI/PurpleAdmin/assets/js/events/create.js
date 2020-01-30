@@ -16,7 +16,7 @@ $.ajax({
         if($.isEmptyObject(response.error)){
             console.log(response);
             renderResponse(response);
-            alert(response.success);
+            // alert(response.success);
         }else{
             printErrorMsgEvent(response.error);
         }
