@@ -354,6 +354,57 @@
   };
   //end incomes pie chart data
 
+
+
+
+
+
+
+  //start sub expenses pie chart data
+  var doughnutPieDataForIncomes2 = {
+    datasets: [{
+      data: [
+
+
+        100,200,300
+ 
+      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+
+
+      'sub1' , 'sub2' , 'sub3'
+    ]
+  };
+  //end sub expenses pie chart data
+
+
+
+
+
+
+
+
+
+
    //start expenses pie chart data
    var doughnutPieDataForIncomes = {
     datasets: [{
@@ -789,7 +840,7 @@
     var pieChartCanvas = $("#pieChart3").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas, {
       type: 'pie',
-      data: doughnutPieDataForIncomes,
+      data: doughnutPieDataForIncomes2,
       options: doughnutPieOptions
     });
   }
