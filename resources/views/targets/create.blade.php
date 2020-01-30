@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -102,30 +105,19 @@
       dataType : "json",
       url :"{{route('targets.store')}}",
       success : function (response){
-        console.log(response);
-        if(response.isUpdated){
-            updateRecord(response.targetData);
-        }else{
+        if($.isEmptyObject(response.error)){
+          console.log(response);
           createRecord(response.targetData);
+        }else{
+          printErrorMsg(response.error);
         }
+        
       }
   
     });
   });
   
-  function updateRecord(targetData){
-    let elementToUpdate;
-    let table_body = document.getElementById("target_table");
-        table_body.querySelectorAll('td').forEach(function(element){
-          if(element.innerHTML == targetData.target_name){
-             elementToUpdate = element.parentElement;
-          }
-        });
-        elementToUpdate.querySelectorAll('.progress-bar').forEach(function(progressBar){
-          progressBar.style.width=targetData.progress+'%';
-          progressBar.innerHTML = targetData.progress+'%';
-        });
-  }
+  
  //create DOM elements
   function createRecord (response){
     console.log(response.progress);
@@ -171,6 +163,14 @@
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
 
+  //Error div
+  let errorDiv = document.createElement('div');
+  errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+  errorDiv.style.display = 'none';
+  let errorUl=document.createElement('ul');
+  errorDiv.appendChild(errorUl);
+
+    
   table_row.appendChild(table_data_target);
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_progress);
@@ -185,7 +185,7 @@
   //delete fn
   function ajaxDelete(btn_delete,target_id){
     btn_delete.addEventListener("click",function(){
-      let isConfirm=confirm("Do you want to delete this saving?");
+      let isConfirm=confirm("Do you want to delete this Budget Goal?");
       if(isConfirm){
         let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
       url=url.replace(':target.id',target_id);
@@ -212,5 +212,16 @@
       chiledElement.parentElement.parentElement.remove();
     }
   }
+  function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
+
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg").css('display','none');
+        }, 4000);
+}
   </script>
  @endsection
