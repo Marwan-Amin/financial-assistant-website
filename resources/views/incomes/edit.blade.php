@@ -1,5 +1,11 @@
 @extends('layouts.app3')
  @section('content')
+ 
+<div class="main-panel">
+    <div class="content-wrapper">
+
+ <div class="col-12">
+   
  @if ($errors->any())
  <div class="alert alert-danger">
      <ul>
@@ -8,10 +14,7 @@
          @endforeach
      </ul>
  </div>
-@endif
-<div class="main-panel">
-    <div class="content-wrapper">
- <div class="col-12">
+@endif 
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Edit your Income</h4>

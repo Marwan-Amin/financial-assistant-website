@@ -384,8 +384,7 @@
     ]
   };
   //end incomes pie chart data
-  
-  
+
    //start expenses pie chart data
    subExpensePieChart(doughnutPieOptions,dataAmount,labels);
   //end sub expenses pie chart data
@@ -783,7 +782,7 @@
   //end income chart
 
     //start sub expenses chart
- 
+
   //end expenses chart
 
   
