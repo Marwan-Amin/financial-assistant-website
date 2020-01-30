@@ -26,14 +26,19 @@ class TargetController extends Controller
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
         //return response()->json($savings);
-        $target = Target::create([
-        'target_amount' => $request->target_amount,
-        'target_name' => $request->target_name ,
-        'savings' => $savings,
-        'user_id' => Auth::user()->id
+        $amount = Target::where('user_id',Auth::user()->id)->where('target_name',$request->target_name);
+        $oldTargetAmount = $amount->exists()?$amount->first():['target_amount'=>0];
+        $target = Target::updateOrCreate(
+            ['user_id' => Auth::user()->id,'target_name' => $request->target_name ],
+            [
+        'target_amount' => $request->target_amount+$oldTargetAmount['target_amount'],
+        'savings' => $savings,       
         ]);
         $target = Target::find($target->id);
-        return response()->json($target);
+        if($oldTargetAmount['target_amount'] == 0){
+            $isUpdated = false;
+            return response()->json(['targetData'=>$target,'isUpdated'=>$isUpdated]);
+        }
     }
 
     function destroy($target_id)
