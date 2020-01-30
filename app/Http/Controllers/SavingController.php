@@ -51,8 +51,8 @@ class SavingController extends Controller
         $saving->delete();
         $save=new Target_saving;
         $savings_sum=$save->sum_savings();
-        $save->Edit_target_savings($savings_sum);
-        return response()->json($saving);
+        $sum = $save->Edit_target_savings($savings_sum);
+        return response()->json(['saving'=>$saving,'sum'=>$sum]);
     }
 
     function update($saving_id,Request $request)

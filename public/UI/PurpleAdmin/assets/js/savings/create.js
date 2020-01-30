@@ -56,6 +56,8 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   //total savings
   let total = document.getElementById("total");
   total.innerHTML=sum;
+
+  
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_edit);
   table_row.appendChild(table_data_delete);
@@ -110,7 +112,7 @@ if(isRefreshed){
     success : function (response){
       //console.log(response);
       
-      deleteRecord(response,btn_delete);
+      deleteRecord(response.saving,response.sum,btn_delete);
     }
 
      });
@@ -119,9 +121,11 @@ if(isRefreshed){
 
   }
   //delete action fn
-  function deleteRecord(isDeleted,chiledElement){
+  function deleteRecord(isDeleted,sum,chiledElement){
     if(isDeleted){
       chiledElement.parentElement.parentElement.remove();
+      let total = document.getElementById("total");
+      total.innerHTML=sum;
     }
   }
   //print error msg

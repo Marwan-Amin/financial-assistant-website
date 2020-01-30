@@ -13,9 +13,12 @@ class TargetController extends Controller
 {
     function index() 
     {
-        $user_id = Auth::user()->id; 
+        $user_id = Auth::user()->id;
+        $saving=new Target_saving;
+        $savings=$saving->sum_savings(); 
         return view('targets.create',[
-        'targets' => user::find(Auth::user()->id)->target()->get()
+        'targets' => user::find(Auth::user()->id)->target()->get(),
+        'savings' => $savings
         ]);
     }
     

@@ -38,7 +38,17 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Total Savings</label>
+                <div class="col-sm-9">
+                <span>{{$savings}}</span>
+                </div>
+              </div>
+            </div>
           </div>
+          </div>
+          
      </div>
     </div>
 </div>
