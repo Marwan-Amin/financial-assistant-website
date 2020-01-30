@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Target_saving;
+use Illuminate\Support\Facades\Validator;
+
 class SavingController extends Controller
 {
     function index() 
@@ -19,15 +21,24 @@ class SavingController extends Controller
     
     function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'saving_amount' => 'required',
+        ]);
+        if ($validator->passes()) {
         //return response()->json($request); //ajax dd :D
         $saving = Saving::create([
         'amount' => $request->saving_amount,
         'user_id' => Auth::user()->id
-    ]);
+     ]);
         $save = new Target_saving;
         $savings_sum = $save->sum_savings();
         $sss = $save->Edit_target_savings($savings_sum);
+        //return response()->json($saving);
         return response()->json($saving);
+
+        }
+        return response()->json(['error'=>$validator->errors()->all()]);  
+
     }
 
     function destroy($saving_id)

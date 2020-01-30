@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
