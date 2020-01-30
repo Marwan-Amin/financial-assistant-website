@@ -16,7 +16,7 @@ class Target_saving
         foreach($user->savings as $saving) {
         $sumSaving = $sumSaving + $saving->amount ;
         }
-    return ($sumSaving);
+       return ($sumSaving);
     }
     
     public function Edit_target_savings($sumSaving){
