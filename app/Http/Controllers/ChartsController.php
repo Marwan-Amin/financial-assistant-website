@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExpenseCategory;
+use App\Income;
 use App\ExpenseSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use DB;
 class ChartsController extends Controller
 {
     public function charts(){
+        //start expense array for chart
         $categories = ExpenseCategory::all();
         $userCategories=[];
         $totalRevenue = DB::table('user_sub_categories')
@@ -19,9 +21,21 @@ class ChartsController extends Controller
             ->join('users', 'user_sub_categories.user_id', '=', 'users.id')
             ->groupBy('expense_categories.name')->get()
             ;
+        //end expense array for chart    
         
-dd($totalRevenue);
-        return view('charts.charts');
+        //start income array for chart
+        $totalIncome = DB::table('user_incomes')
+            ->select('incomes.type as type', DB::raw('SUM(user_incomes.amount) as total'))
+            ->join('incomes', 'incomes.id', '=', 'user_incomes.income_id')
+            ->groupBy('incomes.type')
+            ->get();
+        // dd($totalIncome);
+        //end income array for chart
+
+        return view('charts.charts' ,
+         [  'totalRevenue' => $totalRevenue ,
+            'totalIncome' => $totalIncome ,
+         ]);
     }
 }
 

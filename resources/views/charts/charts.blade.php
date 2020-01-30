@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -170,6 +168,8 @@
           </button>
         </div>
       </nav>
+      
+
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
@@ -279,60 +279,63 @@
                 </ol>
               </nav>
             </div>
+            
             <div class="row">
+              <!--start expenes chart-->
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Line chart</h4>
-                    <canvas id="lineChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Bar chart</h4>
-                    <canvas id="barChart" style="height:230px"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Area chart</h4>
-                    <canvas id="areaChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Doughnut chart</h4>
-                    <canvas id="doughnutChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Pie chart</h4>
+                    <h4 class="card-title">Expenses Chart</h4>
                     <canvas id="pieChart" style="height:250px"></canvas>
                   </div>
                 </div>
               </div>
+              <!--end expenes chart-->
+
+              <!--start incomes chart-->
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Scatter chart</h4>
-                    <canvas id="scatterChart" style="height:250px"></canvas>
+                    <h4 class="card-title">Incomes Chart</h4>
+                    <canvas id="pieChart2" style="height:250px"></canvas>
                   </div>
                 </div>
               </div>
+              <!--end incomes chart-->
+            
             </div>
+            
+            <div class="row">
+              
+              <!--start sub expenses chart-->
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                  
+                  <!--start sub category dropdown-->
+                  <div class="row mb-5">
+                    <div class="col-md-6">
+                      <h4 class="card-title">sub Expenses Chart</h4>
+                      </div>
+
+                      <div class="col-md-6">
+                          <select class="form-control form-control-lg" id="subCategoryChart">
+                              <option value="" selected="">Select Sub Category</option>
+                              <option>food</option>
+                          </select>
+                      </div>
+                  </div>
+                  <!--end sub category dropdown-->
+
+                  <canvas id="pieChart3" style="height:250px"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!--start sub expenses chart-->
+
+            </div>
+            
+            
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
@@ -361,7 +364,166 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script>
+    <!-- <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script> -->
     <!-- End custom js for this page -->
+
+    <!-- app charts -->
+    <script>
+    $(function () {
+  
+  'use strict';
+  
+
+  //start expneses pie chart data
+  var doughnutPieData = {
+    datasets: [{
+      data: [
+          @foreach ($totalRevenue as $key => $val) {{  $totalRevenue[$key]->total }} ,  @endforeach
+
+      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+
+      @foreach ($totalRevenue as $key => $val) ' {{  $totalRevenue[$key]->Category_Name }} ' ,  @endforeach
+    ]
+  };
+  //end expneses pie chart data
+
+  //start incomes pie chart data
+  var doughnutPieDataForIncomes = {
+    datasets: [{
+      data: [
+
+
+          @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+ 
+      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+
+
+      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+    ]
+  };
+  //end incomes pie chart data
+
+   //start expenses pie chart data
+   var doughnutPieDataForIncomes = {
+    datasets: [{
+      data: [
+
+
+          @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+ 
+      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+
+
+      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+    ]
+  };
+  //end sub expenses pie chart data
+
+  
+  var doughnutPieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+
+
+  //start expenses chart
+  if ($("#pieChart").length) {
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: doughnutPieData,
+      options: doughnutPieOptions
+    });
+  }
+  //end expenses chart
+
+  //start income chart
+  if ($("#pieChart2").length) {
+    var pieChartCanvas = $("#pieChart2").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: doughnutPieDataForIncomes,
+      options: doughnutPieOptions
+    });
+  }
+  //end income chart
+
+  //start sub expenses chart
+  if ($("#pieChart3").length) {
+    var pieChartCanvas = $("#pieChart3").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: doughnutPieDataForIncomes,
+      options: doughnutPieOptions
+    });
+  }
+  //end expenses chart
+
+});
+    </script>
+    <!--app charts-->
   </body>
 </html>
