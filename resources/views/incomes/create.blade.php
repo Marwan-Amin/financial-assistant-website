@@ -3,7 +3,9 @@
 
 <div class="main-panel">
     <div class="content-wrapper">
-    @if ($errors->any())
+      
+ <div class="col-12">
+ @if ($errors->any())
  <div class="alert alert-danger">
      <ul>
          @foreach ($errors->all() as $error)
@@ -11,8 +13,7 @@
          @endforeach
      </ul>
  </div>
-@endif    
- <div class="col-12">
+@endif 
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Add your Incomes</h4>
