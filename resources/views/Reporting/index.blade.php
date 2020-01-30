@@ -8,6 +8,8 @@
 </div>
 
 
+
+
 <div class="row">
 <div class="col-lg-5 grid-margin stretch-card">
     <div class="card">
@@ -142,7 +144,7 @@
                 <thead>
                     <tr>
                         <th>Event name</th>
-                        <th>Event expenses amount</th>
+                        <th>total amount</th>
                         <th>date</th>
                         <th>Status</th>
                     </tr>
@@ -153,9 +155,15 @@
                     <td>{{$custom_category->name}}</td>
                 <td>{{$custom_category->customSubCategories->sum('amount')}}</td>
                 <td>{{$custom_category->date}}</td>
+                @if ($custom_category->date <= $date)
+                        <td>
+                            <label class="badge badge-success">current</label>
+                        </td>
+                        @else
                         <td>
                             <label class="badge badge-danger">Pending</label>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
                     
