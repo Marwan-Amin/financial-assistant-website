@@ -1,5 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
+<div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
+  <div class="main-panel">
+          <div class="content-wrapper">  
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -10,7 +15,7 @@
     <div class="card">
       <div class="card-body">        
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
@@ -18,11 +23,19 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
                     <button id="add_savings_btn" class="btn btn-gradient-danger btn-lg ">+ Add Saving</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Total</label>
+                <div class="col-sm-9">
+                <span id="total">{{$sum}}</span>
                 </div>
               </div>
             </div>
@@ -33,7 +46,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped " id="incomeTable">
+      <table class="table table-striped " >
         <thead>
           <tr>
             <th> Amount </th>
@@ -46,20 +59,23 @@
           @foreach ($savings as $saving)
           <tr>
             <td>{{$saving->amount}}</td>
-            <td><a class="btn btn-danger btn-sm" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit</a>
+            <td><a class="btn btn-gradient-danger" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit</a>
             </td>
-            <td class="project-actions text-center">
-                    <button class="btn btn-danger btn-sm"  onclick='ajaxDelete(this,"{{$saving->id}}");' >
-                      Delete
-                    </button> 
+            <td>
+              <button class="btn btn-gradient-danger" onclick='ajaxDelete(this,"{{$saving->id}}");' >
+              Delete
+              </button> 
             </td> 
           </tr>
+          
           @endforeach
           @endisset
         </tbody>
       </table>
     </div>
   </div>
+</div>
+</div>
 </div>
 <script> let savingUrl = "{{route('savings.store')}}";
         let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";

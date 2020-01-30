@@ -16,7 +16,7 @@ $.ajax({
         if($.isEmptyObject(response.error)){
             console.log(response);
             renderResponse(response);
-            alert(response.success);
+            // alert(response.success);
         }else{
             printErrorMsgEvent(response.error);
         }
@@ -37,17 +37,20 @@ function renderResponse(data){
     let editEvent = document.createElement('a');
         editEvent.innerHTML = 'Edit Event';
         editEvent.setAttribute('href',editHref);
+        editEvent.setAttribute('class',"btn btn-gradient-success");
+
                //create anchor tag for create new event
     let addEvent = document.createElement('a');
         addEvent.setAttribute('href',addEventHref); 
         addEvent.innerHTML = "Add Event";
+        addEvent.setAttribute('class',"btn btn-gradient-success");
         //append the anchor tags into the eventActionContainer Div
         eventActionContainer.appendChild(editEvent);
         eventActionContainer.appendChild(addEvent);
+        
         //create input and set event name into that input 
     let eventName = document.createElement('input');
         eventName.setAttribute('type','text');
-
         document.getElementById('subCategoryNameLabel').innerHTML = 'Event Expense';
         
         //create input and set event amount into that input 
@@ -67,6 +70,7 @@ function renderResponse(data){
           //create add custom sub expents button
     let addSubCategoryButton = document.createElement('button');
         addSubCategoryButton.innerHTML ="Add Sub-Expense";
+        addSubCategoryButton.setAttribute('class',"btn btn-gradient-success");
          // append the rest of the elements
     let subCategoryNameParent = document.getElementById('subCategoryName');
         subCategoryNameParent.appendChild(eventName);

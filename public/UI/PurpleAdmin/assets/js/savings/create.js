@@ -10,10 +10,14 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       dataType : "json",
       url :savingUrl,
       success : function (response){
-        console.log(response);
-        previousId = response.id;
+        if($.isEmptyObject(response.error)){
+          console.log(response);
+          previousId = response.saving.id;
+          createRecord(response.saving,response.sum);
+        }else{
+          printErrorMsg(response.error);
+        }
 
-        createRecord(response);
       }
   
     });
@@ -21,23 +25,39 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   
   
   //create DOM elements
-  function createRecord (response){
+  function createRecord (response,sum){
   
   href=href.replace(':response.id',response.id);
   let table_body = document.getElementById("saving_table");
   let table_row = document.createElement("tr");
+  //amount td
   let table_data_amount = document.createElement("td");
   table_data_amount.innerHTML=response.amount;
+  //edit btn
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
   btn_edit.innerHTML="Edit";
+  btn_edit.classList.add("btn-gradient-danger","btn")
   let table_data_edit = document.createElement("td");
   table_data_edit.appendChild(btn_edit);
+  //delete btn
   let btn_delete = document.createElement("button");
   btn_delete.innerHTML="Delete";
+  btn_delete.classList.add("btn-gradient-danger","btn")
   btn_delete.setAttribute("id",response.id)
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
+  //Error div
+  let errorDiv = document.createElement('div');
+  errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+  errorDiv.style.display = 'none';
+  let errorUl=document.createElement('ul');
+  errorDiv.appendChild(errorUl);
+  //total savings
+  let total = document.getElementById("total");
+  total.innerHTML=sum;
+
+  
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_edit);
   table_row.appendChild(table_data_delete);
@@ -92,7 +112,7 @@ if(isRefreshed){
     success : function (response){
       //console.log(response);
       
-      deleteRecord(response,btn_delete);
+      deleteRecord(response.saving,response.sum,btn_delete);
     }
 
      });
@@ -101,8 +121,22 @@ if(isRefreshed){
 
   }
   //delete action fn
-  function deleteRecord(isDeleted,chiledElement){
+  function deleteRecord(isDeleted,sum,chiledElement){
     if(isDeleted){
       chiledElement.parentElement.parentElement.remove();
+      let total = document.getElementById("total");
+      total.innerHTML=sum;
     }
   }
+  //print error msg
+  function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
+
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg").css('display','none');
+        }, 4000);
+}

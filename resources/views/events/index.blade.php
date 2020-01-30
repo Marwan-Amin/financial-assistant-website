@@ -1,5 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
+<div class="main-panel">
+          <div class="content-wrapper">
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -46,6 +48,8 @@
         <a class="btn btn-lg btn-gradient-success mt-4" href="/events/create">+ Add new Event</a>
       </div>
     </div>
+  </div>
+  </div>
   </div>
   <script>
       let url = `{{route('events.destroy',['id'=>':id'])}}`;

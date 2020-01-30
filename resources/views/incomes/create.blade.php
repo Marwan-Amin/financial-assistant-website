@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app3')
  @section('content')
  @if ($errors->any())
  <div class="alert alert-danger">
@@ -9,6 +9,8 @@
      </ul>
  </div>
 @endif
+<div class="main-panel">
+    <div class="content-wrapper">
  <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -79,6 +81,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
+              
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
@@ -111,5 +114,6 @@
       </form>
     </div>
   </div>
-
+  </div>
+  </div>
  @endsection

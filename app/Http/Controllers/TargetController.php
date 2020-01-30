@@ -8,37 +8,47 @@ use App\User;
 use App\Target;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Target_saving;
-
+use Illuminate\Support\Facades\Validator;
 class TargetController extends Controller
 {
     function index() 
     {
+<<<<<<< HEAD
+        $user_id = Auth::user()->id;
+        $saving=new Target_saving;
+        $savings=$saving->sum_savings(); 
+=======
         $user_id = Auth::user()->id; 
+        // dd($targets = user::find(Auth::user()->id)->target);
         //$targets = user::find(Auth::user()->id)->target()->get(); 
+>>>>>>> 02c1297bbe106d1ef9a32e1121015be276a2f13b
         return view('targets.create',[
-        'targets' => user::find(Auth::user()->id)->target()->get()
+        'targets' => user::find(Auth::user()->id)->target()->get(),
+        'savings' => $savings
         ]);
     }
     
     function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'target_name' => 'required|unique:targets',
+            'target_amount' => 'required',
+        ]);
+        if ($validator->passes()) {
       //return response()->json($request); //ajax dd :D
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
         //return response()->json($savings);
-        $amount = Target::where('user_id',Auth::user()->id)->where('target_name',$request->target_name);
-        $oldTargetAmount = $amount->exists()?$amount->first():['target_amount'=>0];
-        $target = Target::updateOrCreate(
-            ['user_id' => Auth::user()->id,'target_name' => $request->target_name ],
-            [
-        'target_amount' => $request->target_amount+$oldTargetAmount['target_amount'],
+        $target = Target::create(
+        ['user_id' => Auth::user()->id,'target_name' => $request->target_name ,  
+        'target_amount' => $request->target_amount,
         'savings' => $savings,       
         ]);
         $target = Target::find($target->id);
-        if($oldTargetAmount['target_amount'] == 0){
-            $isUpdated = false;
-            return response()->json(['targetData'=>$target,'isUpdated'=>$isUpdated]);
+        
+            return response()->json(['success'=>'Budget Goal is added Successfully.','targetData'=>$target]);
         }
+        return response()->json(['error'=>$validator->errors()->all()]);  
     }
 
     function destroy($target_id)

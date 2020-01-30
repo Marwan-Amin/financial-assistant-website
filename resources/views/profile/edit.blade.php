@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
-
+<div class="main-panel">
+          <div class="content-wrapper">
             <div class="page-header" style="padding: 2.75rem 2.25rem;">
               <!-- <h3 class="page-title"> Personal info </h3> -->
               <nav aria-label="breadcrumb">
@@ -163,6 +164,8 @@
                 </div>
               </div>
             </div>
+            </div>
+            </div> 
           
         <script>
     let previousValue = document.getElementById('country').value;

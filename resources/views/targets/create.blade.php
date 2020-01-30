@@ -1,5 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
+<div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
+  <div class="main-panel">
+          <div class="content-wrapper">
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -35,14 +40,26 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Total Savings</label>
+                <div class="col-sm-9">
+                <span>{{$savings}}</span>
+                </div>
+              </div>
+            </div>
           </div>
+          </div>
+          
      </div>
     </div>
 </div>
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped " id="incomeTable">
+
+      <table class="table table-striped ">
+
         <thead>
           <tr>
             <th> Goal </th>
@@ -61,22 +78,20 @@
             <td>
             @if($target->progress > 100||$target->progress ==100)
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" ></div>
-                100%
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" >100%</div>
               </div>
               
             @else 
             <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
-              {{$target->progress}}%
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
             </div>
             @endif
             </td>
             
-            <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
+            <td><a class="btn btn-gradient-danger " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
-            <td class="project-actions text-center">
-                    <button class="btn btn-danger btn-sm"  onclick='ajaxDelete(this,"{{$target->id}}");' >
+            <td>
+                    <button class="btn btn-gradient-danger"  onclick='ajaxDelete(this,"{{$target->id}}");' >
                       Delete
                     </button> 
             </td> 
@@ -88,7 +103,8 @@
     </div>
   </div>
 </div>
-
+</div>
+</div>
 <script>
   document.getElementById("add_target_btn").addEventListener('click',function(){
     let target_amount = document.getElementById("target_amount").value;
@@ -102,30 +118,19 @@
       dataType : "json",
       url :"{{route('targets.store')}}",
       success : function (response){
-        console.log(response);
-        if(response.isUpdated){
-            updateRecord(response.targetData);
-        }else{
+        if($.isEmptyObject(response.error)){
+          console.log(response);
           createRecord(response.targetData);
+        }else{
+          printErrorMsg(response.error);
         }
+        
       }
   
     });
   });
   
-  function updateRecord(targetData){
-    let elementToUpdate;
-    let table_body = document.getElementById("target_table");
-        table_body.querySelectorAll('td').forEach(function(element){
-          if(element.innerHTML == targetData.target_name){
-             elementToUpdate = element.parentElement;
-          }
-        });
-        elementToUpdate.querySelectorAll('.progress-bar').forEach(function(progressBar){
-          progressBar.style.width=targetData.progress+'%';
-          progressBar.innerHTML = targetData.progress+'%';
-        });
-  }
+  
  //create DOM elements
   function createRecord (response){
     console.log(response.progress);
@@ -145,15 +150,17 @@
   let progressBig_div =document.createElement('div');
       progressBig_div.classList.add('progress');
   let progress_div =document.createElement('div');
-      progress_div.classList.add('progress-bar','bg-warning');
+      progress_div.classList.add('progress-bar');
       progress_div.setAttribute('role','progressbar');
       if(response.progress > 100){
         progress_div.style.width ='100%';
-        progressBig_div.innerHTML = '100%';
+        progress_div.innerHTML = '100%';
+        progress_div.classList.add('bg-success');
 
       }else{
         progress_div.style.width =response.progress+'%';
-        progressBig_div.innerHTML = response.progress+'%';
+        progress_div.innerHTML = response.progress+'%';
+        progress_div.classList.add('progress-bar','bg-warning');
 
       }
 
@@ -162,15 +169,26 @@
        //edit btn
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
+  btn_edit.classList.add("btn-gradient-danger","btn");
   btn_edit.innerHTML="Edit";
   let table_data_edit = document.createElement("td");
   table_data_edit.appendChild(btn_edit);
   //del btn
   let btn_delete = document.createElement("button");
   btn_delete.innerHTML="Delete";
+  btn_delete.classList.add("btn-gradient-danger","btn")
+
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
 
+  //Error div
+  let errorDiv = document.createElement('div');
+  errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+  errorDiv.style.display = 'none';
+  let errorUl=document.createElement('ul');
+  errorDiv.appendChild(errorUl);
+
+    
   table_row.appendChild(table_data_target);
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data_progress);
@@ -185,7 +203,7 @@
   //delete fn
   function ajaxDelete(btn_delete,target_id){
     btn_delete.addEventListener("click",function(){
-      let isConfirm=confirm("Do you want to delete this saving?");
+      let isConfirm=confirm("Do you want to delete this Budget Goal?");
       if(isConfirm){
         let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
       url=url.replace(':target.id',target_id);
@@ -212,5 +230,16 @@
       chiledElement.parentElement.parentElement.remove();
     }
   }
+  function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
+
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg").css('display','none');
+        }, 4000);
+}
   </script>
  @endsection
