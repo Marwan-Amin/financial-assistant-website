@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @extends('layouts.app3')
  @section('content')
  <div class="main-panel">
@@ -6,13 +6,7 @@
  <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
-=======
-@extends('layouts.app')
-@section('content')
-<div class="page-header">
-  <h3 class="page-title">
-      <span class="page-title-icon bg-gradient-primary text-white mr-2">
->>>>>>> 548766df1c702809a592c43314f54f447e9cfe90
+
         <i class="mdi mdi-cake-variant menu-icon"></i>
       </span> 
       Create your own event
