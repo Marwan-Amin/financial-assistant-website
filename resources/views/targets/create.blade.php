@@ -45,7 +45,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped " id="incomeTable">
+      <table class="table table-striped " >
         <thead>
           <tr>
             <th> Goal </th>
@@ -64,22 +64,20 @@
             <td>
             @if($target->progress > 100||$target->progress ==100)
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" ></div>
-                100%
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" >100%</div>
               </div>
               
             @else 
             <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
-              {{$target->progress}}%
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
             </div>
             @endif
             </td>
             
-            <td><a class="btn btn-danger btn-sm" href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
+            <td><a class="btn btn-gradient-danger " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
             </td>
-            <td class="project-actions text-center">
-                    <button class="btn btn-danger btn-sm"  onclick='ajaxDelete(this,"{{$target->id}}");' >
+            <td>
+                    <button class="btn btn-gradient-danger"  onclick='ajaxDelete(this,"{{$target->id}}");' >
                       Delete
                     </button> 
             </td> 
@@ -137,15 +135,17 @@
   let progressBig_div =document.createElement('div');
       progressBig_div.classList.add('progress');
   let progress_div =document.createElement('div');
-      progress_div.classList.add('progress-bar','bg-warning');
+      progress_div.classList.add('progress-bar');
       progress_div.setAttribute('role','progressbar');
       if(response.progress > 100){
         progress_div.style.width ='100%';
-        progressBig_div.innerHTML = '100%';
+        progress_div.innerHTML = '100%';
+        progress_div.classList.add('bg-success');
 
       }else{
         progress_div.style.width =response.progress+'%';
-        progressBig_div.innerHTML = response.progress+'%';
+        progress_div.innerHTML = response.progress+'%';
+        progress_div.classList.add('progress-bar','bg-warning');
 
       }
 
@@ -154,12 +154,15 @@
        //edit btn
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
+  btn_edit.classList.add("btn-gradient-danger","btn");
   btn_edit.innerHTML="Edit";
   let table_data_edit = document.createElement("td");
   table_data_edit.appendChild(btn_edit);
   //del btn
   let btn_delete = document.createElement("button");
   btn_delete.innerHTML="Delete";
+  btn_delete.classList.add("btn-gradient-danger","btn")
+
   let table_data_delete = document.createElement("td");
   table_data_delete.appendChild(btn_delete);
 

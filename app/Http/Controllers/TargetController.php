@@ -14,7 +14,6 @@ class TargetController extends Controller
     function index() 
     {
         $user_id = Auth::user()->id; 
-        //$targets = user::find(Auth::user()->id)->target()->get(); 
         return view('targets.create',[
         'targets' => user::find(Auth::user()->id)->target()->get()
         ]);
