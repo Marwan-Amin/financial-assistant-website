@@ -62,7 +62,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Your Event Expenses</h4>
-        <table class="table table-striped " id="eventsTable">
+        <table class="table table-striped " >
           <thead>
             <tr>
               <th> Type </th>

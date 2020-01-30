@@ -23,17 +23,9 @@ $.ajax({
        }
     });  
 }
-function printErrorMsgEvent (msg) {
-    $(".print-error-msg").find("ul").html('');
-    $(".print-error-msg").css('display','block');
 
-    $.each( msg, function( key, value ) {
-        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    });
-    setTimeout(function() {
-        $(".print-error-msg").css('display','none');
-        }, 2000);
-}
+
+});
 //render the inputs needed for the event that user has entered
 function renderResponse(data){
     if(data.isStored){
@@ -92,32 +84,39 @@ function renderResponse(data){
         subCategoryAjax(addSubCategoryButton,eventName,eventSubCategoryAmount,data.categoryId);
     }   
 }
-function subCategoryAjax(addButton,subName,amount,categoryId){
-addButton.addEventListener('click',function(){
-  //check if the three fields is full and not empty and if it is it will alert an error
 
-        let subCategoryInfo={'subName':subName.value,'amount':amount.value,'categoryId':categoryId};
-        $.ajax({
-    headers: {
-       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-             },
-  url:urlSubCategory,
-  type: 'POST',
-   data:subCategoryInfo,
-       success:function(response){
-         //create information record about the event 
-         if($.isEmptyObject(response.error)){
-            alert(response.success);
-            createEventInfoRecord(response.data);
+function subCategoryAjax(addButton,subName,amount,categoryId){
+    addButton.addEventListener('click',function(){
+      //check if the three fields is full and not empty and if it is it will alert an error
+    sendSubCategoryAjax(subName,amount,categoryId,false);
+           
+    });
+    }
+   function sendSubCategoryAjax(subName,amount,categoryId,isInUpdate){
+    let subCategoryInfo={'subName':subName.value,'amount':amount.value,'categoryId':categoryId};
+    $.ajax({
+headers: {
+   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+url:urlSubCategory,
+type: 'POST',
+data:subCategoryInfo,
+   success:function(response){
+     //create information record about the event 
+     if($.isEmptyObject(response.error)){
+        alert(response.success);
+        if(isInUpdate){
+            createEventInfoRecordForUpdate(response.data,response.isUpdated);
         }else{
-            printErrorMsgSub(response.error);
+            createEventInfoRecord(response.data,response.isUpdated);
         }
-       }
-    }); 
-    
-});
-}
-});
+    }else{
+        printErrorMsgSub(response.error);
+    }
+   }
+}); 
+
+    }
 function printErrorMsgSub (msg) {
     $(".print-error-msg-sub").find("ul").html('');
     $(".print-error-msg-sub").css('display','block');
@@ -128,10 +127,10 @@ function printErrorMsgSub (msg) {
         $(".print-error-msg-sub").css('display','none');
         }, 2000);
 }
-function createEventInfoRecord(eventData){
+function createEventInfoRecord(eventData,isUpdated){
     let table_body = document.getElementById('event_table_body');
 
-    if(eventData.isUpdated){
+    if(isUpdated){
         table_body.querySelectorAll('td').forEach(function(element){
             if(element.innerHTML == eventData.name){
                 element.nextSibling.innerHTML = eventData.amount+" EGP";
@@ -150,4 +149,58 @@ function createEventInfoRecord(eventData){
       
           document.getElementById('subCategoryName').querySelector('input').value="";
           document.getElementById('subCategoryAmount').querySelector('input').value="";
+}
+
+function createEventInfoRecordForUpdate(eventData,isUpdated){
+    let table_body = document.getElementById('event_table_body');
+
+    if(isUpdated){
+        table_body.querySelectorAll('input').forEach(function(element){
+            if(element.value == eventData.name){
+                element.parentElement.parentElement.querySelector("td input[name='amount']").value = eventData.amount;
+            }
+        });
+    }else{
+        let table_row = document.createElement("tr");
+        let table_data_amount = document.createElement("td");
+        let table_data_amount_input = document.createElement('input');
+            table_data_amount_input.setAttribute('type','number');
+            table_data_amount_input.setAttribute('name','amount');
+            table_data_amount_input.classList.add('form-control');
+            table_data_amount_input.setAttribute('step','0.01');
+            table_data_amount_input.value = eventData.amount;
+        let table_data_event_type = document.createElement("td");
+        let table_data_event_type_input = document.createElement('input');
+            table_data_event_type_input.classList.add('form-control');
+            table_data_event_type_input.setAttribute('type','text');
+            table_data_event_type_input.setAttribute('name','customSubCategoryName');
+            table_data_event_type_input.value = eventData.name;
+        let editBtn = document.createElement('button');
+            editBtn.classList.add('btn','btn-gradient-danger','btn-fw');
+            editBtn.innerHTML ="Edit Sub-Event";
+            table_data_amount.appendChild(table_data_amount_input);
+            table_data_event_type.appendChild(table_data_event_type_input);
+            table_row.appendChild(table_data_event_type);
+            table_row.appendChild(table_data_amount);
+            table_row.appendChild(editBtn);
+            table_body.appendChild(table_row);
+            editBtn.addEventListener('click',function(){
+                console.log(editBtn,eventData.id);
+                editSubEvent(editBtn,eventData.id);
+            }); 
+    }
+      
+          document.getElementById('subCategoryName').value="";
+          document.getElementById('subEventAmount').value="";
+}
+function printErrorMsgEvent (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
+
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+    setTimeout(function() {
+        $(".print-error-msg").css('display','none');
+        }, 2000);
 }

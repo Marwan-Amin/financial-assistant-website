@@ -26,14 +26,14 @@ function editEvent(customCategoryId){
 function editSubEvent(chiledElement,customSubCategoryId){
   let customSubCategoryName='';
   let customSubCategoryAmount=0;
-  let subCategoryInfo = chiledElement.parentElement.parentElement.querySelectorAll('input');
-      subCategoryInfo.forEach(function(element){
-          if(element.type == 'text'){
-            customSubCategoryName=element.value;
-          }else if(element.type == 'number'){
-            customSubCategoryAmount=element.value;
-          }
-      });
+  let subCategoryName = chiledElement.parentElement.querySelector('td input[name="customSubCategoryName"]');
+  let subCategoryAmount = chiledElement.parentElement.querySelector('td input[name="amount"]');
+
+            customSubCategoryName=subCategoryName.value;
+            customSubCategoryAmount=subCategoryAmount.value;
+            console.log(customSubCategoryName,customSubCategoryId);
+
+    
       subEventUrl = subEventUrl.replace(':customSubCategoryId',customSubCategoryId);
   $.ajax({
     headers: {
