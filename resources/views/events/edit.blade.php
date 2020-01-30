@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
  @section('content')
-
+ <div class="main-panel">
+          <div class="content-wrapper">
  <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -70,6 +71,8 @@
         @endisset
       </div>
     </div>
+  </div>
+  </div>
   </div>
   <script>
        let mainEventUrl = "{{route('events.update',['id'=>':customCategoryId'])}}";

@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
 <div class="alert alert-danger print-error-msg" style="display:none">
   <ul></ul>
   </div>
+  <div class="main-panel">
+          <div class="content-wrapper">  
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -63,6 +65,8 @@
       </table>
     </div>
   </div>
+</div>
+</div>
 </div>
 <script> let savingUrl = "{{route('savings.store')}}";
         let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
