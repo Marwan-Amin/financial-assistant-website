@@ -218,7 +218,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                       <!--sub category icons -->
-                      <div class="flat_icons row">  
+                      <div class="flat_icons row" ">  
 
 
                         <div class="cat-box">
@@ -471,7 +471,7 @@
                           <label for="car-insurance"><div class="glyph-icon flaticon-car-insurance"></div><span>Car insurance</span></label>
                         </div>
 
-                        <div class="cat-box">
+                        <div class="cat-box" >
                           <input type="radio" name="subCategory" id="life-insurance" value="life insurance">
                           <label for="life-insurance"><div class="glyph-icon flaticon-life-insurance"></div><span>life insurance</span></label>
                         </div>
