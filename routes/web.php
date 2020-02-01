@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
-
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     
     //incomes routes
@@ -76,6 +76,21 @@ Route::middleware(['auth','verified'])->group(function(){
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
+
+    //blog routes
+    Route::get('/posts', 'PostController@index');
+    Route::get('/','PostController@index' );
+    Route::get('/posts/create', 'PostController@create');
+    Route::post('/posts', 'PostController@store');
+    Route::post('/posts/{id}', 'commentController@store');
+    Route::get('/posts/ajax/{id}', 'AjaxController@show');
+    Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
+    Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
+    Route::put('/posts/{id}', 'PostController@update');
+    Route::delete('/posts/{id}', 'PostController@destroy');
+    Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
+    Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
+
 });
 
 
@@ -85,8 +100,7 @@ Route::get('/home', function () {
 
 
 Auth::routes(['verify'=>true]);
-Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth','verified']);
+
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
     ->name('login.provider')
