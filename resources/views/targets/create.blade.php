@@ -80,10 +80,6 @@
             @else 
             <div class="progress">
               <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
-<<<<<<< HEAD
-=======
-              
->>>>>>> 02c1297bbe106d1ef9a32e1121015be276a2f13b
             </div>
             @endif
             </td>
@@ -151,7 +147,7 @@
   let progress_div =document.createElement('div');
       progress_div.classList.add('progress-bar');
       progress_div.setAttribute('role','progressbar');
-      if(response.progress > 100){
+      if(response.progress >= 100){
         progress_div.style.width ='100%';
         progress_div.innerHTML = '100%';
         progress_div.classList.add('bg-success');
