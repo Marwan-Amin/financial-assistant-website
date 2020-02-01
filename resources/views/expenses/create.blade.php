@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
  @section('content')
-
+ <div class="main-panel">
+          <div class="content-wrapper">
  <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -83,7 +84,20 @@
           </div>
           <!-- category icons -->
           <div class="flat_icons row">  
-                       
+          @isset($subExpenseUser)
+          <div class="cat-box">
+              <input type="radio" name="category" id="{{ $subExpenseUser->subCategory->category->id}}" value="{{ $subExpenseUser->subCategory->category->name}}" checked="" data-toggle="modal" data-target="#myModal">
+              <label for="{{ $subExpenseUser->subCategory->category->id}}"><div class="glyph-icon flaticon-dish"></div><span>{{ $subExpenseUser->subCategory->category->name}}</span></label>
+            </div>      
+          <option  value="{{ $subExpenseUser->subCategory->category->id}}" selected>{{ $subExpenseUser->subCategory->category->name}}</option>
+                    @else
+                    <option value="" selected>Select Category</option>
+                    @endisset
+                    
+                    @foreach($expensesCategories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                              
             <div class="cat-box">
               <input type="radio" name="category" id="dish" value="Food" checked="" data-toggle="modal" data-target="#myModal">
               <label for="dish"><div class="glyph-icon flaticon-dish"></div><span>Food</span></label>
@@ -221,7 +235,7 @@
 
                         <div class="cat-box">
                           <input type="radio" name="subCategory" id="grapes" value="Fruits">
-                          <label for="grapes"><div class="glyph-icon flaticon-grapes"></div><span>Fruits</span></label>
+                          <label for="grapes"><div class="glyph-icon flaticon-grapes" name=></div><span>Fruits</span></label>
                         </div>
 
                         <div class="cat-box">
@@ -664,6 +678,8 @@
         </form>
       </div>
     </div>
+  </div>
+  </div>
   </div>
   <script>
        let url = `{{route('subCategory.ajax',['categoryId'=>':categoryId'])}}`;

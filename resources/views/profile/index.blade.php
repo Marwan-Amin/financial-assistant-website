@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
         <!-- partial -->
         
@@ -8,7 +8,8 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-          
+        <div class="main-panel">
+          <div class="content-wrapper">
             <div class="page-header" style="padding: 2.75rem 2.25rem;">
               
               <nav aria-label="breadcrumb">
@@ -150,6 +151,8 @@
                   </div>
                 </div>
               </div>
+            </div>
+            </div>
             </div>
           
 @endsection

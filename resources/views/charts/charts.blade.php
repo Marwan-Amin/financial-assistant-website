@@ -1,5 +1,7 @@
-@extends('layouts.app')
-@section('content')
+
+     @extends('layouts.app3')
+     @section('content')   
+
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -97,8 +99,10 @@
                       <div class="col-md-6">
                           <select class="form-control form-control-lg" id="subCategoryChart">
                               <option value="" selected="">Select Sub Category</option>
-                              <option>food</option>
-                          </select>
+                              @foreach($userCategories as $userCategory)
+                              <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
+                              @endforeach
+                            </select>
                       </div>
                   </div>
                   <!--end sub category dropdown-->
@@ -116,27 +120,36 @@
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{asset('UI/PurpleAdmin/assets/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{asset('UI/PurpleAdmin/assets/vendors/chart.js/Chart.min.js')}}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{asset('UI/PurpleAdmin/assets/js/off-canvas.js')}}"></script>
-    <script src="{{asset('UI/PurpleAdmin/assets/js/hoverable-collapse.js')}}"></script>
-    <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <!-- <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script> -->
-    <!-- End custom js for this page -->
+        <script>
+          var doughnutPieDataForIncomes={};
+          let dataAmount=[];
+          let labels=[];
+          let test=[];
+         @foreach($subExpenses as $key=>$subExpense) dataAmount.push(Number("{{$subExpense['amount']}}")); labels.push("{{$subExpense['SubCategoryName']}}");@endforeach
 
-    <!-- app charts -->
-    <script>
+         let dropDownCategory = document.getElementById('subCategoryChart');
+              dropDownCategory.addEventListener('change',function(){
+                  categoryId = this.value.split(',')[0];
+                  isCustom = this.value.split(',')[1];
+                  $.ajax({
+                   headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                           },
+                url: "{{route('charts.subCategories')}}",
+                data:{'categoryId':categoryId,'isCustom':isCustom},
+                type: 'POST',
+                success: function(responseData) {
+                  dataAmount=[];
+                    labels=[];
+                  responseData.forEach(function(response){
+                    dataAmount.push(Number(response.amount));
+                    labels.push(response.name);
+                    var doughnutPie = doughnutPieOptionsInitializer();
+                        subExpensePieChart(doughnutPie,dataAmount,labels);
+                  })
+                }
+                });
+              });
     $(function () {
   /* ChartJS
    * -------
@@ -373,49 +386,15 @@
   //end incomes pie chart data
 
    //start expenses pie chart data
-   var doughnutPieDataForIncomes = {
-    datasets: [{
-      data: [
-
-
-          @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
- 
-      ],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(255, 159, 64, 0.5)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-
-
-      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
-    ]
-  };
+   subExpensePieChart(doughnutPieOptions,dataAmount,labels);
   //end sub expenses pie chart data
 
   
-  var doughnutPieOptions = {
-    responsive: true,
-    animation: {
-      animateScale: true,
-      animateRotate: true
-    }
-  };
+  var doughnutPieOptions = doughnutPieOptionsInitializer();
+
+
+
+
   var areaData = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{
@@ -803,14 +782,7 @@
   //end income chart
 
     //start sub expenses chart
-    if ($("#pieChart3").length) {
-    var pieChartCanvas = $("#pieChart3").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: doughnutPieDataForIncomes,
-      options: doughnutPieOptions
-    });
-  }
+
   //end expenses chart
 
   
@@ -860,7 +832,68 @@
     });
   }
 });
-    </script>
-    <!--app charts-->
+function subExpensePieChart(doughnutPieOptions,data,labels){
+if(doughnutPieDataForIncomes.datasets != null){
+  doughnutPieDataForIncomes=null;
+}
+     doughnutPieDataForIncomes = {
+    datasets: [{
+      data: data,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)', 
+        'rgba(255, 9, 12, 0.5)',
+        'rgba(54, 12, 235, 0.5)',
+        'rgba(255, 106, 86, 0.5)',
+        'rgba(75, 121, 192, 0.5)',
+        'rgba(153, 131, 255, 0.5)',
+        
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(225,99,132,1)',
+        'rgba(124, 162, 235, 1)',
+        'rgba(215, 206, 86, 1)',
+        'rgba(35, 192, 192, 1)',
+        'rgba(143, 102, 255, 1)',
+       
 
-    @endsection
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: labels
+  };
+   if ($("#pieChart3").length) {
+    var pieChartCanvas = $("#pieChart3").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: doughnutPieDataForIncomes,
+      options: doughnutPieOptions
+    });
+  }
+
+}
+
+function doughnutPieOptionsInitializer(){
+  var doughnutPieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+  return doughnutPieOptions;
+}
+    </script>
+
+      @endsection

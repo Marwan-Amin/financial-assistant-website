@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
 <div class="alert alert-danger print-error-msg" style="display:none">
   <ul></ul>
   </div>
+  <div class="main-panel">
+          <div class="content-wrapper">
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -55,7 +57,9 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped " >
+
+      <table class="table table-striped ">
+
         <thead>
           <tr>
             <th> Goal </th>
@@ -80,7 +84,6 @@
             @else 
             <div class="progress">
               <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
-
             </div>
             @endif
             </td>
@@ -100,7 +103,8 @@
     </div>
   </div>
 </div>
-
+</div>
+</div>
 <script>
   document.getElementById("add_target_btn").addEventListener('click',function(){
     let target_amount = document.getElementById("target_amount").value;

@@ -77,7 +77,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');
-    
+    Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 });
 
 

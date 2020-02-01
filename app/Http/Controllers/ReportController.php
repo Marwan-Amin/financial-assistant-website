@@ -17,6 +17,7 @@ class ReportController extends Controller
         $userInfo = User::find(Auth::user()->id);
         $currentDate = Carbon::today()->toDateString();
         $expenses=$userInfo->subexpenses;
+        // dd($expenses);
         $incomes=$userInfo->incomes;
         $events = $userInfo->CustomCategories;
         return view ('Reporting.index', [
@@ -38,10 +39,15 @@ class ReportController extends Controller
             "date" => $selectedDate , 
             "user_id" => $user_info->id
         ])->get();
+
+        // dd($expenses[0]);
+
         $incomes = UserIncome::where([
             "date" => $selectedDate , 
             "user_id" => $user_info->id
         ])->get();
+
+        // dd($incomes[0]->income);
 
 
         $events = CustomCategory::where([

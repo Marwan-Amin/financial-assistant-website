@@ -1,5 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
+<div class="main-panel">
+          <div class="content-wrapper">
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -10,8 +12,12 @@
 <form action="{{route('reports.filter')}}" method="post">
 @csrf
 <div class="my-5">
-<label>Filter by date : </label>   
+<label>Filter by date : </label>
+
 <input type="date" name="reportDate" id="reportDate" value="{{$currentDate}}" >
+@isset($selectedDate)  
+<input type="date" name="reportDate" id="reportDate" value="{{$selectedDate}}" >
+@endisset 
 <button type = "submit" class="btn btn-dark">Filter</button>
 </div>
 </form>
@@ -95,11 +101,11 @@
                 @isset($expenses)
                 @foreach ($expenses as $expense) 
                     <tr>
-                    <td>{{$expense->amount}}</td>
-                <td>{{$expense->amount}}</td>
-                <td>{{$expense->amount}}</td>
-                <td>{{$expense->date}}</td>
-                @if ($expense->date < $currentDate)
+                    <td>{{$expense->category->name}}</td>
+                <td>{{$expense->name}}</td>
+                <td>{{$expense->pivot->amount}}</td>
+                <td>{{$expense->pivot->date}}</td>
+                @if ($expense->pivot->date < $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -115,8 +121,8 @@
                 @isset($filterexpenses)
                 @foreach ($filterexpenses as $expense) 
                     <tr>
-                    <td>{{$expense->amount}}</td>
-                <td>{{$expense->amount}}</td>
+                    <td>{{$expense->subCategory->category->name}}</td>
+                <td>{{$expense->subCategory->name}}</td>
                 <td>{{$expense->amount}}</td>
                 <td>{{$expense->date}}</td>
                 
@@ -220,6 +226,9 @@
             </table>
         </div>
     </div>
+</div>
+
+</div>
 </div>
 
 </div>

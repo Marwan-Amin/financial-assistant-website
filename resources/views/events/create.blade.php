@@ -1,8 +1,11 @@
-@extends('layouts.app')
-@section('content')
-<div class="page-header">
-  <h3 class="page-title">
-      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+@extends('layouts.app3')
+ @section('content')
+ <div class="main-panel">
+ <div class="content-wrapper">
+ <div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+
         <i class="mdi mdi-cake-variant menu-icon"></i>
       </span> 
       Create your own event
@@ -90,10 +93,28 @@
       </div>
     </div>
 
-                  </div>
-                </div>
-</div>
-  
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Your Event Expenses</h4>
+        <table class="table table-striped " >
+          <thead>
+            <tr>
+              <th> Type </th>
+              <th> Amount </th>
+            </tr>
+          </thead>
+          <tbody id="event_table_body">
+            <tr>
+            
+               
+            </tr>
+          </tbody>
+        </table>
+        <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
+      </div>
+    </div>
+
   </div>
   <script>
     let urlEvent = `{{route('events.store')}}`;
