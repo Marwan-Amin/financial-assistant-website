@@ -72,6 +72,8 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //Reporting routes
     Route::get('/reports/index', 'ReportController@index')->name('reports.index');
+    Route::post('/reports/index', 'ReportController@filter')->name('reports.filter');
+
 
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');

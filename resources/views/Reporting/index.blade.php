@@ -9,8 +9,18 @@
         </span> Reportings</h3>
 </div>
 
+<form action="{{route('reports.filter')}}" method="post">
+@csrf
+<div class="my-5">
+<label>Filter by date : </label>
 
-
+<input type="date" name="reportDate" id="reportDate" value="{{$currentDate}}" >
+@isset($selectedDate)  
+<input type="date" name="reportDate" id="reportDate" value="{{$selectedDate}}" >
+@endisset 
+<button type = "submit" class="btn btn-dark">Filter</button>
+</div>
+</form>
 
 <div class="row">
 <div class="col-lg-5 grid-margin stretch-card">
@@ -28,12 +38,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($user->user_incomes as $user_income) 
+                    @isset($incomes)
+                @foreach ($incomes as $income) 
                     <tr>
-                        <td>{{$user_income->income->type}}</td>
-                        <td>{{$user_income->amount}}</td>
-                        <td>{{$user_income->Date}}</td>
-                        @if ($user_income->Date < $date)
+                        <td>{{$income->type}}</td>
+                        <td>{{$income->pivot->amount}}</td>
+                        <td>{{$income->pivot->Date}}</td>
+                        @if ($income->pivot->Date < $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -42,9 +53,28 @@
                             <label class="badge badge-danger">Pending</label>
                         </td>
                         @endif
-
                     </tr>
                 @endforeach
+                @endisset
+
+                @isset($filterIncomes)
+                @foreach ($filterIncomes as $income) 
+                    <tr>
+                        <td>{{$income->income->type}}</td>
+                        <td>{{$income->amount}}</td>
+                        <td>{{$income->Date}}</td>
+                        @if ($income->Date < $currentDate)
+                        <td>
+                            <label class="badge badge-success">current</label>
+                        </td>
+                        @else
+                        <td>
+                            <label class="badge badge-danger">Pending</label>
+                        </td>
+                        @endif
+                    </tr>
+                @endforeach
+                @endisset
                     
                 </tbody>
             </table>
@@ -68,13 +98,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                @isset($expenses)
                 @foreach ($expenses as $expense) 
                     <tr>
                     <td>{{$expense->category->name}}</td>
                 <td>{{$expense->name}}</td>
                 <td>{{$expense->pivot->amount}}</td>
                 <td>{{$expense->pivot->date}}</td>
-                @if ($expense->pivot->date < $date)
+                @if ($expense->pivot->date < $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -85,6 +116,28 @@
                         @endif
                     </tr>
                 @endforeach
+                @endisset
+
+                @isset($filterexpenses)
+                @foreach ($filterexpenses as $expense) 
+                    <tr>
+                    <td>{{$expense->subCategory->category->name}}</td>
+                <td>{{$expense->subCategory->name}}</td>
+                <td>{{$expense->amount}}</td>
+                <td>{{$expense->date}}</td>
+                
+                @if ($expense->date < $currentDate)
+                        <td>
+                            <label class="badge badge-success">current</label>
+                        </td>
+                        @else
+                        <td>
+                            <label class="badge badge-danger">Pending</label>
+                        </td>
+                        @endif
+                    </tr>
+                @endforeach
+                @endisset
                     
                 </tbody>
             </table>
@@ -109,13 +162,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($user->target as $user_target) 
+                @foreach ($targets as $target) 
                     <tr>
-                        <td>{{$user_target->target_name}}</td>
-                        <td>{{$user_target->target_amount}}</td>
-                        <td>{{$user_target->savings}}</td>
+                        <td>{{$target->target_name}}</td>
+                        <td>{{$target->target_amount}}</td>
+                        <td>{{$target->savings}}</td>
                         <td>
-            @if($user_target->progress > 100||$user_target->progress ==100)
+            @if($target->progress > 100||$target->progress ==100)
               <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%" >100%</div>
                 
@@ -123,7 +176,7 @@
               
             @else 
             <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$user_target->progress}}%" >{{$user_target->progress}}%</div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
               
             </div>
             @endif
@@ -152,12 +205,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($custom_categories as $custom_category) 
+                @foreach ($events as $event) 
                     <tr>
-                    <td>{{$custom_category->name}}</td>
-                <td>{{$custom_category->customSubCategories->sum('amount')}}</td>
-                <td>{{$custom_category->date}}</td>
-                @if ($custom_category->date <= $date)
+                    <td>{{$event->name}}</td>
+                <td>{{$event->customSubCategories->sum('amount')}}</td>
+                <td>{{$event->date}}</td>
+                @if ($event->date <= $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>

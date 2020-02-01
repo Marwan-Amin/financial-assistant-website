@@ -13,6 +13,7 @@ class TargetController extends Controller
 {
     function index() 
     {
+
         $saving=new Target_saving;
         $savings=$saving->sum_savings(); 
         // dd($targets = user::find(Auth::user()->id)->target);
