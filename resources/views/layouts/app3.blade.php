@@ -285,6 +285,12 @@
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="menu-title">Link Bank Account</span>
+                  <i class="mdi mdi-bank menu-icon"></i>
+                </a>
+            </li>
 
 
             <li class="nav-item">
@@ -313,12 +319,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title">Link Bank Account</span>
-                  <i class="mdi mdi-bank menu-icon"></i>
-                </a>
-            </li> class="nav-link" href="../../pages/tables/basic-table.html">
+              <a class="nav-link" href="../../pages/tables/basic-table.html">
                 <span class="menu-title">Tables</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
               </a>
