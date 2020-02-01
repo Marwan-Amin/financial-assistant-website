@@ -24,7 +24,7 @@ class ReportController extends Controller
             'user' => $userInfo , 
             'expenses' => $expenses,
             'incomes' => $incomes,
-            'currentDate' => $currentDate ,
+            'date' => $currentDate ,
             'events' => $events,
             'targets' => $userInfo->target,
         ]);
@@ -63,8 +63,7 @@ class ReportController extends Controller
             'filterIncomes' => $incomes,
             'events' => $events,
             'targets' => $user_info->target,
-            'selectedDate' => $selectedDate ,
-            'currentDate' => $currentDate ,
+            'date' => $selectedDate ,
             'events' => $events,
         ]);
     }

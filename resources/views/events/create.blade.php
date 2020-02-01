@@ -65,7 +65,7 @@
 
 </div>
 <div class="row">
-<div class="col-md-6">
+<div class="col">
                 <div class="card">
                   <div class="card-body">
                  
@@ -93,29 +93,6 @@
       </div>
     </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Your Event Expenses</h4>
-        <table class="table table-striped " >
-          <thead>
-            <tr>
-              <th> Type </th>
-              <th> Amount </th>
-            </tr>
-          </thead>
-          <tbody id="event_table_body">
-            <tr>
-            
-               
-            </tr>
-          </tbody>
-        </table>
-        <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
-      </div>
-    </div>
-
-  </div>
   <script>
     let urlEvent = `{{route('events.store')}}`;
     let urlSubCategory = `{{route('events.subStore')}}`;

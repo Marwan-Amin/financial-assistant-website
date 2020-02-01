@@ -13,10 +13,8 @@
 @csrf
 <div class="my-5">
 <label>Filter by date : </label>
-
-<input type="date" name="reportDate" id="reportDate" value="{{$currentDate}}" >
-@isset($selectedDate)  
-<input type="date" name="reportDate" id="reportDate" value="{{$selectedDate}}" >
+@isset($date)  
+<input type="date" name="reportDate" id="reportDate" value="{{$date}}" >
 @endisset 
 <button type = "submit" class="btn btn-dark">Filter</button>
 </div>
@@ -44,7 +42,7 @@
                         <td>{{$income->type}}</td>
                         <td>{{$income->pivot->amount}}</td>
                         <td>{{$income->pivot->Date}}</td>
-                        @if ($income->pivot->Date < $currentDate)
+                        @if ($income->pivot->Date < $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -63,7 +61,7 @@
                         <td>{{$income->income->type}}</td>
                         <td>{{$income->amount}}</td>
                         <td>{{$income->Date}}</td>
-                        @if ($income->Date < $currentDate)
+                        @if ($income->Date < $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -105,7 +103,7 @@
                 <td>{{$expense->name}}</td>
                 <td>{{$expense->pivot->amount}}</td>
                 <td>{{$expense->pivot->date}}</td>
-                @if ($expense->pivot->date < $currentDate)
+                @if ($expense->pivot->date < $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -126,7 +124,7 @@
                 <td>{{$expense->amount}}</td>
                 <td>{{$expense->date}}</td>
                 
-                @if ($expense->date < $currentDate)
+                @if ($expense->date < $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -210,7 +208,7 @@
                     <td>{{$event->name}}</td>
                 <td>{{$event->customSubCategories->sum('amount')}}</td>
                 <td>{{$event->date}}</td>
-                @if ($event->date <= $currentDate)
+                @if ($event->date <= $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
