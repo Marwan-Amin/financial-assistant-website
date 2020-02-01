@@ -18,8 +18,7 @@
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Edit </th>
-              <th> Delete </th>
+              <th> Action </th>
             </tr>
           </thead>
           <tbody>
@@ -29,15 +28,13 @@
                 <td>{{$expense->name}}</td>
                 <td>{{$expense->pivot->amount}} EGP</td>
                 <td>{{$expense->pivot->date}}</td>
-                <td><a class="btn btn-danger btn-sm" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit</a>
+                <td>
+                  <a class="btn btn-inverse-info btn-fw" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
+                  &nbsp;&nbsp;
+                  <button class="btn btn-inverse-danger btn-fw"  onclick="ajaxDelete('{{$expense->pivot->id}}',this);" >Delete&nbsp;<i class="mdi mdi-delete"></i></button> 
+                  
                 </td>
-                <td class="project-actions text-center">
-                 
-                      <button class="btn btn-danger btn-sm"  onclick="ajaxDelete('{{$expense->pivot->id}}',this);" >
-                        Delete
-                      </button> 
-                 
-              </td> 
+                
             </tr>
             @endforeach
           </tbody>

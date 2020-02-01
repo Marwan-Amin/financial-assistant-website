@@ -11,13 +11,28 @@
 
 <form action="{{route('reports.filter')}}" method="post">
 @csrf
-<div class="my-5">
-<label>Filter by date : </label>
-@isset($date)  
-<input type="date" name="reportDate" id="reportDate" value="{{$date}}" >
-@endisset 
-<button type = "submit" class="btn btn-dark">Filter</button>
-</div>
+    <!-- <div class="my-5">
+        <label>Filter by date : </label>
+            @isset($date)  
+        <input type="date" name="reportDate" id="reportDate" value="{{$date}}" >
+            @endisset 
+        <button type = "submit" class="btn btn-dark">Filter</button>
+    </div> -->
+
+
+    <div class="form-group pl-0 col-md-5">
+        <div class="input-group">
+        @isset($date)     
+        <input type="date" class="form-control" placeholder="Filter by date" name="reportDate" id="reportDate" value="{{$date}}">
+        @endisset 
+        <div class="input-group-append">
+            <button class="pl-4 pr-4 btn btn-sm btn-gradient-primary" type="submit">Filter</button>
+        </div>
+        </div>
+    </div>
+
+
+
 </form>
 
 <div class="row">
