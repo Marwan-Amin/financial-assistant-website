@@ -13436,3 +13436,7 @@ dl {
   background-repeat: no-repeat;
   background-position: center;
 }
+.sidebar .nav .nav-item.active > .nav-link .menu-title{
+  color: inherit;
+    font-family:inherit ;
+}

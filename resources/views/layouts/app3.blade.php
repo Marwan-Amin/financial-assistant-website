@@ -42,7 +42,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <div class="search-field d-none d-md-block">
+          <!-- <div class="search-field d-none d-md-block">
             <form class="d-flex align-items-center h-100" action="#">
               <div class="input-group">
                 <div class="input-group-prepend bg-transparent">
@@ -51,9 +51,9 @@
                 <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
               </div>
             </form>
-          </div>
+          </div> -->
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
+            <!-- <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="/user_profile" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
                 @if ( Auth::user()->avatar)
@@ -81,8 +81,8 @@
                                         @csrf
                                     </form>
               </div>
-            </li>
-            <li class="nav-item d-none d-lg-block full-screen-link">
+            </li> -->
+            <!-- <li class="nav-item d-none d-lg-block full-screen-link">
               <a class="nav-link">
                 <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
               </a>
@@ -179,10 +179,15 @@
               <a class="nav-link" href="#">
                 <i class="mdi mdi-power"></i>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item nav-settings d-none d-lg-block">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-format-line-spacing"></i>
+           
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="mdi mdi-power"></i>&nbsp;&nbsp;
+              {{ __('Logout') }}
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
               </a>
             </li>
           </ul>
@@ -342,7 +347,7 @@
                 <a href="/incomes/create" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
                 <a href="/savings/create" class="btn btn-block btn-lg btn-gradient-info mt-4">+ Add Savings</a>
                 <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
-                <div class="mt-4">
+                <!-- <div class="mt-4">
                   <div class="border-bottom">
                     <p class="text-secondary">Categories</p>
                   </div>
@@ -350,7 +355,7 @@
                     <li>Free</li>
                     <li>Pro</li>
                   </ul>
-                </div>
+                </div> -->
               </span>
             </li>
           </ul>
