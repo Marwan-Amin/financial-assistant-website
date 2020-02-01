@@ -1,5 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 @section('content')
+<div class="main-panel">
+          <div class="content-wrapper">
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -9,7 +11,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <table class="table table-striped " id="expensesTable">
+        <table class="table table-striped " >
           <thead>
             <tr>
             <th> Category </th>
@@ -44,6 +46,8 @@
         <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
       </div>
     </div>
+  </div>
+   </div>
   </div>
   <script>
        let url = `{{route('expenses.destroy',['id'=>':id'])}}`;

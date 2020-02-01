@@ -1,3 +1,4 @@
+let previouseCustomSubCategoryId;
 function editEvent(customCategoryId){
     let customCategoryName = document.getElementById('customCategoryName').value;
     let customCategoryDate = document.getElementById('customCategoryDate').value;
@@ -26,15 +27,17 @@ function editEvent(customCategoryId){
 function editSubEvent(chiledElement,customSubCategoryId){
   let customSubCategoryName='';
   let customSubCategoryAmount=0;
-  let subCategoryInfo = chiledElement.parentElement.parentElement.querySelectorAll('input');
-      subCategoryInfo.forEach(function(element){
-          if(element.type == 'text'){
-            customSubCategoryName=element.value;
-          }else if(element.type == 'number'){
-            customSubCategoryAmount=element.value;
-          }
-      });
+  let subCategoryName = chiledElement.parentElement.parentElement.querySelector('td input[name="customSubCategoryName"]');
+  let subCategoryAmount = chiledElement.parentElement.parentElement.querySelector('td input[name="amount"]');
+
+            customSubCategoryName=subCategoryName.value;
+            customSubCategoryAmount=subCategoryAmount.value;
+            console.log(customSubCategoryName,customSubCategoryAmount);
+    if(subEventUrl.includes(':customSubCategoryId')){
       subEventUrl = subEventUrl.replace(':customSubCategoryId',customSubCategoryId);
+    }else{
+      subEventUrl = subEventUrl.replace(previouseCustomSubCategoryId+'/update',customSubCategoryId+'/update');
+    }
   $.ajax({
     headers: {
      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -43,6 +46,7 @@ function editSubEvent(chiledElement,customSubCategoryId){
  type: 'PUT',
  data:{'customSubCategoryName':customSubCategoryName,'customSubCategoryAmount':customSubCategoryAmount},
  success: function(response) {
+  previouseCustomSubCategoryId = customSubCategoryId;
    renderSuccess(response,chiledElement);
  }
 });
