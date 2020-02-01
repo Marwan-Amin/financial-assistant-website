@@ -13,7 +13,7 @@
 
 
 <div class="row">
-<div class="col-lg-5 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Your incomes</h4>
@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<div class="col-lg-7 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Your Expenses</h4>
@@ -94,7 +94,7 @@
 </div>
 
 <div class="row">
-<div class="col-lg-5 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Current budget goals</h4>
@@ -137,7 +137,7 @@
     </div>
 </div>
 
-<div class="col-lg-7 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Your Created events</h4>
