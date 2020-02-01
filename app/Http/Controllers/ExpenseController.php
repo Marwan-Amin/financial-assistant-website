@@ -35,7 +35,7 @@ class ExpenseController extends Controller
 
         if(count($subCategories) >= 0 ){
             foreach($subCategories as $subCategory){
-                $subCategoriesInfo[]= ['name'=>$subCategory->name,'id'=>$subCategory->id];
+                $subCategoriesInfo[]= ['name'=>$subCategory->name,'id'=>$subCategory->id,'sub_category_icon'=>$subCategory->sub_category_icon];
             }
         }else{
             $subCategoriesInfo = false;

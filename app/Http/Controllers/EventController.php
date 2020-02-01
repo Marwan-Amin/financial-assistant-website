@@ -39,7 +39,6 @@ class EventController extends Controller
             'customSubCategoryName' => 'required|string',
             'customSubCategoryAmount' => 'required|numeric',
         ]);
-
         if ($validator->passes()) {
             $customSubCategory = CustomSubCategory::find($id);
             $customSubCategory->name =$request->customSubCategoryName;

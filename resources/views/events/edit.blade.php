@@ -91,6 +91,9 @@
           </tr>
           @endforeach
          @else
+         <tr>
+           <td> <input type="text" name="customSubCategoryName" class="form-control" value="{{ $customSubCategory->name }}"/></td>
+          </tr>
          @endisset 
         </tbody>
         </table>
