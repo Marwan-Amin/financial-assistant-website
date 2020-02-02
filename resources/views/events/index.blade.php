@@ -18,8 +18,8 @@
               <th>Total Amount </th>
               <th>Date </th>
 
-              <th> Edit </th>
-              <th> Delete </th>
+              <th> Action </th>
+             
             </tr>
           </thead>
           <tbody>
@@ -29,17 +29,15 @@
                 <td>{{$event->customSubCategories->sum('amount')}}</td>
                 <td>{{$event->date}}</td>
 
-                <td><a class="btn btn-danger btn-sm" href="{{route('events.edit',['id'=>$event->id])}}" >Edit</a>
-                </td>
-                <td><a class="btn btn-danger btn-sm" href="{{route('events.show',['id'=>$event->id])}}" >View</a>
-                </td>
-                <td class="project-actions text-center">
+                <td><a class="btn btn-inverse-info btn-fw" href="{{route('events.edit',['id'=>$event->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
+                
+                <a class="btn btn-inverse-primary btn-fw" href="{{route('events.show',['id'=>$event->id])}}" >View&nbsp;<i class="mdi mdi-eye btn-icon-append"></i></a>
+                <button class="btn btn-inverse-danger btn-fw"  onclick="ajaxDelete('{{$event->id}}',this);" >
+                Delete&nbsp;<i class="mdi mdi-delete"></i>
+                      </button>
+              </td>
+                
                  
-                      <button class="btn btn-danger btn-sm"  onclick="ajaxDelete('{{$event->id}}',this);" >
-                        Delete
-                      </button> 
-                 
-              </td> 
             </tr>
             @endforeach
           </tbody>

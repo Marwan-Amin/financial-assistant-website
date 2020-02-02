@@ -42,10 +42,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Total Savings</label>
-                <div class="col-sm-9">
-                <span>{{$savings}}</span>
-                </div>
+                <label class="col-sm-12 col-form-label">Total Savings : <span>{{$savings}}</span></label>
+                
               </div>
             </div>
           </div>
@@ -65,8 +63,8 @@
             <th> Goal </th>
             <th> Amount </th>
             <th> Progress </th>
-            <th> Edit </th>
-            <th> Delete </th>
+            <th> Action </th>
+            
           </tr>
         </thead>
         <tbody id="target_table">
@@ -88,13 +86,13 @@
             @endif
             </td>
             
-            <td><a class="btn btn-gradient-danger " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit</a>
-            </td>
-            <td>
-                    <button class="btn btn-gradient-danger"  onclick='ajaxDelete(this,"{{$target->id}}");' >
-                      Delete
+            <td><a class="btn btn-inverse-info btn-fw " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
+            &nbsp;&nbsp; 
+            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxDelete(this,"{{$target->id}}");' >
+            Delete&nbsp;<i class="mdi mdi-delete"></i>
                     </button> 
-            </td> 
+            </td>
+           
           </tr>
           @endforeach
           @endisset

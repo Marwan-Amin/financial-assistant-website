@@ -121,11 +121,19 @@
         </div>
         <!-- main-panel ends -->
         <script>
+        var pieChart3;
           var doughnutPieDataForIncomes={};
+          var pieChartCanvas3='';
           let dataAmount=[];
           let labels=[];
           let test=[];
-         @foreach($subExpenses as $key=>$subExpense) dataAmount.push(Number("{{$subExpense['amount']}}")); labels.push("{{$subExpense['SubCategoryName']}}");@endforeach
+          @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense) dataAmount.push(Number("{{$totalExpenses[$key]->total}}")); labels.push("{{$totalExpenses[$key]->Category_Name}}");@endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) dataAmount.push(Number("{{$totalCustomExpeses[$key]->custom_total}}")); labels.push("{{$totalCustomExpeses[$key]->Custom_Category_Name}}");@endforeach
+         @endisset
+         console.log(labels,dataAmount);
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
@@ -141,6 +149,10 @@
                 success: function(responseData) {
                   dataAmount=[];
                     labels=[];
+                    pieChart3.destroy();
+                    
+                    pieChartCanvas3='';
+                    document.getElementById('pieChart3').innerHTML ='';
                   responseData.forEach(function(response){
                     dataAmount.push(Number(response.amount));
                     labels.push(response.name);
@@ -157,10 +169,23 @@
    */
   'use strict';
   var data = {
-    labels: [ @foreach ($totalRevenue as $key => $val) ' {{  $totalRevenue[$key]->Category_Name }} ' ,  @endforeach ],
+    labels: [ 
+      @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @endisset    
+    ],
     datasets: [{
       label: 'Total amount',
-      data: [ @foreach ($totalRevenue as $key => $val) {{  $totalRevenue[$key]->total }} ,  @endforeach],
+      data: [ 
+        @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -318,18 +343,30 @@
 
   //start expneses pie chart data
   var doughnutPieData = {
+    labels: [ 
+      @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @endisset    
+    ],
     datasets: [{
-      data: [
-          @foreach ($totalRevenue as $key => $val) {{  $totalRevenue[$key]->total }} ,  @endforeach
-
-      ],
+      label: 'Total amount',
+      data: [ 
+        @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @endisset      ],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(255, 159, 64, 0.5)'
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
       ],
       borderColor: [
         'rgba(255,99,132,1)',
@@ -339,13 +376,9 @@
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-
-      @foreach ($totalRevenue as $key => $val) ' {{  $totalRevenue[$key]->Category_Name }} ' ,  @endforeach
-    ]
+      borderWidth: 1,
+      fill: false
+    }]
   };
   //end expneses pie chart data
 
@@ -773,7 +806,7 @@
   //start income chart
   if ($("#pieChart2").length) {
     var pieChartCanvas = $("#pieChart2").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas, {
+    var pieChart2 = new Chart(pieChartCanvas, {
       type: 'pie',
       data: doughnutPieDataForIncomes,
       options: doughnutPieOptions
@@ -833,9 +866,7 @@
   }
 });
 function subExpensePieChart(doughnutPieOptions,data,labels){
-if(doughnutPieDataForIncomes.datasets != null){
-  doughnutPieDataForIncomes=null;
-}
+
      doughnutPieDataForIncomes = {
     datasets: [{
       data: data,
@@ -874,12 +905,14 @@ if(doughnutPieDataForIncomes.datasets != null){
     labels: labels
   };
    if ($("#pieChart3").length) {
-    var pieChartCanvas = $("#pieChart3").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas, {
+     pieChartCanvas3 = $("#pieChart3").get(0).getContext("2d");
+        
+     pieChart3 = new Chart(pieChartCanvas3, {
       type: 'pie',
       data: doughnutPieDataForIncomes,
       options: doughnutPieOptions
     });
+
   }
 
 }

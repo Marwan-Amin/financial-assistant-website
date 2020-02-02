@@ -33,10 +33,9 @@
             </div>
             <div class="col-md-4">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Total</label>
-                <div class="col-sm-9">
-                <span id="total">{{$sum}}</span>
-                </div>
+                <label class="col-sm-12 col-form-label">Total : <span id="total">{{$sum}}</span></label>
+                 
+                
               </div>
             </div>
           </div>
@@ -50,8 +49,8 @@
         <thead>
           <tr>
             <th> Amount </th>
-            <th> Edit </th>
-            <th> Delete </th>
+            <th> Action </th>
+            
           </tr>
         </thead>
         <tbody id="saving_table">
@@ -59,13 +58,12 @@
           @foreach ($savings as $saving)
           <tr>
             <td>{{$saving->amount}}</td>
-            <td><a class="btn btn-gradient-danger" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit</a>
+            <td><a class="btn btn-inverse-info btn-fw" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
+            <button class="btn btn-inverse-danger btn-fw" onclick='ajaxDelete(this,"{{$saving->id}}");' >
+            Delete&nbsp;<i class="mdi mdi-delete"></i>
+              </button>
             </td>
-            <td>
-              <button class="btn btn-gradient-danger" onclick='ajaxDelete(this,"{{$saving->id}}");' >
-              Delete
-              </button> 
-            </td> 
+            
           </tr>
           
           @endforeach

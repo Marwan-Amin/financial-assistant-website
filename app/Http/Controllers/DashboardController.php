@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+// use Phpml\Regression\LeastSquares;
 
 class DashboardController extends Controller
 {
     public function index() {
-      $user = User::find(Auth::user() -> id);
+        
+        // $samples = [[73676,1, 1996], [70000,2, 1998]];
+        // $targets = [2000, 9000];
+
+
+        // $regression = new LeastSquares();
+        // $regression->train($samples, $targets);
+        // dd($regression->predict([0,7, 2025]));
+        
+      
+      
+        $user = User::find(Auth::user() -> id);
       $sumIncome = 0;
       foreach($user -> user_incomes as $income) {
           $sumIncome = $sumIncome + floatval($income -> amount);

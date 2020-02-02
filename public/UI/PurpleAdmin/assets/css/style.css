@@ -13436,7 +13436,17 @@ dl {
   background-repeat: no-repeat;
   background-position: center;
 }
-.sidebar .nav .nav-item.active > .nav-link .menu-title{
-  color: inherit;
+.sidebar .nav .nav-item.active > .nav-link .menu-title
+{
+  color: #3e4b5b;
     font-family:inherit ;
+}
+.sidebar .nav .nav-item.active > .nav-link i{
+  color: #bba8bff5;
+    font-family:inherit ;
+}
+
+.btn.btn-fw{
+  min-width: 80px;
+  padding: 10px 20px;
 }
