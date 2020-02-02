@@ -27,13 +27,13 @@
                 <td>{{$user_income->income->type}}</td>
                 <td>{{$user_income->amount}}</td>
                 <td>{{$user_income->Date}}</td>
-                <td><a class="btn btn-danger btn-sm" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit</a>
+                <td><a class="btn btn-inverse-info btn-fw" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit</a>
                 </td>
                 <td class="project-actions text-center">
                   <form action="/incomes/{{$user_income->id}}" method="POST">
                       @csrf 
                       @method('DELETE') 
-                      <button class="btn btn-danger btn-sm" type=submit onclick="return confirm('Do you want to delete this income?')" >
+                      <button class="btn btn-inverse-danger btn-fw" type=submit onclick="return confirm('Do you want to delete this income?')" >
                         Delete
                       </button> 
                   </form>
