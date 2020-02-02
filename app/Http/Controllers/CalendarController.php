@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\CustomCategory;
+use App\ExpenseCategory;
+use App\ExpenseSubCategory;
 use DB;
 use App\UserIncome;
 use Illuminate\Http\Request;
@@ -13,9 +17,12 @@ class CalendarController extends Controller
 {
     public function index()
     {
-        return view('calendar', [
-            'user' => User::find(Auth::user()->id)
-        ]);
+     
+        $user= User::find(Auth::user()->id);
+
+            
+            
+        return view('calendar')->with('user',$user);
 
     }
 }
