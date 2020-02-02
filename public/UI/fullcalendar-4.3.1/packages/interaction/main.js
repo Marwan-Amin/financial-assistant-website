@@ -407,7 +407,8 @@ Docs & License: https://fullcalendar.io/
                 top: finalSourceElRect.top
             });
             core.whenTransitionDone(mirrorEl, function () {
-                mirrorEl.style.transition = '';
+                mirrorEl.style.transition = '';"{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"
+
                 callback();
             });
         };
@@ -963,7 +964,7 @@ Docs & License: https://fullcalendar.io/
     - pointerdown
     - dragstart
     - hitchange - fires initially, even if not over a hit
-    - pointerup
+    - pointeruptD 
     - (hitchange - again, to null, if ended over a hit)
     - dragend
     */

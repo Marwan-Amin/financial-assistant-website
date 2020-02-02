@@ -97,9 +97,9 @@ Route::middleware(['auth','verified'])->group(function(){
     // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
     // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
-    Route::get('/calendar', function () {
-        return view('calendar');
-    });
+
+    Route::get('/calendar', 'CalendarController@index');
+
     
 });
 
