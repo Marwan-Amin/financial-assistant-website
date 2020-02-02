@@ -15,8 +15,9 @@ class TensorFlowController extends Controller
         $balanceArray=[];
         foreach($balances as $balance)
         {
-            $balanceArray[]=[ 'date' => $balance->date , 'balance' => $balance->balance];
+            $balanceArray[]=[ 'totalExpenses' => $balance->total_expenses ,'totalIncome' => $balance->total_income, 'balance' => $balance->balance];
         }
+
         return response()->json($balanceArray);
     }
 

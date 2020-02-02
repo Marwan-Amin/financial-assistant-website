@@ -15,6 +15,28 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
+
+   <!-- styles for blog -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<!-- end style for blog -->
+
     <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -340,6 +362,23 @@
     <!-- Custom js for this page -->
     <!-- <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script> -->
     <!-- End custom js for this page -->
+    <!-- for blog -->
+    <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/popper.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/aos.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/bootstrap-datepicker.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.timepicker.min.js')}}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/google-map.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/main.js')}}"></script>
+
     <script>
     $(document).ready( function () {
     $('#expensesTable').DataTable();
@@ -377,3 +416,5 @@ $("#imageUpload").change(function() {
   
   </body>
 </html> 
+
+

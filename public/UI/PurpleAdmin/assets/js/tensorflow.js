@@ -2,49 +2,57 @@
  * Get the car data reduced to just the variables we are interested
  * and cleaned of missing data.
  */
-var date = new Date('1-1-2020');
-console.log(date.StringtoDate("1/1/2020","dd/MM/yyyy","/"));
+// var totalExpenses = new totalExpenses('1-1-2020');
+// console.log(totalExpenses.StringtototalExpenses("1/1/2020","dd/MM/yyyy","/"));
 
 
-    let carsData ;  
-console.log(route);
+//     let carsData ;  
+// console.log(route);
   
-$.ajax({
+// $.ajax({
    
- url: route,
- type: 'GET',
- success: function(response) {
-   console.log(response);
- }
-});
+//  url: route,
+//  type: 'GET',
+//  success: function(response) {
+//    console.log(response);
+//  }
+// });
 /**
  * Get the car data reduced to just the variables we are interested
  * and cleaned of missing data.
  */
 async function getData() {
-    const balanceDataReq = await fetch(route);  
+    const balanceDataReq = await fetch(route); 
+    
     const balanceData = await balanceDataReq.json(); 
-    // console.log(balanceData);
+    console.log(balanceData)
+
+    balanceData.forEach(function(row){
+        row.totalExpenses = Number  (row.totalExpenses);
+        row.totalIncome = Number(row.totalIncome)
+    }) 
+    console.log(balanceData)
+
     return balanceData;
   }
-//   getData();
+  getData();
 
   async function run() {
     // Load and plot the original input data that we are going to train on.
     const data = await getData();
-    // console.log(data);
     const values = data.map(d => ({
       x: d.balance,
-      y: d.date,
+      y: d.totalExpenses,
+      
     }));
 
     tfvis.render.scatterplot(
-      {name: 'Balance v Date'},
+      {name: 'Balance v totalExpenses'},
       {values}, 
       {
         xLabel: 'Balance',
-        yLabel: 'Date',
-        height: 300
+        yLabel: 'totalExpenses',
+        height: 100
       }
     );
 
@@ -54,7 +62,7 @@ tfvis.show.modelSummary({name: 'Model Summary'}, model);
 // Convert the data to a form we can use for training.
 const tensorData = convertToTensor(data);
 const {inputs, labels} = tensorData;
-    
+
 // Train the model  
 await trainModel(model, inputs, labels);
 console.log('Done Training');
@@ -96,8 +104,8 @@ function convertToTensor(data) {
       tf.util.shuffle(data);
   
       // Step 2. Convert data to Tensor
-      const inputs = data.map(d => d.horsepower)
-      const labels = data.map(d => d.mpg);
+      const inputs = data.map(d => d.totalExpenses)
+      const labels = data.map(d => d.balance);
   
       const inputTensor = tf.tensor2d(inputs, [inputs.length, 1]);
       const labelTensor = tf.tensor2d(labels, [labels.length, 1]);
@@ -107,10 +115,11 @@ function convertToTensor(data) {
       const inputMin = inputTensor.min();  
       const labelMax = labelTensor.max();
       const labelMin = labelTensor.min();
-  
+  console.log(inputMax,inputMin,labelMin,labelMax);
       const normalizedInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
       const normalizedLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
-  
+      console.log(inputMax,inputMin,labelMin,labelMax);
+
       return {
         inputs: normalizedInputs,
         labels: normalizedLabels,
@@ -177,7 +186,7 @@ function convertToTensor(data) {
     console.log(predictedPoints);
     
     const originalPoints = inputData.map(d => ({
-      x: d.horsepower, y: d.mpg,
+      x: d.totalExpenses, y: d.balance,
     }));
     
     
@@ -185,8 +194,8 @@ function convertToTensor(data) {
       {name: 'Model Predictions vs Original Data'}, 
       {values: [originalPoints, predictedPoints], series: ['original', 'predicted']}, 
       {
-        xLabel: 'Horsepower',
-        yLabel: 'MPG',
+        xLabel: 'totalExpenses',
+        yLabel: 'Balance',
         height: 300
       }
     );

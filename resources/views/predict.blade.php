@@ -1,5 +1,4 @@
-@extends('layouts/app3')
-@section('content')
+
 <script>
     var route = "{{route('predict')}}";
     </script>
@@ -9,4 +8,3 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/tensorflow.js')}}"></script>
 
 
-@endsection
