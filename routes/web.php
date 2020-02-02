@@ -93,6 +93,11 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
     Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
+    //calendar routes
+    Route::get('/calendar', function () {
+        return view('calendar');
+    });
+
 });
 
 
