@@ -80,7 +80,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-    Route::get('/posts', 'PostController@index');
+   /* Route::get('/posts', 'PostController@index');
     Route::get('/','PostController@index' );
     Route::get('/posts/create', 'PostController@create');
     Route::post('/posts', 'PostController@store');
@@ -91,8 +91,9 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::put('/posts/{id}', 'PostController@update');
     Route::delete('/posts/{id}', 'PostController@destroy');
     Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
-    Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
+    Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');*/
 
+    
 });
 
 

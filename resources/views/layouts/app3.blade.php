@@ -284,7 +284,7 @@
                   <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
-              </li>
+            </li>
             
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
@@ -307,7 +307,7 @@
             </li>
           </ul>
         </nav>
-        @yield('content');
+        @yield('content')
 
         </div>
       <!-- page-body-wrapper ends -->
