@@ -15,6 +15,28 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
+
+   <!-- styles for blog -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<!-- end style for blog -->
+
     <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,8 +57,8 @@
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="../../index.html"><img src="{{asset('UI/PurpleAdmin/assets/images/logo.svg')}}" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('UI/PurpleAdmin/assets/images/logo-mini.svg')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/logo.svg')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -284,8 +306,14 @@
                   <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
+            </li>
               </li>
-            
+              <li class="nav-item">
+                <a class="nav-link" href="/predictData">
+                  <span class="menu-title">Predict data</span>
+                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                </a>
+              </li>
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">
@@ -307,7 +335,7 @@
             </li>
           </ul>
         </nav>
-        @yield('content');
+        @yield('content')
 
         </div>
       <!-- page-body-wrapper ends -->
@@ -334,6 +362,23 @@
     <!-- Custom js for this page -->
     <!-- <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script> -->
     <!-- End custom js for this page -->
+    <!-- for blog -->
+    <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/popper.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/aos.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/bootstrap-datepicker.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.timepicker.min.js')}}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/google-map.js')}}"></script>
+  <script src="{{asset('UI/PurpleAdmin/assets/js/main.js')}}"></script>
+
     <script>
     $(document).ready( function () {
     $('#expensesTable').DataTable();
@@ -371,3 +416,5 @@ $("#imageUpload").change(function() {
   
   </body>
 </html> 
+
+

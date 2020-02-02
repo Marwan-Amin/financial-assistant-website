@@ -74,30 +74,33 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/reports/index', 'ReportController@index')->name('reports.index');
     Route::post('/reports/index', 'ReportController@filter')->name('reports.filter');
 
+    //prediction routes
+    Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
+    Route::get('/predict', 'TensorFlowController@index')->name('predict.index');
 
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-    Route::get('/posts', 'PostController@index');
-    Route::get('/','PostController@index' );
-    Route::get('/posts/create', 'PostController@create');
-    Route::post('/posts', 'PostController@store');
-    Route::post('/posts/{id}', 'commentController@store');
-    Route::get('/posts/ajax/{id}', 'AjaxController@show');
-    Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
-    Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
-    Route::put('/posts/{id}', 'PostController@update');
-    Route::delete('/posts/{id}', 'PostController@destroy');
-    Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
-    Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
-    //calendar routes
+    // Route::get('/posts', 'PostController@index');
+    // Route::get('/','PostController@index' );
+    // Route::get('/posts/create', 'PostController@create');
+    // Route::post('/posts', 'PostController@store');
+    // Route::post('/posts/{id}', 'commentController@store');
+    // Route::get('/posts/ajax/{id}', 'AjaxController@show');
+    // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
+    // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
+    // Route::put('/posts/{id}', 'PostController@update');
+    // Route::delete('/posts/{id}', 'PostController@destroy');
+    // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
+    // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
+
     Route::get('/calendar', function () {
         return view('calendar');
     });
-
+    
 });
 
 

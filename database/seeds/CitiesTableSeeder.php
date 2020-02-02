@@ -48392,7 +48392,8 @@ array('name' => "Weston",'state_id' => 3976),
 array('name' => "Lewisburg",'state_id' => 3976),
 array('name' => "Ravenswood",'state_id' => 3976),
 array('name' => "Summersville",'state_id' => 3976),
-		);
+        );
+        
         DB::table('cities')->insert($cities8);
     }
 }
