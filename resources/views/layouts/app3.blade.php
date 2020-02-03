@@ -306,6 +306,7 @@
                   <span class="menu-title">Event Manager</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
+            </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/predictData">
@@ -313,7 +314,6 @@
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>
               </li>
-            
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">
@@ -335,7 +335,7 @@
             </li>
           </ul>
         </nav>
-        @yield('content');
+        @yield('content')
 
         </div>
       <!-- page-body-wrapper ends -->

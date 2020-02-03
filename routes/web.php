@@ -83,6 +83,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
+
     // Route::get('/posts', 'PostController@index');
     // Route::get('/','PostController@index' );
     // Route::get('/posts/create', 'PostController@create');
@@ -96,6 +97,10 @@ Route::middleware(['auth','verified'])->group(function(){
     // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
     // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
+
+    Route::get('/calendar', 'CalendarController@index');
+
+    
 });
 
 

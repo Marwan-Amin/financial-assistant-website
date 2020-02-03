@@ -133,7 +133,7 @@
          @isset($totalCustomExpeses)
          @foreach($totalCustomExpeses as $key=>$customExpense) dataAmount.push(Number("{{$totalCustomExpeses[$key]->custom_total}}")); labels.push("{{$totalCustomExpeses[$key]->Custom_Category_Name}}");@endforeach
          @endisset
-         console.log(labels,dataAmount);
+        //  console.log(labels,dataAmount);
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
@@ -149,8 +149,17 @@
                 success: function(responseData) {
                   dataAmount=[];
                     labels=[];
+<<<<<<< HEAD
                     // pieChart3.destroy();
                     console.log(pieChart3);
+=======
+                    pieChartCanvas3 = $("#pieChart3").get(0);
+
+                    // context = pieChartCanvas3.getContext('2d');
+                    // context.clearRect(0, 0, pieChartCanvas3.width, pieChartCanvas3.height);
+                   
+                    
+>>>>>>> ed327b8ac745088b0ea33b385a5f90bbe9fb18bf
                     pieChartCanvas3='';
                     document.getElementById('pieChart3').innerHTML ='';
                   responseData.forEach(function(response){
@@ -905,7 +914,9 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
     labels: labels
   };
    if ($("#pieChart3").length) {
+    
      pieChartCanvas3 = $("#pieChart3").get(0).getContext("2d");
+    //  pieChartCanvas3.clearRect(0, 0, canvas.width, canvas.height);
         
      pieChart3 = new Chart(pieChartCanvas3, {
       type: 'pie',
