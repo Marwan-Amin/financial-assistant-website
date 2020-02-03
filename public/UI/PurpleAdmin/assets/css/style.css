@@ -13453,14 +13453,14 @@ dl {
 
 .navbar .navbar-brand-wrapper .navbar-brand img{
 
-  width: calc(200px - 120px);
+  width: calc(180px - 120px);
   max-width: 100%;
   height: 50px;
   margin: auto;
   vertical-align: middle;
 }
 .app_name{
-  font-size: 1.2em;
-    font-weight: bolder;
-    /* color: #b66dff; */
+  font-size: 1.3em;
+    color:rgba(192,108,255);
+    font-family: 'Luckiest Guy', cursive;
 }
