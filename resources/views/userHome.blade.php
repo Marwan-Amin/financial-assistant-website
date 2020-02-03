@@ -86,20 +86,50 @@
                   color: #c59b08;
               }
         </style>
+          <button  class="btn btn-gradient-danger" data-toggle="modal" data-target="#myModal"> Rate Us</button>
+           <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Ratings</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div>
+            <div class="rate" id="rate">
+              <input type="radio" id="star5" name="rate" value="5" />
+              <label for="star5" title="text">5 stars</label>
+              <input type="radio" id="star4" name="rate" value="4" />
+              <label for="star4" title="text">4 stars</label>
+              <input type="radio" id="star3" name="rate" value="3" />
+              <label for="star3" title="text">3 stars</label>
+              <input type="radio" id="star2" name="rate" value="2" />
+              <label for="star2" title="text">2 stars</label>
+              <input type="radio" id="star1" name="rate" value="1" />
+              <label for="star1" title="text">1 star</label> 
+            </div>  
+        </div>
         <div>
-          <div class="rate" id="rate">
-            <input type="radio" id="star5" name="rate" value="5" />
-            <label for="star5" title="text">5 stars</label>
-            <input type="radio" id="star4" name="rate" value="4" />
-            <label for="star4" title="text">4 stars</label>
-            <input type="radio" id="star3" name="rate" value="3" />
-            <label for="star3" title="text">3 stars</label>
-            <input type="radio" id="star2" name="rate" value="2" />
-            <label for="star2" title="text">2 stars</label>
-            <input type="radio" id="star1" name="rate" value="1" />
-            <label for="star1" title="text">1 star</label> 
-          </div>  
-          <button id="add_rate_btn" class="btn btn-gradient-danger"> Rate Us</button>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Feedback</span>
+            </div>
+            <textarea id="feedback" class="form-control" aria-label="Feedback"></textarea>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="add_rate_btn" class="btn btn-gradient-danger" data-dismiss="modal">Rate Us</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
         </div>
     </div>
     <div class="row">
@@ -190,6 +220,7 @@
       document.getElementById("add_rate_btn").addEventListener('click',function(){
         console.log("11111");
        let rate_div= document.getElementById("rate").querySelectorAll("input");
+       let feedback= document.getElementById("feedback").value;
        let rate ;
         rate_div.forEach(element => {
           if(element.checked){
@@ -203,7 +234,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
           type:"POST",
-          data : {rate},
+          data : {rate , feedback},
           dataType : "json",
           url :"{{route('dashboard.store')}}",
           success : function (response){
