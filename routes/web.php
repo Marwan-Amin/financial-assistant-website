@@ -84,12 +84,12 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //blog routes
 
-    // Route::get('/posts', 'PostController@index');
+    Route::get('/blogs', 'Blog\BlogController@index');
     // Route::get('/','PostController@index' );
-    // Route::get('/posts/create', 'PostController@create');
-    // Route::post('/posts', 'PostController@store');
-    // Route::post('/posts/{id}', 'commentController@store');
-    // Route::get('/posts/ajax/{id}', 'AjaxController@show');
+    Route::get('/blogs/create', 'Blog\BlogController@create');
+    Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
+    Route::post('/blogs/{id}', 'Blog\BlogController@storeComment')->name('blogs.comment');
+    Route::get('/blogs/{id}/show', 'Blog\BlogController@show');
     // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
     // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
     // Route::put('/posts/{id}', 'PostController@update');

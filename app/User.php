@@ -54,7 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
        return $this->belongsToMany(Income::class,'user_incomes','user_id','income_id')->withPivot('user_id', 'Date','amount');
 
     }
-    
+    public function blogs(){
+        return $this->hasMany(Blog::class,'user_id');
+
+    }
     public function subExpenses()
     {
        return $this->belongsToMany(ExpenseSubCategory::class,'user_sub_categories','user_id','sub_category_id')->withPivot('amount','date','id');
@@ -78,5 +81,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function customCategories()
     {
         return $this->hasMany(CustomCategory::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
