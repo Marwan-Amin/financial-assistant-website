@@ -290,7 +290,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/calendar">
                 <span class="menu-title">Calendar</span>
                 <i class="mdi mdi-calendar menu-icon"></i>
               </a>
@@ -304,14 +304,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/events/manager">
                   <span class="menu-title">Event Manager</span>
-                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                  <i class="mdi mdi-calendar-check menu-icon"></i>
                 </a>
             </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/predictData">
                   <span class="menu-title">Predict data</span>
-                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                  <i class="mdi  mdi-arrow-up-bold menu-icon"></i>
                 </a>
               </li>
             <li class="nav-item sidebar-actions">
