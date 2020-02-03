@@ -106,7 +106,9 @@
                       </div>
                   </div>
                   <!--end sub category dropdown-->
+                  <div id="pieChart3-container">
                     <canvas id="pieChart3" style="height:250px"></canvas>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -137,6 +139,8 @@
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
+                $("#pieChart3").remove();
+                $('#pieChart3-container').append('<canvas id="pieChart3" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>')
                   categoryId = this.value.split(',')[0];
                   isCustom = this.value.split(',')[1];
                   $.ajax({
@@ -147,22 +151,16 @@
                 data:{'categoryId':categoryId,'isCustom':isCustom},
                 type: 'POST',
                 success: function(responseData) {
+                  pieChart3.destroy();
                   dataAmount=[];
-                    labels=[];
-                    pieChartCanvas3 = $("#pieChart3").get(0);
-
-                    // context = pieChartCanvas3.getContext('2d');
-                    // context.clearRect(0, 0, pieChartCanvas3.width, pieChartCanvas3.height);
-                   
-                    
-                    pieChartCanvas3='';
-                    document.getElementById('pieChart3').innerHTML ='';
+                   labels=[];
+              var doughnutPie = doughnutPieOptionsInitializer();
                   responseData.forEach(function(response){
                     dataAmount.push(Number(response.amount));
                     labels.push(response.name);
-                    var doughnutPie = doughnutPieOptionsInitializer();
-                        subExpensePieChart(doughnutPie,dataAmount,labels);
                   })
+                  subExpensePieChart(doughnutPie,dataAmount,labels,false);
+
                 }
                 });
               });
@@ -421,13 +419,13 @@
     ]
   };
   //end incomes pie chart data
+  var doughnutPieOptions = doughnutPieOptionsInitializer();
 
    //start expenses pie chart data
    subExpensePieChart(doughnutPieOptions,dataAmount,labels);
   //end sub expenses pie chart data
 
   
-  var doughnutPieOptions = doughnutPieOptionsInitializer();
 
 
 
@@ -908,7 +906,7 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: labels
   };
-   if ($("#pieChart3").length) {
+   if ($("#pieChart3").length ) {
     
      pieChartCanvas3 = $("#pieChart3").get(0).getContext("2d");
     //  pieChartCanvas3.clearRect(0, 0, canvas.width, canvas.height);
@@ -918,6 +916,10 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
       data: doughnutPieDataForIncomes,
       options: doughnutPieOptions
     });
+
+  }else{
+
+    console.log(pieChart3);
 
   }
 
