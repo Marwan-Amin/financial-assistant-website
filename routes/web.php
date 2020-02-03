@@ -22,6 +22,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
+    Route::post('/userHome',"DashboardController@store");
+
     
     //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
@@ -66,8 +68,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
 
     //user profile routes
-    Route::get('/user_profile', 'ProfileController@index')->name('home');
-    Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home');
+    Route::get('/user_profile', 'ProfileController@index')->name('profile'); // we changed this name from home to profile
+    Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('profile.edit');
     Route::put('/user_profile/{id}' , 'ProfileController@update' );
 
     //Reporting routes
@@ -97,17 +99,17 @@ Route::middleware(['auth','verified'])->group(function(){
     // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
     // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
-
+    //calendar route
     Route::get('/calendar', 'CalendarController@index');
-
-    
+   
 });
 
 
 Route::get('/home', function () {
     return view('home.index');
-});
-
+})->name('home');
+ //contact us routes
+Route::post('/contact','HomeController@store')->name('contact.store');
 
 Auth::routes(['verify'=>true]);
 

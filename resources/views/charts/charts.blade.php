@@ -85,8 +85,33 @@
             </div>
             <!--end incomes chart-->
 
-            <!--start incomes chart-->
+            <!--start sub Category chart-->
             <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title">Expenses Line Chart</h4>
+                    <canvas id="lineChart2" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title">Incomes Line Chart</h4>
+                    <canvas id="lineChart" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!--end sub Category chart-->
+
+            <!--start sub Category chart-->
+            <div class="row">
+              
+
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -106,13 +131,15 @@
                       </div>
                   </div>
                   <!--end sub category dropdown-->
+                  <div id="pieChart3-container">
                     <canvas id="pieChart3" style="height:250px"></canvas>
+                    </div>
                   </div>
                 </div>
               </div>
 
             </div>
-            <!--end incomes chart-->
+            <!--end sub Category chart-->
             
           </div>
           <!-- content-wrapper ends -->
@@ -137,6 +164,8 @@
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
+                $("#pieChart3").remove();
+                $('#pieChart3-container').append('<canvas id="pieChart3" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>')
                   categoryId = this.value.split(',')[0];
                   isCustom = this.value.split(',')[1];
                   $.ajax({
@@ -147,27 +176,16 @@
                 data:{'categoryId':categoryId,'isCustom':isCustom},
                 type: 'POST',
                 success: function(responseData) {
+                  pieChart3.destroy();
                   dataAmount=[];
-                    labels=[];
-<<<<<<< HEAD
-                    // pieChart3.destroy();
-                    console.log(pieChart3);
-=======
-                    pieChartCanvas3 = $("#pieChart3").get(0);
-
-                    // context = pieChartCanvas3.getContext('2d');
-                    // context.clearRect(0, 0, pieChartCanvas3.width, pieChartCanvas3.height);
-                   
-                    
->>>>>>> ed327b8ac745088b0ea33b385a5f90bbe9fb18bf
-                    pieChartCanvas3='';
-                    document.getElementById('pieChart3').innerHTML ='';
+                    labels=[];      
+              var doughnutPie = doughnutPieOptionsInitializer();
                   responseData.forEach(function(response){
                     dataAmount.push(Number(response.amount));
                     labels.push(response.name);
-                    var doughnutPie = doughnutPieOptionsInitializer();
-                        subExpensePieChart(doughnutPie,dataAmount,labels);
                   })
+                  subExpensePieChart(doughnutPie,dataAmount,labels,false);
+
                 }
                 });
               });
@@ -216,6 +234,81 @@
     }]
   };
 
+  var incomesLineData = {
+    labels: [ 
+      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+    ],
+    datasets: [{
+      label: 'Total amount',
+      data: [ 
+        @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+            ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+  };
+
+  
+// start line chart for expenses
+
+ //start expneses pie chart data
+ var expensesLineData = {
+    labels: [ 
+      @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @endisset    
+    ],
+    datasets: [{
+      label: 'Total amount',
+      data: [ 
+        @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @endisset      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+  };
+  //end expneses pie chart data
+// end line chart for expenses
+  
 
   //start data for incomes
   var dataForIcomes = {
@@ -426,13 +519,13 @@
     ]
   };
   //end incomes pie chart data
+  var doughnutPieOptions = doughnutPieOptionsInitializer();
 
    //start expenses pie chart data
    subExpensePieChart(doughnutPieOptions,dataAmount,labels);
   //end sub expenses pie chart data
 
   
-  var doughnutPieOptions = doughnutPieOptionsInitializer();
 
 
 
@@ -760,7 +853,16 @@
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
     var lineChart = new Chart(lineChartCanvas, {
       type: 'line',
-      data: data,
+      data: incomesLineData,
+      options: options
+    });
+  }
+
+  if ($("#lineChart2").length) {
+    var lineChartCanvas = $("#lineChart2").get(0).getContext("2d");
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: expensesLineData,
       options: options
     });
   }
@@ -913,7 +1015,7 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: labels
   };
-   if ($("#pieChart3").length) {
+   if ($("#pieChart3").length ) {
     
      pieChartCanvas3 = $("#pieChart3").get(0).getContext("2d");
     //  pieChartCanvas3.clearRect(0, 0, canvas.width, canvas.height);
@@ -923,6 +1025,10 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
       data: doughnutPieDataForIncomes,
       options: doughnutPieOptions
     });
+
+  }else{
+
+    console.log(pieChart3);
 
   }
 
