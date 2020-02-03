@@ -22,6 +22,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
+    Route::post('/userHome',"DashboardController@store");
+
     
     //incomes routes
     Route::get('/incomes','IncomeController@index')->name('incomes.index');
@@ -66,8 +68,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
 
     //user profile routes
-    Route::get('/user_profile', 'ProfileController@index')->name('home');
-    Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('home');
+    Route::get('/user_profile', 'ProfileController@index')->name('profile'); // we changed this name from home to profile
+    Route::get('/user_profile/{id}/edit', 'ProfileController@edit')->name('profile.edit');
     Route::put('/user_profile/{id}' , 'ProfileController@update' );
 
     //Reporting routes
@@ -87,12 +89,13 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-    // Route::get('/posts', 'PostController@index');
+
+    Route::get('/blogs', 'Blog\BlogController@index');
     // Route::get('/','PostController@index' );
-    // Route::get('/posts/create', 'PostController@create');
-    // Route::post('/posts', 'PostController@store');
-    // Route::post('/posts/{id}', 'commentController@store');
-    // Route::get('/posts/ajax/{id}', 'AjaxController@show');
+    Route::get('/blogs/create', 'Blog\BlogController@create');
+    Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
+    Route::post('/blogs/{id}', 'Blog\BlogController@storeComment')->name('blogs.comment');
+    Route::get('/blogs/{id}/show', 'Blog\BlogController@show');
     // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
     // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
     // Route::put('/posts/{id}', 'PostController@update');
@@ -100,13 +103,17 @@ Route::middleware(['auth','verified'])->group(function(){
     // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
     // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
 
+    //calendar route
+    Route::get('/calendar', 'CalendarController@index');
+   
 });
 
 
 Route::get('/home', function () {
     return view('home.index');
-});
-
+})->name('home');
+ //contact us routes
+Route::post('/contact','HomeController@store')->name('contact.store');
 
 Auth::routes(['verify'=>true]);
 

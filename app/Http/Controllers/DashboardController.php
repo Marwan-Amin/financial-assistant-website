@@ -17,10 +17,8 @@ class DashboardController extends Controller
         // $regression = new LeastSquares();
         // $regression->train($samples, $targets);
         // dd($regression->predict([0,7, 2025]));
-        
       
-      
-        $user = User::find(Auth::user() -> id);
+      $user = User::find(Auth::user() -> id);
       $sumIncome = 0;
       foreach($user -> user_incomes as $income) {
           $sumIncome = $sumIncome + floatval($income -> amount);
@@ -31,4 +29,11 @@ class DashboardController extends Controller
       }
       return view('userHome', compact('sumIncome','sumExpense'));
 }
+    public function store(Request $request){
+        $user = User::find(Auth::user()->id);
+        $user->rate = $request->rate;
+        $user->save();
+        //dd($user);        
+        return redirect()->route('userHome');
+    }
 }

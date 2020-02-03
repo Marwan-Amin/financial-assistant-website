@@ -13,6 +13,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $user = Auth::user();
+        
         $expenses = $user->subExpenses;
         return view('expenses.index',compact('expenses'));
     }

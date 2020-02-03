@@ -27,7 +27,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
-                    <button id="add_savings_btn" class="btn btn-gradient-danger btn-lg ">+ Add Saving</button>
+                    <button id="add_savings_btn" class="btn btn-gradient-info btn-lg ">+ Add Saving</button>
                 </div>
               </div>
             </div>
