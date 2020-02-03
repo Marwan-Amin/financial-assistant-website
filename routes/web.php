@@ -22,7 +22,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
-    Route::post('/userHome',"DashboardController@store");
+    Route::post('/userHome',"DashboardController@store")->name('dashboard.store');
 
     
     //incomes routes

@@ -34,6 +34,6 @@ class DashboardController extends Controller
         $user->rate = $request->rate;
         $user->save();
         //dd($user);        
-        return redirect()->route('userHome');
+        return response()->json($request->rate);
     }
 }

@@ -86,8 +86,7 @@
                   color: #c59b08;
               }
         </style>
-        <form action="userHome" method="POST">
-          @csrf
+        <div>
           <div class="rate" id="rate">
             <input type="radio" id="star5" name="rate" value="5" />
             <label for="star5" title="text">5 stars</label>
@@ -98,11 +97,10 @@
             <input type="radio" id="star2" name="rate" value="2" />
             <label for="star2" title="text">2 stars</label>
             <input type="radio" id="star1" name="rate" value="1" />
-            <label for="star1" title="text">1 star</label>
-          </div>
-          <button type="submit" class="btn btn-gradient-danger"> Rate Us</button>
-        </form>
-        
+            <label for="star1" title="text">1 star</label> 
+          </div>  
+          <button id="add_rate_btn" class="btn btn-gradient-danger"> Rate Us</button>
+        </div>
     </div>
     <div class="row">
       <div class="col-md-4 stretch-card grid-margin">
@@ -188,4 +186,33 @@
     </div>
     </div>
     </div>
+    <script>
+      document.getElementById("add_rate_btn").addEventListener('click',function(){
+        console.log("11111");
+       let rate_div= document.getElementById("rate").querySelectorAll("input");
+       let rate ;
+        rate_div.forEach(element => {
+          if(element.checked){
+            rate = element.value;
+            console.log(rate);
+          }
+          
+        });
+        $.ajax({
+          headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+          type:"POST",
+          data : {rate},
+          dataType : "json",
+          url :"{{route('dashboard.store')}}",
+          success : function (response){
+            
+            console.log(response);
+            
+          }
+      
+        });
+      }); 
+    </script>
   @endsection
