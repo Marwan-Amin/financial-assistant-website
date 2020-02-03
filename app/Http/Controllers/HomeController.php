@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ContactRequest;
+use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     /**
@@ -24,5 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function store(ContactRequest $request)
+    {
+        //dd($request->email);
+        Mail::to('dynamomarwan@gmail.com')->send(new ContactFormMail($request));
+        return redirect('home');
+
     }
 }

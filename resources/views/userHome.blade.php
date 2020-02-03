@@ -88,7 +88,7 @@
         </style>
         <form action="userHome" method="POST">
           @csrf
-          <div class="rate">
+          <div class="rate" id="rate">
             <input type="radio" id="star5" name="rate" value="5" />
             <label for="star5" title="text">5 stars</label>
             <input type="radio" id="star4" name="rate" value="4" />
