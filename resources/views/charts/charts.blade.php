@@ -121,7 +121,7 @@
         </div>
         <!-- main-panel ends -->
         <script>
-        var pieChart3;
+        var pieChart3={};
           var doughnutPieDataForIncomes={};
           var pieChartCanvas3='';
           let dataAmount=[];
@@ -149,8 +149,8 @@
                 success: function(responseData) {
                   dataAmount=[];
                     labels=[];
-                    pieChart3.destroy();
-                    
+                    // pieChart3.destroy();
+                    console.log(pieChart3);
                     pieChartCanvas3='';
                     document.getElementById('pieChart3').innerHTML ='';
                   responseData.forEach(function(response){
