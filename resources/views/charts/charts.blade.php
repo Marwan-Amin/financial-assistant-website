@@ -85,8 +85,33 @@
             </div>
             <!--end incomes chart-->
 
-            <!--start incomes chart-->
+            <!--start sub Category chart-->
             <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title">Expenses Line Chart</h4>
+                    <canvas id="lineChart2" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title">Incomes Line Chart</h4>
+                    <canvas id="lineChart" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!--end sub Category chart-->
+
+            <!--start sub Category chart-->
+            <div class="row">
+              
+
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -114,7 +139,7 @@
               </div>
 
             </div>
-            <!--end incomes chart-->
+            <!--end sub Category chart-->
             
           </div>
           <!-- content-wrapper ends -->
@@ -209,6 +234,81 @@
     }]
   };
 
+  var incomesLineData = {
+    labels: [ 
+      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+    ],
+    datasets: [{
+      label: 'Total amount',
+      data: [ 
+        @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+            ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+  };
+
+  
+// start line chart for expenses
+
+ //start expneses pie chart data
+ var expensesLineData = {
+    labels: [ 
+      @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @endisset    
+    ],
+    datasets: [{
+      label: 'Total amount',
+      data: [ 
+        @isset($totalExpenses)
+         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+         @endisset
+         @isset($totalCustomExpeses)
+         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @endisset      ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+  };
+  //end expneses pie chart data
+// end line chart for expenses
+  
 
   //start data for incomes
   var dataForIcomes = {
@@ -753,7 +853,16 @@
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
     var lineChart = new Chart(lineChartCanvas, {
       type: 'line',
-      data: data,
+      data: incomesLineData,
+      options: options
+    });
+  }
+
+  if ($("#lineChart2").length) {
+    var lineChartCanvas = $("#lineChart2").get(0).getContext("2d");
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: expensesLineData,
       options: options
     });
   }
