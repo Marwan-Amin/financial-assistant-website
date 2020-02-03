@@ -77,6 +77,10 @@ Route::middleware(['auth','verified'])->group(function(){
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
     Route::get('/predict', 'TensorFlowController@index')->name('predict.index');
+    Route::post('/predict/user', 'PredicitonController@getPredictionData')->name('predict.user');
+    Route::get('/prediction', 'PredicitonController@index')->name('prediction');
+
+
 
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');

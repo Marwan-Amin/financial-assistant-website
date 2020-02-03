@@ -308,7 +308,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/predictData">
+                <a class="nav-link" href="/prediction">
                   <span class="menu-title">Predict data</span>
                   <i class="mdi mdi-cake-variant menu-icon"></i>
                 </a>

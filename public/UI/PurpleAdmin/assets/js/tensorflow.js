@@ -1,26 +1,3 @@
-/**
- * Get the car data reduced to just the variables we are interested
- * and cleaned of missing data.
- */
-// var totalExpenses = new totalExpenses('1-1-2020');
-// console.log(totalExpenses.StringtototalExpenses("1/1/2020","dd/MM/yyyy","/"));
-
-
-//     let carsData ;  
-// console.log(route);
-  
-// $.ajax({
-   
-//  url: route,
-//  type: 'GET',
-//  success: function(response) {
-//    console.log(response);
-//  }
-// });
-/**
- * Get the car data reduced to just the variables we are interested
- * and cleaned of missing data.
- */
 async function getData() {
     const balanceDataReq = await fetch(route); 
     
@@ -28,17 +5,15 @@ async function getData() {
     console.log(balanceData)
 
     balanceData.forEach(function(row){
-        row.totalExpenses = Number  (row.totalExpenses);
+        row.totalExpenses = Number(row.totalExpenses);
         row.totalIncome = Number(row.totalIncome)
     }) 
     console.log(balanceData)
 
     return balanceData;
   }
-  getData();
 
   async function run() {
-    // Load and plot the original input data that we are going to train on.
     const data = await getData();
     const values = data.map(d => ({
       x: d.balance,
@@ -71,7 +46,6 @@ console.log('Done Training');
 // original data
 testModel(model, data, tensorData);
   
-    // More code will be added below
   }
   
   document.addEventListener('DOMContentLoaded', run);
@@ -115,15 +89,17 @@ function convertToTensor(data) {
       const inputMin = inputTensor.min();  
       const labelMax = labelTensor.max();
       const labelMin = labelTensor.min();
-  console.log(inputMax,inputMin,labelMin,labelMax);
+      
+      // console.log(inputMax,inputMin,labelMin,labelMax);
+      
       const normalizedInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
       const normalizedLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
-      console.log(inputMax,inputMin,labelMin,labelMax);
+      
+      // console.log(inputMax,inputMin,labelMin,labelMax);
 
       return {
         inputs: normalizedInputs,
         labels: normalizedLabels,
-        // Return the min/max bounds so we can use them later.
         inputMax,
         inputMin,
         labelMax,
@@ -183,13 +159,14 @@ function convertToTensor(data) {
     const predictedPoints = Array.from(xs).map((val, i) => {
       return {x: val, y: preds[i]}
     });
-    console.log(predictedPoints);
     
     const originalPoints = inputData.map(d => ({
       x: d.totalExpenses, y: d.balance,
     }));
-    
-    
+    console.log(predictedPoints);
+
+    sendPrediction(originalPoints,predictedPoints);
+
     tfvis.render.scatterplot(
       {name: 'Model Predictions vs Original Data'}, 
       {values: [originalPoints, predictedPoints], series: ['original', 'predicted']}, 
@@ -200,3 +177,17 @@ function convertToTensor(data) {
       }
     );
   }
+
+  function sendPrediction(original,predicted){
+    $.ajax({
+      headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+    type: 'POST',
+     url:userPrediction,
+     data:{predicted,original},
+         success:function(response){
+          console.log(response);
+         }
+      });  
+    }
