@@ -13544,4 +13544,14 @@ table.dataTable thead th, table.dataTable thead td {
 }
 .table.table-hover .progress{
 height: 15px;
+position: relative;
+text-align: center;
+}
+.table.table-hover .progress span{
+  
+  position:absolute;
+  left:50%;
+  transform: translateX(-50%);
+  top: 1px;
+  
 }
