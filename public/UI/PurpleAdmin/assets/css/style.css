@@ -13459,6 +13459,12 @@ dl {
   margin: auto;
   vertical-align: middle;
 }
+.navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
+  width: calc(85px - 50px);
+  max-width: 100%;
+  height: 28px;
+  margin: auto;
+}
 .app_name{
   font-size: 1.3em;
     color:rgba(192,108,255);
