@@ -54,6 +54,8 @@
                     @isset($incomes)
                 @foreach ($incomes as $income) 
                     <tr>
+                    
+
                         <td>{{$income->type}}</td>
                         <td>{{$income->pivot->amount}}</td>
                         <td>{{$income->pivot->Date}}</td>
@@ -76,7 +78,8 @@
                         <td>{{$income->income->type}}</td>
                         <td>{{$income->amount}}</td>
                         <td>{{$income->Date}}</td>
-                        @if ($income->Date < $date)
+                        @if ($income->Date < $currentDate)
+
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -91,6 +94,14 @@
                     
                 </tbody>
             </table>
+            @isset($incomes)
+            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+
+            @isset($filterIncomes)
+            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/filterIncomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+        
         </div>
     </div>
 </div>
@@ -139,7 +150,7 @@
                 <td>{{$expense->amount}}</td>
                 <td>{{$expense->date}}</td>
                 
-                @if ($expense->date < $date)
+                @if ($expense->date < $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -154,6 +165,8 @@
                     
                 </tbody>
             </table>
+            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+
         </div>
     </div>
 </div>
@@ -190,7 +203,6 @@
             @else 
             <div class="progress">
               <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" >{{$target->progress}}%</div>
-              
             </div>
             @endif
             </td>

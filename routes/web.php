@@ -75,6 +75,14 @@ Route::middleware(['auth','verified'])->group(function(){
     //Reporting routes
     Route::get('/reports/index', 'ReportController@index')->name('reports.index');
     Route::post('/reports/index', 'ReportController@filter')->name('reports.filter');
+    Route::get(' /reports/incomes/download', 'ReportController@incomeExport')->name('incomes.excel');
+    Route::get(' /reports/expenses/download', 'ReportController@expenseExport')->name('expenses.excel');
+    Route::get(' /reports/filterIncomes/download', 'ReportController@filterIncomeExport')->name('filterIncomes.excel');
+    // Route::get(' /reports/filterExpenses/download', 'ReportController@filterExpenseExport')->name('filterExpenses.excel');
+    
+
+
+   
 
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');

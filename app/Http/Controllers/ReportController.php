@@ -10,8 +10,15 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UserSubCategory;
+use App\Exports\UserIncomesExport;
+use App\Exports\UserExpensesExport;
+use App\Exports\UserIncomesFilterExport;
+use UserExpensesFilterExport;  
+use Maatwebsite\Excel\Facades\Excel;
+
 class ReportController extends Controller
 {
+    public $dateto;
     public function index()
     {
         $userInfo = User::find(Auth::user()->id);
@@ -34,6 +41,8 @@ class ReportController extends Controller
     {   
         $user_info = User::find(Auth::user()->id);
         $selectedDate = $request->reportDate;
+        session()->put('selectedDate',$selectedDate);
+        $currentDate = Carbon::today()->toDateString();
         
         $expenses = UserSubCategory::where([
             "date" => $selectedDate , 
@@ -64,7 +73,28 @@ class ReportController extends Controller
             'events' => $events,
             'targets' => $user_info->target,
             'date' => $selectedDate ,
+            'currentDate' =>$currentDate,
             'events' => $events,
         ]);
+    }
+
+    public function incomeExport()
+    {
+        return Excel::download(new UserIncomesExport, 'incomes.xlsx');
+    }
+
+    public function expenseExport()
+    {
+        return Excel::download(new UserExpensesExport, 'expenses.xlsx');
+    }
+
+    public function filterIncomeExport()
+    {
+        return Excel::download(new UserIncomesFilterExport, 'filteredIncomes.xlsx');
+    }
+
+    public function filterExpenseExport()
+    {
+        return Excel::download(new UserExpensesFilterExport, 'filteredExpenses.xlsx');
     }
 }
