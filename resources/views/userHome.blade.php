@@ -151,28 +151,7 @@
     <div class="row mt-4">
 
     </div>
-
-    
     <div class="row">
-      <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Line chart</h4>
-            <canvas id="lineChart" style="height:250px"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Bar chart</h4>
-            <canvas id="barChart" style="height:230px"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-        <div class="row">
       <div class="col-md-7 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -190,6 +169,17 @@
             <h4 class="card-title">Calender</h4>
             <canvas id="traffic-chart"></canvas>
             <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Income categories</h4>
+            <canvas id="pieChart2" style="height:250px"></canvas>
           </div>
         </div>
       </div>

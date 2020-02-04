@@ -16,26 +16,26 @@
     <!-- endinject -->
     <!-- Layout styles -->
 
-   <!-- styles for blog -->
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+  <!--start add calender links-->
+  <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/core/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/interaction/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"></script>
 
-<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="css/animate.css">
+<style>
 
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-<link rel="stylesheet" href="css/aos.css">
-
-<link rel="stylesheet" href="css/ionicons.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="css/jquery.timepicker.css">
-
-
-<link rel="stylesheet" href="css/flaticon.css">
-<link rel="stylesheet" href="css/icomoon.css">
-<!-- end style for blog -->
+</style>
+  <!--end add calender links-->
 
     <link
             rel="stylesheet"
@@ -321,6 +321,12 @@
                   <i class="mdi  mdi-arrow-up-bold menu-icon"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/blogs">
+                  <span class="menu-title">Blogs</span>
+                  <i class="mdi mdi-cake-variant menu-icon"></i>
+                </a>
+              </li>
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">
@@ -369,23 +375,7 @@
     <!-- Custom js for this page -->
     <!-- <script src="{{asset('UI/PurpleAdmin/assets/js/chart.js')}}"></script> -->
     <!-- End custom js for this page -->
-    <!-- for blog -->
-    <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery-migrate-3.0.1.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/popper.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.easing.1.3.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.waypoints.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.stellar.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/owl.carousel.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.magnific-popup.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/aos.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.animateNumber.min.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/bootstrap-datepicker.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/jquery.timepicker.min.js')}}"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/google-map.js')}}"></script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/main.js')}}"></script>
-
+   
     <script>
     $(document).ready( function () {
     $('#expensesTable').DataTable();
