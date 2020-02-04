@@ -16,7 +16,26 @@
     <!-- endinject -->
     <!-- Layout styles -->
 
-  
+  <!--start add calender links-->
+  <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/core/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/interaction/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.js')}}"></script>
+<script src="{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"></script>
+
+<style>
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+  <!--end add calender links-->
 
     <link
             rel="stylesheet"
@@ -31,12 +50,13 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row pt-1 pb-1">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="/">
           <p class="m-0">

@@ -3,13 +3,14 @@
         <!-- partial -->
         
        
-        @if(session()->has('message'))
+      
+        <div class="main-panel">
+          <div class="content-wrapper">
+          @if(session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
         @endif
-        <div class="main-panel">
-          <div class="content-wrapper">
             <div class="page-header" style="padding: 2.75rem 2.25rem;">
               
               <nav aria-label="breadcrumb">

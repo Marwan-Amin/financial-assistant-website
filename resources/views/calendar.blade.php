@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='utf-8' />
-
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/core/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/interaction/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"></script>
-
-<style>
-
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-</style>
-</head>
-<body>
-
-  <div id='calendar'></div>
+@extends('layouts.app3')
+@section('content')
+<div class="main-panel">
+          <div class="content-wrapper"> 
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <div id='calendar'></div>
   <input id="user_incomes" type="hidden" value="{{$user->incomes}}">
   <input id="user_expenses" type="hidden" value="{{$user->subExpenses}}">
 
@@ -72,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-</body>
-</html>
+          </div>
+</div>
 <!-- [
 
 
@@ -150,3 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
       //   color: '#ff9f89'
       // } -->
     <!-- ] -->
+                </div>
+              </div>
+            </div>
+  
+    @endsection

@@ -6,14 +6,6 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <!-- <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Line chart</h4>
-                    <canvas id="lineChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div> -->
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -148,7 +140,7 @@
         </div>
         <!-- main-panel ends -->
         <script>
-        var pieChart3={};
+        var pieChart3;
           var doughnutPieDataForIncomes={};
           var pieChartCanvas3='';
           let dataAmount=[];
@@ -178,7 +170,7 @@
                 success: function(responseData) {
                   pieChart3.destroy();
                   dataAmount=[];
-                    labels=[];      
+                   labels=[];
               var doughnutPie = doughnutPieOptionsInitializer();
                   responseData.forEach(function(response){
                     dataAmount.push(Number(response.amount));
