@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UserExpensesFilterExport implements FromCollection
+class UserExpensesFilterExport implements FromQuery, WithMapping,  WithHeadings
 {
     use Exportable;
 

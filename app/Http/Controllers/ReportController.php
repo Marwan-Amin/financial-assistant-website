@@ -13,7 +13,7 @@ use App\UserSubCategory;
 use App\Exports\UserIncomesExport;
 use App\Exports\UserExpensesExport;
 use App\Exports\UserIncomesFilterExport;
-use UserExpensesFilterExport;  
+use App\Exports\UserExpensesFilterExport;  
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller

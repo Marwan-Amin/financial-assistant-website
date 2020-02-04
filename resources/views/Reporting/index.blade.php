@@ -165,8 +165,12 @@
                     
                 </tbody>
             </table>
+            @isset($expenses)
             <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-
+            @endisset
+            @isset($filterexpenses)
+            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/filterExpenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
         </div>
     </div>
 </div>
