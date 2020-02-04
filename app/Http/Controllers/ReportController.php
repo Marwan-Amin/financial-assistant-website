@@ -15,6 +15,7 @@ use App\Exports\UserExpensesExport;
 use App\Exports\UserIncomesFilterExport;
 use App\Exports\UserExpensesFilterExport;  
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -24,7 +25,6 @@ class ReportController extends Controller
         $userInfo = User::find(Auth::user()->id);
         $currentDate = Carbon::today()->toDateString();
         $expenses=$userInfo->subexpenses;
-        // dd($expenses);
         $incomes=$userInfo->incomes;
         $events = $userInfo->CustomCategories;
         return view ('Reporting.index', [
@@ -49,14 +49,12 @@ class ReportController extends Controller
             "user_id" => $user_info->id
         ])->get();
 
-        // dd($expenses[0]);
 
         $incomes = UserIncome::where([
             "date" => $selectedDate , 
             "user_id" => $user_info->id
         ])->get();
 
-        // dd($incomes[0]->income);
 
 
         $events = CustomCategory::where([
@@ -65,7 +63,7 @@ class ReportController extends Controller
         ])->get();
 
         $currentDate = Carbon::today()->toDateString();
-        // dd($events);
+
         return view ('Reporting.index', [
             'user' => $user_info , 
             'filterexpenses' => $expenses,
@@ -96,5 +94,11 @@ class ReportController extends Controller
     public function filterExpenseExport()
     {
         return Excel::download(new UserExpensesFilterExport, 'filteredExpenses.xlsx');
+    }
+
+    public function pdfExport()
+    {
+        $pdf = PDF::loadView('Reporting.index');
+        return $pdf->download('reporting.pdf');    
     }
 }

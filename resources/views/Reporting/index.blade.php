@@ -8,18 +8,11 @@
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
         </span> Reportings</h3>
 </div>
-
+<div class="row">
+    <div class="col-6">
 <form action="{{route('reports.filter')}}" method="post">
 @csrf
-    <!-- <div class="my-5">
-        <label>Filter by date : </label>
-            @isset($date)  
-        <input type="date" name="reportDate" id="reportDate" value="{{$date}}" >
-            @endisset 
-        <button type = "submit" class="btn btn-dark">Filter</button>
-    </div> -->
-
-
+    
     <div class="form-group pl-0 col-md-5">
         <div class="input-group">
         @isset($date)     
@@ -30,11 +23,14 @@
         </div>
         </div>
     </div>
-
-
-
 </form>
+</div>
 
+            <div class="col-6">
+            <div class="text-center"><a class="btn btn-outline-primary btn-icon-text" href="/reports/pdfdownload"><i class="mdi mdi-download"></i> Download report as pdf</a></div>
+
+            </div>
+</div>
 <div class="row">
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -260,7 +256,7 @@
     </div>
 </div>
 
-</div>
+</>
 </div>
 
 </div>
