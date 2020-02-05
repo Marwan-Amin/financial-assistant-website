@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="form-group">
-                    <input id="password-confirm" type="password" class="form-control form-control-lg"  placeholder="New Password" name="password_confirmation" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control form-control-lg"  placeholder="confirm your Password" name="password_confirmation" required autocomplete="new-password">
                     
                   </div>
 
