@@ -30,7 +30,6 @@ class ReportController extends Controller
 
         $userCharts = new User();
         $chartsInfo = $userCharts->charts();
-
         return view ('Reporting.index', [
             'user' => $userInfo , 
             'expenses' => $expenses,
@@ -68,7 +67,8 @@ class ReportController extends Controller
         ])->get();
 
         $currentDate = Carbon::today()->toDateString();
-
+        $userCharts = new User();
+        $chartsInfo = $userCharts->charts();
         return view ('Reporting.index', [
             'user' => $user_info , 
             'filterexpenses' => $expenses,
@@ -78,6 +78,8 @@ class ReportController extends Controller
             'date' => $selectedDate ,
             'currentDate' =>$currentDate,
             'events' => $events,
+            'chartsInfo' => $chartsInfo,
+
         ]);
     }
 
