@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -19,13 +20,16 @@ class BlogController extends Controller
         return view('blogs.create');
     }
     public function store(BlogStoreRequest $request){
-       $request->blog_image = $request->blog_image?$request->file('blog_image')->store('blogs_images'):'null';
+        $image = $request->blog_image?Storage::putfile('blog_images', $request->file('blog_image')):'null';
+
        $isCreated = Blog::create([
             'title'=>$request->title,
             'body'=>$request->body,
-            'blog_image'=>$request->blog_image,
+            'blog_image'=>$image,
             'user_id'=> Auth::user()->id
         ]);
+        $request->blog_image->move(public_path('blog_images'), $image);
+
         if($isCreated){
             return redirect()->route('blogs.index');
         }
