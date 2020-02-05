@@ -82,35 +82,32 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Amount</label>
-                <div class="col-sm-9">
+              <div class="form-group row fluid">
+                <label>Amount : </label>
+                
                   <input type="number" step="0.01" name="amount" class="form-control" />
-                </div>
+               
               </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              <div class="form-group row fluid">
+                <label>Date : </label>
+                
+                  <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy" />
+                
+              </div>
+            </div>
+
+            <div class="col-md-5 pl-0 pr-0">
+            <button type="submit" class="btn-block btn btn-gradient-danger btn-lg ">+ Add Income</button>
+                
             </div>
             
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row fluid">
-                <label class="col-sm-3 col-form-label">Date</label>
-                <div class="col-md-9">
-                  <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy" />
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label"></label>
-                <div class="col-sm-9">
-                  <button type="submit" class="btn btn-gradient-danger btn-lg ">+ Add Income</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           
         </div> 
       </form>

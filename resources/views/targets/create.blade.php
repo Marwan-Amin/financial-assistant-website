@@ -15,7 +15,7 @@
     <div class="card">
       <div class="card-body">        
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Goal</label>
                 <div class="col-sm-9">
@@ -23,7 +23,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
@@ -32,7 +32,7 @@
               </div>
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group row">
                 <label class="col-sm-12 col-form-label">Total Savings : <span>{{$savings}}</span></label>
                 
@@ -51,8 +51,7 @@
           
      </div>
     </div>
-</div>
-<div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
 
@@ -104,6 +103,8 @@
     </div>
   </div>
 </div>
+</div>
+
 </div>
 </div>
 <script>
