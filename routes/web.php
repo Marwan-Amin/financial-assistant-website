@@ -80,9 +80,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get(' /reports/filterIncomes/download', 'ReportController@filterIncomeExport')->name('filterIncomes.excel');
     Route::get(' /reports/filterExpenses/download', 'ReportController@filterExpenseExport')->name('filterExpenses.excel');
     
-
-
-   
+        
 
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
