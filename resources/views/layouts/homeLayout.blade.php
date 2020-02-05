@@ -73,7 +73,7 @@
                             <a href="/testemonials" class="nav-link">Testemonials</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/blog" class="nav-link">Blog</a>
+                            <a href="/blogs" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a href="/contact" class="nav-link">Contact</a>

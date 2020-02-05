@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.homeLayout')
 
 @section('content')
 
@@ -23,14 +23,14 @@
         @foreach($blogs as $blog)
           <div class="col-md-4 ftco-animate">
           <div class="blog-entry">
-              <a href="blog-single.html" class="block-20" style='background-image: "{{asset(`blogs_images/`.$blog->blog_image)}}"'>
+              <a href="/blogs/{{$blog->id}}/show" class="block-20" style='background-image: "{{asset($blog->blog_image)}}"'>
               </a>
               <div class="text p-4 d-block">
                 <div class="meta mb-3">
+                <div>{{$blog->user->name}}</div>
                   <div>{{$blog->created_at}}</div>
-                  <div>{{$blog->user->name}}</div>
                 </div>
-                <h3 class="heading"><a href="/blogs/{{$blog->id}}/show">{{$blog->body}}</a></h3>
+                <h3 class="heading"><a href="/blogs/{{$blog->id}}/show">{{$blog->title}}</a></h3>
               </div>
             </div>
           </div>

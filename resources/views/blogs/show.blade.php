@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.homeLayout')
 @section('content')
 <section class="home-slider ftco-degree-bg">
       <div class="slider-item bread-wrap" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">

@@ -27,7 +27,7 @@ class BlogController extends Controller
             'user_id'=> Auth::user()->id
         ]);
         if($isCreated){
-            return view('blogs.index');
+            return redirect()->route('blogs.index');
         }
         dd('failed');
     }

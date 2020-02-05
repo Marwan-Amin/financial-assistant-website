@@ -188,6 +188,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @isset($targets)
                 @foreach ($targets as $target) 
                     <tr>
                         <td>{{$target->target_name}}</td>
@@ -211,7 +212,7 @@
             </td>
                     </tr>
                 @endforeach
-                    
+                    @endisset
                 </tbody>
             </table>
         </div>
@@ -233,6 +234,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @isset($events)
                 @foreach ($events as $event) 
                     <tr>
                     <td>{{$event->name}}</td>
@@ -249,7 +251,7 @@
                         @endif
                     </tr>
                 @endforeach
-                    
+                    @endisset
                 </tbody>
             </table>
         </div>

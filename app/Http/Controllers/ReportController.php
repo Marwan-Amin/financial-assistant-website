@@ -99,6 +99,6 @@ class ReportController extends Controller
     public function pdfExport()
     {
         $pdf = PDF::loadView('Reporting.index');
-        return $pdf->download('reporting.pdf');    
+        return $pdf->download('report.pdf');    
     }
 }

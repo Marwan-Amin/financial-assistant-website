@@ -96,7 +96,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //blog routes
 
-    Route::get('/blogs', 'Blog\BlogController@index');
+    Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
     // Route::get('/','PostController@index' );
     Route::get('/blogs/create', 'Blog\BlogController@create');
     Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
