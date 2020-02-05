@@ -2,6 +2,7 @@
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
+              
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -130,7 +131,10 @@
                 </tbody>
             </table>
             @isset($incomes)
-            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            <div class="text-center">
+                <a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a>
+              
+            </div>
             @endisset
 
             @isset($filterIncomes)
