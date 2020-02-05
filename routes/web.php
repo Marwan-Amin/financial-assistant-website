@@ -79,8 +79,9 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get(' /reports/expenses/download', 'ReportController@expenseExport')->name('expenses.excel');
     Route::get(' /reports/filterIncomes/download', 'ReportController@filterIncomeExport')->name('filterIncomes.excel');
     Route::get(' /reports/filterExpenses/download', 'ReportController@filterExpenseExport')->name('filterExpenses.excel');
-    
-        
+
+    Route::get(' /reports/pdfdownload', 'ReportController@pdfExport')->name('pdfExport');
+
 
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
@@ -96,7 +97,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //blog routes
 
-    Route::get('/blogs', 'Blog\BlogController@index');
+    Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
     // Route::get('/','PostController@index' );
     Route::get('/blogs/create', 'Blog\BlogController@create');
     Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
