@@ -17,7 +17,7 @@
     <!-- Layout styles -->
 
   <!--start add calender links-->
-  <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
+<link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
 <link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
 <link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
 <link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
@@ -321,12 +321,7 @@
                   <i class="mdi  mdi-arrow-up-bold menu-icon"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/blogs">
-                  <span class="menu-title">Blogs</span>
-                  <i class="mdi mdi-cake-variant menu-icon"></i>
-                </a>
-              </li>
+              
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Phpml\Regression\LeastSquares;
 
 class DashboardController extends Controller
 {
     public function index() {
+
         
         // $samples = [[73676,1, 1996], [70000,2, 1998]];
         // $targets = [2000, 9000];
