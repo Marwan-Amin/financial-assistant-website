@@ -27,6 +27,10 @@ class ReportController extends Controller
         $expenses=$userInfo->subexpenses;
         $incomes=$userInfo->incomes;
         $events = $userInfo->CustomCategories;
+
+        $userCharts = new User();
+        $chartsInfo = $userCharts->charts();
+
         return view ('Reporting.index', [
             'user' => $userInfo , 
             'expenses' => $expenses,
@@ -34,6 +38,7 @@ class ReportController extends Controller
             'date' => $currentDate ,
             'events' => $events,
             'targets' => $userInfo->target,
+            'chartsInfo' => $chartsInfo,
         ]);
     }
 

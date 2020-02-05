@@ -116,7 +116,7 @@
                       <div class="col-md-6">
                           <select class="form-control form-control-lg" id="subCategoryChart">
                               <option value="" selected="">Select Sub Category</option>
-                              @foreach($userCategories as $userCategory)
+                              @foreach($chartsInfo['userCategories'] as $userCategory)
                               <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
                               @endforeach
                             </select>
@@ -146,11 +146,11 @@
           let dataAmount=[];
           let labels=[];
           let test=[];
-          @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense) dataAmount.push(Number("{{$totalExpenses[$key]->total}}")); labels.push("{{$totalExpenses[$key]->Category_Name}}");@endforeach
+          @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense) dataAmount.push(Number("{{$chartsInfo['totalExpenses'][$key]->total}}")); labels.push("{{$chartsInfo['totalExpenses'][$key]->Category_Name}}");@endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) dataAmount.push(Number("{{$totalCustomExpeses[$key]->custom_total}}")); labels.push("{{$totalCustomExpeses[$key]->Custom_Category_Name}}");@endforeach
+         @isset($chartsInfo['totalCustomExpeses'])
+         @foreach($chartsInfo['totalCustomExpeses'] as $key=>$customExpense) dataAmount.push(Number("{{$chartsInfo['totalCustomExpenses'][$key]->custom_total}}")); labels.push("{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}");@endforeach
          @endisset
         //  console.log(labels,dataAmount);
 
@@ -189,21 +189,21 @@
   'use strict';
   var data = {
     labels: [ 
-      @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+      @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense)  "{{$chartsInfo['totalExpenses'][$key]->Category_Name}}",@endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) "{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}",@endforeach
          @endisset    
     ],
     datasets: [{
       label: 'Total amount',
       data: [ 
-        @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+        @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -228,12 +228,12 @@
 
   var incomesLineData = {
     labels: [ 
-      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+      @foreach ( $chartsInfo['totalIncome'] as $income ) '{{  $income->type }}' ,  @endforeach
     ],
     datasets: [{
       label: 'Total amount',
       data: [ 
-        @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+        @foreach ($chartsInfo['totalIncome'] as $income) {{  $income->total }} ,  @endforeach
             ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -262,21 +262,21 @@
  //start expneses pie chart data
  var expensesLineData = {
     labels: [ 
-      @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+      @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense)  "{{$chartsInfo['totalExpenses'][$key]->Category_Name}}",@endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) "{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}",@endforeach
          @endisset    
     ],
     datasets: [{
       label: 'Total amount',
       data: [ 
-        @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+        @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -304,10 +304,10 @@
 
   //start data for incomes
   var dataForIcomes = {
-    labels: [ @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach ],
+    labels: [ @foreach ( $chartsInfo['totalIncome'] as $income ) '{{  $income->type }}' ,  @endforeach ],
     datasets: [{
       label: 'Total amount',
-      data: [  @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach],
+      data: [  @foreach ($chartsInfo['totalIncome'] as $income) {{  $income->total }} ,  @endforeach],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -438,21 +438,21 @@
   //start expneses pie chart data
   var doughnutPieData = {
     labels: [ 
-      @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense)  "{{$totalExpenses[$key]->Category_Name}}",@endforeach
+      @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense)  "{{$chartsInfo['totalExpenses'][$key]->Category_Name}}",@endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) "{{$totalCustomExpeses[$key]->Custom_Category_Name}}",@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) "{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}",@endforeach
          @endisset    
     ],
     datasets: [{
       label: 'Total amount',
       data: [ 
-        @isset($totalExpenses)
-         @foreach($totalExpenses as $key=>$expense) {{$totalExpenses[$key]->total}}, @endforeach
+        @isset($chartsInfo['totalExpenses'])
+         @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
-         @isset($totalCustomExpeses)
-         @foreach($totalCustomExpeses as $key=>$customExpense) {{$totalCustomExpeses[$key]->custom_total}},@endforeach
+         @isset($chartsInfo['totalCustomExpenses'])
+         @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -482,7 +482,7 @@
       data: [
 
 
-          @foreach ($totalIncome as $income) {{  $income->total }} ,  @endforeach
+          @foreach ($chartsInfo['totalIncome'] as $income) {{  $income->total }} ,  @endforeach
  
       ],
       backgroundColor: [
@@ -507,7 +507,7 @@
     labels: [
 
 
-      @foreach ( $totalIncome as $income ) '{{  $income->type }}' ,  @endforeach
+      @foreach ( $chartsInfo['totalIncome'] as $income ) '{{  $income->type }}' ,  @endforeach
     ]
   };
   //end incomes pie chart data
