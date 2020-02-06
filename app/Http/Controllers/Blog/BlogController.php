@@ -38,7 +38,6 @@ class BlogController extends Controller
     }
     public function show($id){
         $blog = Blog::find($id)->withCount('comments')->first();
-        broadcast(new LiveCommentEvent($blog));
         return view('blogs.show',compact('blog'));
     }
     public function storeComment($id,Request $request){

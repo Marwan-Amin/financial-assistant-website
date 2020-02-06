@@ -31,8 +31,17 @@
                 <a href="#" class="tag-cloud-link">Travel</a>
               </div>
             </div>
-            
-     
+
+            <div class="about-author d-flex p-5 bg-light">
+              <div class="bio align-self-md-center mr-5">
+                <img src="{{asset($blog->user->avatar)}}" alt="Image placeholder" class="img-fluid mb-4">
+              </div>
+              <div class="desc align-self-md-center">
+                <h3>{{$blog->user->name}}</h3>
+              </div>
+            </div>
+
+
             <div class="pt-5 mt-5">
               <h3 class="mb-5">
               {{$blog->comments_count}}
