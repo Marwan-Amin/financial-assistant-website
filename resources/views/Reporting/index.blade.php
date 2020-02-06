@@ -7,7 +7,7 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
-        </span> Reportings</h3>
+        </span> Report</h3>
 </div>
 <div class="row">
     <div class="col-6">
@@ -29,7 +29,6 @@
 
             <div class="col-6">
             <div class="text-center"><a class="btn btn-outline-primary btn-icon-text" href="#"><i class="mdi mdi-download"></i> Download report as pdf</a></div>
-
             </div>
 </div>
 
@@ -75,6 +74,13 @@
 <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+        @isset($incomes)
+            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+
+            @isset($filterIncomes)
+            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/filterIncomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
             <h4 class="card-title">Your incomes</h4>
           
             <table class="table table-hover">
@@ -131,17 +137,7 @@
                 </tbody>
             </table>
 
-            @isset($incomes)
-            <div class="text-center">
-                <a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a>
-              
-            </div>
-            @endisset
 
-            @isset($filterIncomes)
-            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/filterIncomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-        
         </div>
     </div>
 </div>
@@ -157,6 +153,12 @@
 <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+        @isset($expenses)
+            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+            @isset($filterexpenses)
+            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/filterExpenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
             <h4 class="card-title">Your Expenses</h4>
           
             <table class="table table-hover">
@@ -213,12 +215,7 @@
                     
                 </tbody>
             </table>
-            @isset($expenses)
-            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-            @isset($filterexpenses)
-            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/filterExpenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
+            
         </div>
     </div>
 </div>

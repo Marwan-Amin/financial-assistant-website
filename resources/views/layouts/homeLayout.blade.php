@@ -40,6 +40,10 @@
         <link rel="stylesheet" href="{{asset('UI/homePage/css/flaticon.css')}}">
         <link rel="stylesheet" href="{{asset('UI/homePage/css/icomoon.css')}}">
         <link rel="stylesheet" href="{{asset('UI/homePage/css/style.css')}}">
+
+
+        
+        
     </head>
     <body>
 
