@@ -11,18 +11,18 @@
 
  <div class="main-panel">
  <div class="content-wrapper">
- <div class="page-header">
-      <h3 class="page-title">
-        <span class="page-title-icon bg-gradient-primary text-white mr-2">
-
-        <i class="mdi mdi-cake-variant menu-icon"></i>
-      </span> 
-      Create Your Own Blog
-  </h3>
-</div>
+ 
 <div class="container my-5">
 <div class="row">
 <div class="col-md-12 grid-margin stretch-card">
+              <div class="text-center my-5">
+                <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+
+                      <i class="mdi mdi-cake-variant menu-icon"></i>
+                    </span> 
+                    Create Your Own Blog
+                </h3></div>
                 <div class="card">
                   <div class="card-body">
                       <form action="{{route('blogs.store')}}" method="post" enctype="multipart/form-data">

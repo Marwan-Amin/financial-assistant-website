@@ -24,7 +24,7 @@ class BlogController extends Controller
 
        $isCreated = Blog::create([
             'title'=>$request->title,
-            'body'=>$request->body,
+            'body'=>strip_tags($request->body),
             'blog_image'=>$image,
             'user_id'=> Auth::user()->id
         ]);
