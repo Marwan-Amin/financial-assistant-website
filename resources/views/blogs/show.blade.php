@@ -7,21 +7,22 @@
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-10 col-sm-12 ftco-animate mb-4 text-center">
               <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Single Blog</span></p>
+              <h1 class="mb-3">Single Blog</h1>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ftco-section ftco-degree-bg">
-      <div class="container">
-        <div class="row">
+<section class="ftco-section ftco-degree-bg">
+  <div class="container">
+      <div class="row">
           <div class="col-md-8 ftco-animate">
               @isset($blog)
             <h2 class="mb-3">{{$blog->title}}</h2>
             <p>{{$blog->body}}</p>
             <p>
-            <img src="{{asset('$blog->blog_image')}}" alt="" class="img-fluid">
+            <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid">
             </p>
                           <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">Life</a>
@@ -31,16 +32,7 @@
               </div>
             </div>
             
-            <div class="about-author d-flex p-5 bg-light">
-              <div class="bio align-self-md-center mr-5">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
-              <div class="desc align-self-md-center">
-                <h3>{{$blog->user->name}}</h3>
-              </div>
-            </div>
-
-
+     
             <div class="pt-5 mt-5">
               <h3 class="mb-5">
               {{$blog->comments_count}}
@@ -147,11 +139,6 @@
               </div>
             </div>
 
-            <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -182,18 +169,6 @@
 
   });
   function renderResponse(commentData){
-    // <li class="comment">
-    //               <div class="vcard bio">
-    //                 <img src="images/person_1.jpg" alt="Image placeholder">
-    //               </div>
-    //               <div class="comment-body">
-    //                 <h3>John Doe</h3>
-    //                 <div class="meta">June 27, 2018 at 2:21pm</div>
-    //                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-    //                 <p><a href="#" class="reply">Reply</a></p>
-    //               </div>
-    //             </li>
-
     let commentContainer =document.getElementById('comment-list');
     let li = document.createElement('li');
     let imageDiv = document.createElement('div');
