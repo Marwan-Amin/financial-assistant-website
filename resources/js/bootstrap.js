@@ -40,3 +40,6 @@ window.Echo = new Echo({
     wsPort: 6001,
     disableStats: true,
 });
+window.Echo.channel("comments").listen("LiveCommentEvent",(ev)=>{
+ console.log(ev);
+});

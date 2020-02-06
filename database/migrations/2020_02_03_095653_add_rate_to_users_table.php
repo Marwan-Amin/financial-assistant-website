@@ -14,7 +14,7 @@ class AddRateToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('rate', ['1', '2','3','4','5']);
+            $table->enum('rate', ['1', '2','3','4','5'])->nullable();
         });
     }
 
