@@ -1924,16 +1924,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-    Echo.join("comments").here(function (users) {
-      console.log(users);
-    }).joining(function (user) {
-      console.log("".concat(user.name, " joined"));
-    }).leaving(function (user) {
-      console.log("".concat(user.name, " left"));
-    });
+  data: function data() {
+    return {
+      messages: ''
+    };
+  },
+  created: function created() {
+    this.fetchComment();
+  },
+  methods: {
+    fetchComment: function fetchComment() {
+      var _this = this;
+
+      axios.get('/comments/' + blogId).then(function (response) {
+        _this.messages = response.data;
+      });
+    }
   }
 });
 
@@ -47171,28 +47192,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.comments, function(comment, index) {
+        return _c("li", { key: index, staticClass: "comment" }, [
+          _vm._m(0, true),
+          _vm._v(" "),
+          _c("div", { staticClass: "comment-body" }, [
+            _c("h3", [_vm._v(_vm._s(comment.user.name))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "meta" }, [
+              _vm._v(_vm._s(comment.created_at))
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(comment.body))]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        ])
+      }),
+      _vm._v(" "),
+      _vm._m(2)
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "vcard bio" }, [
+      _c("img", {
+        attrs: { src: "images/person_1.jpg", alt: "Image placeholder" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("a", { staticClass: "reply", attrs: { href: "#" } }, [_vm._v("Reply")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "comment-form-wrap pt-5" }, [
+      _c("h3", { staticClass: "mb-5" }, [_vm._v("Leave a comment")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "message" } }, [_vm._v("Comment")]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: { id: "inputComment", cols: "30", rows: "10" }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn py-3 px-4 btn-primary",
+            attrs: { id: "postComment" }
+          },
+          [_vm._v("Post A Comment")]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "text-muted" }, [_vm._v("user is typing...")])
       ])
     ])
   }
