@@ -35,8 +35,9 @@ class DashboardController extends Controller
     public function store(Request $request){
         $user = User::find(Auth::user()->id);
         $user->rate = $request->rate;
+        $user->feedback = $request->feedback;
         $user->save();
         //dd($user);        
-        return redirect()->route('userHome');
+        return response()->json($request->rate);
     }
 }

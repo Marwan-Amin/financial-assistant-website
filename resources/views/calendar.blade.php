@@ -11,22 +11,6 @@
 
   
   <script>
-var today = new Date();
-var dd = today.getDate();
-
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-if(dd<10) 
-{
-    dd='0'+dd;
-} 
-
-if(mm<10) 
-{
-    mm='0'+mm;
-} 
-today = yyyy + '-' + mm + '-' + dd;
-
 
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
@@ -51,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
-    defaultDate: today,
+    defaultDate: '2019-08-12',
     navLinks: true, // can click day/week names to navigate views
     businessHours: true, // display business hours
     editable: true,
@@ -59,9 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   calendar.render();
-  
 });
-
 
 </script>
           </div>

@@ -210,11 +210,11 @@
                 <i class="mdi mdi-power"></i>
               </a>
             </li> -->
-            <li class="nav-item nav-settings d-none d-lg-block">
+            <li class="nav-item nav-settings d-none d-lg-block" >
            
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a class="nav-link logout-icon" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="transition:.5s all ease-in-out;width: 20px;overflow: hidden;">
               <i class="mdi mdi-power"></i>&nbsp;&nbsp;
-              {{ __('Logout') }}
+              <span class="logout-icon" >{{ __('Logout') }}</span> 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -349,6 +349,8 @@
         </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <!-- <script src="{{asset('js/app.js')}}"></script> -->
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     
@@ -404,6 +406,17 @@ $( function(){
 $("#imageUpload").change(function() {
     readURL(this);
 });
+
+$('.logout-icon').hover(function() {
+  $(this).css("width" , '70px')
+});
+$('.logout-icon').mouseleave(function() {
+  $(this).css("width" , '20px')
+});
+
+
+
+
 } )
 </script>
   

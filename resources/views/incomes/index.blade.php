@@ -9,8 +9,12 @@
         </span> Your incomes</h3>
     </div>
 <div class="col-lg-12 grid-margin stretch-card">
+  
     <div class="card">
+      
       <div class="card-body">
+      <a class="btn btn-lg btn-gradient-danger mt-4 mb-4" href="/incomes/create">+ Add new income</a>
+        
         <table class="table table-striped " id="incomeTable">
           <thead>
             <tr>
@@ -43,7 +47,7 @@
             @endforeach
           </tbody>
         </table>
-        <a class="btn btn-lg btn-gradient-danger mt-4" href="/incomes/create">+ Add new income</a>
+        
 
       </div>
     </div>
