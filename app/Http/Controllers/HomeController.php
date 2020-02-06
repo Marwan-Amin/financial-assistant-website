@@ -7,6 +7,7 @@ use App\Http\Requests\ContactRequest;
 use App\Mail\ContactFormMail;
 use Illuminate\Support\Facades\Mail;
 use App\User;
+use App\Blog;
 class HomeController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index',['users'=>User::all()]);
+        return view('home.index',['users'=>User::all()],['blogs'=>Blog::all()]);
     }
     public function store(ContactRequest $request)
     {
