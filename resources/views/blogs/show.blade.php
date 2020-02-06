@@ -21,7 +21,7 @@
             <h2 class="mb-3">{{$blog->title}}</h2>
             <p>{{$blog->body}}</p>
             <p>
-            <img src="{{asset('$blog->blog_image')}}" alt="" class="img-fluid">
+            <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid">
             </p>
                           <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">Life</a>
@@ -33,7 +33,7 @@
             
             <div class="about-author d-flex p-5 bg-light">
               <div class="bio align-self-md-center mr-5">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+                <img src="{{asset($blog->user->avatar)}}" alt="Image placeholder" class="img-fluid mb-4">
               </div>
               <div class="desc align-self-md-center">
                 <h3>{{$blog->user->name}}</h3>
@@ -180,7 +180,6 @@
        }
     }); 
     }
-
   });
   function renderResponse(commentData){
     // <li class="comment">
@@ -194,7 +193,6 @@
     //                 <p><a href="#" class="reply">Reply</a></p>
     //               </div>
     //             </li>
-
     let commentContainer =document.getElementById('comment-list');
     let li = document.createElement('li');
     let imageDiv = document.createElement('div');
@@ -209,7 +207,6 @@
         commentBodyDivH3.innerHTML = commentData.user.name;
         commentBodyChiledDiv.innerHTML=commentData.comment.created_at;
         commentBodyDivbody.innerHTML = commentData.comment.body;
-
         li.classList.add('comment');
         imageDiv.classList.add('vcard','bio');
         commentBodyDiv.classList.add('comment-body')
