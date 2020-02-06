@@ -63,6 +63,7 @@
                    </div>
                  </li>
                  @endforeach
+                 <input id="blog_id" type="hidden" value="{{$blog->id}}"/>
                  @endisset
               </ul>
               <!-- END comment-list -->
@@ -154,6 +155,7 @@
       </div>
     </section> <!-- .section -->
 <script>
+  let blogId = document.getElementById('blog_id').value;
   document.getElementById('postComment').addEventListener('click',function(){
     let comment = document.getElementById('inputComment').value;
     if(comment != '' || comment != null){

@@ -110,6 +110,12 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //calendar route
     Route::get('/calendar', 'CalendarController@index');
+
+    // comments routes
+
+    Route::get('/comments/{id}','CommentController@fetchComment');
+    Route::post('/comments','CommentController@sendComment');
+
    
 });
 
