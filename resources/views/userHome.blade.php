@@ -201,18 +201,16 @@
         </div>
       </div>
     </div>
+    
     <div class="row">
-        <div class="col grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="clearfix">
-                  <h4 class="card-title text-center">Charts</h4>
-                  <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
-                </div>
-                <canvas id="visit-sale-chart" class="mt-4"></canvas>
-              </div>
-            </div>
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Income categories</h4>
+            <canvas id="pieChart2" style="height:250px"></canvas>
           </div>
+        </div>
+      </div>
     </div>
     </div>
     </div>

@@ -10,16 +10,26 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UserSubCategory;
+use App\Exports\UserIncomesExport;
+use App\Exports\UserExpensesExport;
+use App\Exports\UserIncomesFilterExport;
+use App\Exports\UserExpensesFilterExport;  
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 class ReportController extends Controller
 {
+    public $dateto;
     public function index()
     {
         $userInfo = User::find(Auth::user()->id);
         $currentDate = Carbon::today()->toDateString();
         $expenses=$userInfo->subexpenses;
-        // dd($expenses);
         $incomes=$userInfo->incomes;
         $events = $userInfo->CustomCategories;
+
+        $userCharts = new User();
+        $chartsInfo = $userCharts->charts();
         return view ('Reporting.index', [
             'user' => $userInfo , 
             'expenses' => $expenses,
@@ -27,6 +37,7 @@ class ReportController extends Controller
             'date' => $currentDate ,
             'events' => $events,
             'targets' => $userInfo->target,
+            'chartsInfo' => $chartsInfo,
         ]);
     }
 
@@ -34,20 +45,20 @@ class ReportController extends Controller
     {   
         $user_info = User::find(Auth::user()->id);
         $selectedDate = $request->reportDate;
+        session()->put('selectedDate',$selectedDate);
+        $currentDate = Carbon::today()->toDateString();
         
         $expenses = UserSubCategory::where([
             "date" => $selectedDate , 
             "user_id" => $user_info->id
         ])->get();
 
-        // dd($expenses[0]);
 
         $incomes = UserIncome::where([
             "date" => $selectedDate , 
             "user_id" => $user_info->id
         ])->get();
 
-        // dd($incomes[0]->income);
 
 
         $events = CustomCategory::where([
@@ -56,7 +67,8 @@ class ReportController extends Controller
         ])->get();
 
         $currentDate = Carbon::today()->toDateString();
-        // dd($events);
+        $userCharts = new User();
+        $chartsInfo = $userCharts->charts();
         return view ('Reporting.index', [
             'user' => $user_info , 
             'filterexpenses' => $expenses,
@@ -64,7 +76,36 @@ class ReportController extends Controller
             'events' => $events,
             'targets' => $user_info->target,
             'date' => $selectedDate ,
+            'currentDate' =>$currentDate,
             'events' => $events,
+            'chartsInfo' => $chartsInfo,
+
         ]);
+    }
+
+    public function incomeExport()
+    {
+        return Excel::download(new UserIncomesExport, 'incomes.xlsx');
+    }
+
+    public function expenseExport()
+    {
+        return Excel::download(new UserExpensesExport, 'expenses.xlsx');
+    }
+
+    public function filterIncomeExport()
+    {
+        return Excel::download(new UserIncomesFilterExport, 'filteredIncomes.xlsx');
+    }
+
+    public function filterExpenseExport()
+    {
+        return Excel::download(new UserExpensesFilterExport, 'filteredExpenses.xlsx');
+    }
+
+    public function pdfExport()
+    {
+        $pdf = PDF::loadView('Reporting.index');
+        return $pdf->download('report.pdf');    
     }
 }

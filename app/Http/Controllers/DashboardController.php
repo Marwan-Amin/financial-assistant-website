@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Phpml\Regression\LeastSquares;
 
 class DashboardController extends Controller
 {
     public function index() {
+
         
         // $samples = [[73676,1, 1996], [70000,2, 1998]];
         // $targets = [2000, 9000];
@@ -17,6 +17,9 @@ class DashboardController extends Controller
         // $regression = new LeastSquares();
         // $regression->train($samples, $targets);
         // dd($regression->predict([0,7, 2025]));
+
+        $userCharts = new User();
+        $chartsInfo = $userCharts->charts();
       
       $user = User::find(Auth::user() -> id);
       $sumIncome = 0;
@@ -27,7 +30,7 @@ class DashboardController extends Controller
       foreach($user ->subExpenses as $expense) {
           $sumExpense = $sumExpense + floatval($expense->pivot->amount);
       }
-      return view('userHome', compact('sumIncome','sumExpense'));
+      return view('userHome', compact('sumIncome','sumExpense' , 'chartsInfo'));
 }
     public function store(Request $request){
         $user = User::find(Auth::user()->id);

@@ -9,16 +9,20 @@
         </span> Your incomes</h3>
     </div>
 <div class="col-lg-12 grid-margin stretch-card">
+  
     <div class="card">
+      
       <div class="card-body">
+      <a class="btn btn-lg btn-gradient-danger mt-4 mb-4" href="/incomes/create">+ Add new income</a>
+        
         <table class="table table-striped " id="incomeTable">
           <thead>
             <tr>
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Edit </th>
-              <th> Delete </th>
+              <th> Action </th>
+              
             </tr>
           </thead>
           <tbody>
@@ -27,22 +31,23 @@
                 <td>{{$user_income->income->type}}</td>
                 <td>{{$user_income->amount}}</td>
                 <td>{{$user_income->Date}}</td>
-                <td><a class="btn btn-inverse-info btn-fw" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit</a>
-                </td>
-                <td class="project-actions text-center">
-                  <form action="/incomes/{{$user_income->id}}" method="POST">
+                <td><a class="btn btn-inverse-info btn-fw" href="{{route('incomes.edit',['income_id'=>$user_income->id])}}" >Edit <i class="mdi mdi-file-check btn-icon-append"></i></a>&nbsp;&nbsp;
+                <form action="/incomes/{{$user_income->id}}" method="POST" style="display:inline-block">
                       @csrf 
                       @method('DELETE') 
                       <button class="btn btn-inverse-danger btn-fw" type=submit onclick="return confirm('Do you want to delete this income?')" >
-                        Delete
+                        Delete <i class="mdi mdi-delete"></i>
                       </button> 
                   </form>
-              </td> 
+                </td>
+                <!-- <td class="project-actions text-center">
+                  
+              </td>  -->
             </tr>
             @endforeach
           </tbody>
         </table>
-        <a class="btn btn-lg btn-gradient-danger mt-4" href="/incomes/create">+ Add new income</a>
+        
 
       </div>
     </div>

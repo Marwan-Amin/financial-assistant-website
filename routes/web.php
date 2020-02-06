@@ -75,10 +75,21 @@ Route::middleware(['auth','verified'])->group(function(){
     //Reporting routes
     Route::get('/reports/index', 'ReportController@index')->name('reports.index');
     Route::post('/reports/index', 'ReportController@filter')->name('reports.filter');
+    Route::get(' /reports/incomes/download', 'ReportController@incomeExport')->name('incomes.excel');
+    Route::get(' /reports/expenses/download', 'ReportController@expenseExport')->name('expenses.excel');
+    Route::get(' /reports/filterIncomes/download', 'ReportController@filterIncomeExport')->name('filterIncomes.excel');
+    Route::get(' /reports/filterExpenses/download', 'ReportController@filterExpenseExport')->name('filterExpenses.excel');
+
+    Route::get(' /reports/pdfdownload', 'ReportController@pdfExport')->name('pdfExport');
+
 
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
     Route::get('/predict', 'TensorFlowController@index')->name('predict.index');
+    Route::post('/predict/user', 'PredicitonController@getPredictionData')->name('predict.user');
+    Route::get('/prediction', 'PredicitonController@index')->name('prediction');
+
+
 
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');
@@ -86,12 +97,12 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //blog routes
 
-    // Route::get('/posts', 'PostController@index');
+    Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
     // Route::get('/','PostController@index' );
-    // Route::get('/posts/create', 'PostController@create');
-    // Route::post('/posts', 'PostController@store');
-    // Route::post('/posts/{id}', 'commentController@store');
-    // Route::get('/posts/ajax/{id}', 'AjaxController@show');
+    Route::get('/blogs/create', 'Blog\BlogController@create');
+    Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
+    Route::post('/blogs/{id}', 'Blog\BlogController@storeComment')->name('blogs.comment');
+    Route::get('/blogs/{id}/show', 'Blog\BlogController@show');
     // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
     // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
     // Route::put('/posts/{id}', 'PostController@update');
