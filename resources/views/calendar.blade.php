@@ -25,7 +25,7 @@ if(mm<10)
 {
     mm='0'+mm;
 } 
-today = yyyy + '-' + dd + '-' + mm;
+today = yyyy + '-' + mm + '-' + dd;
 
 
 document.addEventListener('DOMContentLoaded', function() {
