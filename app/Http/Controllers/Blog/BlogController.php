@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Blog;
 use App\Comment;
+use App\Events\LiveCommentEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogStoreRequest;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class BlogController extends Controller
     }
     public function show($id){
         $blog = Blog::find($id)->withCount('comments')->first();
+        broadcast(new LiveCommentEvent($blog));
         return view('blogs.show',compact('blog'));
     }
     public function storeComment($id,Request $request){

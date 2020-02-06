@@ -39,6 +39,7 @@
               Comments
               </h3>
               <ul id="comment-list">
+                <comment-component></comment-component>
                 @isset($blog->comments)
                 @foreach($blog->comments as $comment)
                <li class="comment">

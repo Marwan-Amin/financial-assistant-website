@@ -14,7 +14,7 @@ class AddFeedbackToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('feedback');
+            $table->text('feedback')->nullable();
         });
     }
 

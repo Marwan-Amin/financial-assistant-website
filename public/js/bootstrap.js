@@ -46954,6 +46954,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsPort: 6001,
   disableStats: true
 });
+window.Echo.channel("comments").listen("LiveCommentEvent", function (ev) {
+  console.log(ev);
+});
 
 /***/ }),
 
@@ -46964,7 +46967,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Personal_Financial_Assisstant/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /home/salma/Personal_Financial_Assisstant/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })
