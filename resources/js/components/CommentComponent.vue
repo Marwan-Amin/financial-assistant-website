@@ -41,7 +41,9 @@
         methods: {
             fetchComment(){
             axios.get('/comments/'+blogId).then(response=>{
-                                     this.messages = response.data;
+                                     console.log(response);
+            }).catch(error=>{
+              console.log(error);
             })
             }
         }

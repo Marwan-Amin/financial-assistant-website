@@ -1949,10 +1949,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchComment: function fetchComment() {
-      var _this = this;
-
       axios.get('/comments/' + blogId).then(function (response) {
-        _this.messages = response.data;
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }

@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     public function fetchComment($id){
-        return Blog::find($id);
+        $blog = Blog::find($id);
+        return response()->json($blog);
     }
+    
     public function sendComment(Request $request){
 
         Comment::create([

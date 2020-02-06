@@ -115,7 +115,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     // comments routes
 
-    Route::get('/comments/{id}','CommentController@fetshComment');
+    Route::get('/comments/{id}','CommentController@fetchComment');
     Route::post('/comments','CommentController@sendComment');
 
    
