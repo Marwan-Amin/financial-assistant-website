@@ -8,9 +8,11 @@
         <i class="mdi mdi-cash-usd menu-icon"></i>
         </span> Your Expenses</h3>
     </div>
-<div class="col-lg-12 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card pl-0">
     <div class="card">
       <div class="card-body">
+
+      <a class="btn btn-lg btn-gradient-success mt-5 mb-5" href="/expenses/create">+ Add new expense</a>
         <table class="table table-striped " >
           <thead>
             <tr>
@@ -40,7 +42,7 @@
           </tbody>
         </table>
 
-        <a class="btn btn-lg btn-gradient-success mt-4" href="/expenses/create">+ Add new expense</a>
+       
       </div>
     </div>
   </div>
