@@ -13,9 +13,7 @@ use App\Country;
 */
 
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/','HomeController@index');
 
 Route::middleware(['auth','verified'])->group(function(){
     
@@ -116,9 +114,7 @@ Route::middleware(['auth','verified'])->group(function(){
 });
 
 
-Route::get('/home', function () {
-    return view('home.index');
-})->name('home');
+Route::get('/home','HomeController@index')->name('home.index');
  //contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');
 

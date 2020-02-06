@@ -149,9 +149,6 @@
         </div>
       </div>
     </section>
-
-
-
     <section class="ftco-section testimony-section ftco-degree-bg">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -163,20 +160,21 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
+              @foreach($users as $user)
               <div class="item text-center">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url({{asset('UI/homePage/images/person_1.jpg')}}); ">
+                  <div class="user-img mb-4" style="background-image: url({{asset($user->avatar)}}); ">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">Marketing Manager</span>
+                    <p class="mb-5">{{$user->feedback}}</p>
+                    <p class="name">{{$user->name}}</p>
                   </div>
                 </div>
-              </div>  
+              </div> 
+              @endforeach 
             </div>
           </div>
         </div>

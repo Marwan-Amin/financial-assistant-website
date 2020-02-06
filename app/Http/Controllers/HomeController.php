@@ -26,9 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        dd($user);
-        return view('home');
+        return view('home.index',['users'=>User::all()]);
     }
     public function store(ContactRequest $request)
     {
