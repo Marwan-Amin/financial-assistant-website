@@ -8,12 +8,12 @@
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
         </span> Your incomes</h3>
     </div>
-<div class="col-lg-12 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card pl-0">
   
     <div class="card">
       
       <div class="card-body">
-      <a class="btn btn-lg btn-gradient-danger mt-4 mb-4" href="/incomes/create">+ Add new income</a>
+      <a class="btn btn-lg btn-gradient-danger mt-5 mb-5" href="/incomes/create">+ Add new income</a>
         
         <table class="table table-striped " id="incomeTable">
           <thead>
