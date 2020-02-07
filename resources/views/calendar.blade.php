@@ -28,6 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
       userData.push({"title":userExpense.name+':'+userExpense.pivot.amount,'start':userExpense.pivot.date,'color':"#930000",'overlap':true});
   }
+  //add cuurent date
+  var today = new Date();
+  var dd = today.getDate();
+
+  var mm = today.getMonth()+1; 
+  var yyyy = today.getFullYear();
+  if(dd<10) 
+  {
+      dd='0'+dd;
+  } 
+
+  if(mm<10) 
+  {
+      mm='0'+mm;
+  } 
+  // today = dd+'/'+mm+'/'+yyyy;
+  today = yyyy + '-' + mm + '-' + dd;
+
+
+  //add current date
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
     header: {
@@ -35,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
-    defaultDate: '2019-08-12',
+    defaultDate: today,
     navLinks: true, // can click day/week names to navigate views
     businessHours: true, // display business hours
     editable: true,

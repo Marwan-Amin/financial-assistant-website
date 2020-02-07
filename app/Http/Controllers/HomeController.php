@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactFormMail;
 use Illuminate\Support\Facades\Mail;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -25,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+        dd($user);
         return view('home');
     }
     public function store(ContactRequest $request)

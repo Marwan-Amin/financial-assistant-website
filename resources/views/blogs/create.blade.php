@@ -36,7 +36,7 @@
                       <div class="form-group row">
                         <label for="body" class="col-sm-3 col-form-label">Blog Description</label>
                         <div class="col-sm-9">
-                        <textarea class="form-control"  name="body" id="summernote" ></textarea>
+                        <textarea class="form-control"  name="body" ></textarea>
                         </div>
                       </div>
                       <div class="input-group">
