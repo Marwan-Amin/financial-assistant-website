@@ -47,6 +47,7 @@
 
 
             <div class="pt-5 mt-5">
+
               <h3 class="mb-5">6 Comments</h3>
               <ul class="comment-list">
                 <li class="comment">
@@ -127,6 +128,30 @@
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
                 </li>
+
+              <h3 class="mb-5">
+              {{$blog->comments_count}}
+              Comments
+              </h3>
+              <ul id="comment-list">
+                <comment-component></comment-component>
+                @isset($blog->comments)
+                @foreach($blog->comments as $comment)
+               <li class="comment">
+                   <div class="vcard bio">
+                     <img src="images/person_1.jpg" alt="Image placeholder">
+                   </div>
+                   <div class="comment-body">
+                     <h3>{{$comment->user->name}}</h3>
+                     <div class="meta">{{$comment->created_at}}</div>
+                     <p>{{$comment->body}}</p>
+                     <p><a href="#" class="reply">Reply</a></p>
+                   </div>
+                 </li>
+                 @endforeach
+                 <input id="blog_id" type="hidden" value="{{$blog->id}}"/>
+                 @endisset
+
               </ul>
               <!-- END comment-list -->
               
@@ -220,6 +245,7 @@
       </div>
     </section> 
 <script>
+  let blogId = document.getElementById('blog_id').value;
   document.getElementById('postComment').addEventListener('click',function(){
     let comment = document.getElementById('inputComment').value;
     if(comment != '' || comment != null){

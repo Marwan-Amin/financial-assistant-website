@@ -149,9 +149,6 @@
         </div>
       </div>
     </section>
-
-
-
     <section class="ftco-section testimony-section ftco-degree-bg">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -163,20 +160,21 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
+              @foreach($users as $user)
               <div class="item text-center">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url({{asset('UI/homePage/images/person_1.jpg')}}); ">
+                  <div class="user-img mb-4" style="background-image: url({{asset($user->avatar)}}); ">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">Marketing Manager</span>
+                    <p class="mb-5">{{$user->feedback}}</p>
+                    <p class="name">{{$user->name}}</p>
                   </div>
                 </div>
-              </div>  
+              </div> 
+              @endforeach 
             </div>
           </div>
         </div>
@@ -228,48 +226,22 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 ftco-animate">
-            <div class="blog-entry">
-              <a href="blog-single.html" class="block-20" style="background-image: url({{asset('UI/homePage/images/image_1.jpg')}}); ">
-              </a>
-              <div class="text p-4 d-block">
-                <div class="meta mb-3">
-                  <div><a href="#">July 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
+          @foreach($blogs as $blog)
           <div class="col-md-4 ftco-animate">
             <div class="blog-entry" data-aos-delay="100">
-              <a href="blog-single.html" class="block-20" style="background-image: url({{asset('UI/homePage/images/image_2.jpg')}}); ">
+              <a href="blog-single.html" class="block-20" style="background-image: url({{asset($blog->blog_image)}}); ">
               </a>
               <div class="text p-4">
                 <div class="meta mb-3">
-                  <div><a href="#">July 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
+                  <div><a href="#">{{$blog->title}}</a></div>
+                  <div><a href="#"></a>{{$blog->user->name}}</div>
                   <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
                 </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <h3 class="heading"><a href="#">{{$blog->body}}</a></h3>
               </div>
             </div>
           </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="blog-entry" data-aos-delay="200">
-              <a href="blog-single.html" class="block-20" style="background-image: url({{asset('UI/homePage/images/image_3.jpg')}}); ">
-              </a>
-              <div class="text p-4">
-                <div class="meta mb-3">
-                  <div><a href="#">July 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </section>

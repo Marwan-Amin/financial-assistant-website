@@ -13,9 +13,7 @@ use App\Country;
 */
 
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/','HomeController@index');
 
 Route::middleware(['auth','verified'])->group(function(){
     
@@ -112,13 +110,17 @@ Route::middleware(['auth','verified'])->group(function(){
 
     //calendar route
     Route::get('/calendar', 'CalendarController@index');
+
+    // comments routes
+
+    Route::get('/comments/{id}','CommentController@fetchComment');
+    Route::post('/comments','CommentController@sendComment');
+
    
 });
 
 
-Route::get('/home', function () {
-    return view('home.index');
-})->name('home');
+Route::get('/home','HomeController@index')->name('home.index');
  //contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');
 
