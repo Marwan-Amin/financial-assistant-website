@@ -14,12 +14,12 @@
                 </strong>
               </h1>
               <p>When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.</p>
-              <p>
-                <a href="https://vimeo.com/45830194" class="btn btn-primary btn-outline-white px-4 py-3 popup-vimeo">
+              <!-- <p>
+                <a href="https://vimeo.com/45830194" class="btn btn-primary btn-outline-white px-4 py-3 popup-vimeo"> -->
                 <!-- <span class="ion-ios-play mr-2"></span> -->
-                 Watch Video</a>
+                 <!-- Watch Video</a>
 
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="row no-gutters">
-        <div class="block-3 d-md-flex ftco-animate">
+        <div class="w-100 block-3 d-md-flex ftco-animate">
             <a href="portfolio.html" class="image" style="background-image: url({{asset('UI/homePage/images/work-1.jpg')}}); "></a>
             <div class="text">
               <h4 class="subheading">Easy Access</h4>
@@ -71,12 +71,12 @@
             </div>
           </div>
 
-          <div class="block-3 d-md-flex ftco-animate">
+          <div class="w-100 block-3 d-md-flex ftco-animate">
             <a href="portfolio.html" class="image order-2" style="background-image: url({{asset('UI/homePage/images/work-2.jpg')}}); "></a>
             <div class="text order-1">
               <h4 class="subheading">Get Notifications</h4>
               <h2 class="heading"><a href="#">Effortlessly stay on top of bills</a></h2>
-              <p>Bills are now easier than ever to track. Simply add them to your dashboard to see and monitor them all at once.Receive reminders for upcoming bills so you can plan ahead, Never miss a payment with alerts when bills are due</p>
+              <p>Bills are now easier than ever to track. Simply add them to your dashboard to see and monitor them all at once.</p>
             </div>
           </div>
 

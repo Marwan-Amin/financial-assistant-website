@@ -2,6 +2,15 @@
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
+          @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
             <div class="page-header" style="padding: 2.75rem 2.25rem;">
               <!-- <h3 class="page-title"> Personal info </h3> -->
               <nav aria-label="breadcrumb">
@@ -14,7 +23,9 @@
             <div class="row">
 
               <div class="col-12">
+              
                 <div class="card">
+                
                   <div class="card-body" style="position: relative">
                   <form class="form-sample" style="padding-top:7em" method="post" action="/user_profile/{{ Auth::user()->id }}" enctype="multipart/form-data">
                     @csrf

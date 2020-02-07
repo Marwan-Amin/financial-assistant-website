@@ -23,6 +23,10 @@ class ProfileController extends Controller
 
     public function update(Request $request ,$id) 
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email:rfc,dns'
+        ]);
         
         $user = User::find($id);
         if( request()->avatar ){
