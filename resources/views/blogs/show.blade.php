@@ -99,7 +99,7 @@
                 <div class="text">
                   <h3 class="heading"><a href="{{route('blogs.show',['id'=>$recentBlog->id])}}">{{$recentBlog->title}}</a></h3>
                   <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> {{$recentBlog->created_at}}</a></div>
+                    <div><a href="#"><span class="icon-calendar"></span> {{$recentBlog->created_at->diffForHumans()}}</a></div>
                     <div><a href="#"><span class="icon-person"></span> {{$recentBlog->user->name}}</a></div>
                   </div>
                 </div>

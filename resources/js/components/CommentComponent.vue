@@ -88,7 +88,7 @@ import moment from 'moment';
                   .then(response=>{
                     //we get here the object which contain our comments array
                     // in this response as the pagination package need it to be an object passed
-                    console.log(response);
+                    
                     this.comments = response.data.comments;
                   });
           },
@@ -104,7 +104,7 @@ import moment from 'moment';
             },
             sendComment(){
               //we import moment to form date of comment
-              this.comments.data.push({body:this.newComment,user:this.user,created_at:moment(String(new Date())).format('YYYY-MM-DD hh:mm')});
+              this.comments.data.push({body:this.newComment,user:this.user,created_at:moment(String(new Date())).fromNow()});
               axios.post('/comments/'+blogId,{comment:this.newComment}).then(res=>{
                // on send comment we fetch the comments to get always the last page 
                 this.fetchComment();

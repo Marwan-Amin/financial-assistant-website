@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Blog;
+use App\Comment;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,7 @@ class BlogController extends Controller
        $tags = rtrim($tags,",");
             return view('blogs.create',compact('blog','tags'));
 
-            }else{
+            }else{  
                 return view('blogs.denied');
             }
                     }
@@ -78,6 +79,7 @@ class BlogController extends Controller
         return redirect()->route('blogs.show',['id'=>$blog->id]);
     }
     public function show($id){
+        
         $blog = Blog::where('id',$id)->withCount('comments')->first();
         $recentBlogs = Blog::latest('created_at')->limit(3)->get();
        $tags = Blog::find($id)->tags;

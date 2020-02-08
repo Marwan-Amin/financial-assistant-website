@@ -2001,7 +2001,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/comments/' + blogId + '?page=' + page).then(function (response) {
         //we get here the object which contain our comments array
         // in this response as the pagination package need it to be an object passed
-        console.log(response);
         _this2.comments = response.data.comments;
       });
     },
@@ -2024,7 +2023,7 @@ __webpack_require__.r(__webpack_exports__);
       this.comments.data.push({
         body: this.newComment,
         user: this.user,
-        created_at: moment__WEBPACK_IMPORTED_MODULE_0___default()(String(new Date())).format('YYYY-MM-DD hh:mm')
+        created_at: moment__WEBPACK_IMPORTED_MODULE_0___default()(String(new Date())).fromNow()
       });
       axios.post('/comments/' + blogId, {
         comment: this.newComment
@@ -77863,6 +77862,8 @@ Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default.a);
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
 Vue.component('comment-component', __webpack_require__(/*! ./components/CommentComponent.vue */ "./resources/js/components/CommentComponent.vue")["default"]);
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));

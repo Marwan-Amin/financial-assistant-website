@@ -32,7 +32,7 @@
               <div class="text p-4 d-block">
                 <div class="meta mb-3">
                 <div>{{$blog->user->name}}</div>
-                  <div>{{$blog->created_at}}</div>
+                  <div>{{$blog->created_at->diffForHumans()}}</div>
                 </div>
                 <h3 class="heading"><a href="/blogs/{{$blog->id}}/show">{{$blog->title}}</a></h3>
               </div>
