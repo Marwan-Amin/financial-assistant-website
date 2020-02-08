@@ -56,6 +56,7 @@ import moment from 'moment';
             }
         },
         created() {
+          //on load page featch comments from server
             this.fetchComment();
             Echo.join('comments')
             .here(user=>{
@@ -87,12 +88,16 @@ import moment from 'moment';
                   .then(response=>{
                     //we get here the object which contain our comments array
                     // in this response as the pagination package need it to be an object passed
+                    console.log(response);
                     this.comments = response.data.comments;
                   });
           },
             fetchComment(){
             axios.get('/comments/'+blogId).then(response=>{
+              // get always last page of comments as it's last comments and there you will add you new comment
+              this.getResults(response.data.comments.last_page);
                     this.comments = response.data.comments;
+
             }).catch(error=>{
               alert(error);
             });
@@ -100,7 +105,10 @@ import moment from 'moment';
             sendComment(){
               //we import moment to form date of comment
               this.comments.data.push({body:this.newComment,user:this.user,created_at:moment(String(new Date())).format('YYYY-MM-DD hh:mm')});
-              axios.post('/comments/'+blogId,{comment:this.newComment}).catch(err=>{
+              axios.post('/comments/'+blogId,{comment:this.newComment}).then(res=>{
+               // on send comment we fetch the comments to get always the last page 
+                this.fetchComment();
+              }).catch(err=>{
                 alert(err.message);
               });
               //reset the comment input value

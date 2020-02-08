@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    //on load page featch comments from server
     this.fetchComment();
     Echo.join('comments').here(function (user) {
       _this.users = user;
@@ -2000,6 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/comments/' + blogId + '?page=' + page).then(function (response) {
         //we get here the object which contain our comments array
         // in this response as the pagination package need it to be an object passed
+        console.log(response);
         _this2.comments = response.data.comments;
       });
     },
@@ -2007,12 +2009,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get('/comments/' + blogId).then(function (response) {
+        // get always last page of comments as it's last comments and there you will add you new comment
+        _this3.getResults(response.data.comments.last_page);
+
         _this3.comments = response.data.comments;
       })["catch"](function (error) {
         alert(error);
       });
     },
     sendComment: function sendComment() {
+      var _this4 = this;
+
       //we import moment to form date of comment
       this.comments.data.push({
         body: this.newComment,
@@ -2021,6 +2028,9 @@ __webpack_require__.r(__webpack_exports__);
       });
       axios.post('/comments/' + blogId, {
         comment: this.newComment
+      }).then(function (res) {
+        // on send comment we fetch the comments to get always the last page 
+        _this4.fetchComment();
       })["catch"](function (err) {
         alert(err.message);
       }); //reset the comment input value

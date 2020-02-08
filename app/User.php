@@ -16,10 +16,13 @@ use App\UserIncome;
 use App\CustomCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
