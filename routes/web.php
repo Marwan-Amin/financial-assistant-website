@@ -99,7 +99,6 @@ Route::middleware(['auth','verified'])->group(function(){
     // Route::get('/','PostController@index' );
     Route::get('/blogs/create', 'Blog\BlogController@create');
     Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
-    Route::post('/blogs/{id}', 'Blog\BlogController@storeComment')->name('blogs.comment');
     Route::get('/blogs/{id}/show', 'Blog\BlogController@show');
     // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
     // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
@@ -114,7 +113,7 @@ Route::middleware(['auth','verified'])->group(function(){
     // comments routes
 
     Route::get('/comments/{id}','CommentController@fetchComment');
-    Route::post('/comments','CommentController@sendComment');
+    Route::post('/comments/{id}','CommentController@sendComment');
 
    
 });

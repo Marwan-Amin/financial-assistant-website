@@ -31,6 +31,6 @@ class LiveCommentEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('comments');
+        return new PresenceChannel('comments');
     }
 }

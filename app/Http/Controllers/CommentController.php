@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Comment;
+use App\Events\LiveCommentEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,16 +12,19 @@ class CommentController extends Controller
 {
     public function fetchComment($id){
         $blog = Blog::find($id);
-        return response()->json($blog);
+        $comments = $blog->comments()->with('user')->paginate(5);
+        return response()->json(['comments' => $comments]);
     }
     
-    public function sendComment(Request $request){
+    public function sendComment($id,Request $request){
 
-        Comment::create([
+      $comment =  Comment::create([
             'user_id'=>Auth::user()->id,
-            'post_id'=>$request->post_id,
-            'body'=>$request->body
+            'blog_id'=>$id,
+            'body'=>$request->comment
         ]);
+        //send comment to event and this will broadcast this comment now we go to listen this event on our comment component
+        broadcast(new LiveCommentEvent($comment->load('user')))->toOthers();
             return ['status'=>'success'];
     }
 }

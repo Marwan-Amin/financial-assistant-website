@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Blog;
-use App\Comment;
-use App\Events\LiveCommentEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogStoreRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,13 +37,5 @@ class BlogController extends Controller
         $blog = Blog::find($id)->withCount('comments')->first();
         return view('blogs.show',compact('blog'));
     }
-    public function storeComment($id,Request $request){
-           $comment = Comment::create([
-                'body'=>$request->comment,
-                'user_id'=>Auth::user()->id,
-                'blog_id'=>$id,
-                'blog_image'=>'null'
-            ]);
-        return response()->json(['comment'=>$comment,'user'=>Auth::user()]);
-    }
+    
 }

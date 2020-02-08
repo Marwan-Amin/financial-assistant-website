@@ -149,4 +149,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
         return $userChartInfo;
     }
+
+    public function getUserNameAttribute()
+    {
+        return $this->attributes['user_name'] == 'yes';
+    }
 }

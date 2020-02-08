@@ -108,11 +108,8 @@
                 </div>
             </div>
         </nav>
-        <div id="app">
-            @yield('content')
-
-        </div>
-
+       
+        @yield('content')
         <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">

@@ -13,7 +13,12 @@
         </div>
       </div>
     </section>
-
+    <input type="hidden" id="blog_id" value="{{$blog->id}}">
+   <!-- we put this script above comment component to make the interpreter interpret  blog id before it goes to the comment componnent to make it globally for this component -->
+   <script>
+  let blogId = document.getElementById('blog_id').value;
+  // 
+</script>
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
@@ -48,139 +53,22 @@
 
             <div class="pt-5 mt-5">
 
-              <h3 class="mb-5">6 Comments</h3>
               <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>John Doe</h3>
-                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>John Doe</h3>
-                            <div class="meta">June 27, 2018 at 2:21pm</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>John Doe</h3>
-                                  <div class="meta">June 27, 2018 at 2:21pm</div>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
+               
 
               <h3 class="mb-5">
               {{$blog->comments_count}}
               Comments
               </h3>
-              <ul id="comment-list">
-                <comment-component></comment-component>
-                @isset($blog->comments)
-                @foreach($blog->comments as $comment)
-               <li class="comment">
-                   <div class="vcard bio">
-                     <img src="images/person_1.jpg" alt="Image placeholder">
-                   </div>
-                   <div class="comment-body">
-                     <h3>{{$comment->user->name}}</h3>
-                     <div class="meta">{{$comment->created_at}}</div>
-                     <p>{{$comment->body}}</p>
-                     <p><a href="#" class="reply">Reply</a></p>
-                   </div>
-                 </li>
-                 @endforeach
-                 <input id="blog_id" type="hidden" value="{{$blog->id}}"/>
-                 @endisset
-
-              </ul>
+              <div id="app">
+              <!-- we bind the auth user to use it in vue in vue props to know each user send comment -->
+                <comment-component :user="{{auth()->user()}}"></comment-component>
+                
+            </div>
+              
               <!-- END comment-list -->
               
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-5 bg-light">
-                  <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                  </div>
-
-                </form>
-              </div>
+              
             </div>
 
           </div> <!-- .col-md-8 -->
@@ -189,32 +77,12 @@
 
             <div class="sidebar-box ftco-animate">
               <h3>Recent Blog</h3>
+              
+             
               <div class="block-21 mb-4 d-flex">
                 <a class="blog-img mr-4" style="background-image: url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                  <h3 class="heading"><a href="#">body</a></h3>
                   <div class="meta">
                     <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
                     <div><a href="#"><span class="icon-person"></span> Admin</a></div>
@@ -228,13 +96,7 @@
               <h3>Tag Cloud</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">dish</a>
-                <a href="#" class="tag-cloud-link">menu</a>
-                <a href="#" class="tag-cloud-link">food</a>
-                <a href="#" class="tag-cloud-link">sweet</a>
-                <a href="#" class="tag-cloud-link">tasty</a>
-                <a href="#" class="tag-cloud-link">delicious</a>
-                <a href="#" class="tag-cloud-link">desserts</a>
-                <a href="#" class="tag-cloud-link">drinks</a>
+               
               </div>
             </div>
 
@@ -244,59 +106,5 @@
         </div>
       </div>
     </section> 
-<script>
-  let blogId = document.getElementById('blog_id').value;
-  document.getElementById('postComment').addEventListener('click',function(){
-    let comment = document.getElementById('inputComment').value;
-    if(comment != '' || comment != null){
-      $.ajax({
-    headers: {
-       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-             },
-  type: 'POST',
-   url:"{{route('blogs.comment',['id'=>$blog->id])}}",
-   data:{'comment':comment},
-       success:function(response){
-        if($.isEmptyObject(response.error)){
-            // console.log(response);
-            renderResponse(response);
-            // alert(response.success);
-        }else{
-          alert(false);
-            // printErrorMsgEvent(response.error);
-        }
-       }
-    }); 
-    }
-  });
-  function renderResponse(commentData){
-    let commentContainer =document.getElementById('comment-list');
-    let li = document.createElement('li');
-    let imageDiv = document.createElement('div');
-    let commentImage=new Image;
-    let commentBodyDiv = document.createElement('div');
-    let commentBodyDivH3 = document.createElement('h3');
-    let commentBodyChiledDiv = document.createElement('div');
-    let commentBodyDivbody =  document.createElement('p');
-    let commentBodyDivReplyContainer =  document.createElement('p');
-    let commentBodyDivReplyLink = document.createElement('a');
-        commentBodyDivReplyLink.innerHTML = 'Reply';
-        commentBodyDivH3.innerHTML = commentData.user.name;
-        commentBodyChiledDiv.innerHTML=commentData.comment.created_at;
-        commentBodyDivbody.innerHTML = commentData.comment.body;
-        li.classList.add('comment');
-        imageDiv.classList.add('vcard','bio');
-        commentBodyDiv.classList.add('comment-body')
-        imageDiv.appendChild(commentImage);
-        commentBodyDivReplyContainer.appendChild(commentBodyDivReplyLink);
-        commentBodyDiv.appendChild(commentBodyDivH3);
-        commentBodyDiv.appendChild(commentBodyChiledDiv);
-        commentBodyDiv.appendChild(commentBodyDivbody);
-        commentBodyDiv.appendChild(commentBodyDivReplyContainer);
-        li.appendChild(imageDiv);
-        li.appendChild(commentBodyDiv);
-        commentContainer.appendChild(li);
-    
-  }
-</script>
+
 @endsection
