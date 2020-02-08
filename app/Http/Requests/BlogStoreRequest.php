@@ -24,7 +24,7 @@ class BlogStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required|string|min:3|unique:blogs',
+            'title'=>'required|string|min:3',
             'body'=>'required|string|min:15'
         ];
     }

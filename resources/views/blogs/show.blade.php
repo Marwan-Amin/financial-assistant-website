@@ -33,10 +33,14 @@
              
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">Life</a>
-                <a href="#" class="tag-cloud-link">Sport</a>
-                <a href="#" class="tag-cloud-link">Tech</a>
-                <a href="#" class="tag-cloud-link">Travel</a>
+              @isset($tags)
+                @foreach($tags as $tag)
+                <a href="#" class="tag-cloud-link">{{$tag->name}}</a>
+              @endforeach
+              @else
+              <a href="#" class="tag-cloud-link">There's No Tags</a>
+
+                @endisset
               </div>
             </div>
             
@@ -95,8 +99,14 @@
             <div class="sidebar-box ftco-animate">
               <h3>Tag Cloud</h3>
               <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">dish</a>
-               
+                @isset($tags)
+                @foreach($tags as $tag)
+                <a href="#" class="tag-cloud-link">{{$tag->name}}</a>
+              @endforeach
+              @else
+              <a href="#" class="tag-cloud-link">There's No Tags</a>
+
+                @endisset
               </div>
             </div>
 

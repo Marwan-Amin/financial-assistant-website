@@ -44,9 +44,11 @@
                       <input type="file" class="custom-file-input" name="blog_image">
                       <label class="custom-file-label" for="blog_image">Choose Image</label>
                      </div>
-                     
                     </div>
-
+                    <div class="form-group row">
+                      <input type="text" class="form-control" name="tags">
+                      <label class="col-sm-3 col-form-label" for="tags">Write Tags For This Blog Separated with [,]</label>
+                     </div>
                       <div >
                       <button class="btn btn-dark mt-5">Create Blog</button>
                     </div>
