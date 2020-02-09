@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Finance;
+use App\Http\Controllers\Controller;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
@@ -30,7 +31,9 @@ class ExpenseController extends Controller
         return view('expenses.create',compact('expensesCategories'));
     }
     public function getSubCategories($categoryId)
-    {
+    {   
+
+        if($categoryId != 21){        
         $subCategories=ExpenseSubCategory::where('category_id',$categoryId)->get();
         $subCategoriesInfo = [];
 
@@ -39,14 +42,18 @@ class ExpenseController extends Controller
                 $subCategoriesInfo[]= ['name'=>$subCategory->name,'id'=>$subCategory->id,'sub_category_icon'=>$subCategory->sub_category_icon];
             }
         }else{
+
             $subCategoriesInfo = false;
         }
+    }else{
+        return response()->json('others');
 
+    }
         
         return response()->json($subCategoriesInfo);
     }
     public function store(expensesRequest $request){
-        
+        dd($request);
         $userSubCategory = UserSubCategory::where('user_id',Auth::user()->id)
                        ->where('date',$request->date)->where('sub_category_id',$request->subCategory);
         $userSubCategory=$userSubCategory->exists()?$userSubCategory->first():['amount'=>0];

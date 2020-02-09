@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Finance;
+use App\Http\Controllers\Controller;
 
 use App\CustomCategory;
 use App\CustomSubCategory;
@@ -10,6 +11,8 @@ use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
+
 class EventController extends Controller
 {
     public function index(){

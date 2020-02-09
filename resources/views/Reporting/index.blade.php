@@ -28,7 +28,7 @@
 </div>
 
             <div class="col-6">
-            <div class="text-center"><a class="btn btn-outline-primary btn-icon-text" href="#"><i class="mdi mdi-download"></i> Download report as pdf</a></div>
+            <div class="text-center"><a class="btn btn-outline-primary btn-icon-text" href="/reports/pdfdownload"><i class="mdi mdi-download"></i> Download report as pdf</a></div>
             </div>
 </div>
 

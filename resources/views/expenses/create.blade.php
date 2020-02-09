@@ -231,7 +231,7 @@
                               </div>
                   
                               <div class="cat-box">
-                                <input type="radio" name="category" id="add" value="Others">
+                                <input type="radio" name="category" id="add" value="21" data-toggle="modal" data-target="#myModal">
                                 <label for="add"><div class="glyph-icon flaticon-add"></div><span>Others</span></label>
                               </div>
                      
@@ -316,7 +316,7 @@
                         @endisset
                         
                         </div>
-                        
+                  
                       </div>
                       <!--sub category icons -->
                     
@@ -332,6 +332,7 @@
             <!--pop up-->      
 
 
+  
 
 
 

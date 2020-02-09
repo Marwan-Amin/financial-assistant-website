@@ -22,48 +22,47 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     Route::post('/userHome',"DashboardController@store")->name('dashboard.store');
 
-    
     //incomes routes
-    Route::get('/incomes','IncomeController@index')->name('incomes.index');
-    Route::get('incomes/create', 'IncomeController@create')->name('incomes.create');
-    Route::post('/incomes','IncomeController@store');
-    Route::delete('/incomes/{income_id}', 'IncomeController@destroy')->name('incomes.destroy');
-    Route::patch('/incomes/{income_id}', 'IncomeController@update')->name('incomes.update');
-    Route::get('/incomes/{income_id}/edit', 'IncomeController@edit')->name('incomes.edit');
+    Route::get('/incomes','Finance\IncomeController@index')->name('incomes.index');
+    Route::get('incomes/create', 'Finance\IncomeController@create')->name('incomes.create');
+    Route::post('/incomes','Finance\IncomeController@store');
+    Route::delete('/incomes/{income_id}', 'Finance\IncomeController@destroy')->name('incomes.destroy');
+    Route::patch('/incomes/{income_id}', 'Finance\IncomeController@update')->name('incomes.update');
+    Route::get('/incomes/{income_id}/edit', 'Finance\IncomeController@edit')->name('incomes.edit');
 
     //expenses routes
-    Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
-    Route::get('/expenses/index','ExpenseController@index')->name('expenses.index');
-    Route::post('/expenses','ExpenseController@store')->name('expenses.store');
-    Route::get('/category/ajax/{categoryId}','ExpenseController@getSubCategories')->name('subCategory.ajax');
-    Route::get('/expenses/{id}','ExpenseController@create')->name('expenses.edit');
-    Route::put('/expenses/{id}','ExpenseController@edit')->name('expenses.edit');
-    Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
+    Route::get('/expenses/create', 'Finance\ExpenseController@create')->name('expenses.create');
+    Route::get('/expenses/index','Finance\ExpenseController@index')->name('expenses.index');
+    Route::post('/expenses','Finance\ExpenseController@store')->name('expenses.store');
+    Route::get('/category/ajax/{categoryId}','Finance\ExpenseController@getSubCategories')->name('subCategory.ajax');
+    Route::get('/expenses/{id}','Finance\ExpenseController@create')->name('expenses.edit');
+    Route::put('/expenses/{id}','Finance\ExpenseController@edit')->name('expenses.edit');
+    Route::delete('/expenses/{id}', 'Finance\ExpenseController@destroy')->name('expenses.destroy');
 
     //events route
-    Route::get('/events/create', 'EventController@create')->name('events.create');
-    Route::get('/events/manager', 'EventController@index')->name('events.index');
-    Route::delete('/events/{id}/delete', 'EventController@destroy')->name('events.destroy');
-    Route::get('/events/{id}','EventController@edit')->name('events.edit');
-    Route::get('/events/{id}/show','EventController@show')->name('events.show');
-    Route::put('/events/{id}/update','EventController@update')->name('events.update');
-    Route::put('/SubEvents/{id}/update','EventController@updateSubEvent')->name('subEvent.update');
-    Route::post('/events','EventController@store')->name('events.store');
-    Route::post('/events/subExpenseEvent','EventController@storeSubEvent')->name('events.subStore');
+    Route::get('/events/create', 'Finance\EventController@create')->name('events.create');
+    Route::get('/events/manager', 'Finance\EventController@index')->name('events.index');
+    Route::delete('/events/{id}/delete', 'Finance\EventController@destroy')->name('events.destroy');
+    Route::get('/events/{id}','Finance\EventController@edit')->name('events.edit');
+    Route::get('/events/{id}/show','Finance\EventController@show')->name('events.show');
+    Route::put('/events/{id}/update','Finance\EventController@update')->name('events.update');
+    Route::put('/SubEvents/{id}/update','Finance\EventController@updateSubEvent')->name('subEvent.update');
+    Route::post('/events','Finance\EventController@store')->name('events.store');
+    Route::post('/events/subExpenseEvent','Finance\EventController@storeSubEvent')->name('events.subStore');
 
     //savings routes
-    Route::get('/savings/create', 'SavingController@index')->name('savings.create');
-    Route::post('/savings','SavingController@store')->name('savings.store');
-    Route::delete('/savings/{saving_id}', 'SavingController@destroy')->name('savings.destroy');
-    Route::get('/savings/{saving_id}/edit', 'SavingController@edit')->name('savings.edit');
-    Route::patch('/savings/{saving_id}', 'SavingController@update')->name('savings.update');
+    Route::get('/savings/create', 'Finance\SavingController@index')->name('savings.create');
+    Route::post('/savings','Finance\SavingController@store')->name('savings.store');
+    Route::delete('/savings/{saving_id}', 'Finance\SavingController@destroy')->name('savings.destroy');
+    Route::get('/savings/{saving_id}/edit', 'Finance\SavingController@edit')->name('savings.edit');
+    Route::patch('/savings/{saving_id}', 'Finance\SavingController@update')->name('savings.update');
 
     //target routes
-    Route::get('/targets/create', 'TargetController@index')->name('targets.create');
-    Route::post('/targets','TargetController@store')->name('targets.store');
-    Route::delete('/targets/{target_id}', 'TargetController@destroy')->name('targets.destroy');
-    Route::get('/targets/{target_id}/edit', 'TargetController@edit')->name('targets.edit');
-    Route::patch('/targets/{target_id}', 'TargetController@update')->name('targets.update');
+    Route::get('/targets/create', 'Finance\TargetController@index')->name('targets.create');
+    Route::post('/targets','Finance\TargetController@store')->name('targets.store');
+    Route::delete('/targets/{target_id}', 'Finance\TargetController@destroy')->name('targets.destroy');
+    Route::get('/targets/{target_id}/edit', 'Finance\TargetController@edit')->name('targets.edit');
+    Route::patch('/targets/{target_id}', 'Finance\TargetController@update')->name('targets.update');
 
     //user profile routes
     Route::get('/user_profile', 'ProfileController@index')->name('profile'); // we changed this name from home to profile
@@ -80,23 +79,18 @@ Route::middleware(['auth','verified'])->group(function(){
 
     Route::get(' /reports/pdfdownload', 'ReportController@pdfExport')->name('pdfExport');
 
-
     //prediction routes
     Route::get('/predictData', 'TensorFlowController@getBalanceData')->name('predict');
     Route::get('/predict', 'TensorFlowController@index')->name('predict.index');
     Route::post('/predict/user', 'PredicitonController@getPredictionData')->name('predict.user');
     Route::get('/prediction', 'PredicitonController@index')->name('prediction');
 
-
-
     //Charts routes
     Route::get('/charts', 'ChartsController@charts')->name('charts');
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-
-    Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
-    // Route::get('/','PostController@index' );
+    Route::get('/blogs','Blog\BlogController@index')->name('blogs.index');
     Route::get('/blogs/create', 'Blog\BlogController@create');
     Route::get('/blogs/{id}/edit', 'Blog\BlogController@create')->name('blogs.edit');
     Route::put('/blogs/{id}/update', 'Blog\BlogController@update')->name('blogs.update');
@@ -104,19 +98,13 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::delete('/blogs/{id}/destroy', 'Blog\BlogController@destroy')->name('blogs.destroy');
     Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
     Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
-    // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
-    // Route::put('/posts/{id}', 'PostController@update');
-    // Route::delete('/posts/{id}', 'PostController@destroy');
-    // Route::delete('/posts/softDelete/{id}', 'PostController@softDelete');
-    // Route::get('/posts/restoreDeleted/{id}', 'PostController@restoreDeleted');
-
+  
     //calendar route
     Route::get('/calendar', 'CalendarController@index');
 
     // comments routes
-
-    Route::get('/comments/{id}','CommentController@fetchComment');
-    Route::post('/comments/{id}','CommentController@sendComment');
+    Route::get('/comments/{id}','Blog\CommentController@fetchComment');
+    Route::post('/comments/{id}','Blog\CommentController@sendComment');
 
    
 });
