@@ -52,7 +52,6 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">

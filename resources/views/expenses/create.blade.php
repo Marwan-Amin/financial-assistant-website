@@ -271,7 +271,6 @@
                   value="{{ $date= $subExpenseUser?$subExpenseUser->date:''}}" 
                   @endisset
                   />
-                
               </div>
             </div>
 
