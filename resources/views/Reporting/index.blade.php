@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
@@ -32,18 +32,15 @@
             </div>
 </div>
 
-<!--add charts-->
 <div class="row">
       
       
-    <!--start sub Category chart-->
     <div class="row" style="display:none">
       
 
       <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <!--start sub category dropdown-->
           <div class="row mb-5">
             <div class="col-md-6">
               <h4 class="card-title">sub Expenses Chart</h4>
@@ -58,7 +55,6 @@
                     </select>
               </div>
           </div>
-          <!--end sub category dropdown-->
           <div id="pieChart3-container">
             <canvas id="pieChart3" style="height:250px"></canvas>
             </div>
@@ -67,8 +63,7 @@
       </div>
 
     </div>
-    <!--end sub Category chart-->
-<!--add charts-->
+
 <div class="row">
     
 <div class="col-lg-6 grid-margin stretch-card">

@@ -14,18 +14,12 @@
                 </strong>
               </h1>
               <p>When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.</p>
-              <!-- <p>
-                <a href="https://vimeo.com/45830194" class="btn btn-primary btn-outline-white px-4 py-3 popup-vimeo"> -->
-                <!-- <span class="ion-ios-play mr-2"></span> -->
-                 <!-- Watch Video</a>
-
-              </p> -->
+              
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- END slider -->
 
     <section class="ftco-section-featured ftco-animate">
       <div class="container">
@@ -180,42 +174,6 @@
         </div>
       </div>
     </section>
-    
-    <!-- <section class="ftco-section ftco-counter ftco-degree-bg" id="section-counter">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <h2>Our achievements</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="1000">0</strong>
-                <span>Customers are satisfied with our professional support</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="12000">0</strong>
-                <span>Amazing preset options to be mixed and combined</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="10000">0</strong>
-                <span>Average response time on live chat support channel</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
@@ -235,7 +193,6 @@
                 <div class="meta mb-3">
                   <div><a href="#">{{$blog->title}}</a></div>
                   <div><a href="#"></a>{{$blog->user->name}}</div>
-                  <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
                 </div>
                 <h3 class="heading"><a href="#">{{$blog->body}}</a></h3>
               </div>

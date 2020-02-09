@@ -111,7 +111,8 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
 Route::get('/home','HomeController@index')->name('home.index');
- //contact us routes
+ 
+//contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');
 
 Auth::routes(['verify'=>true]);
@@ -124,8 +125,6 @@ Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
  Route::get('{driver}/callback', 'Auth\LoginController@handleProviderCallback')    
         ->name('login.callback')
         ->where('driver', implode('|', config('auth.socialite.drivers')));
-
-
 
 Route::get('/states/ajax/{countryName}','Auth\RegisterController@getStates')->name('ajax');
 

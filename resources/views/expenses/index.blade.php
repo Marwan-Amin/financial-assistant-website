@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
@@ -6,13 +6,38 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-cash-usd menu-icon"></i>
-        </span> Your Expenses</h3>
+        </span> Expenses manager</h3>
     </div>
 <div class="col-lg-12 grid-margin stretch-card pl-0">
     <div class="card">
       <div class="card-body">
 
-      <a class="btn btn-lg btn-gradient-success mt-5 mb-5" href="/expenses/create">+ Add new expense</a>
+      <div class="text-center">
+      <a class="btn btn-lg btn-gradient-success mb-3" href="/expenses/create">+ Add new expense</a>
+      </div>
+
+      @if (count($expenses) == 0)
+      <table class="table table-striped mt-3" >
+          <thead>
+            <tr>
+            <th> Category </th>
+              <th> Type </th>
+              <th> Amount </th>
+              <th> Date </th>
+              <th> Action </th>
+            </tr>
+          </thead>
+          <tbody> 
+          </tbody>
+      </table>
+      <div class="text-center mt-3">
+        <h4>You have no records yet</h4>
+      </div>
+      @endif
+
+
+      @if(count($expenses)>0)
+      <div class="container">
         <table class="table table-striped " >
           <thead>
             <tr>
@@ -34,13 +59,13 @@
                   <a class="btn btn-inverse-info btn-fw" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
                   &nbsp;&nbsp;
                   <button class="btn btn-inverse-danger btn-fw"  onclick="ajaxDelete('{{$expense->pivot->id}}',this);" >Delete&nbsp;<i class="mdi mdi-delete"></i></button> 
-                  
                 </td>
-                
             </tr>
             @endforeach
           </tbody>
+          @endif
         </table>
+        </div>
 
        
       </div>

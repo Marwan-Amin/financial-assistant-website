@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -6,16 +6,39 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
-        </span> Your incomes</h3>
+        </span> Incomes manager</h3>
     </div>
-<div class="col-lg-12 grid-margin stretch-card pl-0">
+<div class="col-lg-12 stretch-card pl-0">
   
     <div class="card">
-      
-      <div class="card-body">
-      <a class="btn btn-lg btn-gradient-danger mt-5 mb-5" href="/incomes/create">+ Add new income</a>
-        
-        <table class="table table-striped " id="incomeTable">
+
+    <div class="card-body">
+        <div class="text-center">
+      <a class="btn btn-lg btn-gradient-danger" href="/incomes/create">+ Add new income</a>
+      </div>
+
+
+    @if (count($user->user_incomes) == 0)
+    <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th> Type </th>
+              <th> Amount </th>
+              <th> Date </th>
+              <th> Action </th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+    </table>
+    <div class="text-center mt-4">
+      <h4>You have no records yet</h4>
+    </div>
+      @endif
+
+      @if(count($user->user_incomes)>0)
+      <div class="container">
+        <table class="table table-striped ">
           <thead>
             <tr>
               <th> Type </th>
@@ -40,13 +63,13 @@
                       </button> 
                   </form>
                 </td>
-                <!-- <td class="project-actions text-center">
-                  
-              </td>  -->
             </tr>
             @endforeach
           </tbody>
         </table>
+        </div>
+        @endif
+
         
 
       </div>

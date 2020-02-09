@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 
 
@@ -31,10 +31,6 @@
   'use strict';
   
 
-  //start data for incomes
-  
-  //end data for incomes 
-  
 
  
   var scatterChartData = {
@@ -124,8 +120,6 @@
       }]
     }
   }
-  // Get context with jQuery - using jQuery's .get() method.
-  //bar chart for expenses
   
 
   if ($("#scatterChart").length) {

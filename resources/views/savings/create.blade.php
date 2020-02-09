@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 <div class="alert alert-danger print-error-msg" style="display:none">
   <ul></ul>
