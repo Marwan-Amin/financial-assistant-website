@@ -54,7 +54,6 @@ class ExpenseController extends Controller
         return response()->json($subCategoriesInfo);
     }
     public function store(expensesRequest $request){
-        dd($request);
         $userSubCategory = UserSubCategory::where('user_id',Auth::user()->id)
                        ->where('date',$request->date)->where('sub_category_id',$request->subCategory);
         $userSubCategory=$userSubCategory->exists()?$userSubCategory->first():['amount'=>0];
