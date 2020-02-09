@@ -8,6 +8,7 @@ use App\Http\Requests\expensesRequest;
 use App\UserSubCategory;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Balance;
+use App\Http\Controllers\BalanceCalculation;
 
 class ExpenseController extends Controller
 {
@@ -53,8 +54,8 @@ class ExpenseController extends Controller
         return response()->json($subCategoriesInfo);
     }
     public function store(expensesRequest $request){
-        dd($request);
-        $userSubCategory = UserSubCategory::where('user_id',Auth::user()->id)
+        if(is_numeric($request->subCategory)){
+            $userSubCategory = UserSubCategory::where('user_id',Auth::user()->id)
                        ->where('date',$request->date)->where('sub_category_id',$request->subCategory);
         $userSubCategory=$userSubCategory->exists()?$userSubCategory->first():['amount'=>0];
          UserSubCategory::updateOrCreate(
@@ -62,8 +63,22 @@ class ExpenseController extends Controller
         [
             'amount'=>$userSubCategory['amount']+$request->amount,
         ]);
-      
+        }
+        else {
+            $subExpense = ExpenseSubCategory::create([
+                'name'=> $request->subCategory,
+                'category_id'=>'21',
+                'sub_category_icon'=>'other'
 
+            ]);
+            $userSubCategory = UserSubCategory::create([
+                'sub_category_id'=>$subExpense->id,
+                'user_id'=>Auth::user()->id,
+                'amount'=>$request->amount,
+                'date'=>$request->date
+            ]);
+        }
+        
 
         $balanceObj=new BalanceCalculation;
         $balanceObj->calculateBalance($request->date , $request->amount); 

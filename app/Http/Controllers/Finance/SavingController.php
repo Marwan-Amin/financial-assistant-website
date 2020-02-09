@@ -7,7 +7,7 @@ use App\Saving;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Target_saving;
+use App\Http\Controllers\Finance\Target_saving;
 use Illuminate\Support\Facades\Validator;
 
 class SavingController extends Controller

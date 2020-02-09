@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExpenseSubCategory extends Model
 {
     protected $fillable = [
-        'name'
+        'name','category_id','sub_category_icon'
     ];
 
     public function users()
