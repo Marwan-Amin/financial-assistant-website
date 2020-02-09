@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
@@ -12,12 +12,7 @@
                       </div>
                   @endif
             <div class="page-header" style="padding: 2.75rem 2.25rem;">
-              <!-- <h3 class="page-title"> Personal info </h3> -->
               <nav aria-label="breadcrumb">
-                <!-- <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
-                </ol> -->
               </nav>
             </div>
             <div class="row">
@@ -49,28 +44,12 @@
                               <div id="imagePreview" style="background-image: url({{asset(Auth::user()->avatar)}})"></div>
                               @else
                               <div id="imagePreview" style="background-image: url(https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png);"></div>
-                              
-                
                                 @endif
-
-
-                              
                           </div>
-                      
                   </div>
-
-
-                    
-                   
-                    
-                
                     </div>
-                     
-                     
-                    
                     <h3 class="card-title"> Personal Info </h3>
                     <br><br>  
-                      <!-- <p class="card-description"> Personal info </p> -->
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
@@ -95,10 +74,6 @@
                             <label class="col-sm-3 col-form-label">Gender</label>
                             <div class="col-sm-9">
                             <input  type="text" class="form-control" name="gender" value="@guest Guest @else {{ Auth::user()->gender }}@endguest" />  
-                              <!-- <select   class="form-control" >
-                                <option >Male</option>
-                                <option selected>Female</option>
-                              </select> -->
                             </div>
                           </div>
                         </div>
@@ -136,10 +111,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-
-
-
-
                             </div>
                           </div>
                         </div>
@@ -158,18 +129,19 @@
                                 </span>
                             @enderror
 
-                            
                             </div>
                           </div>
+                        </div>                       
+                       </div>
+                       <div class="row text-center">
+                       <div class="col-md-3">
+                            <button type="submit" class="w-100 btn btn-lg btn-gradient-primary mt-4">Update profile </button>
                         </div>
-                      
-                        <div class="col-md-12">
-                        <div class="col-md-6 m-auto">
-                            <button type="submit" class="w-100 btn btn-lg btn-gradient-primary mt-4">submit</button>
+                        <div class="col-md-3">
+                            <a class="w-100 btn btn-lg btn-gradient-primary mt-4" href="/user_profile">Cancel </a>
                         </div>
-                        </div>
- 
-                      </div>
+                       </div>
+                        
                     </form>
                   </div>
                 </div>
@@ -222,5 +194,4 @@ function renderStates(states){
  
 }
 </script>
-        <!-- main-panel ends -->
 @endsection

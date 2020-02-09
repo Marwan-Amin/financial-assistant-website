@@ -65565,13 +65565,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("span", [
+    _c("h6", { staticClass: "mb-4" }, [
       _vm._v(" (" + _vm._s(this.users.length) + ") Users Active In This Blog")
     ]),
     _vm._v(" "),
     _c(
       "ul",
-      { directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }] },
+      {
+        directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+        staticClass: "comment-list"
+      },
       _vm._l(_vm.comments.data, function(comment, index) {
         return _c("li", { key: index, staticClass: "comment" }, [
           _vm._m(0, true),
@@ -65656,7 +65659,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "vcard bio" }, [
       _c("img", {
-        attrs: { src: "images/person_1.jpg", alt: "Image placeholder" }
+        attrs: {
+          src: "https://i.ya-webdesign.com/images/profile-image-png-8.png",
+          alt: "Image placeholder"
+        }
       })
     ])
   },
@@ -78019,8 +78025,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\sass\app.scss */"./resources/sass/app.scss");
+
 
 
 /***/ })

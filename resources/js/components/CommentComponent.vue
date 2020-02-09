@@ -1,11 +1,11 @@
 <template>
    <div>
-   <span> ({{this.users.length}}) Users Active In This Blog</span>
+   <h6 class="mb-4"> ({{this.users.length}}) Users Active In This Blog</h6>
 
-<ul v-chat-scroll>
+<ul class="comment-list" v-chat-scroll>
   <li class="comment" v-for="(comment,index) in comments.data" :key="index">
                    <div class="vcard bio">
-                     <img src="images/person_1.jpg" alt="Image placeholder">
+                     <img src="https://i.ya-webdesign.com/images/profile-image-png-8.png" alt="Image placeholder">
                    </div>
                    <div class="comment-body">
                      <strong>{{comment.user.name}}</strong>

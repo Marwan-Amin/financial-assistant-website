@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app')
  @section('content')
  <div class="main-panel">
     <div class="content-wrapper">
@@ -98,7 +98,6 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
-        <!-- Modal body -->
         <div class="modal-body">
           <div>
             <div class="rate" id="rate">
@@ -122,7 +121,6 @@
             <textarea id="feedback" class="form-control" aria-label="Feedback"></textarea>
           </div>
         </div>
-        <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" id="add_rate_btn" class="btn btn-gradient-danger" data-dismiss="modal">Rate Us</button>
         </div>
@@ -236,11 +234,8 @@
           dataType : "json",
           url :"{{route('dashboard.store')}}",
           success : function (response){
-            
             console.log(response);
-            
           }
-      
         });
       }); 
     </script>

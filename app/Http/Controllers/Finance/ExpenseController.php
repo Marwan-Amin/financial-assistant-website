@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Finance;
 use App\Http\Controllers\Controller;
+
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
 use App\UserSubCategory;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Balance;
-use App\Http\Controllers\BalanceCalculation;
+use App\Http\Controllers\Finance\BalanceCalculation;
 
 class ExpenseController extends Controller
 {
     public function index()
-    {
+    {   
         $user = Auth::user();
         
         $expenses = $user->subExpenses;

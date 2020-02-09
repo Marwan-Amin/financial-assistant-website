@@ -39,18 +39,7 @@
             
             
              
-            <div class="tag-widget post-tag-container mb-5 mt-5">
-              <div class="tagcloud">
-              @isset($tags)
-                @foreach($tags as $tag)
-                <a href="{{route('tag.blogs',['tag'=>$tag->name])}}" class="tag-cloud-link">{{$tag->name}}</a>
-              @endforeach
-              @else
-              <a href="#" class="tag-cloud-link">There's No Tags</a>
-
-                @endisset
-              </div>
-            </div>
+            
             
             <div class="about-author d-flex p-5 bg-light">
               <div class="bio align-self-md-center mr-5">
@@ -65,7 +54,7 @@
 
             <div class="pt-5 mt-5">
 
-              <ul class="comment-list">
+              
                
 
               <h3 class="mb-5">

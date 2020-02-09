@@ -7,7 +7,7 @@ use App\UserIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreIncomeRequest;
-use App\Http\Controllers\BalanceCalculation;
+use App\Http\Controllers\Finance\BalanceCalculation;
 use App\Income;
 use App\User;
 
