@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Finance;
+use App\Http\Controllers\Controller;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;

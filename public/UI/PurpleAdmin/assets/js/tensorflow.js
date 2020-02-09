@@ -2,13 +2,11 @@ async function getData() {
     const balanceDataReq = await fetch(route); 
     
     const balanceData = await balanceDataReq.json(); 
-    console.log(balanceData)
 
     balanceData.forEach(function(row){
         row.totalExpenses = Number(row.totalExpenses);
         row.totalIncome = Number(row.totalIncome)
     }) 
-    console.log(balanceData)
 
     return balanceData;
   }
@@ -20,7 +18,7 @@ async function getData() {
       y: d.totalExpenses,
       
     }));
-
+    
     tfvis.render.scatterplot(
       {name: 'Balance v totalExpenses'},
       {values}, 
@@ -155,7 +153,6 @@ function convertToTensor(data) {
       return [unNormXs.dataSync(), unNormPreds.dataSync()];
     });
     
-   
     const predictedPoints = Array.from(xs).map((val, i) => {
       return {x: val, y: preds[i]}
     });

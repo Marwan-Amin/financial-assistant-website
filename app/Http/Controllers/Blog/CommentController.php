@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
+use App\Http\Controllers\Controller;
 
 use App\Blog;
 use App\Comment;

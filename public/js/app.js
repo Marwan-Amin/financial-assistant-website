@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    //on load page featch comments from server
     this.fetchComment();
     Echo.join('comments').here(function (user) {
       _this.users = user;
@@ -2007,20 +2008,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get('/comments/' + blogId).then(function (response) {
+        // get always last page of comments as it's last comments and there you will add you new comment
+        _this3.getResults(response.data.comments.last_page);
+
         _this3.comments = response.data.comments;
       })["catch"](function (error) {
         alert(error);
       });
     },
     sendComment: function sendComment() {
+      var _this4 = this;
+
       //we import moment to form date of comment
       this.comments.data.push({
         body: this.newComment,
         user: this.user,
-        created_at: moment__WEBPACK_IMPORTED_MODULE_0___default()(String(new Date())).format('YYYY-MM-DD hh:mm')
+        created_at: moment__WEBPACK_IMPORTED_MODULE_0___default()(String(new Date())).fromNow()
       });
       axios.post('/comments/' + blogId, {
         comment: this.newComment
+      }).then(function (res) {
+        // on send comment we fetch the comments to get always the last page 
+        _this4.fetchComment();
       })["catch"](function (err) {
         alert(err.message);
       }); //reset the comment input value
@@ -77854,6 +77863,8 @@ Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default.a);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+
 Vue.component('comment-component', __webpack_require__(/*! ./components/CommentComponent.vue */ "./resources/js/components/CommentComponent.vue")["default"]);
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 /**
@@ -78008,8 +78019,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
