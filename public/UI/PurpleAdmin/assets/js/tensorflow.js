@@ -20,7 +20,7 @@ async function getData() {
       y: d.totalExpenses,
       
     }));
-
+    
     tfvis.render.scatterplot(
       {name: 'Balance v totalExpenses'},
       {values}, 
@@ -155,7 +155,6 @@ function convertToTensor(data) {
       return [unNormXs.dataSync(), unNormPreds.dataSync()];
     });
     
-   
     const predictedPoints = Array.from(xs).map((val, i) => {
       return {x: val, y: preds[i]}
     });
