@@ -102,7 +102,7 @@ if(isRefreshed){
       console.log(previousId,id);
 
       delurl=delurl.replace('/savings/'+previousId,'/savings/'+id);
-      previousId = btn_delete.getAttribute('id');
+      previousId = id;
     }
 
     console.log(delurl);

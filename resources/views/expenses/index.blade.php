@@ -17,7 +17,7 @@
       </div>
 
       @if (count($expenses) == 0)
-      <table class="table table-striped mt-3" >
+      <table class="table table-striped mt-3"  >
           <thead>
             <tr>
             <th> Category </th>
@@ -37,7 +37,7 @@
 
 
       @if(count($expenses)>0)
-      <div class="container">
+      <div class="container" id="tableDiv">
         <table class="table table-striped " >
           <thead>
             <tr>

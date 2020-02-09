@@ -92,7 +92,7 @@
             
             <td><a class="btn btn-inverse-info btn-fw " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
             &nbsp;&nbsp; 
-            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxDelete(this,"{{$target->id}}");' >
+            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxDelete(this,"{{$target->id}}",false);' >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
                     </button> 
             </td>
@@ -147,7 +147,7 @@
   let table_data_amount = document.createElement("td");
   table_data_amount.innerHTML=response.target_amount;
   
-  //progress hna ya 3mr 
+  //progress 
   let table_data_progress = document.createElement("td");
   let progressBig_div =document.createElement('div');
       progressBig_div.classList.add('progress');
@@ -202,34 +202,44 @@
   table_row.appendChild(table_data);
   table_body.appendChild(table_row);
   
+  let isAjax = true;
   //delete with ajax
-  ajaxDelete(btn_delete,response.id);
+  ajaxDelete(btn_delete,response.id,isAjax);
   }
   
   //delete fn
-  function ajaxDelete(btn_delete,target_id){
-    btn_delete.addEventListener("click",function(){
-      let isConfirm=confirm("Do you want to delete this Budget Goal?");
-      if(isConfirm){
-        let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
-      url=url.replace(':target.id',target_id);
-      $.ajax({
-      headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-      type:"DELETE",
-      dataType : "json",
-      url : url,
-      success : function (response){
-        deleteRecord(response,btn_delete);
-      }
+  function ajaxDelete(btn_delete,target_id,isAjax){
+    if(isAjax){
+      btn_delete.addEventListener("click",function(){
+    excuteDelete(); 
+  });
+    }else{
+      excuteDelete();
+    }
+    
   
-       });
-      }
-      
-    });
   }
-  
+  function excuteDelete(){
+    let isConfirm=confirm("Do you want to delete this Budget Goal?");
+
+if(isConfirm){
+  let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
+    url=url.replace(':target.id',target_id);
+    $.ajax({
+    headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+    type:"DELETE",
+    dataType : "json",
+    url : url,
+    success : function (response){
+      deleteRecord(response,btn_delete);
+    }
+
+     });
+}
+    
+  }
   //delete action fn
   function deleteRecord(isDeleted,chiledElement){
     if(isDeleted){
