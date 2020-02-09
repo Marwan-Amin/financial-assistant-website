@@ -65,7 +65,7 @@
 
             <div class="pt-5 mt-5">
 
-              <ul class="comment-list">
+              
                
 
               <h3 class="mb-5">
