@@ -12,30 +12,16 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/css/vendor.bundle.base.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
-    <!-- End layout styles -->
     
     <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
   </head>
   <body>
 @yield('content')
-    <!-- container-scroller -->
-    <!-- plugins:js -->
     <script src="{{asset('UI/PurpleAdmin/assets/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="{{asset('UI/PurpleAdmin/assets/js/off-canvas.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/hoverable-collapse.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
-    <!-- endinject -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Blog;
+use App\Http\Controllers\Controller;
 
 use App\Blog;
 use App\Comment;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogStoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

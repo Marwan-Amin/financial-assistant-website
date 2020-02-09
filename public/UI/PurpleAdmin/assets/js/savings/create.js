@@ -37,16 +37,22 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   let btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", href);
   btn_edit.innerHTML="Edit";
-  btn_edit.classList.add("btn-gradient-danger","btn")
-  let table_data_edit = document.createElement("td");
-  table_data_edit.appendChild(btn_edit);
+  btn_edit.classList.add("btn-inverse-info", "btn-fw","btn","m-1");
+  let edit_icon = document.createElement("i");
+  edit_icon.classList.add("mdi" ,"mdi-file-check" ,"btn-icon-append","m-1");
+  btn_edit.appendChild(edit_icon);
+  let table_data = document.createElement("td");
+  table_data.appendChild(btn_edit);
   //delete btn
   let btn_delete = document.createElement("button");
   btn_delete.innerHTML="Delete";
-  btn_delete.classList.add("btn-gradient-danger","btn")
+  btn_delete.classList.add("btn-inverse-danger","btn-fw","btn");
   btn_delete.setAttribute("id",response.id)
-  let table_data_delete = document.createElement("td");
-  table_data_delete.appendChild(btn_delete);
+  let delete_icon = document.createElement("i");
+  delete_icon.classList.add("mdi" ,"mdi-delete" ,"btn-icon-append","m-1");
+  btn_delete.appendChild(delete_icon);
+  //let table_data_delete = document.createElement("td");
+  table_data.appendChild(btn_delete);
   //Error div
   let errorDiv = document.createElement('div');
   errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
@@ -59,8 +65,8 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
 
   
   table_row.appendChild(table_data_amount);
-  table_row.appendChild(table_data_edit);
-  table_row.appendChild(table_data_delete);
+  table_row.appendChild(table_data);
+  
   table_body.appendChild(table_row);
   //delete with ajax
   let isRefreshed=true;

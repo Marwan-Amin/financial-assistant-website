@@ -1,13 +1,13 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Finance;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 //use App\Saving
 use App\User;
 use App\Target;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Target_saving;
+use App\Http\Controllers\Finance\Target_saving;
 use Illuminate\Support\Facades\Validator;
 class TargetController extends Controller
 {

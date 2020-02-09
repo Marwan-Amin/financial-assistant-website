@@ -46970,6 +46970,7 @@ window.Echo.channel("comments").listen("LiveCommentEvent", function (ev) {
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 
 
+
 /***/ })
 
 /******/ });

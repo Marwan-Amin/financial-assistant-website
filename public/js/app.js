@@ -78029,6 +78029,7 @@ __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
+
 /***/ })
 
 /******/ });

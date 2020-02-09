@@ -107,5 +107,5 @@ class ReportController extends Controller
     {
         $pdf = PDF::loadView('Reporting.index');
         return $pdf->download('report.pdf');    
-    }
+    }   
 }
