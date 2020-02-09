@@ -98,9 +98,12 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
     // Route::get('/','PostController@index' );
     Route::get('/blogs/create', 'Blog\BlogController@create');
+    Route::get('/blogs/{id}/edit', 'Blog\BlogController@create')->name('blogs.edit');
+    Route::put('/blogs/{id}/update', 'Blog\BlogController@update')->name('blogs.update');
     Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
-    Route::get('/blogs/{id}/show', 'Blog\BlogController@show');
-    // Route::get('/posts/{id}', 'PostController@show')->name('posts.post');
+    Route::delete('/blogs/{id}/destroy', 'Blog\BlogController@destroy')->name('blogs.destroy');
+    Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
+    Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
     // Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
     // Route::put('/posts/{id}', 'PostController@update');
     // Route::delete('/posts/{id}', 'PostController@destroy');

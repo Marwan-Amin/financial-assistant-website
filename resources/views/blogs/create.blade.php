@@ -25,29 +25,47 @@
                 </h3></div>
                 <div class="card">
                   <div class="card-body">
-                      <form action="{{route('blogs.store')}}" method="post" enctype="multipart/form-data">
-                     @csrf
+                    @isset($blog)
+                      <form action="{{route('blogs.update',['id'=>$blog->id])}}" method="post" enctype="multipart/form-data">
+                     @method('PUT')
+                      @else
+                     <form action="{{route('blogs.store')}}" method="post" enctype="multipart/form-data">
+                     @endisset
+                      @csrf
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Blog Title</label>
                         <div class="col-sm-9">
-                          <input type="text" name="title" class="form-control"  placeholder="Enter your Blog Title">
+                          <input type="text" name="title" class="form-control"  placeholder="Enter your Blog Title" 
+                                  
+                                        @isset($blog)
+                                        value="{{$blog->title}}"
+                                        @endisset
+                          >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="body" class="col-sm-3 col-form-label">Blog Description</label>
                         <div class="col-sm-9">
-                        <textarea class="form-control"  name="body" ></textarea>
+                        <textarea class="form-control"  name="body" >@isset($blog){{$blog->body}}@endisset</textarea>
                         </div>
                       </div>
-                      <div class="input-group">
-                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" name="blog_image">
-                      <label class="custom-file-label" for="blog_image">Choose Image</label>
-                     </div>
-                    </div>
+                                          @isset($blog)                       
+                     <img class="mt-5" width="100px" height="100px" src="{{ URL::asset($blog->blog_image) }}"/>
+                     <input type="file"  name="blog_image">
+                     <label class="custom-file-label" for="blog_image">Change Your Image</label>
+                     @else
+                    <input type="file"  name="blog_image">
+                    <label  for="blog_image">Choose Image</label>
+                    @endisset 
+                     
                     <div class="form-group row">
-                      <input type="text" class="form-control" name="tags">
-                      <label class="col-sm-3 col-form-label" for="tags">Write Tags For This Blog Separated with [,]</label>
+                    <label class="col col-form-label" for="tags">Write Tags For This Blog Separated with [,]</label>
+  
+                    <input type="text" class="form-control" name="tags"
+                      @isset($tags)
+                            value="{{$tags}}"
+                      @endisset
+                      >
                      </div>
                       <div >
                       <button class="btn btn-dark mt-5">Create Blog</button>

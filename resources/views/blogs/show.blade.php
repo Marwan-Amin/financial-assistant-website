@@ -24,6 +24,14 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">{{$blog->title}}</h2>
+            @if($blog->user->id == auth()->user()->id)
+            <form method="post" action="{{route('blogs.destroy',['id'=>$blog->id])}}">  
+              @csrf
+              @method('DELETE')         
+              <a class="btn btn-secondary" href="{{route('blogs.edit',['id'=>$blog->id])}}">Edit</a>
+               <button type="submit" class="btn btn-warning" >Delete</button>
+            </form>
+            @endif
             <p>{{$blog->body}}</p>
             <p>
               <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid">
@@ -35,7 +43,7 @@
               <div class="tagcloud">
               @isset($tags)
                 @foreach($tags as $tag)
-                <a href="#" class="tag-cloud-link">{{$tag->name}}</a>
+                <a href="{{route('tag.blogs',['tag'=>$tag->name])}}" class="tag-cloud-link">{{$tag->name}}</a>
               @endforeach
               @else
               <a href="#" class="tag-cloud-link">There's No Tags</a>
@@ -80,20 +88,26 @@
             
 
             <div class="sidebar-box ftco-animate">
-              <h3>Recent Blog</h3>
+              <h3>Recent Blogs</h3>
               
+             @isset($recentBlogs)
+             @foreach($recentBlogs as $recentBlog)
              
+             @if($recentBlog->id != $blog->id)
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);"></a>
+                <a href="{{route('blogs.show',['id'=>$recentBlog->id])}}" class="blog-img mr-4" style='background-image: url("{{asset($recentBlog->blog_image)}}");'></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">body</a></h3>
+                  <h3 class="heading"><a href="{{route('blogs.show',['id'=>$recentBlog->id])}}">{{$recentBlog->title}}</a></h3>
                   <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                    <div><a href="#"><span class="icon-calendar"></span> {{$recentBlog->created_at->diffForHumans()}}</a></div>
+                    <div><a href="#"><span class="icon-person"></span> {{$recentBlog->user->name}}</a></div>
                   </div>
                 </div>
               </div>
+              @else
+              @endif
+              @endforeach
+              @endisset
             </div>
 
             <div class="sidebar-box ftco-animate">
@@ -101,7 +115,7 @@
               <div class="tagcloud">
                 @isset($tags)
                 @foreach($tags as $tag)
-                <a href="#" class="tag-cloud-link">{{$tag->name}}</a>
+                <a href="{{route('tag.blogs',['tag'=>$tag->name])}}" class="tag-cloud-link">{{$tag->name}}</a>
               @endforeach
               @else
               <a href="#" class="tag-cloud-link">There's No Tags</a>
