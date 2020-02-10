@@ -99,5 +99,5 @@
     let editHref = "{{route('events.edit',['id'=>':data.categoryId'])}}";
     let addEventHref ="{{route('events.create')}}";
   </script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/events/create.js')}}"></script>
+  <script src="{{asset('js/events/create.js')}}"></script>
  @endsection

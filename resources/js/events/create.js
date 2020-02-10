@@ -1,31 +1,33 @@
-
-
-  document.getElementById('addEvent').addEventListener('click',function(){
+let addEvent = document.getElementById('addEvent');
+    if(addEvent){
+        addEvent.addEventListener('click',function(){
       
-let eventName = document.getElementById('category').value;
-let eventDate = document.getElementById('date').value;
-if(/*(eventName && eventName != "") &&(eventDate && eventDate!="")*/true ){
-$.ajax({
-    headers: {
-       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-             },
-  type: 'POST',
-   url:urlEvent,
-   data:{'eventName':eventName,'eventDate':eventDate},
-       success:function(response){
-        if($.isEmptyObject(response.error)){
-            console.log(response);
-            renderResponse(response);
-            // alert(response.success);
-        }else{
-            printErrorMsgEvent(response.error);
-        }
-       }
-    });  
-}
-
-
-});
+            let eventName = document.getElementById('category').value;
+            let eventDate = document.getElementById('date').value;
+            if(/*(eventName && eventName != "") &&(eventDate && eventDate!="")*/true ){
+            $.ajax({
+                headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                         },
+              type: 'POST',
+               url:urlEvent,
+               data:{'eventName':eventName,'eventDate':eventDate},
+                   success:function(response){
+                    if($.isEmptyObject(response.error)){
+                        console.log(response);
+                        renderResponse(response);
+                        // alert(response.success);
+                    }else{
+                        printErrorMsgEvent(response.error);
+                    }
+                   }
+                });  
+            }
+            
+            
+            });
+    }
+  
 //render the inputs needed for the event that user has entered
 function renderResponse(data){
     if(data.isStored){
@@ -96,7 +98,7 @@ function subCategoryAjax(addButton,subName,amount,categoryId){
            
     });
     }
-   function sendSubCategoryAjax(subName,amount,categoryId,isInUpdate){
+  window.sendSubCategoryAjax = function (subName,amount,categoryId,isInUpdate){
     let subCategoryInfo={'subName':subName.value,'amount':amount.value,'categoryId':categoryId};
     $.ajax({
 headers: {

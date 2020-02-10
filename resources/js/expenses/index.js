@@ -1,5 +1,5 @@
 let previousId;
-function ajaxDelete(id,element){
+window.ajaxDelete = function (id,element){
     let isConfirmed = confirm('Do You Want To Delete This Record ?');
     if(isConfirmed){
      //  as we can't use the javascript variable into laravel blade display syntax so i used dummy string at the place of the id value and use

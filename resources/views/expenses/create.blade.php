@@ -357,5 +357,5 @@
        let url = `{{route('subCategory.ajax',['categoryId'=>':categoryId'])}}`;
 
   </script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/expenses/create.js')}}"></script>
+  <script src="{{asset('js/expenses/create.js')}}"></script>
  @endsection

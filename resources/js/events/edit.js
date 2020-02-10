@@ -1,5 +1,5 @@
 let previouseCustomSubCategoryId;
-function editEvent(customCategoryId){
+window.editEvent = function (customCategoryId){
     let customCategoryName = document.getElementById('customCategoryName').value;
     let customCategoryDate = document.getElementById('customCategoryDate').value;
       mainEventUrl = mainEventUrl.replace(':customCategoryId',customCategoryId);
@@ -24,7 +24,7 @@ function editEvent(customCategoryId){
           }, 2000);
     }
   }
-function editSubEvent(chiledElement,customSubCategoryId){
+window.editSubEvent =function (chiledElement,customSubCategoryId){
   let customSubCategoryName='';
   let customSubCategoryAmount=0;
   let subCategoryName = chiledElement.parentElement.parentElement.querySelector('td input[name="customSubCategoryName"]');

@@ -15,3 +15,10 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 
    mix.js('resources/js/bootstrap.js', 'public/js')
+
+   mix.js('resources/js/expenses/create.js','public/js/expenses/create.js');
+   mix.js('resources/js/expenses/index.js','public/js/expenses/index.js');
+
+   mix.js('resources/js/events/create.js','public/js/events/create.js');
+   mix.js('resources/js/events/index.js','public/js/events/index.js');
+   mix.js('resources/js/events/edit.js','public/js/events/edit.js');

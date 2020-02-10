@@ -69,7 +69,6 @@ if(subCategories){
      }
    }
    else {
-      console.log(true)
    let divBox=document.createElement('div');
    
        divBox.classList.add('cat-box');
@@ -84,7 +83,6 @@ if(subCategories){
         divBox.appendChild(label);
         divBox.appendChild(input);
 
-console.log(selectModal,divBox);
    }
  
 }

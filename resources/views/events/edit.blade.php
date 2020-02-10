@@ -115,9 +115,9 @@
 
       
   </script>
-      <script src="{{asset('UI/PurpleAdmin/assets/js/events/edit.js')}}"></script>
+      <script src="{{asset('js/events/edit.js')}}"></script>
 
-  <script src="{{asset('UI/PurpleAdmin/assets/js/events/create.js')}}">
+  <script src="{{asset('js/events/create.js')}}">
         
 
   </script>
