@@ -81,76 +81,123 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/expenses/index.js":
-/*!****************************************!*\
-  !*** ./resources/js/expenses/index.js ***!
-  \****************************************/
+/***/ "./resources/js/calendar.js":
+/*!**********************************!*\
+  !*** ./resources/js/calendar.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var previousId;
+document.addEventListener('DOMContentLoaded', function () {
+  var calendarEl = document.getElementById('calendar');
+  var userIncomes = document.getElementById('user_incomes').value;
+  var userExpenses = document.getElementById('user_expenses').value;
+  userIncomes = JSON.parse(userIncomes);
+  userExpenses = JSON.parse(userExpenses);
+  var userData = [];
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
 
-window.ajaxDelete = function (id, element) {
-  var isConfirmed = confirm('Do You Want To Delete This Record ?');
-
-  if (isConfirmed) {
-    //  as we can't use the javascript variable into laravel blade display syntax so i used dummy string at the place of the id value and use
-    //  the replace javascript function to inject into the string that produced from route() function the javascript variable
-    if (url.includes(':id')) {
-      url = url.replace(':id', id);
-      previousId = id;
-    } else {
-      url = url.replace('/expenses/' + previousId, '/expenses/' + id);
-      previousId = id;
+  try {
+    for (var _iterator = userIncomes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var userIncome = _step.value;
+      userData.push({
+        "title": userIncome.type + ':' + userIncome.pivot.amount,
+        'start': userIncome.pivot.Date,
+        'color': "#257e4a",
+        'overlap': true
+      });
     }
-
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      type: 'DELETE',
-      url: url,
-      success: function success(data) {
-        removeRecord(data, element);
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
       }
-    });
-  }
-};
-
-function removeRecord(isRemoved, element) {
-  if (isRemoved) {
-    var parent = element.parentElement.parentElement;
-
-    if (parent.previousElementSibling || parent.nextElementSibling) {
-      alert(true);
-      element.parentElement.parentElement.remove();
-    } else {
-      element.parentElement.parentElement.remove();
-      var div = document.createElement('div');
-      var h4 = document.createElement('h4');
-      h4.innerHTML = "You Have No Records";
-      div.classList.add('text-center', 'mt-3');
-      div.appendChild(h4);
-      document.getElementById('tableDiv').appendChild(div);
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
     }
-  } else {}
-}
+  }
+
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = userExpenses[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var userExpense = _step2.value;
+      userData.push({
+        "title": userExpense.name + ':' + userExpense.pivot.amount,
+        'start': userExpense.pivot.date,
+        'color': "#930000",
+        'overlap': true
+      });
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  today = yyyy + '-' + mm + '-' + dd;
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+    },
+    defaultDate: today,
+    navLinks: true,
+    businessHours: true,
+    editable: true,
+    events: userData
+  });
+  calendar.render();
+});
 
 /***/ }),
 
-/***/ 3:
-/*!**********************************************!*\
-  !*** multi ./resources/js/expenses/index.js ***!
-  \**********************************************/
+/***/ 9:
+/*!****************************************!*\
+  !*** multi ./resources/js/calendar.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/expenses/index.js */"./resources/js/expenses/index.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/calendar.js */"./resources/js/calendar.js");
 
 
 /***/ })

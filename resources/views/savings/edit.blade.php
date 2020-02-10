@@ -6,7 +6,9 @@
 <div class="col-12">
     <div class="card">
       <div class="card-body">
+
         <h4 class="card-title">Edit your Savings</h4>
+        @isset($saving)
         <form class="form-sample" method="POST" action="{{Route('savings.update',['saving_id'=>$saving->id])}}">
             @method('PATCH')
             @csrf
@@ -29,7 +31,8 @@
             </div>
           </div>
         </form>
-        
+        @else
+        @endisset
      </div>
     </div>
 </div>

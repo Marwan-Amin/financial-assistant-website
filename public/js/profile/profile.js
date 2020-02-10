@@ -81,61 +81,74 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/events/index.js":
-/*!**************************************!*\
-  !*** ./resources/js/events/index.js ***!
-  \**************************************/
+/***/ "./resources/js/profile/profile.js":
+/*!*****************************************!*\
+  !*** ./resources/js/profile/profile.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var previousId;
+document.getElementById('country').addEventListener('change', function () {
+  //     
+  var countryName = $(this).val();
+  url = url.replace(':countryName', countryName);
 
-function ajaxDelete(id, element) {
-  var isConfirmed = confirm('Do You Want To Delete This Event ?');
-
-  if (isConfirmed) {
-    if (url.includes(':id')) {
-      url = url.replace(':id', id);
-      previousId = id;
-    } else {
-      url = url.replace('/events/' + previousId, '/events/' + id);
-      previousId = id;
-    }
-
+  if (previousValue != this.value) {
     $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      type: 'DELETE',
+      type: 'GET',
       url: url,
+      dataType: 'json',
       success: function success(data) {
-        removeRecord(data, element);
+        previousValue = countryName;
+        renderStates(data);
       }
     });
+  } else if (this.value == "" || previousValue == this.value) {
+    renderStates(this.value);
   }
-}
+});
 
-function removeRecord(isRemoved, element) {
-  if (isRemoved) {
-    element.parentElement.parentElement.remove();
-  } else {}
+function renderStates(states) {
+  var selectDropDown = document.getElementById('state');
+
+  if (states) {
+    selectDropDown.innerHTML = '';
+
+    for (var i = 0; i < states.length; i++) {
+      var optionItem = document.createElement('option');
+      optionItem.value = states[i];
+      optionItem.innerHTML = states[i];
+      selectDropDown.appendChild(optionItem);
+    }
+  } else if (states == "") {
+    selectDropDown.innerHTML = '';
+
+    var _optionItem = document.createElement('option');
+
+    _optionItem.value = "";
+    _optionItem.innerHTML = 'No Country Selected';
+
+    _optionItem.setAttribute('id', 'defaultCity');
+
+    selectDropDown.appendChild(_optionItem);
+  }
 }
 
 /***/ }),
 
-/***/ 5:
-/*!********************************************!*\
-  !*** multi ./resources/js/events/index.js ***!
-  \********************************************/
+/***/ 8:
+/*!***********************************************!*\
+  !*** multi ./resources/js/profile/profile.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/events/index.js */"./resources/js/events/index.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/profile/profile.js */"./resources/js/profile/profile.js");
 
 
 /***/ })

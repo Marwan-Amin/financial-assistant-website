@@ -14,7 +14,6 @@ class SavingController extends Controller
 {
     function index() 
     {
-       $user_id = Auth::user()->id; 
        $saving=new Target_saving;
        $sum=$saving->sum_savings();      
        return view('savings.create',[
@@ -69,9 +68,7 @@ class SavingController extends Controller
     function edit($saving_id)
     {
         $saving = Saving::find($saving_id);
-        return view('savings.edit',[
-            'saving' => $saving 
-        ]); 
+        return view('savings.edit',compact('saving')); 
         
     }
 }

@@ -81,114 +81,66 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/expenses/create.js":
-/*!*****************************************!*\
-  !*** ./resources/js/expenses/create.js ***!
-  \*****************************************/
+/***/ "./resources/js/functions/delete.js":
+/*!******************************************!*\
+  !*** ./resources/js/functions/delete.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// hold the base value of the dropDownList of countries
-var previousValue;
-document.getElementById('selectCategory').querySelectorAll('div input').forEach(function (element) {
-  element.addEventListener('change', function () {
-    //     
-    var categoryId = this.value;
+window.ajaxDelete = function (element, url) {
+  var isConfirmed = confirm('Do You Want To Delete This Record ?');
 
-    if (url.includes(':categoryId')) {
-      url = url.replace(':categoryId', categoryId);
-    } else {
-      url = url.replace('ajax/' + previousValue, 'ajax/' + categoryId);
-    } // check if the previous or base value is not equal the value changed because if it's the same value then no need to make ajax request as the value desn't changed
-
-
-    if (previousValue != this.value) {
-      $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: 'json',
-        success: function success(data) {
-          //  function to render the data of the response 
-          if (data) {
-            renderSubCategories(data);
-          } else {
-            alert('Something Went Wrong Please Refresh The Page');
-          }
-        }
-      });
-      previousValue = categoryId;
-
-      if (this.value == "Others") {
-        // i send it to render and don't stop it as i will check there if it's empty and if it is i will create option tag element with no country was selected
-        renderSubCategories("others");
+  if (isConfirmed) {
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: 'DELETE',
+      url: url,
+      success: function success(data) {
+        removeRecord(data, element);
       }
-    }
-  });
-});
+    });
+  }
+};
 
-function renderSubCategories(subCategories) {
-  var selectModal = document.getElementById('subCategoriesIcons');
+function removeRecord(isRemoved, element) {
+  if (isRemoved) {
+    var parent = element.parentElement.parentElement;
 
-  if (subCategories) {
-    selectModal.innerHTML = '';
-
-    if (subCategories != "others") {
-      for (var i = 0; i < subCategories.length; i++) {
-        var divBox = document.createElement('div');
-        var spanName = document.createElement('span');
-        spanName.innerHTML = subCategories[i].name;
-        divBox.classList.add('cat-box');
-        var divIcon = document.createElement('div');
-        divIcon.classList.add('glyph-icon', subCategories[i].sub_category_icon);
-        var label = document.createElement('label');
-        label.setAttribute('for', subCategories[i].name);
-        var radioItem = document.createElement('input');
-        radioItem.setAttribute('type', 'radio');
-        radioItem.setAttribute('name', 'subCategory');
-        radioItem.setAttribute('id', subCategories[i].name);
-        radioItem.value = subCategories[i].id;
-        label.appendChild(divIcon);
-        label.appendChild(spanName);
-        divBox.appendChild(radioItem);
-        divBox.appendChild(label);
-        selectModal.appendChild(divBox);
-      }
+    if (parent.previousElementSibling || parent.nextElementSibling) {
+      alert(true);
+      element.parentElement.parentElement.remove();
     } else {
-      var _divBox = document.createElement('div');
-
-      _divBox.classList.add('cat-box');
-
-      var _label = document.createElement('label');
-
-      _label.innerHTML = 'Others';
-      var input = document.createElement('input');
-      input.setAttribute('type', 'text');
-      input.setAttribute('name', 'subCategory');
-      input.classList.add('form-control');
-      selectModal.appendChild(_divBox);
-
-      _divBox.appendChild(_label);
-
-      _divBox.appendChild(input);
+      element.parentElement.parentElement.remove();
+      var div = document.createElement('div');
+      var h4 = document.createElement('h4');
+      h4.innerHTML = "You Have No Records";
+      div.classList.add('text-center', 'mt-3');
+      div.appendChild(h4);
+      document.getElementById('tableDiv').appendChild(div);
     }
+  } else {
+    alert('something went wrong!!');
   }
 }
 
 /***/ }),
 
-/***/ 2:
-/*!***********************************************!*\
-  !*** multi ./resources/js/expenses/create.js ***!
-  \***********************************************/
+/***/ 5:
+/*!************************************************!*\
+  !*** multi ./resources/js/functions/delete.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/expenses/create.js */"./resources/js/expenses/create.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/functions/delete.js */"./resources/js/functions/delete.js");
 
 
 /***/ })

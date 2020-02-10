@@ -2,9 +2,13 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/calendar.js": "/js/calendar.js",
     "/js/events/create.js": "/js/events/create.js",
     "/js/events/edit.js": "/js/events/edit.js",
-    "/js/events/index.js": "/js/events/index.js",
     "/js/expenses/create.js": "/js/expenses/create.js",
-    "/js/expenses/index.js": "/js/expenses/index.js"
+    "/js/functions/delete.js": "/js/functions/delete.js",
+    "/js/profile/profile.js": "/js/profile/profile.js",
+    "/js/savings/create.js": "/js/savings/create.js",
+    "/js/targets/create.js": "/js/targets/create.js",
+    "/js/tensorflow.js": "/js/tensorflow.js"
 }
