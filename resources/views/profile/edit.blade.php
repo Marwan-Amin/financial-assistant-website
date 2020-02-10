@@ -134,12 +134,12 @@
                         </div>                       
                        </div>
                        <div class="row text-center">
-                       <div class="col-md-3">
-                            <button type="submit" class="w-100 btn btn-lg btn-gradient-primary mt-4">Update profile </button>
+                       <div class="col-md-12">
+                            <button type="submit" class="btn btn-lg btn-gradient-primary mt-4">Update profile </button>
+                            &nbsp;&nbsp;
+                            <a class="btn btn-lg btn-gradient-primary mt-4" href="/user_profile">Cancel Update</a>
                         </div>
-                        <div class="col-md-3">
-                            <a class="w-100 btn btn-lg btn-gradient-primary mt-4" href="/user_profile">Cancel </a>
-                        </div>
+                        
                        </div>
                         
                     </form>
