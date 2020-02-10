@@ -115,10 +115,15 @@
 
                       <div class="col-md-6">
                           <select class="form-control form-control-lg" id="subCategoryChart">
+                              @isset($userCategory)
                               <option value="" selected="">Select Sub Category</option>
+
                               @foreach($chartsInfo['userCategories'] as $userCategory)
                               <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
                               @endforeach
+                              @else
+                              <option  selected>You Have No Expenses</option>
+                              @endisset
                             </select>
                       </div>
                   </div>
