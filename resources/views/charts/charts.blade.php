@@ -23,37 +23,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Area chart</h4>
-                    <canvas id="areaChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Doughnut chart</h4>
-                    <canvas id="doughnutChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!--start expenes chart-->
-            <!-- <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Scatter chart</h4>
-                    <canvas id="scatterChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!--end expenes chart-->
-
+           
             <!--start incomes chart-->
             <div class="row">
               <div class="col-lg-6 grid-margin stretch-card">
