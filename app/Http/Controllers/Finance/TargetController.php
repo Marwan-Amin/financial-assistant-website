@@ -50,6 +50,7 @@ class TargetController extends Controller
 
     function destroy($target_id)
     {
+
         $target = Target::findOrFail($target_id);
         $target->delete();
         return response()->json($target);

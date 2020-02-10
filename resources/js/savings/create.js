@@ -11,7 +11,6 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       url :savingUrl,
       success : function (response){
         if($.isEmptyObject(response.error)){
-          console.log(response);
           previousId = response.saving.id;
           createRecord(response.saving,response.sum);
         }else{
@@ -26,71 +25,65 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   
   //create DOM elements
   function createRecord (response,sum){
-  
-  href=href.replace(':response.id',response.id);
+    if(editUrl.includes(':response.id')){
+      editUrl=editUrl.replace(':response.id',response.id);
+      previousId=response.id;
+    }
+    else{
+      editUrl=editUrl.replace('/savings/'+previousId+'/edit','/savings/'+response.id+'/edit');
+      previousId = response.id;
+    }    
   let table_body = document.getElementById("saving_table");
   let table_row = document.createElement("tr");
   //amount td
   let table_data_amount = document.createElement("td");
-  table_data_amount.innerHTML=response.amount;
+      table_data_amount.innerHTML=response.amount;
   //edit btn
   let btn_edit = document.createElement("a");
-  btn_edit.setAttribute("href", href);
-  btn_edit.innerHTML="Edit";
-  btn_edit.classList.add("btn-inverse-info", "btn-fw","btn","m-1");
+      btn_edit.setAttribute("href", editUrl);
+      btn_edit.innerHTML="Edit";
+      btn_edit.classList.add("btn-inverse-info", "btn-fw","btn","m-1");
   let edit_icon = document.createElement("i");
-  edit_icon.classList.add("mdi" ,"mdi-file-check" ,"btn-icon-append","m-1");
-  btn_edit.appendChild(edit_icon);
+      edit_icon.classList.add("mdi" ,"mdi-file-check" ,"btn-icon-append","m-1");
+      btn_edit.appendChild(edit_icon);
   let table_data = document.createElement("td");
-  table_data.appendChild(btn_edit);
+      table_data.appendChild(btn_edit);
   //delete btn
   let btn_delete = document.createElement("button");
-  btn_delete.innerHTML="Delete";
-  btn_delete.classList.add("btn-inverse-danger","btn-fw","btn");
-  btn_delete.setAttribute("id",response.id)
+      btn_delete.innerHTML="Delete";
+      btn_delete.classList.add("btn-inverse-danger","btn-fw","btn");
+      btn_delete.setAttribute("id",response.id)
   let delete_icon = document.createElement("i");
-  delete_icon.classList.add("mdi" ,"mdi-delete" ,"btn-icon-append","m-1");
-  btn_delete.appendChild(delete_icon);
+      delete_icon.classList.add("mdi" ,"mdi-delete" ,"btn-icon-append","m-1");
+      btn_delete.appendChild(delete_icon);
   //let table_data_delete = document.createElement("td");
-  table_data.appendChild(btn_delete);
+      table_data.appendChild(btn_delete);
   //Error div
   let errorDiv = document.createElement('div');
-  errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
-  errorDiv.style.display = 'none';
+      errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+      errorDiv.style.display = 'none';
   let errorUl=document.createElement('ul');
-  errorDiv.appendChild(errorUl);
+      errorDiv.appendChild(errorUl);
   //total savings
   let total = document.getElementById("total");
-  total.innerHTML=sum;
-
-  
-  table_row.appendChild(table_data_amount);
-  table_row.appendChild(table_data);
-  
-  table_body.appendChild(table_row);
+      total.innerHTML=sum;
+      table_row.appendChild(table_data_amount);
+      table_row.appendChild(table_data);
+      table_body.appendChild(table_row);
   //delete with ajax
   let isRefreshed=true;
-  ajaxDelete(btn_delete,response.id,isRefreshed);
+  confirmDelete(btn_delete,response.id,isRefreshed);
   }
   
   //delete fn
-  function ajaxDelete(btn_delete,id,isRefreshed){
+  function confirmDelete(btn_delete,id,isRefreshed){
 if(isRefreshed){
- 
-
     btn_delete.addEventListener("click",function(){
-      let isConfirm=confirm("Do you want to delete this saving?");
-      if(isConfirm){
         excuteDelete(btn_delete,id);
       
-      }
           });
   }else{
-    let isConfirm=confirm("Do you want to delete this saving?");
-      if(isConfirm){
         excuteDelete(btn_delete,id);
-      
-      }
   }
   }
   function excuteDelete(btn_delete,id){
@@ -99,41 +92,12 @@ if(isRefreshed){
       previousId=id;
     }
     else{
-      console.log(previousId,id);
-
       delurl=delurl.replace('/savings/'+previousId,'/savings/'+id);
-      previousId = btn_delete.getAttribute('id');
-    }
-
-    console.log(delurl);
-    
-
-    $.ajax({
-    headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-    type:"DELETE",
-    dataType : "json",
-    url : delurl,
-    success : function (response){
-      //console.log(response);
-      
-      deleteRecord(response.saving,response.sum,btn_delete);
-    }
-
-     });
-    
-    
-
+      previousId = id;
+    }    
+        ajaxDelete(btn_delete,delurl);
   }
-  //delete action fn
-  function deleteRecord(isDeleted,sum,chiledElement){
-    if(isDeleted){
-      chiledElement.parentElement.parentElement.remove();
-      let total = document.getElementById("total");
-      total.innerHTML=sum;
-    }
-  }
+  
   //print error msg
   function printErrorMsg (msg) {
     $(".print-error-msg").find("ul").html('');

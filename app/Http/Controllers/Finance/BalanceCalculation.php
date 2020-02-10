@@ -14,12 +14,12 @@ class BalanceCalculation
     {
         $balancesData = Balance::where('user_id', Auth::user()->id)->get();
 
-        $incomesss = DB::table('user_incomes')->where('user_id', Auth::user()->id)->where('date','<=',$date)->sum('amount');
-        $expensess = DB::table('user_sub_categories')->where('user_id', Auth::user()->id)->where('date','<=',$date)->sum('amount');
+        $incomes = DB::table('user_incomes')->where('user_id', Auth::user()->id)->where('date','<=',$date)->sum('amount');
+        $expenses = DB::table('user_sub_categories')->where('user_id', Auth::user()->id)->where('date','<=',$date)->sum('amount');
                 
-        DB::table('balances')->updateOrInsert(
+        Balance::updateOrCreate(
             ['user_id' => Auth::user()->id , 'date'=> $date ],
-            ['total_income' => $incomesss, 'total_expenses' => $expensess ]
+            ['total_income' => $incomes, 'total_expenses' => $expenses ]
         );
         foreach ($balancesData as $balance) {
             if ($date < $balance->date) 

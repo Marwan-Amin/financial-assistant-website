@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+
+ 
 <div class="main-panel">
           <div class="content-wrapper">
 <div class="page-header">
@@ -17,7 +20,7 @@
       </div>
 
       @if (count($expenses) == 0)
-      <table class="table table-striped mt-3" >
+      <table class="table table-striped mt-3"  >
           <thead>
             <tr>
             <th> Category </th>
@@ -37,7 +40,7 @@
 
 
       @if(count($expenses)>0)
-      <div class="container">
+      <div class="container" id="tableDiv">
         <table class="table table-striped " >
           <thead>
             <tr>
@@ -58,7 +61,9 @@
                 <td>
                   <a class="btn btn-inverse-info btn-fw" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
                   &nbsp;&nbsp;
-                  <button class="btn btn-inverse-danger btn-fw"  onclick="ajaxDelete('{{$expense->pivot->id}}',this);" >Delete&nbsp;<i class="mdi mdi-delete"></i></button> 
+                  <button class="btn btn-inverse-danger btn-fw"  
+                  onclick="ajaxDelete(this,`{{route('expenses.destroy',['id'=>$expense->pivot->id])}}`);" >
+                  Delete&nbsp;<i class="mdi mdi-delete"></i></button> 
                 </td>
             </tr>
             @endforeach
@@ -73,12 +78,9 @@
   </div>
    </div>
   </div>
-  <script>
-       let url = `{{route('expenses.destroy',['id'=>':id'])}}`;
 
-  </script>
-  <script src="{{asset('UI/PurpleAdmin/assets/js/expenses/index.js')}}"></script>
 
+  <script src="{{asset('js/functions/delete.js')}}"></script>
 
 
 
