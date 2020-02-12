@@ -44,7 +44,7 @@
 </div>
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body" id="tableDiv">
       <table class="table table-striped " >
         <thead>
           <tr>
@@ -77,8 +77,9 @@
 </div>
 <script> let savingUrl = "{{route('savings.store')}}";
         let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
-        let href= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
+        let editUrl= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
 
  </script>
-<script src="{{asset('UI/PurpleAdmin/assets/js/savings/create.js')}}"></script>
+ <script src="{{asset('js/functions/delete.js')}}"></script>
+<script src="{{asset('js/savings/create.js')}}"></script>
 @endsection

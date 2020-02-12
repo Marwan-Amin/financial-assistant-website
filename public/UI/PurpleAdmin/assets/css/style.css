@@ -13562,6 +13562,7 @@ text-align: center;
   padding-left: .5rem;
   color: #fff !important;
   padding: .2rem .5rem;
+  margin: 2px 0 ;
 
 }
 [style="background-color:#257e4a;border-color:#257e4a"]{
@@ -13571,6 +13572,7 @@ text-align: center;
     padding-left: .5rem;
     color: #fff !important;
     padding: .2rem .5rem;
+    margin: 2px 0 ;
 }
 .fc-view.fc-dayGridMonth-view.fc-dayGrid-view > table > thead > tr:first-child >  td:first-child{
   border : none;

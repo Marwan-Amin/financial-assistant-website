@@ -54,18 +54,18 @@ class ExpenseController extends Controller
         return response()->json($subCategoriesInfo);
     }
     public function store(expensesRequest $request){
-
         if(is_numeric($request->subCategory)){
             $userSubCategory = UserSubCategory::where('user_id',Auth::user()->id)
                        ->where('date',$request->date)->where('sub_category_id',$request->subCategory);
         $userSubCategory=$userSubCategory->exists()?$userSubCategory->first():['amount'=>0];
+
          UserSubCategory::updateOrCreate(
         ['user_id'=>Auth::user()->id,'date'=>$request->date,'sub_category_id'=>$request->subCategory],   
         [
             'amount'=>$userSubCategory['amount']+$request->amount,
         ]);
-        }
-        else {
+
+        }else {
             $subExpense = ExpenseSubCategory::create([
                 'name'=> $request->subCategory,
                 'category_id'=>'21',
@@ -89,6 +89,7 @@ class ExpenseController extends Controller
     }
 
     public function destroy($id){
+
         $subExpense = UserSubCategory::findOrFail($id);
         $subExpense->delete();
 

@@ -24,32 +24,24 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">{{$blog->title}}</h2>
-            @if($blog->user->id == auth()->user()->id)
-            <form method="post" action="{{route('blogs.destroy',['id'=>$blog->id])}}">  
-              @csrf
-              @method('DELETE')         
-              <a class="btn btn-secondary" href="{{route('blogs.edit',['id'=>$blog->id])}}">Edit</a>
-               <button type="submit" class="btn btn-warning" >Delete</button>
-            </form>
-            @endif
+           
             <p>{{$blog->body}}</p>
             <p>
               <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid">
             </p>
             
-            
+            @if($blog->user->id == auth()->user()->id)
+            <form method="post" action="{{route('blogs.destroy',['id'=>$blog->id])}}">  
+              @csrf
+              @method('DELETE')         
+              <a class="btn btn-primary py-3 px-5" href="{{route('blogs.edit',['id'=>$blog->id])}}">Edit</a>
+               <button type="submit" class="btn btn-danger py-3 px-5" >Delete</button>
+            </form>
+            @endif 
              
             
             
-            <div class="about-author d-flex p-5 bg-light">
-              <div class="bio align-self-md-center mr-5">
-                <img src="{{asset($blog->user->avatar)}}" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
-              <div class="desc align-self-md-center">
-                <h3>{{$blog->user->name}}</h3>
-                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p> -->
-              </div>
-            </div>
+           
 
 
             <div class="pt-5 mt-5">
@@ -75,6 +67,21 @@
           </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
             
+          <div class="sidebar-box ftco-animate">
+            <h3>Created by</h3>
+            <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url({{asset($blog->user->avatar)}});"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">{{$blog->user->name}}</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> {{$blog->user->created_at}}</a></div>
+                    <!-- <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div> -->
+                  </div>
+                </div>
+              </div>
+          </div>
+
 
             <div class="sidebar-box ftco-animate">
               <h3>Recent Blogs</h3>

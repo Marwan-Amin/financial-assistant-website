@@ -23,14 +23,11 @@ class expensesRequest extends FormRequest
      */
     public function rules()
     {
-        $requiredType = 'numeric';
-        if(!is_numeric($this->subCategory) ){
-            $requiredType = 'string';
-        }
+        
         return [
             'amount'=>'numeric|min:0.25|required',
             'date'=>'date|required|date_format:Y-m-d',
-            'subCategory'=>$requiredType .'|required'
+            'subCategory'=>'required'
         ];
     }
 }

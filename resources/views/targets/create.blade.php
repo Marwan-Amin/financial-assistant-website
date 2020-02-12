@@ -55,7 +55,7 @@
 </div>
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body" id="tableDiv">
 
       <table class="table table-striped ">
 
@@ -89,10 +89,9 @@
             </div>
             @endif
             </td>
-            
             <td><a class="btn btn-inverse-info btn-fw " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
             &nbsp;&nbsp; 
-            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxDelete(this,"{{$target->id}}",false);' >
+            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxUrl(this,"{{$target->id}}",false);' >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
                     </button> 
             </td>
@@ -107,155 +106,12 @@
 </div>
 </div>
 </div>
+<script src="{{asset('js/functions/delete.js')}}"></script>
 <script>
-  document.getElementById("add_target_btn").addEventListener('click',function(){
-    let target_amount = document.getElementById("target_amount").value;
-    let target_name = document.getElementById("target_name").value;
-    $.ajax({
-      headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-      type:"POST",
-      data : {target_amount , target_name},
-      dataType : "json",
-      url :"{{route('targets.store')}}",
-      success : function (response){
-        if($.isEmptyObject(response.error)){
-          console.log(response);
-          createRecord(response.targetData);
-        }else{
-          printErrorMsg(response.error);
-        }
-        
-      }
-  
-    });
-  });
-  
-  
- //create DOM elements
-  function createRecord (response){
-    console.log(response.progress);
-  let href= "{{route('targets.edit',['target_id'=>':response.id'])}}";
-  href=href.replace(':response.id',response.id);
-  let table_body = document.getElementById("target_table");
-  let table_row = document.createElement("tr");
-  //target amount
-  let table_data_target = document.createElement("td");
-  table_data_target.innerHTML=response.target_name;
-  //target name
-  let table_data_amount = document.createElement("td");
-  table_data_amount.innerHTML=response.target_amount;
-  
-  //progress 
-  let table_data_progress = document.createElement("td");
-  let progressBig_div =document.createElement('div');
-      progressBig_div.classList.add('progress');
-  let progress_div =document.createElement('div');
-      progress_div.classList.add('progress-bar');
-      progress_div.setAttribute('role','progressbar');
-      if(response.progress >= 100){
-        progress_div.style.width ='100%';
-        progress_div.innerHTML = '100%';
-        progress_div.classList.add('bg-success');
+ let deleteTargetUrl ="{{route('targets.destroy',['target_id'=>':target.id'])}}";
+ let editTargetUrl ="{{route('targets.edit',['target_id'=>':response.id'])}}";
+ let storeTargetUrl = "{{route('targets.store')}}";
+</script>
+<script src="{{asset('js/targets/create.js')}}"></script>
 
-      }else{
-        progress_div.style.width =response.progress+'%';
-        progress_div.innerHTML = response.progress+'%';
-        progress_div.classList.add('progress-bar','bg-warning');
-
-      }
-
-      table_data_progress.appendChild(progressBig_div);
-      progressBig_div.appendChild(progress_div);
-       //edit btn
-       let table_data = document.createElement("td");
-
-  let btn_edit = document.createElement("a");
-  btn_edit.setAttribute("href", href);
-  btn_edit.classList.add("btn-inverse-info", "btn-fw","btn","m-1");
-  btn_edit.innerHTML="Edit";
-  let edit_icon = document.createElement("i");
-  edit_icon.classList.add("mdi" ,"mdi-file-check" ,"btn-icon-append","m-1");
-  btn_edit.appendChild(edit_icon);
-  table_data.appendChild(btn_edit);
-  //del btn
-  let btn_delete = document.createElement("button");
-  btn_delete.innerHTML="Delete";
-  btn_delete.classList.add("btn-inverse-danger","btn-fw","btn");
-  let delete_icon = document.createElement("i");
-  delete_icon.classList.add("mdi" ,"mdi-delete" ,"btn-icon-append","m-1");
-  btn_delete.appendChild(delete_icon);
-  table_data.appendChild(btn_delete);
-
-  //Error div
-  let errorDiv = document.createElement('div');
-  errorDiv.classList.add('alert','alert-danger','print-error-msg-sub');
-  errorDiv.style.display = 'none';
-  let errorUl=document.createElement('ul');
-  errorDiv.appendChild(errorUl);
-
-    
-  table_row.appendChild(table_data_target);
-  table_row.appendChild(table_data_amount);
-  table_row.appendChild(table_data_progress);
-  table_row.appendChild(table_data);
-  table_body.appendChild(table_row);
-  
-  let isAjax = true;
-  //delete with ajax
-  ajaxDelete(btn_delete,response.id,isAjax);
-  }
-  
-  //delete fn
-  function ajaxDelete(btn_delete,target_id,isAjax){
-    if(isAjax){
-      btn_delete.addEventListener("click",function(){
-    excuteDelete(); 
-  });
-    }else{
-      excuteDelete();
-    }
-    
-  
-  }
-  function excuteDelete(){
-    let isConfirm=confirm("Do you want to delete this Budget Goal?");
-
-if(isConfirm){
-  let url= "{{route('targets.destroy',['target_id'=>':target.id'])}}";
-    url=url.replace(':target.id',target_id);
-    $.ajax({
-    headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-    type:"DELETE",
-    dataType : "json",
-    url : url,
-    success : function (response){
-      deleteRecord(response,btn_delete);
-    }
-
-     });
-}
-    
-  }
-  //delete action fn
-  function deleteRecord(isDeleted,chiledElement){
-    if(isDeleted){
-      chiledElement.parentElement.parentElement.remove();
-    }
-  }
-  function printErrorMsg (msg) {
-    $(".print-error-msg").find("ul").html('');
-    $(".print-error-msg").css('display','block');
-
-    $.each( msg, function( key, value ) {
-        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    });
-    setTimeout(function() {
-        $(".print-error-msg").css('display','none');
-        }, 4000);
-}
-  </script>
  @endsection

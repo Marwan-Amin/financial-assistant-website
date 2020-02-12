@@ -23,31 +23,30 @@
             <tr>
            <td> <input type="text" id="customCategoryName" class="form-control" value="{{$customCategory->name}}"/></td> 
            <td> <input type="date" id="customCategoryDate" class="form-control" placeholder="dd/mm/yyyy" value="{{ $customCategory->date }}" /></td> 
-
-           <td> <button id="customEventCategory" class="btn btn-gradient-danger btn-fw" value="{{$customCategory->id}}" onclick='editEvent("{{$customCategory->id}}");'>Edit Event</button></td>
+           <td> <button id="customEventCategory" class="btn btn-gradient-danger btn-fw" value="{{$customCategory->id}}" onclick="editEvent(`{{route('events.update',['id'=>$customCategory->id])}}`);">Edit Event</button></td>
           <td><div class="alert alert-success" id="categorySuccess" role="alert" style="display:none">The Event Successfully Updated</div></td>  
           </tr>
           <tr>
               <td>
-              <label class="col-sm-3 col-form-label">Sub-Event Name</label>
+              <label class="col-sm-12 col-form-label">Sub-Event Name</label>
                 <div class="col-sm-9">
                   <input type="text"  id="subCategoryName" name="subCategoryName" class="form-control" />
                 </div>
               </td>
             <td>
-            <div class="col-md-6">
-              <div class="form-group row fluid">
-                <label class="col-sm-4 col-form-label" id="subCategoryAmountLabel">Sub-Event Amount</label>
-                <div class="col-md-8" id="subCategoryAmount">
+            
+              
+                <label class="col-sm-12 col-form-label" id="subCategoryAmountLabel">Sub-Event Amount</label>
+                <div class="col-md-9" id="subCategoryAmount">
                 <input type="number"  id="subEventAmount"  class="form-control" />  
+             
               </div>
-              </div>
-            </div>
+            
           </div>
             </td>
               <td>
               <div id="eventActionButtons">
-            <button  class="btn btn-gradient-danger btn-fw" onclick="addSubEvent(true);" id="addSubEvent">Add Sub-Event</button>
+            <button  class="btn btn-gradient-danger btn-fw"  id="addSubEvent">Add Sub-Event</button>
             </div>
             <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
@@ -86,7 +85,7 @@
            <td> <input type="text" name="customSubCategoryName" class="form-control" value="{{ $customSubCategory->name }}"/></td>
 
               <td> <input type="number" step="0.01" name="amount" class="form-control" value="{{ $customSubCategory->amount }}"/></td> 
-           <td><button  class="btn btn-gradient-danger btn-fw" onclick='editSubEvent(this,"{{$customSubCategory->id}}")'>Edit Sub-Event</button></td>
+           <td><button  class="btn btn-gradient-danger btn-fw" onclick='editSubEvent(this,`{{$customSubCategory->id}}`)'>Edit Sub-Event</button></td>
           <td><div class="alert alert-success" id="subCategorySuccess" role="alert" style="display:none">The Sub-Event Successfully Updated</div></td>  
           </tr>
           @endforeach
@@ -111,13 +110,12 @@
   <script>
            let subEventUrl = "{{route('subEvent.update',['id'=>':customSubCategoryId'])}}";
            let urlSubCategory = `{{route('events.subStore')}}`;
-         let mainEventUrl = "{{route('events.update',['id'=>':customCategoryId'])}}";
 
       
   </script>
-      <script src="{{asset('UI/PurpleAdmin/assets/js/events/edit.js')}}"></script>
+      <script src="{{asset('js/events/edit.js')}}"></script>
 
-  <script src="{{asset('UI/PurpleAdmin/assets/js/events/create.js')}}">
+  <script src="{{asset('js/events/create.js')}}">
         
 
   </script>
@@ -125,13 +123,11 @@
   <script>
       
      
-       function addSubEvent(isInEdit){
-        let subCategoryName=document.getElementById('subCategoryName');
-       let subCategoryAmount = document.getElementById('subEventAmount');
-       let categoryId=document.getElementById('customEventCategory').value;
-        sendSubCategoryAjax(subCategoryName,subCategoryAmount,categoryId,isInEdit);
 
-       }  
+         
+        
+
+        
   </script>
 
  @endsection
