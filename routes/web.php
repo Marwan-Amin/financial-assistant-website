@@ -13,12 +13,12 @@ use App\Country;
 */
 
 
-Route::get('/','HomeController@index');
+Route::get('/','HomeController@index')->name('home.index');
+Route::get('/home','HomeController@index')->name('home.index');
 
 Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     Route::post('/userHome',"DashboardController@store")->name('dashboard.store');
 
@@ -90,14 +90,12 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-    Route::get('/blogs','Blog\BlogController@index')->name('blogs.index');
     Route::get('/blogs/create', 'Blog\BlogController@create');
     Route::get('/blogs/{id}/edit', 'Blog\BlogController@create')->name('blogs.edit');
     Route::put('/blogs/{id}/update', 'Blog\BlogController@update')->name('blogs.update');
     Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
     Route::delete('/blogs/{id}/destroy', 'Blog\BlogController@destroy')->name('blogs.destroy');
-    Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
-    Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
+  
   
     //calendar route
     Route::get('/calendar', 'CalendarController@index');
@@ -108,9 +106,13 @@ Route::middleware(['auth','verified'])->group(function(){
 
    
 });
+// Blogs for authenticated and unauthenticated users
+Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
+Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
+Route::get('/blogs','Blog\BlogController@index')->name('blogs.index');
+Route::get('/blogs/{userId}','Blog\BlogController@getUserBlogs')->name('user.blogs');
 
 
-Route::get('/home','HomeController@index')->name('home.index');
  
 //contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');

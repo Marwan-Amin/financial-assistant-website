@@ -78,6 +78,12 @@ class BlogController extends Controller
         }
         return redirect()->route('blogs.show',['id'=>$blog->id]);
     }
+    public function getUserBlogs($id){
+        $blogs = Blog::where('user_id',$id)->get();
+      
+        return view('blogs.index',compact('blogs'));
+
+    }
     public function show($id){
         
         $blog = Blog::where('id',$id)->withCount('comments')->first();
