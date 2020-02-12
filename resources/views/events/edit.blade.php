@@ -28,20 +28,20 @@
           </tr>
           <tr>
               <td>
-              <label class="col-sm-3 col-form-label">Sub-Event Name</label>
+              <label class="col-sm-12 col-form-label">Sub-Event Name</label>
                 <div class="col-sm-9">
                   <input type="text"  id="subCategoryName" name="subCategoryName" class="form-control" />
                 </div>
               </td>
             <td>
-            <div class="col-md-6">
-              <div class="form-group row fluid">
-                <label class="col-sm-4 col-form-label" id="subCategoryAmountLabel">Sub-Event Amount</label>
-                <div class="col-md-8" id="subCategoryAmount">
+            
+              
+                <label class="col-sm-12 col-form-label" id="subCategoryAmountLabel">Sub-Event Amount</label>
+                <div class="col-md-9" id="subCategoryAmount">
                 <input type="number"  id="subEventAmount"  class="form-control" />  
+             
               </div>
-              </div>
-            </div>
+            
           </div>
             </td>
               <td>
