@@ -68,7 +68,7 @@ class ReportController extends Controller
 
         $currentDate = Carbon::today()->toDateString();
         $userCharts = new User();
-        $chartsInfo = $userCharts->charts();
+        $chartsInfo = $userCharts->charts($request->reportDate);
         return view ('Reporting.index', [
             'user' => $user_info , 
             'filterexpenses' => $expenses,

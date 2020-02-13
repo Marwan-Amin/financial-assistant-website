@@ -85,7 +85,7 @@
 
                       <div class="col-md-6">
                           <select class="form-control form-control-lg" id="subCategoryChart">
-                              @isset($userCategory)
+                              @isset($chartsInfo)
                               <option value="" selected="">Select Sub Category</option>
 
                               @foreach($chartsInfo['userCategories'] as $userCategory)

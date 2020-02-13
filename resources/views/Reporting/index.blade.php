@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="main-panel">
           <div class="content-wrapper">
               
@@ -44,14 +45,17 @@
 
               <div class="col-md-6">
               <select class="form-control form-control-lg" id="subCategoryChart">
-                              @isset($userCategory)
+              @isset($chartsInfo)
                               <option value="" selected="">Select Sub Category</option>
-
                               @foreach($chartsInfo['userCategories'] as $userCategory)
                               <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
                               @endforeach
-                              @else
-                              <option  selected>You Have No Expenses</option>
+                              @if($chartsInfo['userCategories'][0]['category_id'] == 0)
+                              <option  value="{{$chartsInfo['userCategories']['category_id'].','.$chartsInfo['userCategories']['isCustom']}}">{{$chartsInfo['userCategories']['categoryName']}}</option>
+
+                              @endif
+                             
+
                               @endisset
                             </select>
               </div>
@@ -217,6 +221,14 @@
 </div>
 <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title">Balace Line Chart</h4>
+                    <canvas id="lineChart" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+<div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Expense Categories</h4>
                     <canvas id="pieChart" style="height:250px"></canvas>
@@ -312,7 +324,6 @@
     </div>
 </div>
 
-</>
 </div>
 
 </div>
@@ -325,17 +336,21 @@
           let test=[];
           @isset($chartsInfo['totalExpenses'])
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense) dataAmount.push(Number("{{$chartsInfo['totalExpenses'][$key]->total}}")); labels.push("{{$chartsInfo['totalExpenses'][$key]->Category_Name}}");@endforeach
+         @else
+         dataAmount.push(0);
+         labels.push('There is No Expenses')
          @endisset
          @isset($chartsInfo['totalCustomExpeses'])
          @foreach($chartsInfo['totalCustomExpeses'] as $key=>$customExpense) dataAmount.push(Number("{{$chartsInfo['totalCustomExpenses'][$key]->custom_total}}")); labels.push("{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}");@endforeach
+         @else
+         
+         dataAmount.push(0);
+         labels.push('There is No Expenses')
          @endisset
-        //  console.log(labels,dataAmount);
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
-                $("#pieChart3").remove();
-                $('#pieChart3-container').append('<canvas id="pieChart3" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>')
-                  categoryId = this.value.split(',')[0];
+                 categoryId = this.value.split(',')[0];
                   isCustom = this.value.split(',')[1];
                   $.ajax({
                    headers: {
@@ -402,15 +417,14 @@
       fill: false
     }]
   };
-
   var incomesLineData = {
     labels: [ 
-      @foreach ( $chartsInfo['totalIncome'] as $income ) '{{  $income->type }}' ,  @endforeach
+      @foreach ( $chartsInfo['userIncomeByDate'] as $income ) '{{  Carbon\Carbon::parse($income["date"])->format('d - F - Y') }}' ,  @endforeach
     ],
     datasets: [{
       label: 'Total amount',
       data: [ 
-        @foreach ($chartsInfo['totalIncome'] as $income) {{  $income->total }} ,  @endforeach
+        @foreach ($chartsInfo['userIncomeByDate'] as $income) {{  $income['totalAmount'] }} ,  @endforeach
             ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -652,7 +666,7 @@
     }]
   };
   //end expneses pie chart data
-
+  
     //start incomes pie chart data
     var doughnutPieDataForIncomes = {
     datasets: [{
@@ -1023,7 +1037,7 @@
     var lineChart = new Chart(lineChartCanvas, {
       type: 'line',
       data: incomesLineData,
-      options: options
+      options: LineOptionsInitializer()
     });
   }
 
@@ -1146,7 +1160,8 @@
   }
 });
 function subExpensePieChart(doughnutPieOptions,data,labels){
-
+    data = data.filter(d=>d!=0);
+    console.log(data);
      doughnutPieDataForIncomes = {
     datasets: [{
       data: data,
@@ -1212,6 +1227,28 @@ function doughnutPieOptionsInitializer(){
     }
   };
   return doughnutPieOptions;
+}
+function LineOptionsInitializer(){
+
+var optionsForIncomeLineChart = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    legend: {
+      display: false
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+
+  };
+  return optionsForIncomeLineChart;
 }
     </script>
 

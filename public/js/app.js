@@ -1953,6 +1953,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   // we use vue props and we will bind the auth user in vue template component at show blade page
@@ -1963,7 +1967,8 @@ __webpack_require__.r(__webpack_exports__);
       newComment: '',
       users: [],
       activeWritingUser: false,
-      typingTimer: false
+      typingTimer: false,
+      commentsCount: 0
     };
   },
   created: function created() {
@@ -2009,9 +2014,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/comments/' + blogId).then(function (response) {
         // get always last page of comments as it's last comments and there you will add you new comment
+        console.log(response);
+
         _this3.getResults(response.data.comments.last_page);
 
         _this3.comments = response.data.comments;
+        _this3.commentsCount = response.data.commentsCount;
       })["catch"](function (error) {
         alert(error);
       });
@@ -65565,6 +65573,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("h3", { staticClass: "mb-5" }, [
+      _vm._v(
+        "\n              " +
+          _vm._s(this.commentsCount) +
+          "\n              Comments\n              "
+      )
+    ]),
+    _vm._v(" "),
     _c("h6", { staticClass: "mb-4" }, [
       _vm._v(" (" + _vm._s(this.users.length) + ") Users Active In This Blog")
     ]),
@@ -65577,7 +65593,14 @@ var render = function() {
       },
       _vm._l(_vm.comments.data, function(comment, index) {
         return _c("li", { key: index, staticClass: "comment" }, [
-          _vm._m(0, true),
+          _c("div", { staticClass: "vcard bio" }, [
+            _c("img", {
+              attrs: {
+                src: "http:\\\\127.0.0.1:8000\\" + comment.user.avatar,
+                alt: "Image placeholder"
+              }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "comment-body" }, [
             _c("strong", [_vm._v(_vm._s(comment.user.name))]),
@@ -65588,7 +65611,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", [_vm._v(_vm._s(comment.body))]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _vm._m(0, true)
           ])
         ])
       }),
@@ -65653,19 +65676,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "vcard bio" }, [
-      _c("img", {
-        attrs: {
-          src: "https://i.ya-webdesign.com/images/profile-image-png-8.png",
-          alt: "Image placeholder"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

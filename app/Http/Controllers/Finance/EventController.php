@@ -45,10 +45,13 @@ class EventController extends Controller
             'customSubCategoryAmount' => 'required|numeric',
         ]);
         if ($validator->passes()) {
-            $customSubCategory = CustomSubCategory::find($id);
+            $customSubCategory = CustomSubCategory::where('id',$id)->first();
             $customSubCategory->name =$request->customSubCategoryName;
             $customSubCategory->amount =$request->customSubCategoryAmount;
             $customSubCategory->save();
+            $balanceObj=new BalanceCalculation;
+            $balanceObj->calculateBalance($customSubCategory->customCategory->date ,$request->customSubCategoryAmount, $customSubCategory->customCategory->name);
+
             return response()->json(['success'=>'Added new records.']);
         }      
           return response()->json(['error'=>$validator->errors()->all()]);
@@ -74,10 +77,10 @@ public function storeSubEvent(Request $request){
         
         $customSubCategory = CustomSubCategory::where('name',$request->subName)->where('category_id',$request->categoryId)->first();
 
-        $event = CustomCategory::find($request->categoryId);
+        $mainEvent = CustomCategory::find($request->categoryId);
         $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($event->date , $request->amount); 
-
+        $balanceObj->calculateBalance($mainEvent->date , $request->amount,$mainEvent->name); 
+        
        if($amount['amount']==0){
            $isUpdated=false;
         return response()->json(['success'=>'Added new records.','data'=>$customSubCategory,'isUpdated'=>$isUpdated]);
@@ -116,6 +119,7 @@ public function update($id,Request $request){
     $customCategory->name = $request->customCategoryName;
     $customCategory->date = $request->customCategoryDate;
    $customCategory->save();
+   
     return response()->json(true);
 }
 }
