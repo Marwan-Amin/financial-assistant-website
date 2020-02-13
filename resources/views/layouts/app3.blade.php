@@ -262,7 +262,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/incomes">
-                <span class="menu-title">income</span>
+                <span class="menu-title">Incomes</span>
                 <i class="mdi mdi-square-inc-cash menu-icon"></i>
               </a>
             </li>
