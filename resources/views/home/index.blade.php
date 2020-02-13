@@ -135,9 +135,12 @@
             <div class="col-md-10 text-center heading-section heading-section-white ftco-animate">
               <h2 class="h1 font-weight-bold">From budgets and bills to free credit score and more, you’ll discover the effortless way to stay on top of it all.</h2>
               <p>
+                @guest
               <a href="{{route('register')}}" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Register</a>
               <a href="{{route('login')}}" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">Login</a>
-              </p>
+           
+              @endguest  
+            </p>
             </div>
           </div>
         </div>

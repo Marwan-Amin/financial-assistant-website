@@ -134,7 +134,7 @@ function renderResponse(data) {
     var editEvent = document.createElement('a');
     editEvent.innerHTML = 'Edit Event';
     editEvent.setAttribute('href', editHref);
-    editEvent.setAttribute('class', "btn btn-gradient-success"); //create anchor tag for create new event
+    editEvent.setAttribute('class', "btn btn-gradient-success ml-1"); //create anchor tag for create new event
 
     var _addEvent = document.createElement('a');
 
@@ -142,7 +142,7 @@ function renderResponse(data) {
 
     _addEvent.innerHTML = "Add Event";
 
-    _addEvent.setAttribute('class', "btn btn-gradient-success"); //append the anchor tags into the eventActionContainer Div
+    _addEvent.setAttribute('class', "btn btn-gradient-success ml-1"); //append the anchor tags into the eventActionContainer Div
 
 
     eventActionContainer.appendChild(editEvent);
@@ -150,10 +150,12 @@ function renderResponse(data) {
 
     var eventName = document.createElement('input');
     eventName.setAttribute('type', 'text');
+    eventName.setAttribute('class', 'form-control');
     document.getElementById('subCategoryNameLabel').innerHTML = 'Event Expense'; //create input and set event amount into that input 
 
     var eventSubCategoryAmount = document.createElement('input');
     eventSubCategoryAmount.setAttribute('type', 'number');
+    eventSubCategoryAmount.setAttribute('class', 'form-control');
     eventSubCategoryAmount.setAttribute('step', '0.01');
     document.getElementById('subCategoryAmountLabel').innerHTML = 'Amount';
     var errorDiv = document.createElement('div');

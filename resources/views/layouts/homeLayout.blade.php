@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Financial Assistant</title>
+        <title>Moneyger - Home</title>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -51,7 +51,7 @@
             class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
             id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="/">Financial Assisstant</a>
+                <a class="navbar-brand" href="/">Moneyger</a>
                 <button
                     class="navbar-toggler"
                     type="button"

@@ -6,7 +6,7 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
           <i class="mdi mdi-home"></i>
-        </span> {{ Auth::user()->name }}'s Dashboard</h3>
+        </span> Welcome to your Dashboard</h3>
         <style>
               *{
                   margin: 0;
@@ -217,23 +217,7 @@
                     <div class="col-md-6">
                       <h4 class="card-title">sub Expenses Chart</h4>
                       </div>
-                      <div class="col-md-6">
-
-                          <select class="form-control form-control-lg" id="subCategoryChart">
-                              @isset($chartsInfo)
-                              <option value="" selected="">Select Sub Category</option>
-                              @if($chartsInfo['userCategories'][0]['category_id'] == 0)
-                              <option  value="{{$chartsInfo['userCategories']['category_id'].','.$chartsInfo['userCategories']['isCustom']}}">{{$chartsInfo['userCategories']['categoryName']}}</option>
-                              @else
-                              @foreach($chartsInfo['userCategories'] as $userCategory)
-                              <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
-                              @endforeach
-                              @endif
-                             
-                   
-                              @endisset
-                            </select>
-                      </div>
+                     
                   </div>
                   <!--end sub category dropdown-->
                   <div id="pieChart3-container">

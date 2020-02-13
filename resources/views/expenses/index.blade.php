@@ -20,7 +20,7 @@
       </div>
 
       @if (count($expenses) == 0)
-      <table class="table100"  >
+      <table class="new-table"  >
           <thead>
             <tr class="bg-gradient-success text-light">
             <th> Category </th>
@@ -40,7 +40,7 @@
 
       @if(count($expenses)>0)
       <div class="container" id="tableDiv">
-        <table class="table100" >
+        <table class="new-table" >
           <thead>
           <tr class="bg-gradient-success text-light">
             <th> Category </th>

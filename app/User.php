@@ -171,7 +171,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         
        }else{
-           $userCategories=['categoryName' => 'there is no category created','category_id'=>0,'isCustom'=>'false'];
+           $userCategories=false;
        }
        
         //start expense array for chart
