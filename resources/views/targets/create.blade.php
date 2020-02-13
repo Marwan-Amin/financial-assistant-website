@@ -28,7 +28,7 @@
               <div class="col-md-12">
   
               <div class="form-group row">
-                  <label class="col-sm-12">Goal</label>
+                  <strong><label class="col-sm-12">Goal</label></strong>
                   <div class="col-sm-12">
                     <input id="target_name" type="text" name="target_name" class="form-control" />
                   </div>
@@ -37,7 +37,7 @@
 
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label class="col-sm-12">Amount</label>
+                  <strong><label class="col-sm-12">Amount</label></strong>
                   <div class= "col-sm-12">
                     <input id="target_amount" type="number" name="amount" class="form-control" />
                   </div>
@@ -65,12 +65,11 @@
   
       <table class="table100">
         <thead>
-          <tr class="table100-head">
+          <tr class="bg-gradient-info text-light">
             <th> Goal </th>
             <th> Amount </th>
             <th> Progress </th>
             <th> Action </th>
-            
           </tr>
         </thead>
         <tbody id="target_table">
