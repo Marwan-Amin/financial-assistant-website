@@ -77,7 +77,7 @@
             <th> Action </th>
           </tr>
         </thead>
-        <tbody id="target_table">
+        <tbody id="tableDiv">
           @isset($targets)
           @foreach ($targets as $target)
           <tr>

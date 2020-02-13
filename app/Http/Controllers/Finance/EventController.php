@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class EventController extends Controller
 {
     public function index(){
-        $events = CustomCategory::all();
+        $events = CustomCategory::all()->paginate(5);
         return view('events.index',compact('events'));
     }
     public function create(){

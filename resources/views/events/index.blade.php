@@ -23,6 +23,7 @@
             </tr>
           </thead>
           <tbody>
+            @isset($events)
             @foreach ($events as $event) 
             <tr>
             <td>{{$event->name}}</td>
@@ -41,6 +42,11 @@
                  
             </tr>
             @endforeach
+            @else
+            <div class="text-center mt-3">
+              <h4>You Have No Records</h4>
+            </div>
+            @endisset
           </tbody>
         </table>
 

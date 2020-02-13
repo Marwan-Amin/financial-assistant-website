@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Finance\Target_saving;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\DataCollector\AjaxDataCollector;
 
 class SavingController extends Controller
 {
@@ -17,7 +18,7 @@ class SavingController extends Controller
        $saving=new Target_saving;
        $sum=$saving->sum_savings();      
        return view('savings.create',[
-        'savings' => user::find(Auth::user()->id)->savings()->get(),
+        'savings' => user::find(Auth::user()->id)->savings,
         'sum' => $sum
         ]);
     }

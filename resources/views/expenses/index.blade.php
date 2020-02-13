@@ -69,9 +69,11 @@
           </tbody>
           @endif
         </table>
+        {{ $expenses->links() }}
+
         </div>
 
-       
+
       </div>
     </div>
   </div>

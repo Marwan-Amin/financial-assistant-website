@@ -130,7 +130,10 @@ function createRecord(response) {
     oldEditedId = response.id;
   }
 
-  var table_body = document.getElementById("target_table");
+  var table_body = document.getElementById("tableDiv");
+  table_body.querySelectorAll('div h4').forEach(function (element) {
+    element.parentElement.remove();
+  });
   var table_row = document.createElement("tr"); //target amount
 
   var table_data_target = document.createElement("td");
@@ -213,10 +216,8 @@ window.ajaxUrl = function (btn_delete, target_id, isAjax) {
 function setUrl(id) {
   if (deleteTargetUrl.includes(':target.id')) {
     deleteTargetUrl = deleteTargetUrl.replace(':target.id', id);
-    oldDeletedId = id;
   } else {
-    deleteTargetUrl = deleteTargetUrl.replace('/targets/' + oldDeletedId, '/targets/' + id);
-    oldDeletedId = id;
+    deleteTargetUrl = deleteTargetUrl.substring(0, deleteTargetUrl.indexOf('/targets/')) + '/targets/' + id;
   }
 }
 

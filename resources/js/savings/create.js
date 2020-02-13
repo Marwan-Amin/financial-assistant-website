@@ -1,4 +1,3 @@
-let  previousId ;
 document.getElementById("add_savings_btn").addEventListener('click',function(){
     let saving_amount = document.getElementById("saving_amount").value;
     $.ajax({
@@ -33,7 +32,10 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       editUrl=editUrl.replace('/savings/'+previousId+'/edit','/savings/'+response.id+'/edit');
       previousId = response.id;
     }    
-  let table_body = document.getElementById("saving_table");
+  let table_body = document.getElementById("tableDiv");
+      table_body.querySelectorAll('div h4').forEach(function(element){
+        element.parentElement.remove();
+      });
   let table_row = document.createElement("tr");
   //amount td
   let table_data_amount = document.createElement("td");
@@ -71,13 +73,13 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       table_row.appendChild(table_data);
       table_body.appendChild(table_row);
   //delete with ajax
-  let isRefreshed=true;
+  let isRefreshed=false;
   confirmDelete(btn_delete,response.id,isRefreshed);
   }
   
   //delete fn
-  function confirmDelete(btn_delete,id,isRefreshed){
-if(isRefreshed){
+ window.confirmDelete = function (btn_delete,id,isRefreshed){
+if(!isRefreshed){
     btn_delete.addEventListener("click",function(){
         excuteDelete(btn_delete,id);
       
@@ -89,11 +91,9 @@ if(isRefreshed){
   function excuteDelete(btn_delete,id){
     if(delurl.includes(':saving.id')){
       delurl=delurl.replace(':saving.id',id);
-      previousId=id;
     }
     else{
-      delurl=delurl.replace('/savings/'+previousId,'/savings/'+id);
-      previousId = id;
+      delurl=delurl.substring(0,delurl.indexOf('/savings/'))+'/savings/'+id;
     }    
         ajaxDelete(btn_delete,delurl);
   }
