@@ -13,12 +13,13 @@ use App\Country;
 */
 
 
-Route::get('/','HomeController@index');
+Route::get('/','HomeController@index')->middleware('guest');
+Route::get('/home','HomeController@index')->name('home.index');
+
 
 Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/userHome',"DashboardController@index")->name('userHome');
     Route::post('/userHome',"DashboardController@store")->name('dashboard.store');
 
@@ -110,12 +111,11 @@ Route::middleware(['auth','verified'])->group(function(){
 });
 
 
-Route::get('/home','HomeController@index')->name('home.index');
  
 //contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');
 
-Auth::routes(['verify'=>true]);
+Auth::routes();
 
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')

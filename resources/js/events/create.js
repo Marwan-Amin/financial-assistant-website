@@ -106,7 +106,6 @@ data:subCategoryInfo,
    success:function(response){
      //create information record about the event 
      if($.isEmptyObject(response.error)){
-        alert(response.success);
             createEventInfoRecord(response.data,response.isUpdated);
         
     }else{

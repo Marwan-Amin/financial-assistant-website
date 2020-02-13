@@ -101,11 +101,5 @@ class ReportController extends Controller
     public function filterExpenseExport()
     {
         return Excel::download(new UserExpensesFilterExport, 'filteredExpenses.xlsx');
-    }
-
-    public function pdfExport()
-    {
-        $pdf = PDF::loadView('Reporting.index');
-        return $pdf->download('report.pdf');    
-    }   
+    } 
 }

@@ -8,7 +8,7 @@ use App\User;
 class Balance extends Model
 {
     protected $fillable = [
-        'total_expenses', 'total_income', 'user_id'
+        'total_expenses', 'total_income', 'user_id','date'
     ];
 
     public function user(){

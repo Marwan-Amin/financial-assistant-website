@@ -33,6 +33,8 @@ class EventController extends Controller
                 ['name'=>$request->eventName,'user_id'=>Auth::user()->id,'date' =>$request->eventDate]
             );
 
+
+
 			return response()->json(['success'=>'Added new records.','isStored'=>true,'categoryId'=>$category->id]);
         }
         return response()->json(['error'=>$validator->errors()->all()]);
@@ -69,7 +71,12 @@ public function storeSubEvent(Request $request){
             [
            'amount' =>$amount['amount']+$request->amount,
             ]);
+        
         $customSubCategory = CustomSubCategory::where('name',$request->subName)->where('category_id',$request->categoryId)->first();
+
+        $event = CustomCategory::find($request->categoryId);
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalance($event->date , $request->amount); 
 
        if($amount['amount']==0){
            $isUpdated=false;
