@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="main-panel">
-          <div class="content-wrapper">
+<div class="content-wrapper">
               
 <div class="page-header">
       <h3 class="page-title">
@@ -10,33 +10,69 @@
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
         </span> Report</h3>
 </div>
+
 <div class="row">
     <div class="col-6">
-<form action="{{route('reports.filter')}}" method="post">
-@csrf
-    
-    <div class="form-group pl-0 col-md-5">
-        <div class="input-group">
-        @isset($date)     
-        <input type="date" class="form-control" placeholder="Filter by date" name="reportDate" id="reportDate" value="{{$date}}">
-        @endisset 
-        <div class="input-group-append">
-            <button class="pl-4 pr-4 btn btn-sm btn-gradient-primary" type="submit">Filter</button>
+      <form action="{{route('reports.filter')}}" method="post">
+      @csrf
+        <div class="form-group pl-0 col-md-5">
+            <div class="input-group">
+            @isset($date)     
+            <input type="date" class="form-control" placeholder="Filter by date" name="reportDate" id="reportDate" value="{{$date}}">
+            @endisset 
+            <div class="input-group-append">
+                <button class="pl-4 pr-4 btn btn-sm btn-gradient-primary" type="submit">Filter</button>
+            </div>
+            </div>
         </div>
-        </div>
+      </form>
     </div>
-</form>
-</div>
 </div>
 
 <div class="row">
+
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-header">
+        <div class="text-center p-1">
+          <strong><span> Balance visulaization </span></strong>
+        </div>
+      </div>
       
+      <div class="card-body">
+        <div class="chartjs-size-monitor">
+          <div class="chartjs-size-monitor-expand">
+            <div class=""></div></div><div class="chartjs-size-monitor-shrink">
+              <div class="">
+
+              </div>
+            </div>
+          </div>
+          <canvas id="lineChart" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="text-center p-1">
+            <strong><span> Statistics </span></strong>
+          </div>
+        </div>
+        <div class="card-body">
+          hhhhhhhhhhhhhhhhhhhhhh
+        </div>
+      </div>
+    </div>
       
     <div class="row" style="display:none">
       
 
+    
       <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
+          
           <div class="card-body">
           <div class="row mb-5">
             <div class="col-md-6">
@@ -68,24 +104,22 @@
       </div>
 
     </div>
+</div>
+
 
 <div class="row">
     
 <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
-        <div class="card-body">
-        @isset($incomes)
-            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-
-            @isset($filterIncomes)
-            <div class="text-center"><a class="btn btn-outline-danger btn-icon-text" href="/reports/filterIncomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-            <h4 class="card-title">Your incomes</h4>
-          
-            <table class="table table-hover">
+    <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Income Details </span></strong>
+          </div>
+      </div>
+        <div class="card-body">          
+            <table>
                 <thead>
-                    <tr>
+                    <tr class="bg-gradient-danger text-light">
                         <th>Income Category</th>
                         <th>Income amount</th>
                         <th>Date added</th>
@@ -137,14 +171,24 @@
                 </tbody>
             </table>
 
+            @isset($incomes)
+            <div class="text-center mt-4"><a class="btn btn-outline-danger btn-icon-text" href="/reports/incomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
 
+            @isset($filterIncomes)
+            <div class="text-center mt-4"><a class="btn btn-outline-danger btn-icon-text" href="/reports/filterIncomes/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
         </div>
     </div>
 </div>
 <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
+        <div class="card-header">
+                  <div class="text-center p-1">
+                        <strong><span> Incomes' categories chart </span></strong>
+                      </div>
+                  </div>
           <div class="card-body">
-            <h4 class="card-title">Income categories</h4>
             <canvas id="pieChart2" style="height:250px"></canvas>
           </div>
         </div>
@@ -152,18 +196,15 @@
 
 <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
-        <div class="card-body">
-        @isset($expenses)
-            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-            @isset($filterexpenses)
-            <div class="text-center"><a class="btn btn-outline-success btn-icon-text" href="/reports/filterExpenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
-            @endisset
-            <h4 class="card-title">Your Expenses</h4>
-          
-            <table class="table table-hover">
+    <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Expenses Details </span></strong>
+          </div>
+      </div>  
+        <div class="card-body">          
+            <table>
                 <thead>
-                    <tr>
+                    <tr class="bg-gradient-success text-light">
                         <th>Category</th>
                         <th>sub Category</th>
                         <th>amount</th>
@@ -216,40 +257,48 @@
                 </tbody>
             </table>
             
+ 
+            @isset($expenses)
+            <div class="text-center mt-4"><a class="btn btn-outline-success btn-icon-text" href="/reports/expenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+            @isset($filterexpenses)
+            <div class="text-center mt-4"><a class="btn btn-outline-success btn-icon-text" href="/reports/filterExpenses/download"><i class="mdi mdi-download"></i> Download as Excel Sheet</a></div>
+            @endisset
+
         </div>
     </div>
 </div>
 <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <h4 class="card-title">Balace Line Chart</h4>
-                    <canvas id="lineChart" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
+                <div class="card-header">
+                  <div class="text-center p-1">
+                        <strong><span> Expenses' categories chart </span></strong>
+                      </div>
                   </div>
-                </div>
-              </div>
-<div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Expense Categories</h4>
                     <canvas id="pieChart" style="height:250px"></canvas>
                   </div>
                 </div>
               </div>
-    </div>
+
+
 </div>
 
+
 <div class="row">
-<div class="col-lg-12 grid-margin stretch-card">
+<div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Current budget goals</h4>
-          
-            <table class="table table-hover">
+    <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Budget goals </span></strong>
+          </div>
+      </div>
+        <div class="card-body">          
+            <table>
                 <thead>
-                    <tr>
+                    <tr class="bg-gradient-info text-light">
                         <th>Target name</th>
                         <th>Target amount</th>
-                        <th>Current savings</th>
                         <th>Current Progress</th>
                     </tr>
                 </thead>
@@ -259,20 +308,21 @@
                     <tr>
                         <td>{{$target->target_name}}</td>
                         <td>{{$target->target_amount}}</td>
-                        <td>{{$target->savings}}</td>
-                        <td>
+                        <td class="px-1">
 
-            @if($target->progress > 100||$target->progress ==100)
-              <div class="progress">
-                  <span>100% completed</span>
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" ></div>
-                
+                        @if($target->progress > 100||$target->progress ==100)
+              <div class="progress" style="height: 20px;position: relative;text-align: center;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success " role="progressbar" style="width: 100%" ></div>
+                <span style="position: absolute;left: 40%; top:3px; color:darkslateblue">100%</span>
+              
               </div>
               
             @else 
-            <div class="progress">
-            <span>%{{round($target->progress,2)}} completed</span>
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
+            <div class="progress" style="height: 20px;position: relative;text-align: center;">
+            
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
+              <span style="position: absolute;left: 40%; top:3px; color:darkslateblue">{{round($target->progress,2)}}%</span>
+            
             </div>
             @endif
             </td>
@@ -285,17 +335,20 @@
     </div>
 </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
+<div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Your Created events</h4>
-          
-            <table class="table table-hover">
+    <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Events details </span></strong>
+          </div>
+      </div>
+        <div class="card-body">          
+            <table>
                 <thead>
-                    <tr>
+                    <tr class="bg-gradient-info text-light">
                         <th>Event name</th>
-                        <th>total amount</th>
-                        <th>date</th>
+                        <th>Total amount</th>
+                        <th>D ate</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -325,8 +378,9 @@
 </div>
 
 </div>
-
 </div>
+</div>
+
 <script>
         var pieChart3;
           var doughnutPieDataForIncomes={};
