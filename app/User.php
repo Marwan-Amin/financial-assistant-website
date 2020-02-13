@@ -124,7 +124,7 @@ class User extends Authenticatable implements MustVerifyEmail
         Balance::select('balance as balance', 'date')
         ->whereYear('Date', $year)->whereMonth('Date',$month)
         :Balance::select('balance as balance', 'date')
-        ->whereYear('Date', $year);
+        ->whereYear('Date', $year); 
        $userBalanceInfo = $userBalanceInfo->where('user_id','=',Auth::user()->id)
         ->get()
         ->groupBy(function($result) {

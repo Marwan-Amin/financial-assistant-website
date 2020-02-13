@@ -101,7 +101,7 @@
                         <td>{{$income->type}}</td>
                         <td>{{$income->pivot->amount}}</td>
                         <td>{{$income->pivot->Date}}</td>
-                        @if ($income->pivot->Date < $date)
+                        @if ($income->pivot->Date <= $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
@@ -120,7 +120,7 @@
                         <td>{{$income->income->type}}</td>
                         <td>{{$income->amount}}</td>
                         <td>{{$income->Date}}</td>
-                        @if ($income->Date < $currentDate)
+                        @if ($income->Date <= $currentDate)
 
                         <td>
                             <label class="badge badge-success">current</label>
@@ -200,7 +200,7 @@
                 <td>{{$expense->amount}}</td>
                 <td>{{$expense->date}}</td>
                 
-                @if ($expense->date < $currentDate)
+                @if ($expense->date <= $currentDate)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>

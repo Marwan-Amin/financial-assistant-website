@@ -114,6 +114,9 @@ document.getElementById("add_target_btn").addEventListener('click', function () 
       } else {
         printErrorMsg(response.error);
       }
+    },
+    error: function error(_error) {
+      console.log(_error);
     }
   });
 }); //create DOM elements

@@ -159,7 +159,7 @@ function createRecord(response, sum) {
   errorDiv.appendChild(errorUl); //total savings
 
   var total = document.getElementById("total");
-  total.innerHTML = sum;
+  total.innerHTML = sum + "EGP";
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data);
   table_body.appendChild(table_row); //delete with ajax

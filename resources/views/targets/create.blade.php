@@ -24,6 +24,11 @@
     <div class="row">
       <div class="col-4">
         <div class="card">
+          <div class="card-header">
+            <div class="text-center p-1">
+            <strong><span> Add new target </span></strong>
+          </div>
+          </div>
           <div class="card-body">        
               <div class="col-md-12">
   
@@ -128,9 +133,9 @@
  let editTargetUrl ="{{route('targets.edit',['target_id'=>':response.id'])}}";
  let storeTargetUrl = "{{route('targets.store')}}";
 
-	$(document).ready(function() {
-	  $('.progress .progress-bar').progressbar({display_text: 'fill', use_percentage: false});
-	});
+	// $(document).ready(function() {
+	//   $('.progress .progress-bar').progressbar({display_text: 'fill', use_percentage: false});
+	// });
 
 </script>
 <script src="{{asset('js/targets/create.js')}}"></script>

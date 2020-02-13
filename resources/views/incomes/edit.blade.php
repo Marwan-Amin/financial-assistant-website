@@ -3,9 +3,23 @@
  
 <div class="main-panel">
     <div class="content-wrapper">
-
+    <div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-square-inc-cash menu-icon"></i>
+        </span> Incomes manager</h3>
+    </div>
+    
  <div class="col-12">
-   
+    <div class="card">
+      <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Edit Income </span></strong>
+          </div>
+      </div>
+      
+      <div class="card-body">
+
  @if ($errors->any())
  <div class="alert alert-danger">
      <ul>
@@ -15,17 +29,14 @@
      </ul>
  </div>
 @endif 
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Edit your Income</h4>
-        <form class="form-sample" method="POST" action="{{Route('incomes.update',['income_id'=>$income->id])}}">
+
+<div class="container">
+          <form class="form-sample" method="POST" action="{{Route('incomes.update',['income_id'=>$income->id])}}">
           @csrf
           @method('PATCH')
-          <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
+            <div class="row">
                   <h4 class="card-title">Select Your Income Type</h4>
+                  
                   <div class="template-demo">
                     <div class="flat_icons row">  
                       <div class="cat-box">
@@ -78,42 +89,34 @@
                      
                     </div>                         
                   </div>
-                </div>
-              </div>
-            </div>
+              
           </div>
 
-
-          <div class="row">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label>Amount : </label>
+          <div class="row mt-5">
+            <div class="col-md-5 mx-auto">
+              
+              <div class="form-group row fluid">
+                <strong><label>Amount</label></strong>
                 
                   <input type="number" name="amount" class="form-control" value="{{$income->amount}}" />
                
               </div>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
+            <div class="col-md-6 mx-auto">
               <div class="form-group row fluid">
-                <label>Date :</label>
+              <strong><label>Date</label></strong>
                 
-                  <input type="date" name="date" value="{{$income->Date}}" class="form-control" placeholder="dd/mm/yyyy" />
+              <input type="date" name="date" value="{{$income->Date}}" class="form-control" placeholder="dd/mm/yyyy" />
                 
               </div>
             </div>
-            <div class="col-md-5 pl-0 pr-0">
-            <button type="submit" class="btn-block btn btn-gradient-danger btn-lg ">+ Add Income</button>
-                
+
+            <div class="col-md-2 pl-0 pr-0 mx-auto">
+            <button type="submit" class="btn-block btn btn-gradient-danger btn-lg ">Update</button>
             </div>
           </div>
-          <div class="row">
-            
-          </div>
-          
-         
-
-        </form>
+        </div> 
+      </form>
       </div>
     </div>
   </div>

@@ -15,8 +15,11 @@ document.getElementById("add_target_btn").addEventListener('click',function(){
         createRecord(response.targetData);
       }else{
         printErrorMsg(response.error);
-      }
-      
+      } 
+    }
+    ,
+    error : function (error){
+      console.log(error)
     }
 
   });

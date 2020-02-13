@@ -199,22 +199,6 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/todolist.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
 
-  
-    <script>
-    $(document).ready( function () {
-    $('#expensesTable').DataTable();
-    } );
-    $(document).ready( function () {
-    $('#incomeTable').DataTable();
-      } );
-    $(document).ready( function () {
-    $('#eventsTable').DataTable();
-    } );
-    $(document).ready( function () {
-    $('#subEventsTable').DataTable();
-    } );
-    
-  </script>
 
 <script>
 $( function(){

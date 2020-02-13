@@ -9,7 +9,7 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-key menu-icon"></i>
-        </span> Your Savings</h3>
+        </span> Savings manager</h3>
     </div>
 
     <div class="card my-4 p-4">
@@ -25,6 +25,11 @@
       <div class="row">
       <div class="col-4">
     <div class="card">
+    <div class="card-header">
+            <div class="text-center p-1">
+            <strong><span> Add to your savings </span></strong>
+          </div>
+          </div>
       <div class="card-body">        
           <div class="row">
             <div class="col-md-12">
@@ -41,14 +46,13 @@
                 </div>
             </div>
           </div>
-         
      </div>
      <section class="saving-box">
           <div class="text-center">
-            <h3 class="current-savings">Your current Savings</h3>
+            <h3 class="current-savings">Total Savings</h3>
           </div>
           <div class="saving-div text-center">
-          <span class="savings-amount">{{$sum}} EGP </span>
+          <span class="savings-amount" id="total">{{$sum}} EGP </span>
           </div>
         </section>
     </div>

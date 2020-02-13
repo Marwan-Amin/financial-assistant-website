@@ -115,7 +115,6 @@ function removeRecord(isRemoved, element) {
     var parent = element.parentElement.parentElement;
 
     if (parent.previousElementSibling || parent.nextElementSibling) {
-      alert(true);
       element.parentElement.parentElement.remove();
     } else {
       element.parentElement.parentElement.remove();

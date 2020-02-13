@@ -66,7 +66,7 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       errorDiv.appendChild(errorUl);
   //total savings
   let total = document.getElementById("total");
-      total.innerHTML=sum;
+      total.innerHTML = sum + "EGP";
       table_row.appendChild(table_data_amount);
       table_row.appendChild(table_data);
       table_body.appendChild(table_row);
