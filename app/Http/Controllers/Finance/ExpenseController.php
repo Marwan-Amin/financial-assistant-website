@@ -9,14 +9,15 @@ use App\Http\Requests\expensesRequest;
 use App\UserSubCategory;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Finance\BalanceCalculation;
+use App\User;
 
 class ExpenseController extends Controller
 {
     public function index()
     {   
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
         
-        $expenses = $user->subExpenses;
+        $expenses = $user->subExpenses()->paginate(5);
         return view('expenses.index',compact('expenses'));
     }
 

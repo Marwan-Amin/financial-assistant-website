@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="alert alert-danger print-error-msg" style="display:none">
   <ul></ul>
   </div>
@@ -65,24 +66,28 @@
             <th> Savings Amount </th>
             <th>Created at</th>
             <th> Action </th>
-            
           </tr>
         </thead>
-        <tbody id="saving_table">
+        <tbody id="tableDiv">
           @isset($savings)
           @foreach ($savings as $saving)
           <tr>
             <td>{{$saving->amount}}</td>
             <td>{{($saving->created_at)->toDateString()}}</td>
             <td><a class="btn btn-inverse-info btn-fw" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
-            <button class="btn btn-inverse-danger btn-fw" onclick='ajaxDelete(this,"{{$saving->id}}");' >
+            <button class="btn btn-inverse-danger btn-fw" onclick='confirmDelete(this,"{{$saving->id}}",true);' >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
               </button>
             </td>
           </tr>
           
           @endforeach
+          @else
+          <div class="text-center mt-5">
+            <h4>There's No Record Yet</h4>
+          </div>
           @endisset
+
         </tbody>
  </table>
 </div>
@@ -92,6 +97,7 @@
 <script> let savingUrl = "{{route('savings.store')}}";
         let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
         let editUrl= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
+     
 
  </script>
  <script src="{{asset('js/functions/delete.js')}}"></script>

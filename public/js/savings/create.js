@@ -93,7 +93,6 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var previousId;
 document.getElementById("add_savings_btn").addEventListener('click', function () {
   var saving_amount = document.getElementById("saving_amount").value;
   $.ajax({
@@ -126,7 +125,10 @@ function createRecord(response, sum) {
     previousId = response.id;
   }
 
-  var table_body = document.getElementById("saving_table");
+  var table_body = document.getElementById("tableDiv");
+  table_body.querySelectorAll('div h4').forEach(function (element) {
+    element.parentElement.remove();
+  });
   var table_row = document.createElement("tr"); //amount td
 
   var table_data_amount = document.createElement("td");
@@ -164,28 +166,26 @@ function createRecord(response, sum) {
   table_row.appendChild(table_data);
   table_body.appendChild(table_row); //delete with ajax
 
-  var isRefreshed = true;
+  var isRefreshed = false;
   confirmDelete(btn_delete, response.id, isRefreshed);
 } //delete fn
 
 
-function confirmDelete(btn_delete, id, isRefreshed) {
-  if (isRefreshed) {
+window.confirmDelete = function (btn_delete, id, isRefreshed) {
+  if (!isRefreshed) {
     btn_delete.addEventListener("click", function () {
       excuteDelete(btn_delete, id);
     });
   } else {
     excuteDelete(btn_delete, id);
   }
-}
+};
 
 function excuteDelete(btn_delete, id) {
   if (delurl.includes(':saving.id')) {
     delurl = delurl.replace(':saving.id', id);
-    previousId = id;
   } else {
-    delurl = delurl.replace('/savings/' + previousId, '/savings/' + id);
-    previousId = id;
+    delurl = delurl.substring(0, delurl.indexOf('/savings/')) + '/savings/' + id;
   }
 
   ajaxDelete(btn_delete, delurl);
@@ -212,7 +212,7 @@ function printErrorMsg(msg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/savings/create.js */"./resources/js/savings/create.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/savings/create.js */"./resources/js/savings/create.js");
 
 
 /***/ })
