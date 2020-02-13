@@ -11,6 +11,6 @@ class CustomSubCategory extends Model
     
     
     public function customCategory(){
-        return $this->belongsTo(CustomCategory::class);
+        return $this->belongsTo(CustomCategory::class,'category_id');
     }
 }

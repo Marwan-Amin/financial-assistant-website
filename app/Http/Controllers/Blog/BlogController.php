@@ -8,8 +8,10 @@ use App\Comment;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\BlogStoreRequest;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Tags\Tag;
 
 class BlogController extends Controller
 {
@@ -88,8 +90,9 @@ class BlogController extends Controller
         
         $blog = Blog::where('id',$id)->withCount('comments')->first();
         $recentBlogs = Blog::latest('created_at')->limit(3)->get();
-       $tags = Blog::find($id)->tags;
-        return view('blogs.show',compact('blog','tags','recentBlogs'));
+       $blogTags = Blog::find($id)->tags;
+        $tags = Tag::all();
+        return view('blogs.show',compact('blog','blogTags','tags','recentBlogs'));
     }
     public function getTagBlogs($tag){
 
