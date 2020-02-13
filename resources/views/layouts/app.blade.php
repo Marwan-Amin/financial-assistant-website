@@ -28,7 +28,7 @@
     <!-- End of Calender Style Links -->
 
     <!-- Tab icon -->
-    <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" />
     <!--End of tab icon -->
 
     <!-- Bootstrap CDN link -->
@@ -52,8 +52,8 @@
           <a class="navbar-brand brand-logo" href="/">
           <p class="m-0">
 
-          <img src="{{asset('UI/PurpleAdmin/assets/images/logo.png')}}" alt="logo" />
-        <span class="app_name">Expense Tracker</span>
+          <img src="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" alt="logo" />
+        <span class="app_name">Moneyger</span>
           </p>
         </a>
           <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/logo.png')}}" alt="logo" /></a>

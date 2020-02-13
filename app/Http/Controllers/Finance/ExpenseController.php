@@ -91,7 +91,10 @@ class ExpenseController extends Controller
     public function destroy($id){
 
         $subExpense = UserSubCategory::findOrFail($id);
+        dd($subExpense);
         $subExpense->delete();
+
+
 
         if($subExpense){
             return response()->json(true);
