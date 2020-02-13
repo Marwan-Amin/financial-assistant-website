@@ -5,40 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Financial assisstant</title>
+
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/css/vendor.bundle.base.css')}}">
-    
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
-<link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/core/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/interaction/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.js')}}"></script>
-<script src="{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"></script>
 
-<style>
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-</style>
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous">
+    <!-- Calender Style links -->
+    <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('UI/fullcalendar-4.3.1/packages/list/main.css')}}" rel='stylesheet' />
+    <script src="{{asset('UI/fullcalendar-4.3.1/packages/core/main.js')}}"></script>
+    <script src="{{asset('UI/fullcalendar-4.3.1/packages/interaction/main.js')}}"></script>
+    <script src="{{asset('UI/fullcalendar-4.3.1/packages/daygrid/main.js')}}"></script>
+    <script src="{{asset('UI/fullcalendar-4.3.1/packages/timegrid/main.js')}}"></script>
+    <script src="{{asset('UI/fullcalendar-4.3.1/packages/list/main.js')}}"></script>
+    <style>
+      #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+    </style>
+    <!-- End of Calender Style Links -->
 
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-        <link rel="stylesheet" type="text/css" href="{{asset('UI/radio/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
-
+    <!-- Tab icon -->
     <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
+    <!--End of tab icon -->
+
+    <!-- Bootstrap CDN link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- End of bootstrap CDN link -->
+  
+    <link rel="stylesheet" type="text/css" href="{{asset('UI/radio/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Table Style  -->
+    <link rel="stylesheet" type="text/css" href="{{asset('UI/TableV1/css/main.css')}}">
+    <!-- End of Table style -->
+    
   </head>
   <body>
     <div class="container-scroller">
@@ -186,20 +191,15 @@
         </div>
     </div>
    
-    
     <script src="{{asset('UI/PurpleAdmin/assets/vendors/js/vendor.bundle.base.js')}}"></script>
-   
     <script src="{{asset('UI/PurpleAdmin/assets/vendors/chart.js/Chart.min.js')}}"></script>
-   
     <script src="{{asset('UI/PurpleAdmin/assets/js/off-canvas.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/hoverable-collapse.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
-   
     <script src="{{asset('UI/PurpleAdmin/assets/js/todolist.js')}}"></script>
-        <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
+
   
-   
     <script>
     $(document).ready( function () {
     $('#expensesTable').DataTable();

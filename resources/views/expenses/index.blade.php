@@ -38,7 +38,6 @@
       </div>
       @endif
 
-
       @if(count($expenses)>0)
       <div class="container" id="tableDiv">
         <table class="table table-striped " >

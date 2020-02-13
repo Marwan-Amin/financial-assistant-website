@@ -261,6 +261,7 @@
                         <td>{{$target->target_amount}}</td>
                         <td>{{$target->savings}}</td>
                         <td>
+
             @if($target->progress > 100||$target->progress ==100)
               <div class="progress">
                   <span>100% completed</span>
@@ -270,8 +271,7 @@
               
             @else 
             <div class="progress">
-
-            <span>%{{$target->progress}} completed</span>
+            <span>%{{round($target->progress,2)}} completed</span>
               <div class="progress-bar bg-warning" role="progressbar" style="width: {{$target->progress}}%" ></div>
             </div>
             @endif

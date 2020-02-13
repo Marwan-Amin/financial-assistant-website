@@ -14,7 +14,7 @@
 
     <div class="card-body">
         <div class="text-center">
-      <a class="btn btn-lg btn-gradient-danger" href="/incomes/create">+ Add new income</a>
+      <a class="btn btn-lg btn-gradient-danger  mb-3" href="/incomes/create">+ Add new income</a>
       </div>
 
 
