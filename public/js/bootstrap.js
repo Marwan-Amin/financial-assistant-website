@@ -46967,7 +46967,7 @@ window.Echo.channel("comments").listen("LiveCommentEvent", function (ev) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })
