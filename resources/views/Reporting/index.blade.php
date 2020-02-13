@@ -78,23 +78,6 @@
             <div class="col-md-6">
               <h4 class="card-title">sub Expenses Chart</h4>
               </div>
-
-              <div class="col-md-6">
-              <select class="form-control form-control-lg" id="subCategoryChart">
-              @isset($chartsInfo)
-                              <option value="" selected="">Select Sub Category</option>
-                              @foreach($chartsInfo['userCategories'] as $userCategory)
-                              <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
-                              @endforeach
-                              @if($chartsInfo['userCategories'][0]['category_id'] == 0)
-                              <option  value="{{$chartsInfo['userCategories']['category_id'].','.$chartsInfo['userCategories']['isCustom']}}">{{$chartsInfo['userCategories']['categoryName']}}</option>
-
-                              @endif
-                             
-
-                              @endisset
-                            </select>
-              </div>
           </div>
           <div id="pieChart3-container">
             <canvas id="pieChart3" style="height:250px"></canvas>
@@ -141,7 +124,7 @@
                         </td>
                         @else
                         <td>
-                            <label class="badge badge-danger">Pending</label>
+                            <label class="badge badge-info">Pending</label>
                         </td>
                         @endif
                     </tr>
@@ -161,7 +144,7 @@
                         </td>
                         @else
                         <td>
-                            <label class="badge badge-danger">Pending</label>
+                            <label class="badge badge-info">Pending</label>
                         </td>
                         @endif
                     </tr>
@@ -220,13 +203,13 @@
                 <td>{{$expense->name}}</td>
                 <td>{{$expense->pivot->amount}}</td>
                 <td>{{$expense->pivot->date}}</td>
-                @if ($expense->pivot->date < $date)
+                @if ($expense->pivot->date <= $date)
                         <td>
                             <label class="badge badge-success">current</label>
                         </td>
                         @else
                         <td>
-                            <label class="badge badge-danger">Pending</label>
+                            <label class="badge badge-info">Pending</label>
                         </td>
                         @endif
                     </tr>
@@ -247,7 +230,7 @@
                         </td>
                         @else
                         <td>
-                            <label class="badge badge-danger">Pending</label>
+                            <label class="badge badge-info">Pending</label>
                         </td>
                         @endif
                     </tr>
@@ -348,7 +331,7 @@
                     <tr class="bg-gradient-info text-light">
                         <th>Event name</th>
                         <th>Total amount</th>
-                        <th>D ate</th>
+                        <th>Date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
