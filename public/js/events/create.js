@@ -142,7 +142,7 @@ function renderResponse(data) {
 
     _addEvent.innerHTML = "Add Event";
 
-    _addEvent.setAttribute('class', "btn btn-gradient-success ml-1"); //append the anchor tags into the eventActionContainer Div
+    _addEvent.setAttribute('class', "btn btn-gradient-success"); //append the anchor tags into the eventActionContainer Div
 
 
     eventActionContainer.appendChild(editEvent);
@@ -150,12 +150,10 @@ function renderResponse(data) {
 
     var eventName = document.createElement('input');
     eventName.setAttribute('type', 'text');
-    eventName.setAttribute('class', 'form-control');
     document.getElementById('subCategoryNameLabel').innerHTML = 'Event Expense'; //create input and set event amount into that input 
 
     var eventSubCategoryAmount = document.createElement('input');
     eventSubCategoryAmount.setAttribute('type', 'number');
-    eventSubCategoryAmount.setAttribute('class', 'form-control');
     eventSubCategoryAmount.setAttribute('step', '0.01');
     document.getElementById('subCategoryAmountLabel').innerHTML = 'Amount';
     var errorDiv = document.createElement('div');
@@ -206,7 +204,6 @@ window.sendSubCategoryAjax = function (subName, amount, categoryId) {
     success: function success(response) {
       //create information record about the event 
       if ($.isEmptyObject(response.error)) {
-        alert(response.success);
         createEventInfoRecord(response.data, response.isUpdated);
       } else {
         printErrorMsg(response.error, 'sub');
@@ -267,7 +264,7 @@ function printErrorMsg(msg, type) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/events/create.js */"./resources/js/events/create.js");
+module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/events/create.js */"./resources/js/events/create.js");
 
 
 /***/ })

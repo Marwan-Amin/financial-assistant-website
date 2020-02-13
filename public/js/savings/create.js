@@ -159,7 +159,7 @@ function createRecord(response, sum) {
   errorDiv.appendChild(errorUl); //total savings
 
   var total = document.getElementById("total");
-  total.innerHTML = sum;
+  total.innerHTML = sum + "EGP";
   table_row.appendChild(table_data_amount);
   table_row.appendChild(table_data);
   table_body.appendChild(table_row); //delete with ajax
@@ -212,7 +212,7 @@ function printErrorMsg(msg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/savings/create.js */"./resources/js/savings/create.js");
+module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/savings/create.js */"./resources/js/savings/create.js");
 
 
 /***/ })

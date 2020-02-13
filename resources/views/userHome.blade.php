@@ -217,17 +217,20 @@
                     <div class="col-md-6">
                       <h4 class="card-title">sub Expenses Chart</h4>
                       </div>
-
                       <div class="col-md-6">
-                      <select class="form-control form-control-lg" id="subCategoryChart">
-                              @isset($userCategory)
-                              <option value="" selected="">Select Sub Category</option>
 
+                          <select class="form-control form-control-lg" id="subCategoryChart">
+                              @isset($chartsInfo)
+                              <option value="" selected="">Select Sub Category</option>
+                              @if($chartsInfo['userCategories'][0]['category_id'] == 0)
+                              <option  value="{{$chartsInfo['userCategories']['category_id'].','.$chartsInfo['userCategories']['isCustom']}}">{{$chartsInfo['userCategories']['categoryName']}}</option>
+                              @else
                               @foreach($chartsInfo['userCategories'] as $userCategory)
                               <option  value="{{$userCategory['category_id'].','.$userCategory['isCustom']}}">{{$userCategory['categoryName']}}</option>
                               @endforeach
-                              @else
-                              <option  selected>You Have No Expenses</option>
+                              @endif
+                             
+                   
                               @endisset
                             </select>
                       </div>
@@ -271,14 +274,12 @@
     </div>
     <script>
       document.getElementById("add_rate_btn").addEventListener('click',function(){
-        console.log("11111");
        let rate_div= document.getElementById("rate").querySelectorAll("input");
        let feedback= document.getElementById("feedback").value;
        let rate ;
         rate_div.forEach(element => {
           if(element.checked){
             rate = element.value;
-            console.log(rate);
           }
           
         });
@@ -313,8 +314,6 @@
 
          let dropDownCategory = document.getElementById('subCategoryChart');
               dropDownCategory.addEventListener('change',function(){
-                $("#pieChart3").remove();
-                $('#pieChart3-container').append('<canvas id="pieChart3" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>')
                   categoryId = this.value.split(',')[0];
                   isCustom = this.value.split(',')[1];
                   $.ajax({

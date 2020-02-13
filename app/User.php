@@ -14,8 +14,10 @@ use App\Saving;
 use App\UserSubCategory;
 use App\UserIncome;
 use App\CustomCategory;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Psy\Command\ListCommand\GlobalVariableEnumerator;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -91,30 +93,67 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Comment::class);
     }
-    public function getUserExpenses(){
+    public function getUserExpenses($date = null){
+        $arithmetic= $date?'=':'!=';
         $totalExpenses = DB::table('user_sub_categories')
         ->select('expense_categories.name as Category_Name', DB::raw('SUM(user_sub_categories.amount) as total'))
         ->join('expense_sub_categories', 'expense_sub_categories.id', '=', 'user_sub_categories.sub_category_id')
         ->join('expense_categories', 'expense_sub_categories.category_id', '=', 'expense_categories.id')
         ->join('users', 'user_sub_categories.user_id', '=', 'users.id')
-        ->groupBy('expense_categories.name')->get();
+        ->groupBy('expense_categories.name')
+        ->where('users.id','=',Auth::user()->id)
+        ->where('user_sub_categories.date',$arithmetic,$date)
+        ->get()->toArray();
         $totalCustomExpenses = DB::table('custom_sub_categories')
         ->select('custom_categories.name as Custom_Category_Name', DB::raw('SUM(custom_sub_categories.amount) as custom_total'))
         ->join('custom_categories', 'custom_categories.id', '=', 'custom_sub_categories.category_id')
         ->join('users', 'custom_categories.user_id', '=', 'users.id')
-        ->groupBy('custom_categories.name')->get();
+        ->groupBy('custom_categories.name')
+        ->where('users.id','=',Auth::user()->id)
+        ->where('custom_categories.date',$arithmetic,$date)
+        ->get()->toArray();
         $expensesArray = ['totalExpenses'=>$totalExpenses,'totalCustomExpenses'=>$totalCustomExpenses];
         return $expensesArray;
     }
-    public function getUserIncome(){
+    public function getUserBalancesByDate($date = null){
+        global $dateFormate;
+         $dateFormate = $date?'Y-m-d':'Y-m';
+        $year = $date?Carbon::createFromFormat('Y-m-d', $date)->year:date('Y');
+        $month = $date?Carbon::createFromFormat('Y-m-d', $date)->month:null;
+        $userBalanceInfo = $month?
+        Balance::select('balance as balance', 'date')
+        ->whereYear('Date', $year)->whereMonth('Date',$month)
+        :Balance::select('balance as balance', 'date')
+        ->whereYear('Date', $year); 
+       $userBalanceInfo = $userBalanceInfo->where('user_id','=',Auth::user()->id)
+        ->get()
+        ->groupBy(function($result) {
+            
+        return Carbon::parse($result->date)->format($GLOBALS['dateFormate']); // grouping by years and its month
+        })->toArray();
+
+        $userBalanceByDate = [];
+        foreach($userBalanceInfo as $index=>$balance){
+            $userBalanceByDate[]=['date'=>$index,'totalAmount'=>array_sum(array_column($userBalanceInfo[$index],'balance'))];
+        }
+        // dd(Auth::user()->id);
+        return $userBalanceByDate;
+        
+    }
+    
+    public function getUserIncome($date = null){
+        $arithmetic= $date?'=':'!=';
         $totalIncome = DB::table('user_incomes')
         ->select('incomes.type as type', DB::raw('SUM(user_incomes.amount) as total'))
         ->join('incomes', 'incomes.id', '=', 'user_incomes.income_id')
+        ->join('users', 'user_incomes.user_id', '=', 'users.id')
         ->groupBy('incomes.type')
+        ->where('users.id','=',Auth::user()->id)
+        ->where('user_incomes.date',$arithmetic,$date)
         ->get();
         return $totalIncome;
     }
-    public function charts(){
+    public function charts($date =null){
         //get all categories which belongs to user or user has customize it
         $subCategories = Auth::user()->subExpenses;
         $customCategories = Auth::user()->customCategories;
@@ -136,19 +175,20 @@ class User extends Authenticatable implements MustVerifyEmail
        }
        
         //start expense array for chart
-        $totalExpenses = $this->getUserExpenses()['totalExpenses'];
-        $totalCustomExpenses = $this->getUserExpenses()['totalCustomExpenses'];
+        $totalExpenses = $this->getUserExpenses($date)['totalExpenses'];
+        $totalCustomExpenses = $this->getUserExpenses($date)['totalCustomExpenses'];
         //end sub-expense for chart
 
 
         //start income array for chart
-        $totalIncome = $this->getUserIncome();
+        $totalIncome = $this->getUserIncome($date);
         // dd($totalIncome);
         //end income array for chart
        $userChartInfo = [  'totalExpenses' => $totalExpenses ,
        'totalIncome' => $totalIncome ,
        'totalCustomExpenses'=>$totalCustomExpenses,
-       'userCategories'=>$userCategories
+       'userCategories'=>$userCategories,
+       'userIncomeByDate'=>$this->getUserBalancesByDate($date)
     ];
         return $userChartInfo;
     }

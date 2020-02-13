@@ -1,14 +1,28 @@
 @extends('layouts.app')
- @section('content')
- <div class="main-panel">
-          <div class="content-wrapper">
- <div class="col-12">
+@section('content')
+<div class="main-panel">
+<div class="content-wrapper">
+
+<div class="page-header">
+    <h3 class="page-title">
+    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+    <i class="mdi mdi-square-inc-cash menu-icon"></i>
+    </span> Expenses manager</h3>
+</div>
+
+
+<div class="col-12">
     <div class="card">
+      <div class="card-header">
+      <div class="text-center p-1">
+            <strong><span> Add new expense </span></strong>
+          </div>
+      </div>
+
       <div class="card-body">
-        <h4 class="card-title">Add your Expenses</h4>
-                  <!-- category icons -->
-                  <div class="flat_icons row" id="selectCategory">  
-                              
+      <h4 >Select your expenese type</h4>
+
+         <div class="flat_icons row" id="selectCategory">                    
                               <div class="cat-box">
                   
                                 <input type="radio" name="category" id="dish" 
@@ -235,9 +249,9 @@
                                 <label for="add"><div class="glyph-icon flaticon-add"></div><span>Others</span></label>
                               </div>
                      
-                            </div>
+          </div>
                             <!-- category icons -->
-        <!-- check if the variable subExpenseUser is send if it is it will be an update action if not so it's normal create  -->
+
         @isset($subExpenseUser)
         <form class="form-sample" method="POST" action="{{route('expenses.edit',['id'=>$subExpenseUser->id])}}">
         @else
@@ -247,47 +261,36 @@
             @isset($subExpenseUser)
             @method('put')
             @endisset
-          <div class="row">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label>Amount : </label>
-                
-                  <input type="number" step="0.01" name="amount" class="form-control" 
+            <div class="row mt-5">
+            <div class="col-md-5 mx-auto">
+              
+              <div class="form-group row fluid">
+                <strong><label>Amount</label></strong>
+                <input type="number" step="0.01" name="amount" class="form-control" 
                   @isset($subExpenseUser)
                   value="{{ $amount= $subExpenseUser?$subExpenseUser->amount:''}}" 
                   @endisset
-                  />
-                
-              </div>
+                  />              </div>
             </div>
-            <div class="col-md-1"></div>
-
-            <div class="col-md-5">
+            <div class="col-md-6 mx-auto">
               <div class="form-group row fluid">
-                <label>Date</label>
-               
-                  <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy"
+              <strong><label>Date</label></strong>
+                
+              <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy"
                   @isset($subExpenseUser)
                   value="{{ $date= $subExpenseUser?$subExpenseUser->date:''}}" 
                   @endisset
-                  />
+                  />                
               </div>
             </div>
 
-            <div class="col-md-5 pl-0 pr-0">
-            <button type="submit" class="btn-block btn btn-gradient-danger btn-lg">Add Expense</button>
-                
+            <div class="col-md-3 pl-0 pr-0 mx-auto">
+            <button type="submit" class="btn-block btn btn-gradient-success btn-lg">Submit</button>   
             </div>
-
             
           </div>
           
-          
-
-
-
-
-
+        
 
             <!--pop up-->
               <!-- The Modal -->
@@ -330,12 +333,6 @@
               </div>
 
             <!--pop up-->      
-
-
-  
-
-
-
 
          
           @if ($errors->any())
