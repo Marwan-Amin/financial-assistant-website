@@ -82,7 +82,7 @@ class ExpenseController extends Controller
         
 
         $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($request->date , $request->amount); 
+        $balanceObj->calculateBalance($request->date , null , $request->amount); 
 
         
         return redirect()->route('expenses.index');
@@ -91,10 +91,10 @@ class ExpenseController extends Controller
     public function destroy($id){
 
         $subExpense = UserSubCategory::findOrFail($id);
-        dd($subExpense);
         $subExpense->delete();
 
-
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalanceOnDelete($subExpense->date ,null, $subExpense->amount);
 
         if($subExpense){
             return response()->json(true);
@@ -108,16 +108,14 @@ class ExpenseController extends Controller
         $oldExpense = $userSubCategory->amount;
         $userSubCategory->sub_category_id = $request->subCategory;
         $userSubCategory->amount = $request->amount;
-        $oldExpense = $userSubCategory->amount;
-
         $userSubCategory->date = $request->date;
-        $userSubCategory->save();
-
         $addedExpense= $request->amount - $oldExpense;
+
+        $userSubCategory->save();
 
 
         $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($request->date , $addedExpense);
+        $balanceObj->calculateBalance($request->date ,null, `$addedExpense`);
         
         return redirect()->route('expenses.index');
     }

@@ -41,6 +41,10 @@ class IncomeController extends Controller
         {
             $income = UserIncome::findOrFail($income_id);
             $income->delete();
+
+            $balanceObj=new BalanceCalculation;
+            $balanceObj->calculateBalanceOnDelete($income->Date , $income->amount);
+
             return redirect()->route('incomes.index');
         }
        
