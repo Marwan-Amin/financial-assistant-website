@@ -13,12 +13,9 @@ class TargetController extends Controller
 {
     function index() 
     {
-
         $user_id = Auth::user()->id;
         $saving=new Target_saving;
-        $savings=$saving->sum_savings(); 
-        // dd($targets = user::find(Auth::user()->id)->target);
-        //$targets = user::find(Auth::user()->id)->target()->get(); 
+        $savings=$saving->sum_savings();
         return view('targets.create',[
         'targets' => user::find(Auth::user()->id)->target()->get(),
         'savings' => $savings
@@ -32,10 +29,8 @@ class TargetController extends Controller
             'target_amount' => 'required',
         ]);
         if ($validator->passes()) {
-      //return response()->json($request); //ajax dd :D
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
-        //return response()->json($savings);
         $target = Target::create(
         ['user_id' => Auth::user()->id,'target_name' => $request->target_name ,  
         'target_amount' => $request->target_amount,

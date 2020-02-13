@@ -114,6 +114,9 @@ document.getElementById("add_target_btn").addEventListener('click', function () 
       } else {
         printErrorMsg(response.error);
       }
+    },
+    error: function error(_error) {
+      console.log(_error);
     }
   });
 }); //create DOM elements
@@ -131,7 +134,8 @@ function createRecord(response) {
   var table_row = document.createElement("tr"); //target amount
 
   var table_data_target = document.createElement("td");
-  table_data_target.innerHTML = response.target_name; //target name
+  table_data_target.innerHTML = response.target_name;
+  table_data_target.style = "text-align: left; padding-left: 20px;"; //target name
 
   var table_data_amount = document.createElement("td");
   table_data_amount.innerHTML = response.target_amount; //progress 
@@ -139,18 +143,22 @@ function createRecord(response) {
   var table_data_progress = document.createElement("td");
   var progressBig_div = document.createElement('div');
   progressBig_div.classList.add('progress');
+  progressBig_div.style = "height:20px; position:relative; text-align:center;";
   var progress_div = document.createElement('div');
   progress_div.classList.add('progress-bar');
   progress_div.setAttribute('role', 'progressbar');
 
   if (response.progress >= 100) {
+    table_data_amount.style = "font-weight:bold";
+    table_data_target.style = "font-weight:bold";
+    table_data_target.style = "text-align: left; padding-left: 20px;";
     progress_div.style.width = '100%';
     progress_div.innerHTML = '100%';
-    progress_div.classList.add('bg-success');
+    progress_div.classList.add('progress-bar', 'progress-bar-striped', 'progress-bar-animated', 'bg-success');
   } else {
     progress_div.style.width = response.progress + '%';
-    progress_div.innerHTML = response.progress + '%';
-    progress_div.classList.add('progress-bar', 'bg-warning');
+    progress_div.innerHTML = Math.floor(response.progress * 100) / 100 + '%';
+    progress_div.classList.add('progress-bar', 'progress-bar-striped', 'progress-bar-animated', 'bg-warning');
   }
 
   table_data_progress.appendChild(progressBig_div);
@@ -232,7 +240,7 @@ function printErrorMsg(msg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/targets/create.js */"./resources/js/targets/create.js");
+module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/targets/create.js */"./resources/js/targets/create.js");
 
 
 /***/ })

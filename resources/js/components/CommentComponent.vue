@@ -1,11 +1,15 @@
 <template>
    <div>
+    <h3 class="mb-5">
+              {{this.commentsCount}}
+              Comments
+              </h3>
    <h6 class="mb-4"> ({{this.users.length}}) Users Active In This Blog</h6>
 
 <ul class="comment-list" v-chat-scroll>
   <li class="comment" v-for="(comment,index) in comments.data" :key="index">
                    <div class="vcard bio">
-                     <img src="https://i.ya-webdesign.com/images/profile-image-png-8.png" alt="Image placeholder">
+                     <img v-bind:src="'http:\\\\127.0.0.1:8000\\'+comment.user.avatar" alt="Image placeholder">
                    </div>
                    <div class="comment-body">
                      <strong>{{comment.user.name}}</strong>
@@ -53,6 +57,7 @@ import moment from 'moment';
                 users:[],
                 activeWritingUser:false,
                 typingTimer:false,
+                commentsCount:0,
             }
         },
         created() {
@@ -88,15 +93,16 @@ import moment from 'moment';
                   .then(response=>{
                     //we get here the object which contain our comments array
                     // in this response as the pagination package need it to be an object passed
-                    
                     this.comments = response.data.comments;
                   });
           },
             fetchComment(){
             axios.get('/comments/'+blogId).then(response=>{
               // get always last page of comments as it's last comments and there you will add you new comment
+              console.log(response);
               this.getResults(response.data.comments.last_page);
                     this.comments = response.data.comments;
+                    this.commentsCount = response.data.commentsCount;
 
             }).catch(error=>{
               alert(error);

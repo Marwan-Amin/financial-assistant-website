@@ -21,7 +21,6 @@ function removeRecord(isRemoved,element){
     if(isRemoved){
       let parent = element.parentElement.parentElement;
       if(parent.previousElementSibling || parent.nextElementSibling){
-        alert(true);
         element.parentElement.parentElement.remove();
 
       }else{

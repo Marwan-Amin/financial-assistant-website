@@ -172,7 +172,6 @@
                 stroke-miterlimit="10"
                 stroke="#F96D00"/></svg>
         </div>
-    <script src="{{asset('js/app.js')}}"></script>
         <script src="{{asset('UI/homePage/js/jquery.min.js')}}"></script>
         <script src="{{asset('UI/homePage/js/jquery-migrate-3.0.1.min.js')}}"></script>
         <script src="{{asset('UI/homePage/js/popper.min.js')}}"></script>

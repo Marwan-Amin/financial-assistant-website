@@ -15,8 +15,11 @@ document.getElementById("add_target_btn").addEventListener('click',function(){
         createRecord(response.targetData);
       }else{
         printErrorMsg(response.error);
-      }
-      
+      } 
+    }
+    ,
+    error : function (error){
+      console.log(error)
     }
 
   });
@@ -37,6 +40,8 @@ let table_row = document.createElement("tr");
 //target amount
 let table_data_target = document.createElement("td");
     table_data_target.innerHTML=response.target_name;
+    table_data_target.style="text-align: left; padding-left: 20px;";
+
 //target name
 let table_data_amount = document.createElement("td");
     table_data_amount.innerHTML=response.target_amount;
@@ -45,21 +50,25 @@ let table_data_amount = document.createElement("td");
 let table_data_progress = document.createElement("td");
 let progressBig_div =document.createElement('div');
     progressBig_div.classList.add('progress');
+    progressBig_div.style ="height:20px; position:relative; text-align:center;";
 let progress_div =document.createElement('div');
     progress_div.classList.add('progress-bar');
     progress_div.setAttribute('role','progressbar');
 if(response.progress >= 100){
+    table_data_amount.style = "font-weight:bold";
+    table_data_target.style = "font-weight:bold";
+    table_data_target.style="text-align: left; padding-left: 20px;";
+
+
     progress_div.style.width ='100%';
     progress_div.innerHTML = '100%';
-    progress_div.classList.add('bg-success');
+    progress_div.classList.add('progress-bar', 'progress-bar-striped', 'progress-bar-animated','bg-success');
 
 }else{
     progress_div.style.width =response.progress+'%';
-    progress_div.innerHTML = response.progress+'%';
-    progress_div.classList.add('progress-bar','bg-warning');
-
+    progress_div.innerHTML = Math.floor(response.progress * 100) / 100 + '%';
+    progress_div.classList.add('progress-bar', 'progress-bar-striped', 'progress-bar-animated','bg-warning');
     }
-
     table_data_progress.appendChild(progressBig_div);
     progressBig_div.appendChild(progress_div);
      //edit btn

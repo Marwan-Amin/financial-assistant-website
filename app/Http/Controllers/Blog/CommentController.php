@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     public function fetchComment($id){
-        $blog = Blog::find($id);
+        $blog = Blog::where('id',$id)->withCount('comments')->first();
         $comments = $blog->comments()->with('user')->paginate(5);
-        return response()->json(['comments' => $comments]);
+        return response()->json(['comments' => $comments,'commentsCount'=>$blog->comments_count]);
     }
     
     public function sendComment($id,Request $request){
