@@ -3,7 +3,7 @@
   src: url('../fonts/OpenSans/OpenSans-Regular.ttf'); 
 }
 
-table {
+.new-table {
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -13,39 +13,39 @@ table {
   border:1px solid black;
 }
 
-table * {
+.new-table * {
   position: relative;
   
 }
 
-table td, table th {
+.new-table td, .new-table th {
   padding-left: 8px;
 }
 
-table thead tr {
+.new-table thead tr {
   height: 50px;
   background: #a28af1;
   font-weight: bold;
 }
 
-table tbody tr {
+.new-table tbody tr {
   height: 50px;
 }
 
-table td, table th {
+.new-table td, .new-table th {
   text-align: center;
 }
-table td.l, table th.l {
+.new-table td.l, .new-table th.l {
   text-align: right;
 }
-table td.c, table th.c {
+.new-table td.c, .new-table th.c {
   text-align: center;
 }
-table td.r, table th.r {
+.new-table td.r, .new-table th.r {
   text-align: center;
 }
 
-.table100-head th{
+.new-table-head th{
   font-family: OpenSans-Regular;
   font-size: 18px;
   color: #fff;
@@ -102,27 +102,27 @@ tbody tr:hover {
 
 
 @media screen and (max-width: 992px) {
-  table {
+  .new-table {
     display: block;
   }
-  table > *, table tr, table td, table th {
+  .new-table > *, .new-table tr, .new-table td, .new-table th {
     display: block;
   }
-  table thead {
+  .new-table thead {
     display: none;
   }
-  table tbody tr {
+  .new-table tbody tr {
     height: auto;
     padding: 37px 0;
   }
-  table tbody tr td {
+  .new-table tbody tr td {
     padding-left: 40% !important;
     margin-bottom: 24px;
   }
-  table tbody tr td:last-child {
+  .new-table tbody tr td:last-child {
     margin-bottom: 0;
   }
-  table tbody tr td:before {
+  .new-table tbody tr td:before {
     font-family: OpenSans-Regular;
     font-size: 14px;
     color: #999999;
@@ -133,22 +133,22 @@ tbody tr:hover {
     left: 30px;
     top: 0;
   }
-  table tbody tr td:nth-child(1):before {
+  .new-table tbody tr td:nth-child(1):before {
     content: "Date";
   }
-  table tbody tr td:nth-child(2):before {
+  .new-table tbody tr td:nth-child(2):before {
     content: "Order ID";
   }
-  table tbody tr td:nth-child(3):before {
+  .new-table tbody tr td:nth-child(3):before {
     content: "Name";
   }
-  table tbody tr td:nth-child(4):before {
+  .new-table tbody tr td:nth-child(4):before {
     content: "Price";
   }
-  table tbody tr td:nth-child(5):before {
+  .new-table tbody tr td:nth-child(5):before {
     content: "Quantity";
   }
-  table tbody tr td:nth-child(6):before {
+  .new-table tbody tr td:nth-child(6):before {
     content: "Total";
   }
 

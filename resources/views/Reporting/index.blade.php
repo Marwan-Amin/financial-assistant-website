@@ -117,7 +117,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table>
+            <table class="new-table">
                 <thead>
                     <tr class="bg-gradient-danger text-light">
                         <th>Income Category</th>
@@ -202,7 +202,7 @@
           </div>
       </div>  
         <div class="card-body">          
-            <table>
+            <table class="new-table">
                 <thead>
                     <tr class="bg-gradient-success text-light">
                         <th>Category</th>
@@ -294,7 +294,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table>
+            <table class="new-table">
                 <thead>
                     <tr class="bg-gradient-info text-light">
                         <th>Target name</th>
@@ -343,7 +343,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table>
+            <table class="new-table">
                 <thead>
                     <tr class="bg-gradient-info text-light">
                         <th>Event name</th>

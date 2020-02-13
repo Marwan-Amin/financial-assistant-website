@@ -59,7 +59,7 @@
 </div>
 
 <div class="col-lg-8 ">
-      <table class="table100" >
+      <table class="new-table" >
         <thead>
           <tr class="bg-gradient-info text-light">
             <th> Savings Amount </th>

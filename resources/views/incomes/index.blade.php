@@ -19,7 +19,7 @@
 
 
     @if (count($user->user_incomes) == 0)
-    <table  class="table100">
+    <table  class="new-table">
           <thead >
             <tr class="bg-gradient-danger text-light">
               <th> Type </th>
@@ -38,7 +38,7 @@
 
       @if(count($user->user_incomes)>0)
       <div class="container">
-        <table  class="table100">
+        <table  class="new-table">
           <thead>
             <tr class="bg-gradient-danger text-light">
               <th> Type </th>
