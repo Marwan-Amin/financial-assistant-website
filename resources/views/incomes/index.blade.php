@@ -8,24 +8,24 @@
         <i class="mdi mdi-square-inc-cash menu-icon"></i>
         </span> Incomes manager</h3>
     </div>
-<div class="col-lg-12 stretch-card pl-0">
+<div class="col-lg-12 ">
   
     <div class="card">
 
     <div class="card-body">
         <div class="text-center">
-      <a class="btn btn-lg btn-gradient-danger  mb-3" href="/incomes/create">+ Add new income</a>
+      <a class="btn btn-lg btn-gradient-danger mb-3" href="/incomes/create">+ Add new income</a>
       </div>
 
 
     @if (count($user->user_incomes) == 0)
-    <table class="table table-striped mt-3">
-          <thead>
-            <tr>
+    <table  class="table100">
+          <thead >
+            <tr class="bg-gradient-danger text-light">
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Action </th>
+              <th> Actions </th>
             </tr>
           </thead>
           <tbody>
@@ -38,13 +38,13 @@
 
       @if(count($user->user_incomes)>0)
       <div class="container">
-        <table class="table table-striped ">
+        <table  class="table100">
           <thead>
-            <tr>
+            <tr class="bg-gradient-danger text-light">
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Action </th>
+              <th> Actions </th>
               
             </tr>
           </thead>

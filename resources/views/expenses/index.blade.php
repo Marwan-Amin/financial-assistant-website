@@ -11,7 +11,7 @@
         <i class="mdi mdi-cash-usd menu-icon"></i>
         </span> Expenses manager</h3>
     </div>
-<div class="col-lg-12 grid-margin stretch-card pl-0">
+<div class="col-lg-12">
     <div class="card">
       <div class="card-body">
 
@@ -20,14 +20,14 @@
       </div>
 
       @if (count($expenses) == 0)
-      <table class="table table-striped mt-3"  >
+      <table class="table100"  >
           <thead>
-            <tr>
+            <tr class="bg-gradient-success text-light">
             <th> Category </th>
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Action </th>
+              <th> Actions </th>
             </tr>
           </thead>
           <tbody> 
@@ -40,14 +40,14 @@
 
       @if(count($expenses)>0)
       <div class="container" id="tableDiv">
-        <table class="table table-striped " >
+        <table class="table100" >
           <thead>
-            <tr>
+          <tr class="bg-gradient-success text-light">
             <th> Category </th>
               <th> Type </th>
               <th> Amount </th>
               <th> Date </th>
-              <th> Action </th>
+              <th> Actions </th>
             </tr>
           </thead>
           <tbody>
