@@ -217,13 +217,12 @@
                     <div class="col-md-6">
                       <h4 class="card-title">sub Expenses Chart</h4>
                       </div>
-
                       <div class="col-md-6">
 
                           <select class="form-control form-control-lg" id="subCategoryChart">
                               @isset($chartsInfo)
                               <option value="" selected="">Select Sub Category</option>
-                              @if($chartsInfo['userCategories']['category_id'] == 0)
+                              @if($chartsInfo['userCategories'][0]['category_id'] == 0)
                               <option  value="{{$chartsInfo['userCategories']['category_id'].','.$chartsInfo['userCategories']['isCustom']}}">{{$chartsInfo['userCategories']['categoryName']}}</option>
                               @else
                               @foreach($chartsInfo['userCategories'] as $userCategory)
