@@ -16,6 +16,7 @@ Route::get('/','HomeController@index')->middleware('guest');
 Route::get('/home','HomeController@index')->name('home.index');
 Route::get('/','HomeController@index')->name('home.index');
 
+
 Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
