@@ -1956,7 +1956,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   // we use vue props and we will bind the auth user in vue template component at show blade page
@@ -65575,9 +65574,9 @@ var render = function() {
   return _c("div", [
     _c("h3", { staticClass: "mb-5" }, [
       _vm._v(
-        "\n              " +
+        "\n           " +
           _vm._s(this.commentsCount) +
-          "\n              Comments\n              "
+          "\n           Comments\n           "
       )
     ]),
     _vm._v(" "),
@@ -65609,9 +65608,7 @@ var render = function() {
               _vm._v(_vm._s(comment.created_at))
             ]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(comment.body))]),
-            _vm._v(" "),
-            _vm._m(0, true)
+            _c("p", [_vm._v(_vm._s(comment.body))])
           ])
         ])
       }),
@@ -65675,16 +65672,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("a", { staticClass: "reply", attrs: { href: "#" } }, [_vm._v("Reply")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

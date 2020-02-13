@@ -385,31 +385,7 @@
          labels.push('There is No Expenses')
          @endisset
 
-         let dropDownCategory = document.getElementById('subCategoryChart');
-              dropDownCategory.addEventListener('change',function(){
-                 categoryId = this.value.split(',')[0];
-                  isCustom = this.value.split(',')[1];
-                  $.ajax({
-                   headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                           },
-                url: "{{route('charts.subCategories')}}",
-                data:{'categoryId':categoryId,'isCustom':isCustom},
-                type: 'POST',
-                success: function(responseData) {
-                  pieChart3.destroy();
-                  dataAmount=[];
-                   labels=[];
-              var doughnutPie = doughnutPieOptionsInitializer();
-                  responseData.forEach(function(response){
-                    dataAmount.push(Number(response.amount));
-                    labels.push(response.name);
-                  })
-                  subExpensePieChart(doughnutPie,dataAmount,labels,false);
-
-                }
-                });
-              });
+              
     $(function () {
   /* ChartJS
    * -------

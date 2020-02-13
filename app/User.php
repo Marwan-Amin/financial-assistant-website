@@ -17,14 +17,11 @@ use App\CustomCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Psy\Command\ListCommand\GlobalVariableEnumerator;
-use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

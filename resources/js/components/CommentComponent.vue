@@ -6,8 +6,8 @@
               </h3>
    <h6 class="mb-4"> ({{this.users.length}}) Users Active In This Blog</h6>
 
-<ul class="comment-list" v-chat-scroll>
-  <li class="comment" v-for="(comment,index) in comments.data" :key="index">
+              <ul class="comment-list" v-chat-scroll>
+                <li class="comment" v-for="(comment,index) in comments.data" :key="index">
                    <div class="vcard bio">
                      <img v-bind:src="'http:\\\\127.0.0.1:8000\\'+comment.user.avatar" alt="Image placeholder">
                    </div>
@@ -15,10 +15,9 @@
                      <strong>{{comment.user.name}}</strong>
                      <div class="meta">{{comment.created_at}}</div>
                      <p>{{comment.body}}</p>
-                     <p><a href="#" class="reply">Reply</a></p>
                    </div>
                  </li>
-</ul>
+              </ul>
 
 
                  <div class="comment-form-wrap pt-5">
