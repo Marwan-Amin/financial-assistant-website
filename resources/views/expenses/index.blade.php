@@ -20,7 +20,7 @@
       </div>
 
       @if (count($expenses) == 0)
-      <table class="new-table"  >
+      <table class="new-table"  id="expensesTable">
           <thead>
             <tr class="bg-gradient-success text-light">
             <th> Category </th>
@@ -40,7 +40,7 @@
 
       @if(count($expenses)>0)
       <div class="container" id="tableDiv">
-        <table class="new-table" >
+        <table class="new-table" id="dataTable">
           <thead>
           <tr class="bg-gradient-success text-light">
             <th> Category </th>
@@ -58,18 +58,23 @@
                 <td>{{$expense->pivot->amount}} EGP</td>
                 <td>{{$expense->pivot->date}}</td>
                 <td>
-                  <a class="btn btn-inverse-info btn-fw" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
+                  
+                <a class="btn btn-inverse-info btn-fw" href="{{route('expenses.edit',$expense->pivot->id)}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
                   &nbsp;&nbsp;
-                  <button class="btn btn-inverse-danger btn-fw"  
-                  onclick="ajaxDelete(this,`{{route('expenses.destroy',['id'=>$expense->pivot->id])}}`);" >
-                  Delete&nbsp;<i class="mdi mdi-delete"></i></button> 
+                  <form method="post" action="{{route('expenses.destroy',['id'=>$expense->pivot->id])}}" style="display:inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-inverse-danger btn-fw">
+                  Delete&nbsp;<i class="mdi mdi-delete"></i></button>
+                  </form>
+               
                 </td>
             </tr>
             @endforeach
           </tbody>
           @endif
         </table>
-        {{ $expenses->links() }}
+        
 
         </div>
 
@@ -79,7 +84,6 @@
   </div>
    </div>
   </div>
-
 
   <script src="{{asset('js/functions/delete.js')}}"></script>
 

@@ -1,4 +1,6 @@
 <template>
+                <div v-if="this.noError">
+
    <div>
     <h3 class="mb-5">
               {{this.commentsCount}}
@@ -18,8 +20,6 @@
                    </div>
                  </li>
               </ul>
-
-
                  <div class="comment-form-wrap pt-5">
                       <pagination :data="comments" @pagination-change-page="getResults"></pagination>
 
@@ -37,11 +37,10 @@
 
                 </div>
               </div>
-
             </div> 
 
              </div>
-
+</div>
 </template>
 
 <script>
@@ -57,6 +56,7 @@ import moment from 'moment';
                 activeWritingUser:false,
                 typingTimer:false,
                 commentsCount:0,
+                noError:true,
             }
         },
         created() {
@@ -98,13 +98,13 @@ import moment from 'moment';
             fetchComment(){
             axios.get('/comments/'+blogId).then(response=>{
               // get always last page of comments as it's last comments and there you will add you new comment
-              console.log(response);
               this.getResults(response.data.comments.last_page);
                     this.comments = response.data.comments;
                     this.commentsCount = response.data.commentsCount;
 
             }).catch(error=>{
-              alert(error);
+              this.noError = false;
+             
             });
             },
             sendComment(){

@@ -19,6 +19,7 @@
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                     </form>
+                    <a href="{{route('home.index')}}">Go Back To Home</a>
                 </div>
             </div>
         </div>

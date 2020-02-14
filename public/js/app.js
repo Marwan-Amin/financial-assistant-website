@@ -1955,7 +1955,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   // we use vue props and we will bind the auth user in vue template component at show blade page
@@ -1967,7 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
       users: [],
       activeWritingUser: false,
       typingTimer: false,
-      commentsCount: 0
+      commentsCount: 0,
+      noError: true
     };
   },
   created: function created() {
@@ -2013,14 +2013,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/comments/' + blogId).then(function (response) {
         // get always last page of comments as it's last comments and there you will add you new comment
-        console.log(response);
-
         _this3.getResults(response.data.comments.last_page);
 
         _this3.comments = response.data.comments;
         _this3.commentsCount = response.data.commentsCount;
       })["catch"](function (error) {
-        alert(error);
+        _this3.noError = false;
       });
     },
     sendComment: function sendComment() {
@@ -65571,106 +65569,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "mb-5" }, [
-      _vm._v(
-        "\n           " +
-          _vm._s(this.commentsCount) +
-          "\n           Comments\n           "
-      )
-    ]),
-    _vm._v(" "),
-    _c("h6", { staticClass: "mb-4" }, [
-      _vm._v(" (" + _vm._s(this.users.length) + ") Users Active In This Blog")
-    ]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      {
-        directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
-        staticClass: "comment-list"
-      },
-      _vm._l(_vm.comments.data, function(comment, index) {
-        return _c("li", { key: index, staticClass: "comment" }, [
-          _c("div", { staticClass: "vcard bio" }, [
-            _c("img", {
-              attrs: {
-                src: "http:\\\\127.0.0.1:8000\\" + comment.user.avatar,
-                alt: "Image placeholder"
-              }
-            })
+  return this.noError
+    ? _c("div", [
+        _c("div", [
+          _c("h3", { staticClass: "mb-5" }, [
+            _vm._v(
+              "\n              " +
+                _vm._s(this.commentsCount) +
+                "\n              Comments\n              "
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "comment-body" }, [
-            _c("strong", [_vm._v(_vm._s(comment.user.name))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "meta" }, [
-              _vm._v(_vm._s(comment.created_at))
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(comment.body))])
-          ])
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "comment-form-wrap pt-5" },
-      [
-        _c("pagination", {
-          attrs: { data: _vm.comments },
-          on: { "pagination-change-page": _vm.getResults }
-        }),
-        _vm._v(" "),
-        _c("h3", { staticClass: "mb-5" }, [_vm._v("Leave a comment")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "message" } }, [_vm._v("Comment")]),
+          _c("h6", { staticClass: "mb-4" }, [
+            _vm._v(
+              " (" + _vm._s(this.users.length) + ") Users Active In This Blog"
+            )
+          ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newComment,
-                expression: "newComment"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "inputComment", type: "text" },
-            domProps: { value: _vm.newComment },
-            on: {
-              keydown: _vm.sendTypingEvent,
-              keyup: function($event) {
-                if (
-                  !$event.type.indexOf("key") &&
-                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                ) {
-                  return null
-                }
-                return _vm.sendComment($event)
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.newComment = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.activeWritingUser
-            ? _c("span", { staticClass: "text-muted" }, [
-                _vm._v(_vm._s(_vm.activeWritingUser.name) + " is typing...")
+          _c(
+            "ul",
+            {
+              directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+              staticClass: "comment-list"
+            },
+            _vm._l(_vm.comments.data, function(comment, index) {
+              return _c("li", { key: index, staticClass: "comment" }, [
+                _c("div", { staticClass: "vcard bio" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "http:\\\\127.0.0.1:8000\\" + comment.user.avatar,
+                      alt: "Image placeholder"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "comment-body" }, [
+                  _c("strong", [_vm._v(_vm._s(comment.user.name))]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "meta" }, [
+                    _vm._v(_vm._s(comment.created_at))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(comment.body))])
+                ])
               ])
-            : _vm._e()
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "comment-form-wrap pt-5" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.comments },
+                on: { "pagination-change-page": _vm.getResults }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-5" }, [_vm._v("Leave a comment")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "message" } }, [_vm._v("Comment")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newComment,
+                      expression: "newComment"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "inputComment", type: "text" },
+                  domProps: { value: _vm.newComment },
+                  on: {
+                    keydown: _vm.sendTypingEvent,
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.sendComment($event)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newComment = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.activeWritingUser
+                  ? _c("span", { staticClass: "text-muted" }, [
+                      _vm._v(
+                        _vm._s(_vm.activeWritingUser.name) + " is typing..."
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            1
+          )
         ])
-      ],
-      1
-    )
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -78023,8 +78029,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

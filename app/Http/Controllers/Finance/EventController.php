@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class EventController extends Controller
 {
     public function index(){
-        $events = CustomCategory::all()->paginate(5);
+        $events = CustomCategory::all();
         return view('events.index',compact('events'));
     }
     public function create(){
@@ -110,7 +110,7 @@ public function show($id){
 public function destroy($id){
     $customCategory = CustomCategory::find($id);
     $customCategory->delete();
-    return response()->json(true);
+    return redirect()->route('events.index');
 }
 
 

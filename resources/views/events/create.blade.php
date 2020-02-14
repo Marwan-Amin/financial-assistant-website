@@ -93,7 +93,7 @@
 <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <table class="table table-striped ">
+        <table class="table table-striped " >
           <thead>
             <tr>
               <th> Type </th>

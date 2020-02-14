@@ -188,7 +188,7 @@ function renderSubCategories(subCategories) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/expenses/create.js */"./resources/js/expenses/create.js");
+module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/expenses/create.js */"./resources/js/expenses/create.js");
 
 
 /***/ })
