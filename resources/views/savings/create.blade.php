@@ -59,8 +59,8 @@
     </div>
 </div>
 
-<div class="col-lg-8 ">
-      <table class="new-table" >
+<div class="col-lg-8 bg-white p-5 rounded-lg">
+      <table class="new-table" id="savingsTable" >
         <thead>
           <tr class="bg-gradient-info text-light">
             <th> Savings Amount </th>

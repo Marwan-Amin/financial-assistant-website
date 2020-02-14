@@ -13500,11 +13500,13 @@ table.dataTable thead th, table.dataTable thead td {
   border-bottom: none;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
   background: #b66dff;
   border-color: #b66dff;
   color: #ffffff !important;
 }
+
 .fc-button-group > .fc-button,
 .fc-button-primary{
   border-top-right-radius: 0;
@@ -13582,4 +13584,45 @@ text-align: center;
     color: #bab9b9;
     padding: 1rem;
 }
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer select{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > div:nth-child(1),
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > div:nth-child(2),
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > div:nth-child(3){
+  width: 100% !important;
+}
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > div:nth-child(2){
+  margin-top:35px;
+  margin-bottom:35px;
+}
 
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer table .odd{
+background-color: #eee;
+}
+table.dataTable.no-footer{
+  border:none
+}
+
+
+
+@media (max-width: 576px) {
+  .content-wrapper {
+    padding: 2.75rem 0rem
+  }
+  .card-body{
+    padding: 2.5rem 0rem !important;
+  }
+  .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > div{
+    width:100% !important;
+    margin-left:0px !important;
+    margin-right:0px !important;
+    
+  }
+}
+
+/* .page-header {
+  margin-right: 20px;
+  margin-left: 20px;
+} */

@@ -15,7 +15,7 @@
     <div class="col-6">
       <form action="{{route('reports.filter')}}" method="post">
       @csrf
-        <div class="form-group pl-0 col-md-5">
+        <div class="form-group pl-0">
             <div class="input-group">
             @isset($date)     
             <input type="date" class="form-control" placeholder="Filter by date" name="reportDate" id="reportDate" value="{{$date}}">

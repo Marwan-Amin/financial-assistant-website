@@ -66,9 +66,9 @@
           </div>
         </section>
       </div>
-<div class="col-md-8">
+<div class="col-md-8 bg-white p-5 rounded-lg">
   
-      <table class="new-table">
+      <table class="new-table" id="budgetTable">
         <thead>
           <tr class="bg-gradient-info text-light">
             <th> Goal </th>

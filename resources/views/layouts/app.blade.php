@@ -208,6 +208,7 @@
       $('#incomesTable').DataTable();
       $('#eventsTable').DataTable();
       $('#budgetTable').DataTable();
+      $('#savingsTable').DataTable();
 
 $( function(){
     

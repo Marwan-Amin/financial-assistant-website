@@ -40,7 +40,7 @@
 
       @if(count($expenses)>0)
       <div class="container" id="tableDiv">
-        <table class="new-table" id="dataTable">
+        <table class="new-table" id="expensesTable">
           <thead>
           <tr class="bg-gradient-success text-light">
             <th> Category </th>
