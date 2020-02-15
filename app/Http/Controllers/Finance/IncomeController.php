@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Finance;
+
+use App\Balance;
 use App\Http\Controllers\Controller;
 use DB;
 use App\UserIncome;
@@ -15,6 +17,7 @@ class IncomeController extends Controller
 {
     public function index()
     {
+
         return view('incomes.index', [
             'user' => User::find(Auth::user()->id)
         ]);
@@ -25,10 +28,13 @@ class IncomeController extends Controller
     }
     public function store(StoreIncomeRequest $request)
     {
-        $user = User::find(Auth::user()->id);
-        $income_id = $request->type;
-        $income = Income::find($income_id);
-        $user->incomes()->attach($income, ['amount' => $request->amount,'Date'=>$request->date]);
+        $oldIncomeRow = UserIncome::where('user_id' , Auth::user()->id)->where( 'date', $request->date)->where('income_id' ,$request->type)->first();
+        $oldIncome = $oldIncomeRow != null?$oldIncomeRow->amount:0;
+        
+        UserIncome::updateOrCreate(
+            ['user_id' => Auth::user()->id , 'Date'=> $request->date, 'income_id' =>$request->type ],
+            ['amount' => $oldIncome + $request->amount ]
+        );
 
         $balanceObj=new BalanceCalculation;
         $balanceObj->calculateBalance($request->date , $request->amount); 
@@ -52,19 +58,23 @@ class IncomeController extends Controller
         function update($income_id, StoreIncomeRequest $request)
         {
             $income = UserIncome::findOrFail($income_id);
-            $oldIncome = $income->amount;
+
+            $beforeUpdateDate = $income->Date;
+            $beforeUpdateIncome = $income->amount;
+
             $income->amount = $request->amount;
             $income->Date = $request->date;
             $income->income_id= $request->type;
-            $income->save();
-
-            $addedIncome= $request->amount - $oldIncome;
+                 
+            $updateIncomeDifference = $request->amount - $beforeUpdateIncome;
 
             $balanceObj=new BalanceCalculation;
-            $balanceObj->calculateBalance($request->date , $addedIncome);
+            $balanceObj->calculateBalanceOnUpdate($request->date , $beforeUpdateDate ,$request->amount , $updateIncomeDifference);
+            $income->save();
 
             return redirect()->route('incomes.index');
         }
+
         function edit($income_id)
         {
             $income = UserIncome::find($income_id);
