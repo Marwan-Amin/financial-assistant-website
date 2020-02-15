@@ -37,10 +37,15 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
         element.parentElement.remove();
       });
   let table_row = document.createElement("tr");
+  table_row.setAttribute('role' , 'row');
   //amount td
   let table_data_amount = document.createElement("td");
       table_data_amount.innerHTML=response.amount;
+      let table_data_created_at = document.createElement("td");
+      table_data_created_at.innerHTML=response.created_at;
   //edit btn
+  console.log( response );
+
   let btn_edit = document.createElement("a");
       btn_edit.setAttribute("href", editUrl);
       btn_edit.innerHTML="Edit";
@@ -69,7 +74,9 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   //total savings
   let total = document.getElementById("total");
       total.innerHTML = sum + "EGP";
+
       table_row.appendChild(table_data_amount);
+      table_row.appendChild(table_data_created_at);
       table_row.appendChild(table_data);
       table_body.appendChild(table_row);
   //delete with ajax

@@ -129,11 +129,15 @@ function createRecord(response, sum) {
   table_body.querySelectorAll('div h4').forEach(function (element) {
     element.parentElement.remove();
   });
-  var table_row = document.createElement("tr"); //amount td
+  var table_row = document.createElement("tr");
+  table_row.setAttribute('role', 'row'); //amount td
 
   var table_data_amount = document.createElement("td");
-  table_data_amount.innerHTML = response.amount; //edit btn
+  table_data_amount.innerHTML = response.amount;
+  var table_data_created_at = document.createElement("td");
+  table_data_created_at.innerHTML = response.created_at; //edit btn
 
+  console.log(response);
   var btn_edit = document.createElement("a");
   btn_edit.setAttribute("href", editUrl);
   btn_edit.innerHTML = "Edit";
@@ -163,6 +167,7 @@ function createRecord(response, sum) {
   var total = document.getElementById("total");
   total.innerHTML = sum + "EGP";
   table_row.appendChild(table_data_amount);
+  table_row.appendChild(table_data_created_at);
   table_row.appendChild(table_data);
   table_body.appendChild(table_row); //delete with ajax
 
@@ -212,7 +217,7 @@ function printErrorMsg(msg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/savings/create.js */"./resources/js/savings/create.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\savings\create.js */"./resources/js/savings/create.js");
 
 
 /***/ })

@@ -148,7 +148,7 @@ function renderStates(states) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/profile/profile.js */"./resources/js/profile/profile.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\profile\profile.js */"./resources/js/profile/profile.js");
 
 
 /***/ })

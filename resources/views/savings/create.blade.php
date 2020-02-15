@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="alert alert-danger print-error-msg" style="display:none">
-  <ul></ul>
-  </div>
+
   <div class="main-panel">
           <div class="content-wrapper">  
+          <div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -75,9 +76,14 @@
             <td>{{$saving->amount}}</td>
             <td>{{($saving->created_at)->toDateString()}}</td>
             <td><a class="btn btn-inverse-info btn-fw" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
-            <button class="btn btn-inverse-danger btn-fw" onclick='confirmDelete(this,"{{$saving->id}}",true);' >
-            Delete&nbsp;<i class="mdi mdi-delete"></i>
+            <form class="d-inline" action="{{ route('savings.destroy',['saving_id'=>$saving->id]) }}" method="post">
+            @csrf
+        {{method_field('DELETE')}}
+              <button   onclick="return confirm('Are you sure?')" type="submit" class="btn btn-inverse-danger btn-fw" >
+              Delete&nbsp;<i class="mdi mdi-delete"></i>
               </button>
+            </form>
+            
             </td>
           </tr>
           

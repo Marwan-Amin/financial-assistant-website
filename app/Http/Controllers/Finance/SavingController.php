@@ -53,7 +53,7 @@ class SavingController extends Controller
         $save=new Target_saving;
         $savings_sum=$save->sum_savings();
         $sum = $save->Edit_target_savings($savings_sum);
-        return response()->json(['saving'=>$saving,'sum'=>$sum]);
+        return redirect()->route('savings.create');
     }
 
     function update($saving_id,Request $request)

@@ -44,7 +44,6 @@ let table_row = document.createElement("tr");
 let table_data_target = document.createElement("td");
     table_data_target.innerHTML=response.target_name;
     table_data_target.style="text-align: left; padding-left: 20px;";
-
 //target name
 let table_data_amount = document.createElement("td");
     table_data_amount.innerHTML=response.target_amount;

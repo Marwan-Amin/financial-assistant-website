@@ -266,7 +266,7 @@ function printErrorMsg(msg, type) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/events/create.js */"./resources/js/events/create.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Personal_Financial_Assisstant\resources\js\events\create.js */"./resources/js/events/create.js");
 
 
 /***/ })
