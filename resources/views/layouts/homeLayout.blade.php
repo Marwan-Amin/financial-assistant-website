@@ -10,7 +10,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link
             rel="shortcut icon"
-            href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}"/>
+            href="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}"/>
         <link
             href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800"
             rel="stylesheet">
@@ -70,19 +70,19 @@
                             <a href="/" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#about" class="nav-link">About</a>
+                            <a href="#about" data-scroll class="nav-link">About</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#features" class="nav-link">Features</a>
+                            <a href="#features" data-scroll class="nav-link">Features</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/testemonials" class="nav-link">Testemonials</a>
+                            <a href="#testemonials" data-scroll class="nav-link">Testemonials</a>
                         </li>
                         <li class="nav-item">
                             <a href="/blogs" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/contact" class="nav-link">Contact</a>
+                            <a href="#contact" data-scroll class="nav-link">Contact</a>
                         </li>
                         @guest
                         <li>
@@ -173,6 +173,12 @@
                 stroke="#F96D00"/></svg>
         </div>
         <script src="{{asset('UI/homePage/js/jquery.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script>
+        <script>
+            $( function(){
+                smoothScroll.init();
+            } );
+        </script>
         <script src="{{asset('UI/homePage/js/jquery-migrate-3.0.1.min.js')}}"></script>
         <script src="{{asset('UI/homePage/js/popper.min.js')}}"></script>
         <script src="{{asset('UI/homePage/js/bootstrap.min.js')}}"></script>
