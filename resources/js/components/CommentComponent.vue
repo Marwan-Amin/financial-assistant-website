@@ -1,4 +1,6 @@
 <template>
+                <div v-if="this.noError">
+
    <div>
     <h3 class="mb-5">
               {{this.commentsCount}}
@@ -6,8 +8,8 @@
               </h3>
    <h6 class="mb-4"> ({{this.users.length}}) Users Active In This Blog</h6>
 
-<ul class="comment-list" v-chat-scroll>
-  <li class="comment" v-for="(comment,index) in comments.data" :key="index">
+              <ul class="comment-list" v-chat-scroll>
+                <li class="comment" v-for="(comment,index) in comments.data" :key="index">
                    <div class="vcard bio">
                      <img v-bind:src="'http:\\\\127.0.0.1:8000\\'+comment.user.avatar" alt="Image placeholder">
                    </div>
@@ -15,12 +17,9 @@
                      <strong>{{comment.user.name}}</strong>
                      <div class="meta">{{comment.created_at}}</div>
                      <p>{{comment.body}}</p>
-                     <p><a href="#" class="reply">Reply</a></p>
                    </div>
                  </li>
-</ul>
-
-
+              </ul>
                  <div class="comment-form-wrap pt-5">
                       <pagination :data="comments" @pagination-change-page="getResults"></pagination>
 
@@ -38,11 +37,10 @@
 
                 </div>
               </div>
-
             </div> 
 
              </div>
-
+</div>
 </template>
 
 <script>
@@ -58,6 +56,7 @@ import moment from 'moment';
                 activeWritingUser:false,
                 typingTimer:false,
                 commentsCount:0,
+                noError:true,
             }
         },
         created() {
@@ -99,13 +98,13 @@ import moment from 'moment';
             fetchComment(){
             axios.get('/comments/'+blogId).then(response=>{
               // get always last page of comments as it's last comments and there you will add you new comment
-              console.log(response);
               this.getResults(response.data.comments.last_page);
                     this.comments = response.data.comments;
                     this.commentsCount = response.data.commentsCount;
 
             }).catch(error=>{
-              alert(error);
+              this.noError = false;
+             
             });
             },
             sendComment(){

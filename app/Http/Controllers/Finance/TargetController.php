@@ -17,7 +17,7 @@ class TargetController extends Controller
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
         return view('targets.create',[
-        'targets' => user::find(Auth::user()->id)->target()->paginate(5)->get(),
+        'targets' => user::find(Auth::user()->id)->target()->get(),
         'savings' => $savings
         ]);
     }

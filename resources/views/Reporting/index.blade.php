@@ -15,7 +15,7 @@
     <div class="col-6">
       <form action="{{route('reports.filter')}}" method="post">
       @csrf
-        <div class="form-group pl-0 col-md-5">
+        <div class="form-group pl-0">
             <div class="input-group">
             @isset($date)     
             <input type="date" class="form-control" placeholder="Filter by date" name="reportDate" id="reportDate" value="{{$date}}">
@@ -100,7 +100,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table class="new-table">
+            <table class="new-table" id="incomesTable">
                 <thead>
                     <tr class="bg-gradient-danger text-light">
                         <th>Income Category</th>
@@ -185,7 +185,7 @@
           </div>
       </div>  
         <div class="card-body">          
-            <table class="new-table">
+            <table class="new-table" id="expensesTable">
                 <thead>
                     <tr class="bg-gradient-success text-light">
                         <th>Category</th>
@@ -277,7 +277,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table class="new-table">
+            <table class="new-table" id="budgetTable">
                 <thead>
                     <tr class="bg-gradient-info text-light">
                         <th>Target name</th>
@@ -326,7 +326,7 @@
           </div>
       </div>
         <div class="card-body">          
-            <table class="new-table">
+            <table class="new-table" id="eventsTable">
                 <thead>
                     <tr class="bg-gradient-info text-light">
                         <th>Event name</th>
@@ -385,31 +385,7 @@
          labels.push('There is No Expenses')
          @endisset
 
-         let dropDownCategory = document.getElementById('subCategoryChart');
-              dropDownCategory.addEventListener('change',function(){
-                 categoryId = this.value.split(',')[0];
-                  isCustom = this.value.split(',')[1];
-                  $.ajax({
-                   headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                           },
-                url: "{{route('charts.subCategories')}}",
-                data:{'categoryId':categoryId,'isCustom':isCustom},
-                type: 'POST',
-                success: function(responseData) {
-                  pieChart3.destroy();
-                  dataAmount=[];
-                   labels=[];
-              var doughnutPie = doughnutPieOptionsInitializer();
-                  responseData.forEach(function(response){
-                    dataAmount.push(Number(response.amount));
-                    labels.push(response.name);
-                  })
-                  subExpensePieChart(doughnutPie,dataAmount,labels,false);
-
-                }
-                });
-              });
+              
     $(function () {
   /* ChartJS
    * -------

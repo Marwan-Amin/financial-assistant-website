@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Finance;
 use App\Http\Controllers\Controller;
-
+use Yajra\DataTables\Facades\DataTables;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
@@ -17,7 +17,7 @@ class ExpenseController extends Controller
     {   
         $user = User::find(Auth::user()->id);
         
-        $expenses = $user->subExpenses()->paginate(5);
+        $expenses = $user->subExpenses;
         return view('expenses.index',compact('expenses'));
     }
 
@@ -98,9 +98,9 @@ class ExpenseController extends Controller
         $balanceObj->calculateBalanceOnDelete($subExpense->date ,null, $subExpense->amount);
 
         if($subExpense){
-            return response()->json(true);
+            return redirect()->route('expenses.index');
         }else{
-            return response()->json(false);
+            
         }
     }
 

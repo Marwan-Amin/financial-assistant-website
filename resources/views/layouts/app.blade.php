@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     <!-- Calender Style links -->
     <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
@@ -39,7 +40,8 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
+   
+
     <!-- Table Style  -->
     <link rel="stylesheet" type="text/css" href="{{asset('UI/TableV1/css/main.css')}}">
     <!-- End of Table style -->
@@ -198,10 +200,18 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/todolist.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
-
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
 
 <script>
+      $('#expensesTable').DataTable();
+      $('#incomesTable').DataTable();
+      $('#eventsTable').DataTable();
+      $('#budgetTable').DataTable();
+      $('#savingsTable').DataTable();
+
 $( function(){
+    
   function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

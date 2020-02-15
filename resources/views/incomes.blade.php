@@ -78,7 +78,7 @@
                     </tr>
                 </thead>
                 <tbody>
-@foreach ($UserIncomes as $index => $UserIncome)
+                @foreach ($UserIncomes as $index => $UserIncome)
                     <tr>
                         <th scope="row">{{$UserIncome->id}}</th>
                         <td>{{$UserIncome->income_id}}</td>
@@ -94,7 +94,7 @@
                           </form>
                       </td> 
                     </tr>
-@endforeach
+                @endforeach
                 </tbody>
             </table>
 

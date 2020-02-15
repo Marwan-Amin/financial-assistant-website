@@ -11,10 +11,15 @@ use App\Country;
 | contains the "web" middleware group. Now create something great!
 |
 */
+    Route::get('/', 'HomeController@index')->middleware('guest');
+    Route::get('/home', 'HomeController@index')->name('home.index');
+    Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/','HomeController@index')->middleware('guest');
-Route::get('/home','HomeController@index')->name('home.index');
-Route::get('/','HomeController@index')->name('home.index');
+    // Blogs for authenticated and unauthenticated users
+    Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
+    Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
+    Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
+    Route::get('/blogs/{userId}', 'Blog\BlogController@getUserBlogs')->name('user.blogs');
 
 
 Route::middleware(['auth','verified'])->group(function(){
@@ -107,18 +112,13 @@ Route::middleware(['auth','verified'])->group(function(){
 
    
 });
-// Blogs for authenticated and unauthenticated users
-Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
-Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
-Route::get('/blogs','Blog\BlogController@index')->name('blogs.index');
-Route::get('/blogs/{userId}','Blog\BlogController@getUserBlogs')->name('user.blogs');
 
 
  
 //contact us routes
 Route::post('/contact','HomeController@store')->name('contact.store');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
