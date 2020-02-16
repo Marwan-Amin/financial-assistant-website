@@ -31,7 +31,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
-                    <button id="add_target_btn" class="btn btn-gradient-danger btn-lg ">+ Edit Budget Goal</button>
+                    <button id="add_target_btn" type="submit" class="btn btn-gradient-danger btn-lg ">+ Edit Budget Goal</button>
                 </div>
               </div>
             </div>

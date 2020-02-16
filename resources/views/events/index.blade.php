@@ -35,7 +35,7 @@
                 <form method="post" action="{{route('events.destroy',['id'=>$event->id])}}" class="d-inline">
                     @csrf
                     @method('DELETE')
-                <button class="btn btn-inverse-danger btn-fw" >
+                <button type="submit" class="btn btn-inverse-danger btn-fw" onclick="return confirm('Are You Sure You Want To Delete This Record ?');">
                 Delete&nbsp;<i class="mdi mdi-delete"></i>
                       </button>
                 </form>

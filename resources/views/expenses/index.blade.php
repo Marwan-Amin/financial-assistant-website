@@ -64,7 +64,7 @@
                   <form method="post" action="{{route('expenses.destroy',['id'=>$expense->pivot->id])}}" style="display:inline-block">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-inverse-danger btn-fw">
+                    <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This Record ?')" class="btn btn-inverse-danger btn-fw">
                   Delete&nbsp;<i class="mdi mdi-delete"></i></button>
                   </form>
                

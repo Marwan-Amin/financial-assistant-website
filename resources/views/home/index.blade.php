@@ -237,21 +237,22 @@
           </div>
         </div>
         <div class="row">
+          @isset($blogs)
           @foreach($blogs as $blog)
           <div class="col-md-4 ftco-animate">
             <div class="blog-entry" data-aos-delay="100">
-              <a href="blog-single.html" class="block-20" style="background-image: url({{asset($blog->blog_image)}}); ">
+              <a href="{{route('blogs.show',['id'=>$blog->id])}}" class="block-20" style="background-image: url({{asset($blog->blog_image)}}); ">
               </a>
               <div class="text p-4">
                 <div class="meta mb-3">
-                  <div><a href="#">{{$blog->title}}</a></div>
-                  <div><a href="#"></a>{{$blog->user->name}}</div>
+                  <div><a href="{{route('user.blogs',['userId'=>$blog->user->id])}}"></a>{{$blog->user->name}}</div>
                 </div>
-                <h3 class="heading"><a href="#">{{$blog->body}}</a></h3>
+                <h3 class="heading"><a href="{{route('blogs.show',['id'=>$blog->id])}}">{{$blog->title}}</a></h3>
               </div>
             </div>
           </div>
           @endforeach
+          @endisset
         </div>
       </div>
     </section>

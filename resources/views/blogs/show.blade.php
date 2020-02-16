@@ -37,7 +37,7 @@
               @csrf
               @method('DELETE')         
               <a class="btn btn-primary py-3 px-5" href="{{route('blogs.edit',['id'=>$blog->id])}}">Edit</a>
-               <button type="submit" class="btn btn-danger py-3 px-5" >Delete</button>
+               <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This Record ?')" class="btn btn-danger py-3 px-5" >Delete</button>
             </form>
             @endif 
             @endauth 

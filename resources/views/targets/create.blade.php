@@ -53,7 +53,7 @@
 
               <div class="col-md-12 text-center">
                   <div class="col-sm-12">
-                      <button id="add_target_btn" class="btn btn-outline-dark"> Sumbit</button>
+                      <button id="add_target_btn" type="submit" class="btn btn-outline-dark"> Sumbit</button>
                   </div>
               </div>
           </div> 
@@ -121,7 +121,7 @@
             <form action="{{route('targets.destroy',['target_id'=>$target->id])}}" method="post" class="d-inline">
               @csrf
               @method('DELETE')
-            <button class="btn btn-inverse-danger btn-fw"  >
+            <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This Record ?')" class="btn btn-inverse-danger btn-fw"  >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
                     </button>
                    </form>

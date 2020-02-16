@@ -44,7 +44,6 @@
                        @isset($blog)                       
                      <img class="mt-5" width="100px" height="100px" src="{{ URL::asset($blog->blog_image) }}"/>
                      <input type="file"  name="blog_image">
-                     <label class="custom-file-label" for="blog_image">Change Your Image</label>
                      @else
                     <input type="file"  name="blog_image">
                     <label  for="blog_image">Choose Image</label>
