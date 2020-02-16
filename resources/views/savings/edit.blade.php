@@ -16,7 +16,7 @@
     action="{{Route('savings.update',['saving_id'=>$saving->id])}}">
     @method('PATCH') @csrf
     <div class="row ">
-        <div class="col-4">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="text-center p-1">
