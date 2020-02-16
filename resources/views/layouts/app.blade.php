@@ -170,12 +170,6 @@
                 </a>
             </li>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/prediction">
-                  <span class="menu-title">Predict data</span>
-                  <i class="mdi  mdi-arrow-up-bold menu-icon"></i>
-                </a>
-              </li>
               
             <li class="nav-item sidebar-actions">
               <span class="nav-link">

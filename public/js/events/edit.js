@@ -300,7 +300,7 @@ function printErrorMsg(msg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/amrsamy/Desktop/Financial_Assistant/Personal_Financial_Assisstant/resources/js/events/edit.js */"./resources/js/events/edit.js");
+module.exports = __webpack_require__(/*! /home/marwan/Desktop/Personal_Financial_Assisstant/resources/js/events/edit.js */"./resources/js/events/edit.js");
 
 
 /***/ })

@@ -79,7 +79,7 @@
                             <a href="#testemonials" data-scroll class="nav-link">Testemonials</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/blog" class="nav-link">Blog</a>
+                            <a href="/blogs" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a href="#contact" data-scroll class="nav-link">Contact</a>
