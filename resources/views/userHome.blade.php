@@ -137,10 +137,7 @@
             <h4 class="font-weight-normal mb-3">Income <i class="mdi mdi-chart-line mdi-24px float-right"></i>
             </h4>
             <h2 class="mb-5">{{$sumIncome}} EGP</h2>
-            <h6 class="card-text">
-              <span>Increased by 0%</span>
-              <a class="mdi mdi-plus-circle-outline mdi-24px float-right" href="/incomes/create" style="color:white"></a>
-          </h6>
+            
           </div>
         </div>
       </div>
@@ -150,7 +147,6 @@
             <h4 class="font-weight-normal mb-3">Balance<i class="mdi mdi-diamond mdi-24px float-right"></i>
             </h4>
             <h2 class="mb-5">{{$sumIncome - $sumExpense}} EGP</h2>
-            <h6 class="card-text">Decreased by 0%</h6>
           </div>
         </div>
       </div>
@@ -161,7 +157,6 @@
             </h4>
             <h2 class="mb-5">{{$sumExpense}} EGP</h2>
             <h6 class="card-text">
-              <span>Increased by 0%</span>
               <a class="mdi mdi-plus-circle-outline mdi-24px float-right" href="/expenses/create" style="color:white"></a>
           </h6>
           </div>

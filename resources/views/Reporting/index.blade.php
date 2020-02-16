@@ -30,7 +30,7 @@
 </div>
 
 <div class="row">
-<div class="col-6">
+<div class="col-12 mb-5">
       <div class="card">
         <div class="card-header">
           <div class="text-center p-1">
@@ -38,15 +38,20 @@
           </div>
         </div>
         <div class="card-body text-center">
+        <h1>
           @isset($currentBalance)
           {{$currentBalance}} EGP
           @else
           0 EGP
-
           @endisset
+          </h1>
         </div>
       </div>
-    </div>
+  </div>
+  </div>
+
+  <div class="row">
+
   <div class="col-lg-7 grid-margin stretch-card">
     <div class="card">
       <div class="card-header">
@@ -60,7 +65,6 @@
           <div class="chartjs-size-monitor-expand">
             <div class=""></div></div><div class="chartjs-size-monitor-shrink">
               <div class="">
-
               </div>
             </div>
           </div>
@@ -77,7 +81,10 @@
           </div>
         </div>
         <div class="card-body">
-          hhhhhhhhhhhhhhhhhhhhhh
+        <ul>
+            <li> Your average expense in {{$expenseDays}} days: <strong style="color:red"> {{round($expenseAverage,2)}} EGP</strong> </li>
+            <li> Your average income in {{$interval}} months: <strong style="color:red"> {{round($incomeAverage,2)}} EGP</strong> </li>
+        </ul>  
         </div>
       </div>
     </div>

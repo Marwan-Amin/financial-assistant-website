@@ -26,7 +26,6 @@ class StoreIncomeRequest extends FormRequest
         return [
             'amount' => 'required|min:0.25|numeric',
             'type' => 'required',
-            'date' => 'required'
         ];
     }
 }
