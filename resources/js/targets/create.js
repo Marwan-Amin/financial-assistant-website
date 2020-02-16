@@ -51,7 +51,6 @@ let table_data_target = document.createElement("td");
     table_data_target.classList.add('column1')
     table_data_target.innerHTML=response.target_name;
     table_data_target.style="text-align: left; padding-left: 20px;";
-
 //target name
 let table_data_amount = document.createElement("td");
     table_data_amount.classList.add('sorting_1')

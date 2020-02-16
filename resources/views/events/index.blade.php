@@ -32,7 +32,6 @@
 
                 <td><a class="btn btn-inverse-info btn-fw" href="{{route('events.edit',['id'=>$event->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
                 
-                <a class="btn btn-inverse-primary btn-fw" href="{{route('events.show',['id'=>$event->id])}}" >View&nbsp;<i class="mdi mdi-eye btn-icon-append"></i></a>
                 <form method="post" action="{{route('events.destroy',['id'=>$event->id])}}" class="d-inline">
                     @csrf
                     @method('DELETE')

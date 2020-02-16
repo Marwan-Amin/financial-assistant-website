@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Validator;
 class EventController extends Controller
 {
 
-
-
     public function index(){
         $events = CustomCategory::all();
         return view('events.index',compact('events'));
@@ -26,8 +24,6 @@ class EventController extends Controller
         return view('events.create');
     }
 
-
-
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'eventName' => 'required',
@@ -35,7 +31,7 @@ class EventController extends Controller
         ]);
         
         if ($validator->passes()) {
-            
+            $request->eventName = trim(preg_replace('/\s+/', ' ', $request->eventName));
             $category = CustomCategory::updateOrCreate(
                 ['name'=>$request->eventName,'user_id'=>Auth::user()->id,'date' =>$request->eventDate]
             );
@@ -52,9 +48,11 @@ class EventController extends Controller
     public function updateSubEvent($id,Request $request){
         $validator = Validator::make($request->all(), [
             'customSubCategoryName' => 'required|string',
-            'customSubCategoryAmount' => 'required|numeric|min:0.25',
+            'customSubCategoryAmount' => 'required|numeric||between:0.25,9999999999.99',
         ]);
         if ($validator->passes()) {
+            $request->customSubCategoryName = trim(preg_replace('/\s+/', ' ', $request->customSubCategoryName));
+
             $customSubCategory = CustomSubCategory::where('id',$id)->first();
             $customSubCategory->name =$request->customSubCategoryName;
             $customSubCategory->amount =$request->customSubCategoryAmount;
@@ -72,12 +70,13 @@ class EventController extends Controller
 public function storeSubEvent(Request $request){
 
 
-    $validator = Validator::make($request->all(), [
+   $validator = Validator::make($request->all(),[
         'subName' => 'required|string',
-        'amount' => 'required|numeric|min:0.25',
+        'amount' => 'required|numeric||between:0.25,9999999999.99',
     ]);
     
     if ($validator->passes()) {
+        $request->subName = trim(preg_replace('/\s+/', ' ', $request->subName));
         $row = CustomSubCategory::where('name',$request->subName)->where('category_id',$request->categoryId);
         $amount = $row->exists()?$row->first():['amount'=>0];
         $customSubCategory = CustomSubCategory::updateOrCreate(
@@ -130,15 +129,17 @@ public function destroy($id){
 public function update($id,Request $request){
 
     $validator = Validator::make($request->all(), [
-        'customCategoryName' => 'required|string',
+        'customCategoryName' => 'required|string|min:1',
     ]);
 if($validator->passes()){
+    $request->customCategoryName = trim(preg_replace('/\s+/', ' ', $request->customCategoryName));
+
     $customCategory = CustomCategory::find($id);
     $customCategory->name = $request->customCategoryName;
    $customCategory->save();
    
-    return response()->json(true);
+   return response()->json(['success'=>'Updated new record.']);
 }
-return response()->json(false);
+return response()->json(['error'=>$validator->errors()->all()]);
 }
 }

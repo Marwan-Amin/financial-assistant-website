@@ -21,7 +21,6 @@
          if(data){
             renderSubCategories(data);
          }else{
-            alert('Something Went Wrong Please Refresh The Page');
          }
         }
      });  

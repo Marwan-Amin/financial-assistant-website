@@ -259,7 +259,6 @@
           dataType : "json",
           url :"{{route('dashboard.store')}}",
           success : function (response){
-            console.log(response);
           }
         });
       }); 
@@ -1117,7 +1116,6 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
 
   }else{
 
-    console.log(pieChart3);
 
   }
 

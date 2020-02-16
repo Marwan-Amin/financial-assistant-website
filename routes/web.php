@@ -16,11 +16,11 @@ use App\Country;
     Route::get('/', 'HomeController@index')->name('home.index');
 
     // Blogs for authenticated and unauthenticated users
+
     Route::get('/blogs/{id}/show', 'Blog\BlogController@show')->name('blogs.show');
     Route::get('/tag/{tag}/blogs', 'Blog\BlogController@getTagBlogs')->name('tag.blogs');
     Route::get('/blogs', 'Blog\BlogController@index')->name('blogs.index');
     Route::get('/blogs/{userId}', 'Blog\BlogController@getUserBlogs')->name('user.blogs');
-
 
     Route::middleware(['auth','verified'])->group(function(){
     
@@ -96,11 +96,11 @@ use App\Country;
     Route::post('/charts/subCategories', 'ChartsController@getSubCategoriesForCharts')->name('charts.subCategories');
 
     //blog routes
-    Route::get('/blogs/create', 'Blog\BlogController@create');
-    Route::get('/blogs/{id}/edit', 'Blog\BlogController@create')->name('blogs.edit');
-    Route::put('/blogs/{id}/update', 'Blog\BlogController@update')->name('blogs.update');
-    Route::post('/blogs/store', 'Blog\BlogController@store')->name('blogs.store');
-    Route::delete('/blogs/{id}/destroy', 'Blog\BlogController@destroy')->name('blogs.destroy');
+    Route::get('/blog/create','Blog\BlogController@create');
+    Route::get('/blog/{id}/edit', 'Blog\BlogController@create')->name('blogs.edit');
+    Route::put('/blog/{id}/update', 'Blog\BlogController@update')->name('blogs.update');
+    Route::post('/blog/store', 'Blog\BlogController@store')->name('blogs.store');
+    Route::delete('/blog/{id}/destroy', 'Blog\BlogController@destroy')->name('blogs.destroy');
   
   
     //calendar route

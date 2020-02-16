@@ -114,7 +114,6 @@ import moment from 'moment';
                // on send comment we fetch the comments to get always the last page 
                 this.fetchComment();
               }).catch(err=>{
-                alert(err.message);
               });
               //reset the comment input value
               this.newComment='';

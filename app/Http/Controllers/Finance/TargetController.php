@@ -25,7 +25,7 @@ class TargetController extends Controller
     {
         $request->validate([
             'target_name' => 'required|unique:targets',
-            'amount' => 'required',
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
         ]);
        
         $saving=new Target_saving;
@@ -51,8 +51,12 @@ class TargetController extends Controller
 
     function update($target_id,Request $request)
     {
+        $request->validate([
+            'target_name' => 'required|unique:targets,id',
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
+        ]);
         $target = target::findOrFail($target_id);
-        $target->target_amount = $request->target_amount;
+        $target->target_amount = $request->amount;
         $target->target_name = $request->target_name;
         $target->save();
         return redirect()->route('targets.create');

@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="alert alert-danger print-error-msg" style="display:none">
-  <ul></ul>
-  </div>
+
   <div class="main-panel">
           <div class="content-wrapper">  
+          <div class="alert alert-danger print-error-msg" style="display:none">
+  <ul></ul>
+  </div>
 <div class="page-header">
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -31,6 +32,8 @@
             <strong><span> Add to your savings </span></strong>
           </div>
           </div>
+          <form action="{{route('savings.store')}}" method="post">
+            @csrf
       <div class="card-body">        
           <div class="row">
             <div class="col-md-12">
@@ -47,7 +50,17 @@
                 </div>
             </div>
           </div>
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
      </div>
+</form>
      <section class="saving-box">
           <div class="text-center">
             <h3 class="current-savings">Total Savings</h3>
@@ -72,12 +85,18 @@
           @isset($savings)
           @foreach ($savings as $saving)
           <tr>
-            <td>{{$saving->amount}}</td>
+            <td>{{$saving->amount}} EGP</td>
             <td>{{($saving->created_at)->toDateString()}}</td>
             <td><a class="btn btn-inverse-info btn-fw" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
-            <button class="btn btn-inverse-danger btn-fw" >
-            Delete&nbsp;<i class="mdi mdi-delete"></i>
+
+            <form class="d-inline" action="{{ route('savings.destroy',['saving_id'=>$saving->id]) }}" method="post">
+            @csrf
+        {{method_field('DELETE')}}
+              <button   onclick="return confirm('Are You Sure You Want To Delete This Record ?')" type="submit" class="btn btn-inverse-danger btn-fw" >
+              Delete&nbsp;<i class="mdi mdi-delete"></i>
               </button>
+            </form>
+            
             </td>
           </tr>
           
@@ -94,7 +113,8 @@
 </div>
 </div>
 </div>
-<script> let savingUrl = "{{route('savings.store')}}";
+<script> 
+let savingUrl = "{{route('savings.store')}}";
         let delurl= "{{route('savings.destroy',['saving_id'=>':saving.id'])}}";
         let editUrl= "{{route('savings.edit',['saving_id'=>':response.id'])}}";
      

@@ -27,19 +27,19 @@
           <div class="col-md-12">
             <div class="carousel owl-carousel">
               <div class="item">
-                <a href="portfolio.html">
+                
                   <img src="{{asset('UI/homePage/images/dashboard_full_1.jpg')}}" class="img-fluid" alt="">
-                </a>
+                
               </div>
               <div class="item">
-                <a href="portfolio.html">
+                
                   <img src="{{asset('UI/homePage/images/dashboard_full_2.jpg')}}" class="img-fluid" alt="">
-                </a>
+                
               </div>
               <div class="item">
-                <a href="portfolio.html">
+                
                   <img src="{{asset('UI/homePage/images/dashboard_full_3.jpg')}}" class="img-fluid" alt="">
-                </a>
+                
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
       </div>
     </section>
 
-    <section class="ftco-section">
+    <section id="about" class="ftco-section">
       <div class="container-fluid">
         <div class="row no-gutters justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -78,7 +78,7 @@
       </div>
     </section>    
 
-    <section class="ftco-section ftco-degree-bg">
+    <section id="features" class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -146,7 +146,7 @@
         </div>
       </div>
     </section>
-    <section class="ftco-section testimony-section ftco-degree-bg">
+    <section id="testemonials" class="ftco-section testimony-section ftco-degree-bg">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -155,9 +155,12 @@
           </div>
         </div>
         <div class="row ftco-animate">
+          
           <div class="col-md-12">
+            @if( count($users) > 2 )
             <div class="carousel-testimony owl-carousel ftco-owl">
               @foreach($users as $user)
+              @if( $user->rate != null )
               <div class="item text-center">
                 <div class="testimony-wrap p-4 pb-5">
                   <div class="user-img mb-4" style="background-image: url({{asset($user->avatar)}}); ">
@@ -171,8 +174,55 @@
                   </div>
                 </div>
               </div> 
+              @endif
               @endforeach 
             </div>
+            @endif
+
+            @if( count($users) == 1 ) 
+            <div class="ftco-owl">
+              @foreach($users as $user)
+              @if( $user->rate != null )
+              <div class="item text-center">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url({{asset($user->avatar)}}); ">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-5">{{$user->feedback}}</p>
+                    <p class="name">{{$user->name}}</p>
+                  </div>
+                </div>
+              </div> 
+              @endif
+              @endforeach 
+            </div>
+            @endif
+
+            @if( count($users) == 2 ) 
+            <div class="row ftco-owl">
+              @foreach($users as $user)
+              @if( $user->rate != null )
+              <div class="col-md-6 item text-center">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url({{asset($user->avatar)}}); ">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-5">{{$user->feedback}}</p>
+                    <p class="name">{{$user->name}}</p>
+                  </div>
+                </div>
+              </div> 
+              @endif
+              @endforeach 
+            </div>
+            @endif
+            
           </div>
         </div>
       </div>
@@ -206,14 +256,14 @@
       </div>
     </section>
 
-    <section class="ftco-section contact-section ftco-degree-bg">
+    <section id="contact" class="ftco-section contact-section ftco-degree-bg">
       <div class="container bg-light">
         <div class="row d-flex mb-5 contact-info">
           <div class="col-md-12 mb-4">
             <h2 class="h4">Contact Information</h2>
           </div>
           <div class="w-100"></div>
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
             <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
           </div>
           <div class="col-md-3">
@@ -224,7 +274,7 @@
           </div>
           <div class="col-md-3">
             <p><span>Website</span> <a href="#">yoursite.com</a></p>
-          </div>
+          </div> -->
         </div>
         @if ($errors->any())
     <div class="alert alert-danger">

@@ -58,7 +58,7 @@
         <span class="app_name">Moneyger</span>
           </p>
         </a>
-          <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/logo.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

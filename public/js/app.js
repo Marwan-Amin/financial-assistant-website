@@ -2035,9 +2035,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         // on send comment we fetch the comments to get always the last page 
         _this4.fetchComment();
-      })["catch"](function (err) {
-        alert(err.message);
-      }); //reset the comment input value
+      })["catch"](function (err) {}); //reset the comment input value
 
       this.newComment = '';
     },

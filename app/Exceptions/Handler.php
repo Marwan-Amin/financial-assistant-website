@@ -57,9 +57,9 @@ class Handler extends ExceptionHandler
             }
         }
 
-        // if ($exception instanceof \PDOException) {
-        //     return response()->view('Errors.' . '500');
-        // }
+        if ($exception instanceof \PDOException) {
+            return response()->view('Errors.' . '500');
+        }
         if($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException){
             return redirect('/');
         }

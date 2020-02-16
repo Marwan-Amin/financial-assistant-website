@@ -1190,7 +1190,6 @@
 });
 function subExpensePieChart(doughnutPieOptions,data,labels){
     data = data.filter(d=>d!=0);
-    console.log(data);
      doughnutPieDataForIncomes = {
     datasets: [{
       data: data,
@@ -1241,7 +1240,6 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
 
   }else{
 
-    console.log(pieChart3);
 
   }
 

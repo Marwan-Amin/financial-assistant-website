@@ -25,23 +25,19 @@ class SavingController extends Controller
     
     function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'saving_amount' => 'required',
+        $request->validate([
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
         ]);
-        if ($validator->passes()) {
-        //return response()->json($request); //ajax dd :D
         $saving = Saving::create([
-        'amount' => $request->saving_amount,
+        'amount' => $request->amount,
         'user_id' => Auth::user()->id
-     ]);
+        ]);
         $save = new Target_saving;
         $savings_sum = $save->sum_savings();
         $sum = $save->Edit_target_savings($savings_sum);
-        //return response()->json($saving);
-        return response()->json(['saving'=>$saving,'sum'=>$sum]);
+        return redirect()->route('savings.create');
 
-        }
-        return response()->json(['error'=>$validator->errors()->all()]);  
+       
 
     }
 
@@ -53,11 +49,14 @@ class SavingController extends Controller
         $save=new Target_saving;
         $savings_sum=$save->sum_savings();
         $sum = $save->Edit_target_savings($savings_sum);
-        return response()->json(['saving'=>$saving,'sum'=>$sum]);
+        return redirect()->route('savings.create');
     }
 
     function update($saving_id,Request $request)
     {
+        $request->validate([
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
+        ]);
         $saving = Saving::findOrFail($saving_id);
         $saving->amount = $request->amount;
         $saving->save();

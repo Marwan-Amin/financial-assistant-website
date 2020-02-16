@@ -17,7 +17,7 @@ use App\CustomCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -110,6 +110,7 @@ class User extends Authenticatable implements MustVerifyEmail
         ->where('custom_categories.date',$arithmetic,$date)
         ->get()->toArray();
         $expensesArray = ['totalExpenses'=>$totalExpenses,'totalCustomExpenses'=>$totalCustomExpenses];
+        // dd([$totalExpenses,$totalCustomExpenses]);
         return $expensesArray;
     }
     public function getUserBalancesByDate($date = null){
@@ -166,11 +167,22 @@ class User extends Authenticatable implements MustVerifyEmail
                 $userCategories[]=['categoryName'=>$customCategory->name,'category_id'=>$customCategory->id,'isCustom'=>'true'];
            }
         }
+        $temp=[];
+        foreach($userCategories as $index=>$userCategory){
+                if(count($temp) >0){
+                    if(in_array($userCategory,$temp) ){
+                        unset($userCategories[$index]);
+                    }else{
+                        $temp[]=$userCategory;
+                    }
+                }else{
+                    $temp[]=$userCategory;
+                }
+        }
         
        }else{
            $userCategories=false;
        }
-       
         //start expense array for chart
         $totalExpenses = $this->getUserExpenses($date)['totalExpenses'];
         $totalCustomExpenses = $this->getUserExpenses($date)['totalCustomExpenses'];
@@ -179,7 +191,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
         //start income array for chart
         $totalIncome = $this->getUserIncome($date);
-        // dd($totalIncome);
         //end income array for chart
        $userChartInfo = [  'totalExpenses' => $totalExpenses ,
        'totalIncome' => $totalIncome ,
