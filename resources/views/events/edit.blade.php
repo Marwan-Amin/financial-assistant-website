@@ -16,13 +16,11 @@
           <thead>
             <tr>
               <th> Type </th>
-              <th> Date </th>
             </tr>
           </thead>
           <tbody >
             <tr>
            <td> <input type="text" id="customCategoryName" class="form-control" value="{{$customCategory->name}}"/></td> 
-           <td> <input type="date" id="customCategoryDate" class="form-control" placeholder="dd/mm/yyyy" value="{{ $customCategory->date }}" /></td> 
            <td> <button id="customEventCategory" class="btn btn-gradient-danger btn-fw" value="{{$customCategory->id}}" onclick="editEvent(`{{route('events.update',['id'=>$customCategory->id])}}`);">Edit Event</button></td>
           <td><div class="alert alert-success" id="categorySuccess" role="alert" style="display:none">The Event Successfully Updated</div></td>  
           </tr>

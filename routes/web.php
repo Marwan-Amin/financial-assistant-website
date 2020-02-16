@@ -22,7 +22,7 @@ use App\Country;
     Route::get('/blogs/{userId}', 'Blog\BlogController@getUserBlogs')->name('user.blogs');
 
 
-Route::middleware(['auth','verified'])->group(function(){
+    Route::middleware(['auth','verified'])->group(function(){
     
     Route::get('/user/ajax/{countryName}','ProfileController@getStates')->name('user.ajax');
     Route::get('/userHome',"DashboardController@index")->name('userHome');

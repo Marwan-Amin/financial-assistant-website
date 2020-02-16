@@ -209,23 +209,7 @@
             <div class="row">
               
 
-              <div class="col-lg-6 grid-margin stretch-card d-none">
-                <div class="card">
-                  <div class="card-body">
-                    <!--start sub category dropdown-->
-                  <div class="row mb-5">
-                    <div class="col-md-6">
-                      <h4 class="card-title">sub Expenses Chart</h4>
-                      </div>
-                     
-                  </div>
-                  <!--end sub category dropdown-->
-                  <div id="pieChart3-container">
-                    <canvas id="pieChart3" style="height:250px"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
 
             </div>
             <!--end sub Category chart-->
@@ -252,7 +236,6 @@
         </div>
       </div>
     </div>
-    
 
     </div>
     </div>
@@ -282,45 +265,9 @@
       }); 
     </script>
     <script>
-        var pieChart3;
           var doughnutPieDataForIncomes={};
-          var pieChartCanvas3='';
-          let dataAmount=[];
-          let labels=[];
-          let test=[];
-          @isset($chartsInfo['totalExpenses'])
-         @foreach($chartsInfo['totalExpenses'] as $key=>$expense) dataAmount.push(Number("{{$chartsInfo['totalExpenses'][$key]->total}}")); labels.push("{{$chartsInfo['totalExpenses'][$key]->Category_Name}}");@endforeach
-         @endisset
-         @isset($chartsInfo['totalCustomExpeses'])
-         @foreach($chartsInfo['totalCustomExpeses'] as $key=>$customExpense) dataAmount.push(Number("{{$chartsInfo['totalCustomExpenses'][$key]->custom_total}}")); labels.push("{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}");@endforeach
-         @endisset
-        //  console.log(labels,dataAmount);
-
-         let dropDownCategory = document.getElementById('subCategoryChart');
-              dropDownCategory.addEventListener('change',function(){
-                  categoryId = this.value.split(',')[0];
-                  isCustom = this.value.split(',')[1];
-                  $.ajax({
-                   headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                           },
-                url: "{{route('charts.subCategories')}}",
-                data:{'categoryId':categoryId,'isCustom':isCustom},
-                type: 'POST',
-                success: function(responseData) {
-                  pieChart3.destroy();
-                  dataAmount=[];
-                   labels=[];
-              var doughnutPie = doughnutPieOptionsInitializer();
-                  responseData.forEach(function(response){
-                    dataAmount.push(Number(response.amount));
-                    labels.push(response.name);
-                  })
-                  subExpensePieChart(doughnutPie,dataAmount,labels,false);
-
-                }
-                });
-              });
+         
+              
     $(function () {
   /* ChartJS
    * -------
@@ -333,7 +280,9 @@
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense)  "{{$chartsInfo['totalExpenses'][$key]->Category_Name}}",@endforeach
          @endisset
          @isset($chartsInfo['totalCustomExpenses'])
+         @if(count($chartsInfo['totalCustomExpenses'])>0)
          @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) "{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}",@endforeach
+        @endif
          @endisset    
     ],
     datasets: [{
@@ -343,7 +292,9 @@
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
          @isset($chartsInfo['totalCustomExpenses'])
+         @if(count($chartsInfo['totalCustomExpenses'])>0)
          @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
+         @endif
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -406,7 +357,9 @@
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense)  "{{$chartsInfo['totalExpenses'][$key]->Category_Name}}",@endforeach
          @endisset
          @isset($chartsInfo['totalCustomExpenses'])
+         @if(count($chartsInfo['totalCustomExpenses'])>0)
          @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) "{{$chartsInfo['totalCustomExpenses'][$key]->Custom_Category_Name}}",@endforeach
+         @endif
          @endisset    
     ],
     datasets: [{
@@ -416,7 +369,9 @@
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
          @isset($chartsInfo['totalCustomExpenses'])
+         @if(count($chartsInfo['totalCustomExpenses'])>0)
          @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
+         @endif
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -591,8 +546,10 @@
         @isset($chartsInfo['totalExpenses'])
          @foreach($chartsInfo['totalExpenses'] as $key=>$expense) {{$chartsInfo['totalExpenses'][$key]->total}}, @endforeach
          @endisset
+         @if(count($chartsInfo['totalCustomExpenses'])>0)
          @isset($chartsInfo['totalCustomExpenses'])
          @foreach($chartsInfo['totalCustomExpenses'] as $key=>$customExpense) {{$chartsInfo['totalCustomExpenses'][$key]->custom_total}},@endforeach
+         @endif
          @endisset      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -654,7 +611,7 @@
   var doughnutPieOptions = doughnutPieOptionsInitializer();
 
    //start expenses pie chart data
-   subExpensePieChart(doughnutPieOptions,dataAmount,labels);
+  //  subExpensePieChart(doughnutPieOptions,dataAmount,labels);
   //end sub expenses pie chart data
 
   

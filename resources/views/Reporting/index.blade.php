@@ -30,8 +30,24 @@
 </div>
 
 <div class="row">
+<div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="text-center p-1">
+            <strong><span> Balance Details </span></strong>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          @isset($currentBalance)
+          {{$currentBalance}} EGP
+          @else
+          0 EGP
 
-  <div class="col-lg-6 grid-margin stretch-card">
+          @endisset
+        </div>
+      </div>
+    </div>
+  <div class="col-lg-7 grid-margin stretch-card">
     <div class="card">
       <div class="card-header">
         <div class="text-center p-1">
@@ -53,7 +69,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-5">
       <div class="card">
         <div class="card-header">
           <div class="text-center p-1">

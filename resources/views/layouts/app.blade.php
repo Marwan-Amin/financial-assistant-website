@@ -90,11 +90,13 @@
             <li class="nav-item nav-profile">
               <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
+                  @auth
                 @if ( Auth::user()->avatar)
                   <img src="{{asset(Auth::user()->avatar)}}" alt="profile">
                   @else
                   <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="profile">
                   @endif
+                  @endauth
                   <span class="login-status online"></span>
                 </div>
                 <div class="nav-profile-text d-flex flex-column">

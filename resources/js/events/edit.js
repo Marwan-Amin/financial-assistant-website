@@ -1,14 +1,13 @@
 let oldSubEventId;
 window.editEvent = function (mainEventUrl){
     let customCategoryName = document.getElementById('customCategoryName').value;
-    let customCategoryDate = document.getElementById('customCategoryDate').value;
       
     $.ajax({
     headers: {
      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            },
  url: mainEventUrl,
- data:{'customCategoryName':customCategoryName,'customCategoryDate':customCategoryDate},
+ data:{'customCategoryName':customCategoryName},
  type: 'PUT',
  success: function(response) {
    ensureResponse(response);

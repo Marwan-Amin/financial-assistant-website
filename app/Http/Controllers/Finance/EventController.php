@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
+
+
+
     public function index(){
         $events = CustomCategory::all();
         return view('events.index',compact('events'));
@@ -22,6 +25,9 @@ class EventController extends Controller
     public function create(){
         return view('events.create');
     }
+
+
+
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'eventName' => 'required',
@@ -29,20 +35,24 @@ class EventController extends Controller
         ]);
         
         if ($validator->passes()) {
+            
             $category = CustomCategory::updateOrCreate(
                 ['name'=>$request->eventName,'user_id'=>Auth::user()->id,'date' =>$request->eventDate]
             );
 
-
-
 			return response()->json(['success'=>'Added new records.','isStored'=>true,'categoryId'=>$category->id]);
+       
         }
+
         return response()->json(['error'=>$validator->errors()->all()]);
     }
+
+
+
     public function updateSubEvent($id,Request $request){
         $validator = Validator::make($request->all(), [
             'customSubCategoryName' => 'required|string',
-            'customSubCategoryAmount' => 'required|numeric',
+            'customSubCategoryAmount' => 'required|numeric|min:0.25',
         ]);
         if ($validator->passes()) {
             $customSubCategory = CustomSubCategory::where('id',$id)->first();
@@ -50,7 +60,7 @@ class EventController extends Controller
             $customSubCategory->amount =$request->customSubCategoryAmount;
             $customSubCategory->save();
             $balanceObj=new BalanceCalculation;
-            $balanceObj->calculateBalance($customSubCategory->customCategory->date ,$request->customSubCategoryAmount, $customSubCategory->customCategory->name);
+            $balanceObj->calculateBalance($customSubCategory->customCategory->date ,null,$request->customSubCategoryAmount, $customSubCategory->customCategory->name);
 
             return response()->json(['success'=>'Added new records.']);
         }      
@@ -58,12 +68,13 @@ class EventController extends Controller
 }
 
 
+
 public function storeSubEvent(Request $request){
 
 
     $validator = Validator::make($request->all(), [
         'subName' => 'required|string',
-        'amount' => 'required|numeric',
+        'amount' => 'required|numeric|min:0.25',
     ]);
     
     if ($validator->passes()) {
@@ -72,14 +83,14 @@ public function storeSubEvent(Request $request){
         $customSubCategory = CustomSubCategory::updateOrCreate(
             ['name' =>$request->subName,'category_id'=>$request->categoryId],
             [
-           'amount' =>$amount['amount']+$request->amount,
+           'amount' =>$request->amount,
             ]);
         
         $customSubCategory = CustomSubCategory::where('name',$request->subName)->where('category_id',$request->categoryId)->first();
 
         $mainEvent = CustomCategory::find($request->categoryId);
         $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($mainEvent->date , $request->amount,$mainEvent->name); 
+        $balanceObj->calculateBalance($mainEvent->date ,null, $request->amount,$mainEvent->name); 
         
        if($amount['amount']==0){
            $isUpdated=false;
@@ -110,16 +121,24 @@ public function show($id){
 public function destroy($id){
     $customCategory = CustomCategory::find($id);
     $customCategory->delete();
+    $balanceObj=new BalanceCalculation;
+    $balanceObj->calculateBalanceOnDelete($customCategory->date ,null, $customCategory->customSubCategories->sum('amount'));
     return redirect()->route('events.index');
 }
 
 
 public function update($id,Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'customCategoryName' => 'required|string',
+    ]);
+if($validator->passes()){
     $customCategory = CustomCategory::find($id);
     $customCategory->name = $request->customCategoryName;
-    $customCategory->date = $request->customCategoryDate;
    $customCategory->save();
    
     return response()->json(true);
+}
+return response()->json(false);
 }
 }

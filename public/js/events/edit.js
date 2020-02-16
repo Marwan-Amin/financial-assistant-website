@@ -97,15 +97,13 @@ var oldSubEventId;
 
 window.editEvent = function (mainEventUrl) {
   var customCategoryName = document.getElementById('customCategoryName').value;
-  var customCategoryDate = document.getElementById('customCategoryDate').value;
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     url: mainEventUrl,
     data: {
-      'customCategoryName': customCategoryName,
-      'customCategoryDate': customCategoryDate
+      'customCategoryName': customCategoryName
     },
     type: 'PUT',
     success: function success(response) {

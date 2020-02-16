@@ -75,7 +75,7 @@
             <td>{{$saving->amount}}</td>
             <td>{{($saving->created_at)->toDateString()}}</td>
             <td><a class="btn btn-inverse-info btn-fw" href="{{route('savings.edit',['saving_id'=>$saving->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
-            <button class="btn btn-inverse-danger btn-fw" onclick='confirmDelete(this,"{{$saving->id}}",true);' >
+            <button class="btn btn-inverse-danger btn-fw" >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
               </button>
             </td>

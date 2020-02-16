@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Finance;
+
+use App\Balance;
+use Illuminate\Support\Facades\Validator;
+
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Http\Request;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
@@ -104,26 +108,35 @@ class ExpenseController extends Controller
         }
     }
 
-    public function edit(expensesRequest $request,$id){
+    public function edit(Request $request,$id){
         
-        $userSubCategory = UserSubCategory::find($id);
-        
-        $beforeUpdateExpense = $userSubCategory!=null && $userSubCategory->date != $request->date?$userSubCategory->amount:0;
-        $beforeUpdateDate = $userSubCategory->date;
-        $updateExpenseDifference = $request->amount - $beforeUpdateExpense;
-        $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalanceOnUpdate($request->date ,$beforeUpdateDate,null,null,$request->amount,$updateExpenseDifference);
- 
-        $updateOrcreate = UserSubCategory::updateOrCreate(
-            ['user_id'=>Auth::user()->id,'sub_category_id'=>$request->subCategory,'date'=>$request->date],
-            ['amount'=>$request->amount +$beforeUpdateExpense]);
-
-        if($userSubCategory->id != $updateOrcreate->id) {
-            UserSubCategory::find($id)->delete();
+        $validator = Validator::make($request->all(), 
+        [
+            'amount'=>'numeric|min:0.25|required',
+            'subCategory'=>'required'
+        ]);
+        if($validator->passes()){
+            $userSubCategory = UserSubCategory::find($id);       
+            // $beforeUpdateExpense = $userSubCategory!=null ?$userSubCategory->amount:0;
+            // $updateExpenseDifference = $request->amount - $beforeUpdateExpense;
+            
+            
+            $updateOrcreate = UserSubCategory::updateOrCreate(
+                ['user_id'=>Auth::user()->id,'sub_category_id'=>$request->subCategory,'date'=>$userSubCategory->date],
+                ['amount'=>$request->amount ]);
+                
+                $balanceObj=new BalanceCalculation;
+                $balanceObj->calculateBalance($userSubCategory->date,null,$request->amount);
+         
+            if($userSubCategory->id != $updateOrcreate->id) {
+                UserSubCategory::find($id)->delete();
+            }
+                 
+            $userSubCategory->save();
+    
+            return redirect()->route('expenses.index');
         }
-             
-        $userSubCategory->save();
-
-        return redirect()->route('expenses.index');
+        return redirect()->route('expenses.edit',['id'=>$id]);
+       
     }
 }

@@ -59,17 +59,18 @@ class IncomeController extends Controller
         {
             $income = UserIncome::findOrFail($income_id);
 
-            $beforeUpdateDate = $income->Date;
             $beforeUpdateIncome = $income->amount;
 
-            $income->amount = $request->amount;
-            $income->Date = $request->date;
-            $income->income_id= $request->type;
+            UserIncome::updateOrCreate(
+                ['user_id' => Auth::user()->id , 'Date'=> $income->date, 'income_id' =>$request->type ],
+                ['amount' => $request->amount ]
+            );
+            
                  
             $updateIncomeDifference = $request->amount - $beforeUpdateIncome;
 
             $balanceObj=new BalanceCalculation;
-            $balanceObj->calculateBalanceOnUpdate($request->date , $beforeUpdateDate ,$request->amount , $updateIncomeDifference);
+            $balanceObj->calculateBalance($income->date ,$request->amount );
             $income->save();
 
             return redirect()->route('incomes.index');
