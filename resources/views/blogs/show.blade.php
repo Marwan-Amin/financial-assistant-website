@@ -24,12 +24,12 @@
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 ftco-animate">
+          <div class="col-md-7 ftco-animate">
             <h2 class="mb-3">{{$blog->title}}</h2>
            
-            <p>{{$blog->body}}</p>
-            <p>
-              <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid">
+            <p disabled style="border:none;background:#fff;overflow:hidden" cols="50" rows="4">{{$blog->body}}</p>
+            <p >
+              <img src="{{asset($blog->blog_image)}}" alt="" class="img-fluid" >
             </p>
             @auth
             @if($blog->user->id == auth()->user()->id)
@@ -90,8 +90,6 @@
                   <h3 class="heading"><a href="{{route('user.blogs',['userId'=>$blog->user->id])}}">{{$blog->user->name}}</a></h3>
                   <div class="meta">
                     <div><span class="icon-calendar"></span> {{$blog->created_at}}</div>
-                    <!-- <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div> -->
                   </div>
                 </div>
               </div>

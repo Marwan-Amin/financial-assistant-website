@@ -240,14 +240,13 @@
           @foreach($blogs as $blog)
           <div class="col-md-4 ftco-animate">
             <div class="blog-entry" data-aos-delay="100">
-              <a href="blog-single.html" class="block-20" style="background-image: url({{asset($blog->blog_image)}}); ">
+              <a href="{{route('blogs.show',['id'=>$blog->id])}}" class="block-20" style="background-image: url({{asset($blog->blog_image)}}); ">
               </a>
               <div class="text p-4">
                 <div class="meta mb-3">
-                  <div><a href="#">{{$blog->title}}</a></div>
-                  <div><a href="#"></a>{{$blog->user->name}}</div>
+                    <div><a href="{{route('blogs.show',['id'=>$blog->id])}}"></a>{{$blog->user->name}}</div>
                 </div>
-                <h3 class="heading"><a href="#">{{$blog->body}}</a></h3>
+                <h3 class="heading"><a href="{{route('blogs.show',['id'=>$blog->id])}}">{{$blog->title}}</a></h3>
               </div>
             </div>
           </div>
@@ -263,18 +262,7 @@
             <h2 class="h4">Contact Information</h2>
           </div>
           <div class="w-100"></div>
-          <!-- <div class="col-md-3">
-            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Website</span> <a href="#">yoursite.com</a></p>
-          </div> -->
+        
         </div>
         @if ($errors->any())
     <div class="alert alert-danger">

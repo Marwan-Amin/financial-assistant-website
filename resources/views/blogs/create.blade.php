@@ -38,7 +38,7 @@
                       <div class="form-group row">
                         <label for="body" class="col-sm-3 col-form-label">Blog Description</label>
                         <div class="col-sm-9">
-                        <textarea class="form-control"  name="body" >@isset($blog){{$blog->body}}@endisset</textarea>
+                        <textarea class="form-control"  name="body" cols="50" rows="10" >@isset($blog){{$blog->body}}@endisset</textarea>
                         </div>
                       </div>
                        @isset($blog)                       
@@ -47,7 +47,7 @@
                      <label class="custom-file-label" for="blog_image">Change Your Image</label>
                      @else
                     <input type="file"  name="blog_image">
-                    <label  for="blog_image">Choose Image</label>
+                    <label  for="blog_image">Choose Image for your blog</label>
                     @endisset 
                      
                     <div class="form-group row">

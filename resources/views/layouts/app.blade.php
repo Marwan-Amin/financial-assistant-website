@@ -117,39 +117,46 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/incomes">
-                <span class="menu-title">income</span>
+                <span class="menu-title">Income manager</span>
                 <i class="mdi mdi-square-inc-cash menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/expenses/index">
-                <span class="menu-title">Expenses</span>
+                <span class="menu-title">Expense manager</span>
                 <i class="mdi mdi-cash-usd menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/savings/create">
-                <span class="menu-title">Savings</span>
+                <span class="menu-title">Savings manager</span>
                 <i class="mdi mdi-key menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/reports/index">
-                <span class="menu-title">Reports</span>
+                <span class="menu-title">Reports manager</span>
                 <i class="mdi mdi-file-outline menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/charts">
-                <span class="menu-title">Charts</span>
+                <span class="menu-title">Charts manager</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/targets/create">
-                <span class="menu-title">Budget Goals</span>
+                <span class="menu-title">Budget Goals manager</span>
                 <i class="mdi mdi-run-fast menu-icon"></i>
               </a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link" href="/events/manager">
+                  <span class="menu-title">Event Manager</span>
+                  <i class="mdi mdi-calendar-check menu-icon"></i>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/calendar">
@@ -157,20 +164,7 @@
                 <i class="mdi mdi-calendar menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/events/create">
-                <span class="menu-title">Create Event</span>
-                <i class="mdi mdi-cake-variant menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/events/manager">
-                  <span class="menu-title">Event Manager</span>
-                  <i class="mdi mdi-calendar-check menu-icon"></i>
-                </a>
-            </li>
               </li>
-              
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">
@@ -179,7 +173,7 @@
                 <a href="/incomes/create" class="btn btn-block btn-lg btn-gradient-danger mt-4">+ Add income</a>
                 <a href="/savings/create" class="btn btn-block btn-lg btn-gradient-info mt-4">+ Add Savings</a>
                 <a href="{{route('expenses.create')}}" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add expense</a>
-                
+                <a href="/events/create" class="btn btn-block btn-lg btn-gradient-success mt-4">+ Add event</a>
               </span>
             </li>
           </ul>
