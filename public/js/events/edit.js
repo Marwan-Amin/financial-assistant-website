@@ -97,19 +97,21 @@ var oldSubEventId;
 
 window.editEvent = function (mainEventUrl) {
   var customCategoryName = document.getElementById('customCategoryName').value;
-  var customCategoryDate = document.getElementById('customCategoryDate').value;
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     url: mainEventUrl,
     data: {
-      'customCategoryName': customCategoryName,
-      'customCategoryDate': customCategoryDate
+      'customCategoryName': customCategoryName
     },
     type: 'PUT',
     success: function success(response) {
-      ensureResponse(response);
+      if ($.isEmptyObject(response.error)) {
+        ensureResponse(response);
+      } else {
+        printErrorMsg(response.error);
+      }
     }
   });
 };
@@ -147,7 +149,6 @@ window.sendSubCategory = function (subName, amount, categoryId) {
     success: function success(response) {
       //create information record about the event 
       if ($.isEmptyObject(response.error)) {
-        alert(response.success);
         createEventInfoRecordForUpdate(response.data, response.isUpdated);
       } else {
         printErrorMsg(response.error, 'sub');
@@ -168,6 +169,7 @@ function createEventInfoRecordForUpdate(eventData, isUpdated) {
   } else {
     var table_row = document.createElement("tr");
     var table_data_amount = document.createElement("td");
+    var table_data_edit_btn = document.createElement("td");
     var table_data_amount_input = document.createElement('input');
     table_data_amount_input.setAttribute('type', 'number');
     table_data_amount_input.setAttribute('name', 'amount');
@@ -185,17 +187,24 @@ function createEventInfoRecordForUpdate(eventData, isUpdated) {
     editBtn.innerHTML = "Edit Sub-Event";
     var successTd = document.createElement('td');
     var successChiledDiv = document.createElement('div');
+    var errorChiledDiv = document.createElement('div');
+    var errorUl = document.createElement('ul');
+    errorChiledDiv.classList.add('alert', 'alert-danger', 'print-error-msg-sub');
+    errorChiledDiv.setAttribute('style', 'display:none');
+    errorChiledDiv.appendChild(errorUl);
     successChiledDiv.classList.add('alert', 'alert-success');
     successChiledDiv.setAttribute('id', 'subCategorySuccess');
     successChiledDiv.setAttribute('role', 'alert');
     successChiledDiv.setAttribute('style', 'display:none');
     successChiledDiv.innerHTML = "The Sub-Event Successfully Updated";
     successTd.appendChild(successChiledDiv);
+    successTd.appendChild(errorChiledDiv);
     table_data_amount.appendChild(table_data_amount_input);
     table_data_event_type.appendChild(table_data_event_type_input);
     table_row.appendChild(table_data_event_type);
     table_row.appendChild(table_data_amount);
-    table_row.appendChild(editBtn);
+    table_data_edit_btn.appendChild(editBtn);
+    table_row.appendChild(table_data_edit_btn);
     table_row.appendChild(successTd);
     table_body.appendChild(table_row);
     editBtn.addEventListener('click', function () {
@@ -227,16 +236,20 @@ window.editSubEvent = function (chiledElement, subEventId) {
       'customSubCategoryAmount': customSubCategoryAmount
     },
     success: function success(response) {
-      renderSuccess(response, chiledElement);
+      if ($.isEmptyObject(response.error)) {
+        renderSuccess(response, chiledElement);
+      } else {
+        printErrorMsg(response.error, 'sub', chiledElement);
+      }
     }
   });
 };
 
 function renderSuccess(isStored, chiledElement) {
   if (isStored) {
-    chiledElement.parentElement.querySelector('#subCategorySuccess').style.display = 'block';
+    chiledElement.parentElement.parentElement.querySelector('#subCategorySuccess').style.display = 'block';
     setTimeout(function () {
-      chiledElement.parentElement.querySelector('#subCategorySuccess').style.display = 'none';
+      chiledElement.parentElement.parentElement.querySelector('#subCategorySuccess').style.display = 'none';
     }, 2000);
   }
 }
@@ -244,10 +257,37 @@ function renderSuccess(isStored, chiledElement) {
 function setUrl(id) {
   if (subEventUrl.includes(':customSubCategoryId')) {
     subEventUrl = subEventUrl.replace(':customSubCategoryId', id);
-    oldSubEventId = id;
   } else {
-    subEventUrl = subEventUrl.replace('/SubEvents/' + oldSubEventId + '/update', '/SubEvents/' + id + '/update');
-    oldSubEventId = id;
+    subEventUrl = subEventUrl.substring(0, subEventUrl.indexOf('/SubEvents/')) + '/SubEvents/' + id + '/update';
+  }
+}
+
+function printErrorMsg(msg) {
+  var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'event';
+  var chiledElement = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  if (chiledElement) {
+    var element = chiledElement.parentElement.parentElement.querySelector('td div.alert-danger');
+    var ul = element.querySelector('ul');
+    ul.innerHTML = '';
+    msg.forEach(function (li) {
+      var listElement = document.createElement('li');
+      listElement.innerHTML = li;
+      ul.appendChild(listElement);
+    });
+    element.style.display = 'block';
+    setTimeout(function () {
+      element.style.display = 'none';
+    }, 2000);
+  } else {
+    $(".print-error-msg-" + type).find("ul").html('');
+    $(".print-error-msg-" + type).css('display', 'block');
+    $.each(msg, function (key, value) {
+      $(".print-error-msg-" + type).find("ul").append('<li>' + value + '</li>');
+    });
+    setTimeout(function () {
+      $(".print-error-msg-" + type).css('display', 'none');
+    }, 2000);
   }
 }
 

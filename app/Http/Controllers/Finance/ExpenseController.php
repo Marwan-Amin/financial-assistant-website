@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Http\Controllers\Finance;
-use App\Http\Controllers\Controller;
 
+use App\Balance;
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\ExpenseCategory;
 use App\ExpenseSubCategory;
 use App\Http\Requests\expensesRequest;
 use App\UserSubCategory;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Finance\BalanceCalculation;
+use App\User;
 
 class ExpenseController extends Controller
 {
     public function index()
     {   
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
         
         $expenses = $user->subExpenses;
         return view('expenses.index',compact('expenses'));
@@ -82,7 +87,7 @@ class ExpenseController extends Controller
         
 
         $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($request->date , $request->amount); 
+        $balanceObj->calculateBalance($request->date , null , $request->amount); 
 
         
         return redirect()->route('expenses.index');
@@ -93,29 +98,45 @@ class ExpenseController extends Controller
         $subExpense = UserSubCategory::findOrFail($id);
         $subExpense->delete();
 
+        $balanceObj=new BalanceCalculation;
+        $balanceObj->calculateBalanceOnDelete($subExpense->date ,null, $subExpense->amount);
+
         if($subExpense){
-            return response()->json(true);
+            return redirect()->route('expenses.index');
         }else{
-            return response()->json(false);
+            
         }
     }
 
-    public function edit(expensesRequest $request,$id){
-        $userSubCategory = UserSubCategory::find($id);
-        $oldExpense = $userSubCategory->amount;
-        $userSubCategory->sub_category_id = $request->subCategory;
-        $userSubCategory->amount = $request->amount;
-        $oldExpense = $userSubCategory->amount;
-
-        $userSubCategory->date = $request->date;
-        $userSubCategory->save();
-
-        $addedExpense= $request->amount - $oldExpense;
-
-
-        $balanceObj=new BalanceCalculation;
-        $balanceObj->calculateBalance($request->date , $addedExpense);
+    public function edit(Request $request,$id){
         
-        return redirect()->route('expenses.index');
+        $validator = Validator::make($request->all(), 
+        [
+            'amount'=>'numeric|min:0.25|required',
+            'subCategory'=>'required'
+        ]);
+        if($validator->passes()){
+            $userSubCategory = UserSubCategory::find($id);       
+            // $beforeUpdateExpense = $userSubCategory!=null ?$userSubCategory->amount:0;
+            // $updateExpenseDifference = $request->amount - $beforeUpdateExpense;
+            
+            
+            $updateOrcreate = UserSubCategory::updateOrCreate(
+                ['user_id'=>Auth::user()->id,'sub_category_id'=>$request->subCategory,'date'=>$userSubCategory->date],
+                ['amount'=>$request->amount ]);
+                
+                $balanceObj=new BalanceCalculation;
+                $balanceObj->calculateBalance($userSubCategory->date,null,$request->amount);
+         
+            if($userSubCategory->id != $updateOrcreate->id) {
+                UserSubCategory::find($id)->delete();
+            }
+                 
+            $userSubCategory->save();
+    
+            return redirect()->route('expenses.index');
+        }
+        return redirect()->route('expenses.edit',['id'=>$id]);
+       
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Balance;
 use App\CustomCategory;
 use App\Target;
 use App\User;
@@ -27,7 +28,8 @@ class ReportController extends Controller
         $expenses=$userInfo->subexpenses;
         $incomes=$userInfo->incomes;
         $events = $userInfo->CustomCategories;
-
+        $currentBalance = Balance::orderBy('date','DESC')->where('user_id',Auth::user()->id)->first();
+        $currentBalanceAmount = $currentBalance != null ?$currentBalance->balance:0;
         $userCharts = new User();
         $chartsInfo = $userCharts->charts();
         return view ('Reporting.index', [
@@ -38,6 +40,7 @@ class ReportController extends Controller
             'events' => $events,
             'targets' => $userInfo->target,
             'chartsInfo' => $chartsInfo,
+            'currentBalance'=>$currentBalanceAmount
         ]);
     }
 
@@ -47,7 +50,8 @@ class ReportController extends Controller
         $selectedDate = $request->reportDate;
         session()->put('selectedDate',$selectedDate);
         $currentDate = Carbon::today()->toDateString();
-        
+        $currentBalance = Balance::where('user_id',Auth::user()->id)->where('date',$request->reportDate)->first();
+        $currentBalanceAmount = $currentBalance != null?$currentBalance->balance:0;
         $expenses = UserSubCategory::where([
             "date" => $selectedDate , 
             "user_id" => $user_info->id
@@ -79,7 +83,7 @@ class ReportController extends Controller
             'currentDate' =>$currentDate,
             'events' => $events,
             'chartsInfo' => $chartsInfo,
-
+            'currentBalance'=>$currentBalanceAmount
         ]);
     }
 

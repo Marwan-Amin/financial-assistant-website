@@ -266,24 +266,22 @@
               
               <div class="form-group row fluid">
                 <strong><label>Amount</label></strong>
-                <input type="number" step="0.01" name="amount" class="form-control" 
+                <input type="number" step="0.01" name="amount" class="form-control"   
                   @isset($subExpenseUser)
                   value="{{ $amount= $subExpenseUser?$subExpenseUser->amount:''}}" 
                   @endisset
                   />              </div>
-            </div>
+            </div>  
+              @isset($subExpenseUser)
+           
+            @else
             <div class="col-md-6 mx-auto">
               <div class="form-group row fluid">
               <strong><label>Date</label></strong>
-                
-              <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy"
-                  @isset($subExpenseUser)
-                  value="{{ $date= $subExpenseUser?$subExpenseUser->date:''}}" 
-                  @endisset
-                  />                
+              <input type="date" name="date" class="form-control" placeholder="dd/mm/yyyy"/>                
               </div>
             </div>
-
+          @endisset
             <div class="col-md-3 pl-0 pr-0 mx-auto">
             <button type="submit" class="btn-block btn btn-gradient-success btn-lg">Submit</button>   
             </div>

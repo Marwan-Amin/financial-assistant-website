@@ -5,8 +5,6 @@ use App\Http\Controllers\Controller;
 
 use App\Blog;
 use App\Comment;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use App\Http\Requests\BlogStoreRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +19,7 @@ class BlogController extends Controller
         return view('blogs.index',compact('blogs'));
     }
     public function create($id = null){
+        
         if($id){
             
             $blog = Blog::find($id);
@@ -32,8 +31,6 @@ class BlogController extends Controller
        $tags = rtrim($tags,",");
             return view('blogs.create',compact('blog','tags'));
 
-            }else{  
-                return view('blogs.denied');
             }
                     }
         return view('blogs.create');

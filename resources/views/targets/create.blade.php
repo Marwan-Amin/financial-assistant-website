@@ -23,6 +23,8 @@
 
     <div class="row">
       <div class="col-4">
+        <form action="{{route('targets.store')}}" method="post">
+          @csrf
         <div class="card">
           <div class="card-header">
             <div class="text-center p-1">
@@ -56,7 +58,16 @@
               </div>
           </div> 
         </div>
-
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        </form>
         <section class="saving-box">
           <div class="text-center">
             <h3 class="current-savings">Your current Savings</h3>
@@ -66,9 +77,9 @@
           </div>
         </section>
       </div>
-<div class="col-md-8">
+<div class="col-md-8 bg-white p-5 rounded-lg">
   
-      <table class="table100">
+      <table class="new-table" id="budgetTable">
         <thead>
           <tr class="bg-gradient-info text-light">
             <th> Goal </th>
@@ -77,7 +88,7 @@
             <th> Action </th>
           </tr>
         </thead>
-        <tbody id="target_table">
+        <tbody id="tableDiv">
           @isset($targets)
           @foreach ($targets as $target)
           <tr>
@@ -107,9 +118,13 @@
             </td>
             <td><a class="btn btn-inverse-info btn-fw " href="{{route('targets.edit',['target_id'=>$target->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
             &nbsp;&nbsp; 
-            <button class="btn btn-inverse-danger btn-fw"  onclick='ajaxUrl(this,"{{$target->id}}",false);' >
+            <form action="{{route('targets.destroy',['target_id'=>$target->id])}}" method="post" class="d-inline">
+              @csrf
+              @method('DELETE')
+            <button class="btn btn-inverse-danger btn-fw"  >
             Delete&nbsp;<i class="mdi mdi-delete"></i>
-                    </button> 
+                    </button>
+                   </form>
             </td>
            
           </tr>
@@ -129,6 +144,8 @@
 </div>
 <script src="{{asset('js/functions/delete.js')}}"></script>
 <script>
+  let csrf = '{{csrf_token()}}';
+ 
  let deleteTargetUrl ="{{route('targets.destroy',['target_id'=>':target.id'])}}";
  let editTargetUrl ="{{route('targets.edit',['target_id'=>':response.id'])}}";
  let storeTargetUrl = "{{route('targets.store')}}";

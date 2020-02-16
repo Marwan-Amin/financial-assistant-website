@@ -13,7 +13,6 @@ class TargetController extends Controller
 {
     function index() 
     {
-        $user_id = Auth::user()->id;
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
         return view('targets.create',[
@@ -24,23 +23,22 @@ class TargetController extends Controller
     
     function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'target_name' => 'required|unique:targets',
-            'target_amount' => 'required',
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
         ]);
-        if ($validator->passes()) {
+       
         $saving=new Target_saving;
         $savings=$saving->sum_savings();
-        $target = Target::create(
-        ['user_id' => Auth::user()->id,'target_name' => $request->target_name ,  
-        'target_amount' => $request->target_amount,
-        'savings' => $savings,       
-        ]);
-        $target = Target::find($target->id);
-        
-            return response()->json(['success'=>'Budget Goal is added Successfully.','targetData'=>$target]);
-        }
-        return response()->json(['error'=>$validator->errors()->all()]);  
+        Target::create(
+            ['user_id' => Auth::user()->id,'target_name' => $request->target_name ,
+             'target_amount' => $request->amount,
+             'savings' => $savings,
+            ]
+            );            
+      
+    
+        return redirect()->route('targets.create');
     }
 
     function destroy($target_id)
@@ -48,13 +46,17 @@ class TargetController extends Controller
 
         $target = Target::findOrFail($target_id);
         $target->delete();
-        return response()->json($target);
+        return redirect()->route('targets.create');
     }
 
     function update($target_id,Request $request)
     {
+        $request->validate([
+            'target_name' => 'required|unique:targets,id',
+            'amount' => 'required|numeric|between:0.25,9999999999.99',
+        ]);
         $target = target::findOrFail($target_id);
-        $target->target_amount = $request->target_amount;
+        $target->target_amount = $request->amount;
         $target->target_name = $request->target_name;
         $target->save();
         return redirect()->route('targets.create');

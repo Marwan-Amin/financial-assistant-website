@@ -8,7 +8,7 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-10 col-sm-12 ftco-animate mb-4 text-center">
-              <p class="breadcrumbs"><span class="mr-2"><a href="/blogs/create">Create New Blog</a></span> <span>Blog</span></p>
+              <p class="breadcrumbs"><span class="mr-2"><a href="blog/create">Create New Blog</a></span> <span>Blog</span></p>
               <h1 class="mb-3 bread">Read our blog</h1>
             </div>
           </div>

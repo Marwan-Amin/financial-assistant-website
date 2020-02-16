@@ -11,9 +11,9 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body" id="tableDiv">
-        <table class="table table-striped " >
+        <table class="new-table dataTable no-footer" id="eventsTable" >
           <thead>
-            <tr>
+            <tr class="bg-gradient-danger text-light">
             <th> Category </th>
               <th>Total Amount </th>
               <th>Date </th>
@@ -23,6 +23,7 @@
             </tr>
           </thead>
           <tbody>
+            @isset($events)
             @foreach ($events as $event) 
             <tr>
             <td>{{$event->name}}</td>
@@ -31,16 +32,23 @@
 
                 <td><a class="btn btn-inverse-info btn-fw" href="{{route('events.edit',['id'=>$event->id])}}" >Edit&nbsp;<i class="mdi mdi-file-check btn-icon-append"></i></a>
                 
-                <a class="btn btn-inverse-primary btn-fw" href="{{route('events.show',['id'=>$event->id])}}" >View&nbsp;<i class="mdi mdi-eye btn-icon-append"></i></a>
-                <button class="btn btn-inverse-danger btn-fw"  
-                onclick="ajaxDelete(this,`{{route('events.destroy',['id'=>$event->id])}}`);" >
+                <form method="post" action="{{route('events.destroy',['id'=>$event->id])}}" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                <button class="btn btn-inverse-danger btn-fw" >
                 Delete&nbsp;<i class="mdi mdi-delete"></i>
                       </button>
+                </form>
               </td>
                 
                  
             </tr>
             @endforeach
+            @else
+            <div class="text-center mt-3">
+              <h4>You Have No Records</h4>
+            </div>
+            @endisset
           </tbody>
         </table>
 

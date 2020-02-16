@@ -6,7 +6,9 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-10 col-sm-12 ftco-animate mb-4 text-center">
-              <p class="breadcrumbs"><span class="mr-2"><a href="{{route('home.index')}}">Home</a></span> <span class="mr-2"><a href="{{route('blogs.index')}}">Blog</a></span> <span>Single Blog</span></p>
+            <p class="breadcrumbs d-block"><span class="mr-2"><a href="/blog/create">Create New Blog</a></span> </p>
+
+              <p class="breadcrumbs d-block"><span class="mr-2"><a href="{{route('home.index')}}">Home</a></span> <span class="mr-2"><a href="{{route('blogs.index')}}">Blog</a></span> <span>Single Blog</span></p>
               <h1 class="mb-3">Single Blog</h1>
             </div>
           </div>

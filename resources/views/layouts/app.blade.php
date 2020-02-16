@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     <!-- Calender Style links -->
     <link href="{{asset('UI/fullcalendar-4.3.1/packages/core/main.css')}}" rel='stylesheet' />
@@ -28,7 +29,7 @@
     <!-- End of Calender Style Links -->
 
     <!-- Tab icon -->
-    <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" />
     <!--End of tab icon -->
 
     <!-- Bootstrap CDN link -->
@@ -39,7 +40,8 @@
     <link rel="stylesheet" href="{{asset('UI/PurpleAdmin/assets/css/style.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
+   
+
     <!-- Table Style  -->
     <link rel="stylesheet" type="text/css" href="{{asset('UI/TableV1/css/main.css')}}">
     <!-- End of Table style -->
@@ -52,11 +54,11 @@
           <a class="navbar-brand brand-logo" href="/">
           <p class="m-0">
 
-          <img src="{{asset('UI/PurpleAdmin/assets/images/logo.png')}}" alt="logo" />
-        <span class="app_name">Expense Tracker</span>
+          <img src="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" alt="logo" />
+        <span class="app_name">Moneyger</span>
           </p>
         </a>
-          <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/logo.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('UI/PurpleAdmin/assets/images/wallet.png')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -88,11 +90,13 @@
             <li class="nav-item nav-profile">
               <a href="/user_profile" class="nav-link">
                 <div class="nav-profile-image">
+                  @auth
                 @if ( Auth::user()->avatar)
                   <img src="{{asset(Auth::user()->avatar)}}" alt="profile">
                   @else
                   <img src="https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png" alt="profile">
                   @endif
+                  @endauth
                   <span class="login-status online"></span>
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
@@ -166,12 +170,6 @@
                 </a>
             </li>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/prediction">
-                  <span class="menu-title">Predict data</span>
-                  <i class="mdi  mdi-arrow-up-bold menu-icon"></i>
-                </a>
-              </li>
               
             <li class="nav-item sidebar-actions">
               <span class="nav-link">
@@ -198,10 +196,18 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/misc.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/todolist.js')}}"></script>
     <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
-
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
 
 <script>
+      $('#expensesTable').DataTable();
+      $('#incomesTable').DataTable();
+      $('#eventsTable').DataTable();
+      $('#budgetTable').DataTable();
+      $('#savingsTable').DataTable();
+
 $( function(){
+    
   function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

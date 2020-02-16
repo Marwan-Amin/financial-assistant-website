@@ -995,7 +995,6 @@ function subExpensePieChart(doughnutPieOptions,data,labels){
 
   }else{
 
-    console.log(pieChart3);
 
   }
 

@@ -1,26 +1,25 @@
-let  previousId ;
-document.getElementById("add_savings_btn").addEventListener('click',function(){
-    let saving_amount = document.getElementById("saving_amount").value;
-    $.ajax({
-      headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-      type:"POST",
-      data : {saving_amount},
-      dataType : "json",
-      url :savingUrl,
-      success : function (response){
-        if($.isEmptyObject(response.error)){
-          previousId = response.saving.id;
-          createRecord(response.saving,response.sum);
-        }else{
-          printErrorMsg(response.error);
-        }
+// document.getElementById("add_savings_btn").addEventListener('click',function(){
+//     let saving_amount = document.getElementById("saving_amount").value;
+//     $.ajax({
+//       headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             },
+//       type:"POST",
+//       data : {saving_amount},
+//       dataType : "json",
+//       url :savingUrl,
+//       success : function (response){
+//         if($.isEmptyObject(response.error)){
+//           previousId = response.saving.id;
+//           createRecord(response.saving,response.sum);
+//         }else{
+//           printErrorMsg(response.error);
+//         }
 
-      }
+//       }
   
-    });
-  });
+//     });
+//   });
   
   
   //create DOM elements
@@ -33,12 +32,19 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
       editUrl=editUrl.replace('/savings/'+previousId+'/edit','/savings/'+response.id+'/edit');
       previousId = response.id;
     }    
-  let table_body = document.getElementById("saving_table");
+  let table_body = document.getElementById("tableDiv");
+      table_body.querySelectorAll('div h4').forEach(function(element){
+        element.parentElement.remove();
+      });
   let table_row = document.createElement("tr");
+  table_row.setAttribute('role' , 'row');
   //amount td
   let table_data_amount = document.createElement("td");
       table_data_amount.innerHTML=response.amount;
+      let table_data_created_at = document.createElement("td");
+      table_data_created_at.innerHTML=response.created_at;
   //edit btn
+
   let btn_edit = document.createElement("a");
       btn_edit.setAttribute("href", editUrl);
       btn_edit.innerHTML="Edit";
@@ -67,17 +73,19 @@ document.getElementById("add_savings_btn").addEventListener('click',function(){
   //total savings
   let total = document.getElementById("total");
       total.innerHTML = sum + "EGP";
+
       table_row.appendChild(table_data_amount);
+      table_row.appendChild(table_data_created_at);
       table_row.appendChild(table_data);
       table_body.appendChild(table_row);
   //delete with ajax
-  let isRefreshed=true;
+  let isRefreshed=false;
   confirmDelete(btn_delete,response.id,isRefreshed);
   }
   
   //delete fn
-  function confirmDelete(btn_delete,id,isRefreshed){
-if(isRefreshed){
+ window.confirmDelete = function (btn_delete,id,isRefreshed){
+if(!isRefreshed){
     btn_delete.addEventListener("click",function(){
         excuteDelete(btn_delete,id);
       
@@ -89,11 +97,9 @@ if(isRefreshed){
   function excuteDelete(btn_delete,id){
     if(delurl.includes(':saving.id')){
       delurl=delurl.replace(':saving.id',id);
-      previousId=id;
     }
     else{
-      delurl=delurl.replace('/savings/'+previousId,'/savings/'+id);
-      previousId = id;
+      delurl=delurl.substring(0,delurl.indexOf('/savings/'))+'/savings/'+id;
     }    
         ajaxDelete(btn_delete,delurl);
   }

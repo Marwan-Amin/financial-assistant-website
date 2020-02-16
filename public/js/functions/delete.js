@@ -104,13 +104,19 @@ window.ajaxDelete = function (element, url) {
       type: 'DELETE',
       url: url,
       success: function success(data) {
-        removeRecord(data, element);
+        if (data.sum != null || data.sum != undefined) {
+          removeRecord(data, element, data.sum);
+        } else {
+          removeRecord(data, element);
+        }
       }
     });
   }
 };
 
 function removeRecord(isRemoved, element) {
+  var sum = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
   if (isRemoved) {
     var parent = element.parentElement.parentElement;
 
@@ -124,6 +130,10 @@ function removeRecord(isRemoved, element) {
       div.classList.add('text-center', 'mt-3');
       div.appendChild(h4);
       document.getElementById('tableDiv').appendChild(div);
+    }
+
+    if (sum != null) {
+      document.getElementById('total').innerHTML = sum + " EGP";
     }
   } else {
     alert('something went wrong!!');

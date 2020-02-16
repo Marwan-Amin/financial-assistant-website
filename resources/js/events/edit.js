@@ -1,17 +1,21 @@
 let oldSubEventId;
 window.editEvent = function (mainEventUrl){
     let customCategoryName = document.getElementById('customCategoryName').value;
-    let customCategoryDate = document.getElementById('customCategoryDate').value;
       
     $.ajax({
     headers: {
      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            },
  url: mainEventUrl,
- data:{'customCategoryName':customCategoryName,'customCategoryDate':customCategoryDate},
+ data:{'customCategoryName':customCategoryName},
  type: 'PUT',
  success: function(response) {
-   ensureResponse(response);
+   if($.isEmptyObject(response.error)){
+    ensureResponse(response);
+
+   }else{
+    printErrorMsg(response.error);
+   }
  }
 });
   }
@@ -46,7 +50,6 @@ data:subCategoryInfo,
  success:function(response){
    //create information record about the event 
    if($.isEmptyObject(response.error)){
-      alert(response.success);
           createEventInfoRecordForUpdate(response.data,response.isUpdated);
       
   }else{
@@ -68,6 +71,7 @@ data:subCategoryInfo,
     }else{
         let table_row = document.createElement("tr");
         let table_data_amount = document.createElement("td");
+        let table_data_edit_btn =  document.createElement("td");
         let table_data_amount_input = document.createElement('input');
             table_data_amount_input.setAttribute('type','number');
             table_data_amount_input.setAttribute('name','amount');
@@ -85,17 +89,24 @@ data:subCategoryInfo,
             editBtn.innerHTML ="Edit Sub-Event";
         let successTd = document.createElement('td');
         let successChiledDiv = document.createElement('div');
+        let errorChiledDiv = document.createElement('div');
+        let errorUl = document.createElement('ul');
+            errorChiledDiv.classList.add('alert','alert-danger','print-error-msg-sub');
+            errorChiledDiv.setAttribute('style','display:none');
+            errorChiledDiv.appendChild(errorUl);
             successChiledDiv.classList.add('alert','alert-success');
             successChiledDiv.setAttribute('id','subCategorySuccess');
             successChiledDiv.setAttribute('role','alert');
             successChiledDiv.setAttribute('style','display:none');
             successChiledDiv.innerHTML = "The Sub-Event Successfully Updated";
             successTd.appendChild(successChiledDiv);
+            successTd.appendChild(errorChiledDiv);
             table_data_amount.appendChild(table_data_amount_input);
             table_data_event_type.appendChild(table_data_event_type_input);
             table_row.appendChild(table_data_event_type);
             table_row.appendChild(table_data_amount);
-            table_row.appendChild(editBtn);
+            table_data_edit_btn.appendChild(editBtn);
+            table_row.appendChild(table_data_edit_btn);
             table_row.appendChild(successTd);
             table_body.appendChild(table_row);
             editBtn.addEventListener('click',function(){
@@ -125,16 +136,21 @@ window.editSubEvent =function (chiledElement,subEventId){
  type: 'PUT',
  data:{'customSubCategoryName':customSubCategoryName,'customSubCategoryAmount':customSubCategoryAmount},
  success: function(response) {
-   renderSuccess(response,chiledElement);
+  if($.isEmptyObject(response.error)){
+    renderSuccess(response,chiledElement);
+    
+}else{
+    printErrorMsg(response.error,'sub',chiledElement);
+}
  }
 });
 }
 
 function renderSuccess(isStored,chiledElement){
   if(isStored){
-    chiledElement.parentElement.querySelector('#subCategorySuccess').style.display = 'block';
+    chiledElement.parentElement.parentElement.querySelector('#subCategorySuccess').style.display = 'block';
         setTimeout(function() {
-          chiledElement.parentElement.querySelector('#subCategorySuccess').style.display = 'none';
+          chiledElement.parentElement.parentElement.querySelector('#subCategorySuccess').style.display = 'none';
 
           }, 2000);
   }
@@ -143,9 +159,37 @@ function renderSuccess(isStored,chiledElement){
 function setUrl(id){
   if(subEventUrl.includes(':customSubCategoryId')){
     subEventUrl = subEventUrl.replace(':customSubCategoryId',id);
-    oldSubEventId = id;
   }else{
-    subEventUrl = subEventUrl.replace('/SubEvents/'+oldSubEventId+'/update','/SubEvents/'+id+'/update');
-    oldSubEventId = id;
+    subEventUrl=subEventUrl.substring(0,subEventUrl.indexOf('/SubEvents/'))+'/SubEvents/'+id+'/update';
   }
   }
+  function printErrorMsg (msg,type ='event',chiledElement =null) {
+    
+    if(chiledElement){
+     let element = chiledElement.parentElement.parentElement.querySelector('td div.alert-danger');
+     let ul =  element.querySelector('ul'); 
+          ul.innerHTML = '';   
+         msg.forEach(function(li){
+              let listElement = document.createElement('li');
+                  listElement.innerHTML = li;
+                    
+                    ul.appendChild(listElement);
+          });
+          element.style.display = 'block';
+          setTimeout(function() {
+            element.style.display = 'none';
+            }, 2000);
+          
+    }else{
+      $(".print-error-msg-"+type).find("ul").html('');
+      $(".print-error-msg-"+type).css('display','block');
+  
+      $.each( msg, function( key, value ) {
+          $(".print-error-msg-"+type).find("ul").append('<li>'+value+'</li>');
+      });
+      setTimeout(function() {
+          $(".print-error-msg-"+type).css('display','none');
+          }, 2000);
+    }
+   
+}

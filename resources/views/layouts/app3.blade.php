@@ -199,6 +199,8 @@
     <script src="{{asset('UI/PurpleAdmin/assets/js/todolist.js')}}"></script>
         <script src="{{asset('UI/PurpleAdmin/assets/js/file-upload.js')}}"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
+
   
    
     <script>

@@ -22,7 +22,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Amount</label>
                 <div class="col-sm-9">
-                  <input id="target_amount" type="number" value="{{$target->target_amount}}" name="target_amount" class="form-control" />
+                  <input id="target_amount" type="number" value="{{$target->target_amount}}" name="amount" class="form-control" />
                 </div>
               </div>
             </div>
@@ -35,6 +35,15 @@
                 </div>
               </div>
             </div>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
           </div>
         </form>
      </div>

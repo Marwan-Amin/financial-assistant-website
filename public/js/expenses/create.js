@@ -116,9 +116,7 @@ document.getElementById('selectCategory').querySelectorAll('div input').forEach(
           //  function to render the data of the response 
           if (data) {
             renderSubCategories(data);
-          } else {
-            alert('Something Went Wrong Please Refresh The Page');
-          }
+          } else {}
         }
       });
       previousValue = categoryId;

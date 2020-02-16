@@ -102,14 +102,7 @@
                
               </div>
             </div>
-            <div class="col-md-6 mx-auto">
-              <div class="form-group row fluid">
-              <strong><label>Date</label></strong>
-                
-              <input type="date" name="date" value="{{$income->Date}}" class="form-control" placeholder="dd/mm/yyyy" />
-                
-              </div>
-            </div>
+           
 
             <div class="col-md-2 pl-0 pr-0 mx-auto">
             <button type="submit" class="btn-block btn btn-gradient-danger btn-lg ">Update</button>
